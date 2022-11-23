@@ -1,10 +1,9 @@
 import { FC, useCallback, useState } from 'react'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import { Card, Box,CardContent, Typography, CardActions } from '@mui/material'
 import { WordData } from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField.a'
 import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
+import StyledTextButtonAtom from '@/atoms/StyledTextButton.a'
 
 interface Props {
   onClickAddWordCallback: (word: WordData) => Promise<void>
@@ -42,6 +41,13 @@ const NewWordBox: FC<Props> = ({ onClickAddWordCallback }) => {
             isAutoFocused
           />
         </CardContent>
+        <CardActions>
+          <Box flexGrow={1}/>
+          <StyledTextButtonAtom
+            handleClick={() => handleClickAddWordCallback()}
+            title={"Close"}
+          />
+        </CardActions>
       </Card>
     )
   }
