@@ -1,6 +1,6 @@
-import { useCallback, useState, Dispatch, SetStateAction } from "react"
+import { useCallback, useState } from "react"
 
-export type HandleClickRefresh = Dispatch<SetStateAction<boolean>>
+export type HandleClickRefresh = () => void
 
 export const useInternalLoading = (): [
   boolean,
@@ -8,7 +8,7 @@ export const useInternalLoading = (): [
 ] => {
   const [internalLoading, setInternalLoading] = useState(true)
 
-  const handleClickRefresh = useCallback(
+  const handleClickRefresh: HandleClickRefresh = useCallback(
     () => setInternalLoading(!internalLoading),
     [internalLoading],
   )

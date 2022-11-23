@@ -3,13 +3,16 @@ import { WordData } from '../../api/words/words.interface'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import StyledIconButtonAtom from '../../atoms/StyledIconButton.a'
+import DeleteWordIcon from '@mui/icons-material/Delete';
 
 interface Props {
   word: WordData
+  onClickDeleteWord: (wordId: string) => void
 }
-const WordCard: FC<Props> = ({ word }) => {
+const WordCard: FC<Props> = ({ word, onClickDeleteWord }) => {
+
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -29,7 +32,10 @@ const WordCard: FC<Props> = ({ word }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <StyledIconButtonAtom
+          handleClick={() => onClickDeleteWord(word.id)}
+          jsxElementButton={<DeleteWordIcon />}
+        />
       </CardActions>
     </Card>
   )

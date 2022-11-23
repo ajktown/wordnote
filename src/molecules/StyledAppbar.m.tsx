@@ -10,7 +10,7 @@ interface Props {
   title: string
   children?: JSX.Element | JSX.Element[]
 }
-const StyledMoleculeAppbar: FC<Props> = (props) => {
+const StyledAppbarMolecule: FC<Props> = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -30,4 +30,4 @@ const StyledMoleculeAppbar: FC<Props> = (props) => {
   );
 }
 
-export default StyledMoleculeAppbar
+export default StyledAppbarMolecule
