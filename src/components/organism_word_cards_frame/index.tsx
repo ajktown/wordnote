@@ -5,7 +5,7 @@ import { useWords } from '../../hook/words/use-words.hook'
 import { deleteWordByIdApi } from '../../api/words/delete-words.api'
 import StyledIconButtonAtom from '../../atoms/StyledIconButton.a'
 import { Stack, Box } from '@mui/material'
-import { postWordApi } from '../../api/words/post-word.api'
+import { postWordApi } from '@/api/words/post-word.api'
 
 const WordCardsFrame: FC = () => {
   const [words, setWords, handleClickRefresh] = useWords()
