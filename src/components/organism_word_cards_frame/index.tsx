@@ -6,11 +6,20 @@ import { deleteWordByIdApi } from '../../api/words/delete-words.api'
 import StyledIconButtonAtom from '../../atoms/StyledIconButton.a'
 import { Stack, Box } from '@mui/material'
 import { postWordApi } from '@/api/words/post-word.api'
+import NewWordBox from '../molecule_new_word_box'
+import { WordData } from '@/api/words/words.interface'
 
 const WordCardsFrame: FC = () => {
   const [words, setWords, handleClickRefresh] = useWords()
 
   if (words === undefined) return <h3>"Loading..."</h3>
+
+  const onClickAddWord = async (wordData: WordData) => {
+    try {
+      postWordApi()
+      setWords([wordData, ...words])
+    } catch {}
+  }
 
   const onClickDeleteWord = async (wordId: string) => {
     try {
@@ -63,6 +72,7 @@ const WordCardsFrame: FC = () => {
         </Stack>
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
+          <NewWordBox onClickAddWord={onClickAddWord} />
           {words.map(word => <WordCard key={word.id} word={word} onClickDeleteWord={onClickDeleteWord}
             onClickUndoDeleteWord={onClickUndoDeleteWord}
           />)}
