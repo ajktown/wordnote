@@ -13,7 +13,7 @@ interface Props {
 }
 const WordCard: FC<Props> = ({ word, onClickDeleteWord }) => {
   return (
-    <Card sx={{ maxWidth: 1000, width: "100%" }}>
+    <Card style={{ width: "100%", borderRadius: 9 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day
