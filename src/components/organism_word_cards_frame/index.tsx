@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { FC } from 'react'
 import WordCard from '../molecule_word_card'
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useWords } from '../../hook/words/use-words.hook'
@@ -24,8 +24,7 @@ const WordCardsFrame: FC = () => {
         handleClick={() => handleClickRefresh()}
         jsxElementButton={<RefreshIcon />}
       />
-      <Stack spacing={0.5} >
-        
+      <Stack spacing={0.5} alignItems="center">
         {words.map(word => <WordCard key={word.id} word={word} onClickDeleteWord={onClickDeleteWord}/>)}
       </Stack>
     </Stack>

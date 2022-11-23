@@ -12,9 +12,8 @@ interface Props {
   onClickDeleteWord: (wordId: string) => void
 }
 const WordCard: FC<Props> = ({ word, onClickDeleteWord }) => {
-
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ maxWidth: 1000, width: "100%" }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day
