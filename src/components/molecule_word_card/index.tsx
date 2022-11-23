@@ -11,18 +11,19 @@ import StyledTextButtonAtom from '../../atoms/StyledTextButton.a'
 interface Props {
   word: WordData
   onClickDeleteWord: (wordId: string) => void
-  // onClickUndoDeleteWord: (wordId: string) => void
+  onClickUndoDeleteWord: (wordId: string) => void
 }
 
-const WordCard: FC<Props> = ({ word, onClickDeleteWord }) => {
+const WordCard: FC<Props> = ({ word, onClickDeleteWord, onClickUndoDeleteWord }) => {
   if (word.isDeleted) return (
     <Card style={{ width: "100%", borderRadius: 9 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Deleted Word
+          {`Word "${word.term || "Unknown"}" Deleted`}
         </Typography>
         <StyledTextButtonAtom
           title={"Undo"}
+          handleClick={() => onClickUndoDeleteWord(word.id)}
         />
       </CardContent>
     </Card>

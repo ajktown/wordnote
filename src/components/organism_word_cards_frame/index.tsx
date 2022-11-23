@@ -5,6 +5,7 @@ import { useWords } from '../../hook/words/use-words.hook'
 import { deleteWordByIdApi } from '../../api/words/delete-words.api'
 import StyledIconButtonAtom from '../../atoms/StyledIconButton.a'
 import { Stack, Box } from '@mui/material'
+import { postWordApi } from '../../api/words/post-word.api'
 
 const WordCardsFrame: FC = () => {
   const [words, setWords, handleClickRefresh] = useWords()
@@ -22,6 +23,22 @@ const WordCardsFrame: FC = () => {
       copiedWords.splice(foundIndex, 1, {
         ...words[foundIndex],
         isDeleted: true
+      })
+      setWords(copiedWords)
+    } catch {}
+  }
+
+  const onClickUndoDeleteWord = async (wordId: string) => {
+    try {
+      postWordApi()
+
+      const copiedWords = [...words]
+      const foundIndex = copiedWords.findIndex(word => word.id === wordId)
+      if (foundIndex === -1) return // already deleted.
+
+      copiedWords.splice(foundIndex, 1, {
+        ...words[foundIndex],
+        isDeleted: false
       })
       setWords(copiedWords)
     } catch {}
@@ -46,7 +63,9 @@ const WordCardsFrame: FC = () => {
         </Stack>
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
-          {words.map(word => <WordCard key={word.id} word={word} onClickDeleteWord={onClickDeleteWord}/>)}
+          {words.map(word => <WordCard key={word.id} word={word} onClickDeleteWord={onClickDeleteWord}
+            onClickUndoDeleteWord={onClickUndoDeleteWord}
+          />)}
         </Stack>
       </Stack>
     </Stack>
