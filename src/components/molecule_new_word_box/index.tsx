@@ -14,6 +14,8 @@ const NewWordBox: FC<Props> = ({ onClickAddWordCallback }) => {
   const [isWritingMode, setWritingMode] = useState(false)
 
   const handleClickAddWordCallback = useCallback(async () => {
+    if (!userInput) return setWritingMode(false)
+
     await onClickAddWordCallback({
       id: userInput,
       term: userInput,
