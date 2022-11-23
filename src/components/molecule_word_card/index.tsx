@@ -28,7 +28,7 @@ const WordCard: FC<Props> = ({ word, onClickDeleteWord }) => {
         <Typography variant="body2">
           {word.definition}
           <br />
-          {`"${word.example}"`}
+          {word.example && `"${word.example}"`}
         </Typography>
       </CardContent>
       <CardActions>

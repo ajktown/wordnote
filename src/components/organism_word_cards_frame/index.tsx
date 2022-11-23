@@ -4,6 +4,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import { useWords } from '../../hook/words/use-words.hook'
 import { deleteWordByIdApi } from '../../api/words/delete-words.api'
 import StyledIconButtonAtom from '../../atoms/StyledIconButton.a'
+import { Stack } from '@mui/material'
 
 const WordCardsFrame: FC = () => {
   const [words, setWords, handleClickRefresh] = useWords()
@@ -18,13 +19,16 @@ const WordCardsFrame: FC = () => {
   }
 
   return (
-    <Fragment>
+    <Stack p={1} style={{ backgroundColor: "#aaa" }}>
       <StyledIconButtonAtom
         handleClick={() => handleClickRefresh()}
         jsxElementButton={<RefreshIcon />}
       />
-      {words.map(word => <WordCard key={word.id} word={word} onClickDeleteWord={onClickDeleteWord}/>)}
-    </Fragment>
+      <Stack spacing={0.5} >
+        
+        {words.map(word => <WordCard key={word.id} word={word} onClickDeleteWord={onClickDeleteWord}/>)}
+      </Stack>
+    </Stack>
   )
 }
 
