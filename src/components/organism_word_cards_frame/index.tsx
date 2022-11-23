@@ -14,7 +14,16 @@ const WordCardsFrame: FC = () => {
   const onClickDeleteWord = async (wordId: string) => {
     try {
       deleteWordByIdApi(wordId)
-      setWords(words.filter(word => word.id !== wordId))
+
+      const copiedWords = [...words]
+      const foundIndex = copiedWords.findIndex(word => word.id === wordId)
+      if (foundIndex === -1) return // already deleted.
+
+      copiedWords.splice(foundIndex, 1, {
+        ...words[foundIndex],
+        isDeleted: true
+      })
+      setWords(copiedWords)
     } catch {}
   }
 

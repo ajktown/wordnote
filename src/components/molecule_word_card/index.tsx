@@ -6,12 +6,28 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import StyledIconButtonAtom from '../../atoms/StyledIconButton.a'
 import DeleteWordIcon from '@mui/icons-material/Delete';
+import StyledTextButtonAtom from '../../atoms/StyledTextButton.a'
 
 interface Props {
   word: WordData
   onClickDeleteWord: (wordId: string) => void
+  // onClickUndoDeleteWord: (wordId: string) => void
 }
+
 const WordCard: FC<Props> = ({ word, onClickDeleteWord }) => {
+  if (word.isDeleted) return (
+    <Card style={{ width: "100%", borderRadius: 9 }}>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Deleted Word
+        </Typography>
+        <StyledTextButtonAtom
+          title={"Undo"}
+        />
+      </CardContent>
+    </Card>
+  )
+
   return (
     <Card style={{ width: "100%", borderRadius: 9 }}>
       <CardContent>

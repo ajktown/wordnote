@@ -1,6 +1,7 @@
 import { FC, MouseEvent, useState } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
+import { GlobalMuiPlacement } from '../global.interface'
 
 const DEFAULT_SIZE = `small`
 
@@ -10,7 +11,7 @@ interface Props {
   isDisabled?: boolean
   hoverMessage?: {
     title: string
-    placement?: 'right' | 'left-start' | 'bottom-start'
+    placement?: GlobalMuiPlacement
   }
   size?: 'small' | 'medium' | 'large'
   disableOnHoverColor?: boolean
