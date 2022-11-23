@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 interface Props {
   title: string
+  titleLogoPath?: string // i.e) src="logo.png"
   children?: JSX.Element | JSX.Element[]
 }
 const StyledAppbarMolecule: FC<Props> = (props) => {
@@ -18,7 +19,10 @@ const StyledAppbarMolecule: FC<Props> = (props) => {
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
+          {props.titleLogoPath && (
+            <img src={props.titleLogoPath} alt="logo" width={30} style={{ marginRight: 8 }} />
+          )}
+          <Typography variant="h6" color="inherit" component="div" fontFamily={"Cormorant Garamond"}>
             {props.title}
           </Typography>
         </Toolbar>
