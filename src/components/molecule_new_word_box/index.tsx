@@ -31,8 +31,8 @@ const NewWordBox: FC<Props> = ({ onClickAddWordCallback }) => {
 
   if (isWritingMode) {
     return (
-      <Card style={{ width: "100%", borderRadius: 9, cursor: "text" }}
-        onClick={() => setWritingMode(true)}
+      <Card 
+        style={{ width: "100%", borderRadius: 9, cursor: "text" }} 
         ref={ref}
       >
         <CardContent>

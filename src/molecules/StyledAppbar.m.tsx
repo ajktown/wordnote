@@ -1,24 +1,26 @@
 import { FC } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import {AppBar, Box} from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-
+import AppsIcon from '@mui/icons-material/Apps';
+import StyledIconButtonAtom from '@/atoms/StyledIconButton.a'
 interface Props {
   title: string
   titleLogoPath?: string // i.e) src="logo.png"
   children?: JSX.Element | JSX.Element[]
+  onClickAppMenu?: () => any // if not given, the menu button will be disabled
 }
 const StyledAppbarMolecule: FC<Props> = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar variant="dense">
-          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <MenuIcon />
-          </IconButton>
+          <StyledIconButtonAtom
+            handleClick={() => console.log("TODO")}
+            jsxElementButton={<AppsIcon />}
+            isDisabled={!props.onClickAppMenu}
+          />
+          <Box width={10} />
           {props.titleLogoPath && (
             <img src={props.titleLogoPath} alt="logo" width={30} style={{ marginRight: 8 }} />
           )}
