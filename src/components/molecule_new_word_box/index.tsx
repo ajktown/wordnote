@@ -1,22 +1,38 @@
-import { FC, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { WordData } from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField.a'
+import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
 
 interface Props {
-  onClickAddWord: (word: WordData) => void
+  onClickAddWordCallback: (word: WordData) => Promise<void>
 }
-const NewWordBox: FC<Props> = ({ onClickAddWord }) => {
+const NewWordBox: FC<Props> = ({ onClickAddWordCallback }) => {
   const [userInput, setUserInput] = useState("")
   const [isWritingMode, setWritingMode] = useState(false)
-  // TODO: Write a listener for clicking outside of the this component
+
+  const handleClickAddWordCallback = useCallback(async () => {
+    await onClickAddWordCallback({
+      id: userInput,
+      term: userInput,
+      pronunciation: "",
+      definition: "",
+      example: "",
+
+    })
+    setUserInput("")
+    setWritingMode(false)
+  }, [userInput])
+
+  const ref = useOutsideClicked(handleClickAddWordCallback);
 
   if (isWritingMode) {
     return (
       <Card style={{ width: "100%", borderRadius: 9, cursor: "text" }}
         onClick={() => setWritingMode(true)}
+        ref={ref}
       >
         <CardContent>
           <StyledTextField value={userInput} handleChange={setUserInput}

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import WordCard from '../molecule_word_card'
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useWords } from '../../hook/words/use-words.hook'
@@ -12,14 +12,14 @@ import { WordData } from '@/api/words/words.interface'
 const WordCardsFrame: FC = () => {
   const [words, setWords, handleClickRefresh] = useWords()
 
-  if (words === undefined) return <h3>"Loading..."</h3>
-
-  const onClickAddWord = async (wordData: WordData) => {
+  const onClickAddWordCallback = useCallback(async (wordData: WordData) => {
     try {
       postWordApi()
-      setWords([wordData, ...words])
+      setWords(words ? [wordData, ...words] : [wordData])
     } catch {}
-  }
+  }, [words])
+
+  if (words === undefined) return <h3>"Loading..."</h3>
 
   const onClickDeleteWord = async (wordId: string) => {
     try {
@@ -72,7 +72,7 @@ const WordCardsFrame: FC = () => {
         </Stack>
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
-          <NewWordBox onClickAddWord={onClickAddWord} />
+          <NewWordBox onClickAddWordCallback={onClickAddWordCallback} />
           {words.map(word => <WordCard key={word.id} word={word} onClickDeleteWord={onClickDeleteWord}
             onClickUndoDeleteWord={onClickUndoDeleteWord}
           />)}
