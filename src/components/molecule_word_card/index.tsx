@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import StyledIconButtonAtom from '../../atoms/StyledIconButton.a'
 import DeleteWordIcon from '@mui/icons-material/Delete';
 import StyledTextButtonAtom from '../../atoms/StyledTextButton.a'
+import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 
 interface Props {
   word: WordData
@@ -48,6 +49,7 @@ const WordCard: FC<Props> = ({ word, onClickDeleteWord, onClickUndoDeleteWord })
         </Typography>
       </CardContent>
       <CardActions>
+        <WordCardFavoriteIcon word={word} />
         <StyledIconButtonAtom
           handleClick={() => onClickDeleteWord(word.id)}
           jsxElementButton={<DeleteWordIcon />}
