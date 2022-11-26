@@ -1,11 +1,8 @@
-import { useCallback, useState } from "react"
+import { useCallback, useState } from 'react'
 
 export type HandleClickRefresh = () => void
 
-export const useInternalLoading = (): [
-  boolean,
-  HandleClickRefresh
-] => {
+export const useInternalLoading = (): [boolean, HandleClickRefresh] => {
   const [internalLoading, setInternalLoading] = useState(true)
 
   const handleClickRefresh: HandleClickRefresh = useCallback(

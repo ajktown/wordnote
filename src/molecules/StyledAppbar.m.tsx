@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import {AppBar, Box} from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import AppsIcon from '@mui/icons-material/Apps';
+import { FC } from 'react'
+import { AppBar, Box } from '@mui/material'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import AppsIcon from '@mui/icons-material/Apps'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton.a'
 interface Props {
   title: string
@@ -16,24 +16,32 @@ const StyledAppbarMolecule: FC<Props> = (props) => {
       <AppBar position="static">
         <Toolbar variant="dense">
           <StyledIconButtonAtom
-            handleClick={() => console.log("TODO")}
+            handleClick={() => console.log(`TODO`)}
             jsxElementButton={<AppsIcon />}
             isDisabled={!props.onClickAppMenu}
           />
           <Box width={10} />
           {props.titleLogoPath && (
-            <img src={props.titleLogoPath} alt="logo" width={30} style={{ marginRight: 8 }} />
+            <img
+              src={props.titleLogoPath}
+              alt="logo"
+              width={30}
+              style={{ marginRight: 8 }}
+            />
           )}
-          <Typography variant="h6" color="inherit" component="div" fontFamily={"Cormorant Garamond"}>
+          <Typography
+            variant="h6"
+            color="inherit"
+            component="div"
+            fontFamily={`Cormorant Garamond`}
+          >
             {props.title}
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box height="calc(100vh - 48px)">
-        {props.children}
-      </Box>
+      <Box height="calc(100vh - 48px)">{props.children}</Box>
     </Box>
-  );
+  )
 }
 
 export default StyledAppbarMolecule

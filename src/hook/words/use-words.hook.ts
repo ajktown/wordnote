@@ -1,16 +1,23 @@
-import { useCallback, useEffect, useState, Dispatch, SetStateAction } from "react"
-import { getWordsApi } from "../../api/words/get-words.api"
-import { WordData } from "../../api/words/words.interface"
-import { HandleClickRefresh, useInternalLoading } from "../use-internal-loading.hook"
+import {
+  useCallback,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from 'react'
+import { getWordsApi } from '../../api/words/get-words.api'
+import { WordData } from '../../api/words/words.interface'
+import {
+  HandleClickRefresh,
+  useInternalLoading,
+} from '../use-internal-loading.hook'
 
-type UseWordsData =
-  | WordData[]
-  | undefined
+type UseWordsData = WordData[] | undefined
 
 type UseWords = [
   UseWordsData,
   Dispatch<SetStateAction<UseWordsData>>,
-  HandleClickRefresh
+  HandleClickRefresh,
 ]
 
 export const useWords = (): UseWords => {

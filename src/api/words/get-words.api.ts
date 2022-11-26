@@ -1,5 +1,5 @@
-import { DUMMY_WORDS } from "./words.dummy"
-import { WordData } from "./words.interface"
+import { DUMMY_WORDS } from './words.dummy'
+import { WordData } from './words.interface'
 
 // TODO: Implement
 

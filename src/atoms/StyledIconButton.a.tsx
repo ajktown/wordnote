@@ -6,7 +6,7 @@ import { GlobalMuiPlacement } from '../global.interface'
 const DEFAULT_SIZE = `small`
 
 interface Props {
-  handleClick?: any 
+  handleClick?: any
   jsxElementButton: JSX.Element
   isDisabled?: boolean
   hoverMessage?: {
@@ -20,7 +20,7 @@ const StyledIconButtonAtom: FC<Props> = (props) => {
   const [onHover, setHover] = useState(false)
 
   const buttonColor =
-    !props.disableOnHoverColor && onHover ? "#a200aa" : undefined
+    !props.disableOnHoverColor && onHover ? `#a200aa` : undefined
 
   const handleClickInternally = (e: MouseEvent<HTMLElement>) => {
     if (!props.handleClick) return
@@ -29,7 +29,7 @@ const StyledIconButtonAtom: FC<Props> = (props) => {
 
   return (
     <Tooltip
-      title={props.hoverMessage?.title || ""}
+      title={props.hoverMessage?.title || ``}
       placement={props.hoverMessage?.placement || `bottom`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}

@@ -1,6 +1,4 @@
-
-
-export type GlobalMuiColor = 
+export type GlobalMuiColor =
   | 'inherit'
   | 'primary'
   | 'secondary'
@@ -10,24 +8,19 @@ export type GlobalMuiColor =
   | 'warning'
   | undefined
 
-export type GlobalMuiVariant =
-  | "text" 
-  | "outlined" 
-  | "contained" 
-  | undefined
-
+export type GlobalMuiVariant = 'text' | 'outlined' | 'contained' | undefined
 
 export type GlobalMuiPlacement =
-  |"right" 
-  | "left-start" 
-  | "bottom-start" 
-  | "bottom" 
-  | "bottom-end" 
-  | "left-end" 
-  | "left" 
-  | "right-end" 
-  | "right-start" 
-  | "top-end" 
-  | "top-start" 
-  | "top" 
+  | 'right'
+  | 'left-start'
+  | 'bottom-start'
+  | 'bottom'
+  | 'bottom-end'
+  | 'left-end'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'top-end'
+  | 'top-start'
+  | 'top'
   | undefined

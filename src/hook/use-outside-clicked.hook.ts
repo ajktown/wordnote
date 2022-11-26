@@ -1,11 +1,11 @@
-import { useRef, useEffect, MutableRefObject } from "react";
+import { useRef, useEffect, MutableRefObject } from 'react'
 
 type UseOutsideClickedData = HTMLDivElement | null
 
 export const useOutsideClicked = (
-  handleClickAddCallback?: () => void
-): MutableRefObject<UseOutsideClickedData> =>  {
-  const reference = useRef<UseOutsideClickedData>(null);
+  handleClickAddCallback?: () => void,
+): MutableRefObject<UseOutsideClickedData> => {
+  const reference = useRef<UseOutsideClickedData>(null)
 
   useEffect(() => {
     if (handleClickAddCallback === undefined) return
@@ -17,12 +17,12 @@ export const useOutsideClicked = (
       }
     }
     // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener(`mousedown`, handleClickOutside)
     return () => {
       // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [reference, handleClickAddCallback]);
+      document.removeEventListener(`mousedown`, handleClickOutside)
+    }
+  }, [reference, handleClickAddCallback])
 
   return reference
 }

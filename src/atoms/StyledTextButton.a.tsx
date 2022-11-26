@@ -1,6 +1,10 @@
 import { FC } from 'react'
-import {  Tooltip, Box } from '@mui/material'
-import { GlobalMuiColor, GlobalMuiPlacement, GlobalMuiVariant } from '../global.interface'
+import { Tooltip, Box } from '@mui/material'
+import {
+  GlobalMuiColor,
+  GlobalMuiPlacement,
+  GlobalMuiVariant,
+} from '../global.interface'
 import { LoadingButton } from '@mui/lab'
 
 interface Props {
