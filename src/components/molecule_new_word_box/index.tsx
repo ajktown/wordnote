@@ -21,7 +21,7 @@ const NewWordBox: FC<Props> = ({ onClickAddWordCallback }) => {
       pronunciation: "",
       definition: "",
       example: "",
-
+      isFavorite: false,
     })
     setUserInput("")
     setWritingMode(false)
