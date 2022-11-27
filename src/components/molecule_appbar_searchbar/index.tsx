@@ -2,6 +2,8 @@ import { FC } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { useRecoilState } from 'recoil'
+import { searchInputState } from '@/recoils/state_atoms/search.sa'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -44,6 +46,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const AppbarSearchBar: FC = () => {
+  const [searchInput, setSearchInput] = useRecoilState(searchInputState)
+
   return (
     <Search>
       <SearchIconWrapper>
@@ -52,6 +56,8 @@ const AppbarSearchBar: FC = () => {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search' }}
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
     </Search>
   )

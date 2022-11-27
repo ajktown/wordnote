@@ -8,9 +8,14 @@ import { Stack, Box } from '@mui/material'
 import { postWordApi } from '@/api/words/post-word.api'
 import NewWordBox from '../molecule_new_word_box'
 import { WordData } from '@/api/words/words.interface'
+import { useRecoilState } from 'recoil'
+import { searchInputState } from '@/recoils/state_atoms/search.sa'
+import WordCardsFrameSearchNotFound from './index.search_not_found'
 
 const WordCardsFrame: FC = () => {
   const [words, setWords, handleClickRefresh] = useWords()
+  const [searchInput, ] = useRecoilState(searchInputState)
+
 
   const onClickAddWordCallback = useCallback(
     async (wordData: WordData) => {
@@ -55,6 +60,8 @@ const WordCardsFrame: FC = () => {
       setWords(copiedWords)
     } catch {}
   }
+
+  if (!!searchInput) return <WordCardsFrameSearchNotFound />
 
   return (
     <Stack width="100%" alignItems="center">
