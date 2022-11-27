@@ -3,7 +3,7 @@ import { AppBar, Box } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import AppsIcon from '@mui/icons-material/Apps'
-import StyledIconButtonAtom from '@/atoms/StyledIconButton.a'
+import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 interface Props {
   title: string
   titleLogoPath?: string // i.e) src="logo.png"

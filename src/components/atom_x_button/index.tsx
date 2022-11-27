@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
-import StyledIconButtonAtom from '@/atoms/StyledIconButton.a'
+import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 
 interface XButtonProps {
   handleClick?: any

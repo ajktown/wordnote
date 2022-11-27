@@ -1,5 +1,5 @@
 import { WordData } from '@/api/words/words.interface'
-import StyledIconButtonAtom from '@/atoms/StyledIconButton.a'
+import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
 import FavoriteWordIcon from '@mui/icons-material/FavoriteTwoTone'
 import NotFavoriteWordIcon from '@mui/icons-material/FavoriteBorderTwoTone'

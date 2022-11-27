@@ -1,9 +1,9 @@
 import { FC, useCallback, useState } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
 import { WordData } from '@/api/words/words.interface'
-import StyledTextField from '@/atoms/StyledTextField.a'
+import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
-import StyledTextButtonAtom from '@/atoms/StyledTextButton.a'
+import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 
 interface Props {
   onClickAddWordCallback: (word: WordData) => Promise<void>

@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react'
 import DialogActions from '@mui/material/DialogActions'
 import Dialog from '@mui/material/Dialog'
 import { Box, Stack, DialogTitle, Breakpoint } from '@mui/material'
-import StyledTextButtonAtom, { StyledTextButtonProps } from '@/atoms/StyledTextButton.a'
+import StyledTextButtonAtom, { StyledTextButtonProps } from '@/atoms/StyledTextButton'
 import XButton from '@/components/atom_x_button'
 
 const DRAGGABLE_TITLE_ID = `draggable-dialog-title`
