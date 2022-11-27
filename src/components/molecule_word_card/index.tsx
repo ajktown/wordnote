@@ -7,15 +7,14 @@ import Typography from '@mui/material/Typography'
 import StyledTextButtonAtom from '../../atoms/StyledTextButton'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
+import WordCardUndoDeleteButton from '../atom_word_card_undo_delete_button'
 
 interface Props {
   word: WordData
-  onClickUndoDeleteWord: (wordId: string) => void
 }
 
 const WordCard: FC<Props> = ({
   word,
-  onClickUndoDeleteWord,
 }) => {
   if (word.isDeleted)
     return (
@@ -24,10 +23,7 @@ const WordCard: FC<Props> = ({
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {`Word "` + word.term || `Unknown` + `" Deleted`}
           </Typography>
-          <StyledTextButtonAtom
-            title={`Undo`}
-            handleClick={() => onClickUndoDeleteWord(word.id)}
-          />
+          <WordCardUndoDeleteButton wordId={word.id} />
         </CardContent>
       </Card>
     )

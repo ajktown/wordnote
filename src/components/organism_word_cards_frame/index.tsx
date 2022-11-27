@@ -1,38 +1,18 @@
 import { FC } from 'react'
 import WordCard from '../molecule_word_card'
 import { Stack, Box } from '@mui/material'
-import { postWordApi } from '@/api/words/post-word.api'
 import NewWordBox from '../molecule_new_word_box'
-import { WordData } from '@/api/words/words.interface'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoils/state_atoms/searchInput.sa'
 import WordCardsFrameSearchNotFound from './index.search_not_found'
 import { wordsState } from '@/recoils/state_atoms/words.state'
 import WordCardsFrameRefreshButton from '../atom_word_cards_frame_refresh_button'
 
 const WordCardsFrame: FC = () => {
-  const [words, setWords] = useRecoilState(wordsState)
+  const words = useRecoilValue(wordsState)
   const searchInput = useRecoilValue(searchInputState)
 
   if (words === undefined) return <h3>"Loading..."</h3>
-
-  const onClickUndoDeleteWord = async (wordId: string) => {
-    try {
-      const copiedWords = [...words]
-      const foundIndex = copiedWords.findIndex((word) => word.id === wordId)
-      if (foundIndex === -1) return // already deleted.
-
-      const previouslyDeletedWord: WordData = {
-        ...words[foundIndex],
-        isDeleted: false,
-      }
-      postWordApi(previouslyDeletedWord)
-
-      copiedWords.splice(foundIndex, 1, previouslyDeletedWord)
-      setWords(copiedWords)
-    } catch {}
-  }
-
   if (!!searchInput) return <WordCardsFrameSearchNotFound />
 
   return (
@@ -57,7 +37,6 @@ const WordCardsFrame: FC = () => {
             <WordCard
               key={word.id}
               word={word}
-              onClickUndoDeleteWord={onClickUndoDeleteWord}
             />
           ))}
         </Stack>
