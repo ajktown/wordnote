@@ -11,7 +11,7 @@ const WordCardsFrameSearchNotFound: FC  = () => {
     <Stack>
       <Typography>
         {`Your search `}
-        <span>
+        <span style={{ fontWeight: 700 }}>
           {`- ${searchInput} - `}
         </span>
         {`did not match any documents`}
