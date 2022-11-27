@@ -7,7 +7,7 @@ import {
 } from '../global.interface'
 import { LoadingButton } from '@mui/lab'
 
-interface Props {
+export interface StyledTextButtonProps {
   title: string
   isLoading?: boolean
   handleClick?: any
@@ -21,7 +21,7 @@ interface Props {
   IconRight?: JSX.Element // Try to give a space within the jsx element for better usage
 }
 
-const StyledTextButtonAtom: FC<Props> = (props) => {
+const StyledTextButtonAtom: FC<StyledTextButtonProps> = (props) => {
   const handleClickButton = () => {
     if (!props.handleClick) return
     props.handleClick()

@@ -25,7 +25,7 @@ const WordCard: FC<Props> = ({
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {`Word "${word.term || `Unknown`}" Deleted`}
+            {`Word "` + word.term || `Unknown` + `" Deleted`}
           </Typography>
           <StyledTextButtonAtom
             title={`Undo`}
