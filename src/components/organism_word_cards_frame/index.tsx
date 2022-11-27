@@ -1,21 +1,19 @@
-import { FC, useCallback } from 'react'
+import { FC } from 'react'
 import WordCard from '../molecule_word_card'
-import RefreshIcon from '@mui/icons-material/Refresh'
 import { deleteWordByIdApi } from '../../api/words/delete-words.api'
-import StyledIconButtonAtom from '../../atoms/StyledIconButton'
 import { Stack, Box } from '@mui/material'
 import { postWordApi } from '@/api/words/post-word.api'
 import NewWordBox from '../molecule_new_word_box'
 import { WordData } from '@/api/words/words.interface'
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoils/state_atoms/searchInput.sa'
 import WordCardsFrameSearchNotFound from './index.search_not_found'
 import { wordsState } from '@/recoils/state_atoms/words.state'
+import WordCardsFrameRefreshButton from '../atom_word_cards_frame_refresh_button'
 
 const WordCardsFrame: FC = () => {
   const [words, setWords] = useRecoilState(wordsState)
-  const resetWords = useResetRecoilState(wordsState)
-  const [searchInput, ] = useRecoilState(searchInputState)
+  const searchInput = useRecoilValue(searchInputState)
 
   if (words === undefined) return <h3>"Loading..."</h3>
 
@@ -67,10 +65,7 @@ const WordCardsFrame: FC = () => {
         {/* Header */}
         <Stack direction="row" spacing={0.5}>
           <Box flexGrow={1} />
-          <StyledIconButtonAtom
-            handleClick={() => resetWords()}
-            jsxElementButton={<RefreshIcon />}
-          />
+          <WordCardsFrameRefreshButton />
         </Stack>
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
