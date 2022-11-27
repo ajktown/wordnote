@@ -1,8 +1,20 @@
 import { WordData } from './words.interface'
 
+
+
+enum DummyWordId {
+  element1 = `2ce0dc45-4542-443b-9d20-f15f5d8c65e8`,
+  element2 = `2ce0dc45-4542-443b-9d20-f15f5d8c65e9`,
+}
+
+export const DUMMY_WORD_IDS: DummyWordId[] = [
+  DummyWordId.element1,
+  DummyWordId.element2,
+]
+
 export const DUMMY_WORDS: WordData[] = [
   {
-    id: `2ce0dc45-4542-443b-9d20-f15f5d8c65e8`,
+    id: DummyWordId.element1,
     isFavorite: true,
     term: `breadth`,
     pronunciation: `breth`,
@@ -10,7 +22,7 @@ export const DUMMY_WORDS: WordData[] = [
     example: ``,
   },
   {
-    id: `2ce0dc45-4542-443b-9d20-f15f5d8c65e9`,
+    id: DummyWordId.element2,
     isFavorite: false,
     term: `top`,
     pronunciation: ``,
