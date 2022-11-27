@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import WordCard from '../molecule_word_card'
-import { deleteWordByIdApi } from '../../api/words/delete-words.api'
 import { Stack, Box } from '@mui/material'
 import { postWordApi } from '@/api/words/post-word.api'
 import NewWordBox from '../molecule_new_word_box'
@@ -16,22 +15,6 @@ const WordCardsFrame: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
 
   if (words === undefined) return <h3>"Loading..."</h3>
-
-  const onClickDeleteWord = async (wordId: string) => {
-    try {
-      deleteWordByIdApi(wordId)
-
-      const copiedWords = [...words]
-      const foundIndex = copiedWords.findIndex((word) => word.id === wordId)
-      if (foundIndex === -1) return // already deleted.
-
-      copiedWords.splice(foundIndex, 1, {
-        ...words[foundIndex],
-        isDeleted: true,
-      })
-      setWords(copiedWords)
-    } catch {}
-  }
 
   const onClickUndoDeleteWord = async (wordId: string) => {
     try {
@@ -74,7 +57,6 @@ const WordCardsFrame: FC = () => {
             <WordCard
               key={word.id}
               word={word}
-              onClickDeleteWord={onClickDeleteWord}
               onClickUndoDeleteWord={onClickUndoDeleteWord}
             />
           ))}

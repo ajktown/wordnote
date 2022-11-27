@@ -4,20 +4,17 @@ import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import StyledIconButtonAtom from '../../atoms/StyledIconButton'
-import DeleteWordIcon from '@mui/icons-material/Delete'
 import StyledTextButtonAtom from '../../atoms/StyledTextButton'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
+import WordCardDeleteButton from '../atom_word_card_delete_button'
 
 interface Props {
   word: WordData
-  onClickDeleteWord: (wordId: string) => void
   onClickUndoDeleteWord: (wordId: string) => void
 }
 
 const WordCard: FC<Props> = ({
   word,
-  onClickDeleteWord,
   onClickUndoDeleteWord,
 }) => {
   if (word.isDeleted)
@@ -55,10 +52,7 @@ const WordCard: FC<Props> = ({
       </CardContent>
       <CardActions>
         <WordCardFavoriteIcon word={word} />
-        <StyledIconButtonAtom
-          handleClick={() => onClickDeleteWord(word.id)}
-          jsxElementButton={<DeleteWordIcon />}
-        />
+        <WordCardDeleteButton  wordId={word.id} />
       </CardActions>
     </Card>
   )
