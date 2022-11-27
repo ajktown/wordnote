@@ -17,17 +17,6 @@ const WordCardsFrame: FC = () => {
   const resetWords = useResetRecoilState(wordsState)
   const [searchInput, ] = useRecoilState(searchInputState)
 
-
-  const onClickAddWordCallback = useCallback(
-    async (wordData: WordData) => {
-      try {
-        postWordApi()
-        setWords(words ? [wordData, ...words] : [wordData])
-      } catch {}
-    },
-    [words],
-  )
-
   if (words === undefined) return <h3>"Loading..."</h3>
 
   const onClickDeleteWord = async (wordId: string) => {
@@ -48,16 +37,17 @@ const WordCardsFrame: FC = () => {
 
   const onClickUndoDeleteWord = async (wordId: string) => {
     try {
-      postWordApi()
-
       const copiedWords = [...words]
       const foundIndex = copiedWords.findIndex((word) => word.id === wordId)
       if (foundIndex === -1) return // already deleted.
 
-      copiedWords.splice(foundIndex, 1, {
+      const previouslyDeletedWord: WordData = {
         ...words[foundIndex],
         isDeleted: false,
-      })
+      }
+      postWordApi(previouslyDeletedWord)
+
+      copiedWords.splice(foundIndex, 1, previouslyDeletedWord)
       setWords(copiedWords)
     } catch {}
   }
@@ -84,7 +74,7 @@ const WordCardsFrame: FC = () => {
         </Stack>
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
-          <NewWordBox onClickAddWordCallback={onClickAddWordCallback} />
+          <NewWordBox />
           {words.map((word) => (
             <WordCard
               key={word.id}

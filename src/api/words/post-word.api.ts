@@ -1,5 +1,7 @@
 // TODO: Implement
 
-export const postWordApi = async (): Promise<void> => {
+import { WordData } from "./words.interface"
+
+export const postWordApi = async (newWord: WordData): Promise<void> => {
   console.log(`Posting the word...`)
 }

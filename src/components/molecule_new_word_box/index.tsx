@@ -1,33 +1,39 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useState } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
 import { WordData } from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { useRecoilState } from 'recoil'
+import { wordsState } from '@/recoils/state_atoms/words.state'
+import { postWordApi } from '@/api/words/post-word.api'
 
-interface Props {
-  onClickAddWordCallback: (word: WordData) => Promise<void>
-}
-const NewWordBox: FC<Props> = ({ onClickAddWordCallback }) => {
+const NewWordBox: FC = () => {
+  const [words, setWords] = useRecoilState(wordsState)
   const [userInput, setUserInput] = useState(``)
   const [isWritingMode, setWritingMode] = useState(false)
 
-  const handleClickAddWordCallback = useCallback(async () => {
+  const handleClickAddWord = async () => {
     if (!userInput) return setWritingMode(false)
 
-    await onClickAddWordCallback({
-      id: userInput,
-      term: userInput,
-      pronunciation: ``,
-      definition: ``,
-      example: ``,
-      isFavorite: false,
-    })
+    try {
+      const newWord: WordData = {
+        id: userInput,
+        term: userInput,
+        pronunciation: ``,
+        definition: ``,
+        example: ``,
+        isFavorite: false,
+      }
+      await postWordApi(newWord)
+      setWords(words.length > 0 ? [newWord, ...words] : [newWord])
+    } catch {}
+
     setUserInput(``)
     setWritingMode(false)
-  }, [userInput])
+  }
 
-  const ref = useOutsideClicked(handleClickAddWordCallback)
+  const ref = useOutsideClicked(handleClickAddWord)
 
   if (isWritingMode) {
     return (
@@ -46,7 +52,7 @@ const NewWordBox: FC<Props> = ({ onClickAddWordCallback }) => {
         <CardActions>
           <Box flexGrow={1} />
           <StyledTextButtonAtom
-            handleClick={() => handleClickAddWordCallback()}
+            handleClick={() => handleClickAddWord()}
             title={`Close`}
           />
         </CardActions>
