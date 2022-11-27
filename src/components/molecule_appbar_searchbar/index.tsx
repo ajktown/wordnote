@@ -3,7 +3,7 @@ import { styled, alpha } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRecoilState } from 'recoil'
-import { searchInputState } from '@/recoils/state_atoms/searchInput.sa'
+import { searchInputState } from '@/recoils/state_atoms/searchInput.state'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
