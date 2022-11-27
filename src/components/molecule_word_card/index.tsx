@@ -13,9 +13,7 @@ interface Props {
   word: WordData
 }
 
-const WordCard: FC<Props> = ({
-  word,
-}) => {
+const WordCard: FC<Props> = ({ word }) => {
   if (word.isDeleted)
     return (
       <Card style={{ width: `100%`, borderRadius: 9 }}>
@@ -48,7 +46,7 @@ const WordCard: FC<Props> = ({
       </CardContent>
       <CardActions>
         <WordCardFavoriteIcon word={word} />
-        <WordCardDeleteButton  wordId={word.id} />
+        <WordCardDeleteButton wordId={word.id} />
       </CardActions>
     </Card>
   )

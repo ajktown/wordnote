@@ -1,4 +1,4 @@
 export enum AtomStateKey {
-  SearchInput = "SearchInput",
-  Words = 'Words',
+  SearchInput = `SearchInput`,
+  Words = `Words`,
 }

@@ -1,5 +1,5 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import {FC} from 'react'
+import { FC } from 'react'
 import DeleteWordIcon from '@mui/icons-material/Delete'
 import { useRecoilState } from 'recoil'
 import { wordsState } from '@/recoils/state_atoms/words.state'

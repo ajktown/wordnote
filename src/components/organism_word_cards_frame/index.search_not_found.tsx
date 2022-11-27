@@ -4,21 +4,19 @@ import { Typography, Stack } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilState } from 'recoil'
 
-const WordCardsFrameSearchNotFound: FC  = () => {
+const WordCardsFrameSearchNotFound: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
 
   return (
     <Stack>
       <Typography>
         {`Your search `}
-        <span style={{ fontWeight: 700 }}>
-          {`- ${searchInput} - `}
-        </span>
+        <span style={{ fontWeight: 700 }}>{`- ${searchInput} - `}</span>
         {`did not match any documents`}
       </Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
-        handleClick={() => setSearchInput("")}
+        handleClick={() => setSearchInput('')}
       />
     </Stack>
   )

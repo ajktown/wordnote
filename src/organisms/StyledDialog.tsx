@@ -2,7 +2,9 @@ import { FC, ReactNode } from 'react'
 import DialogActions from '@mui/material/DialogActions'
 import Dialog from '@mui/material/Dialog'
 import { Box, Stack, DialogTitle, Breakpoint } from '@mui/material'
-import StyledTextButtonAtom, { StyledTextButtonProps } from '@/atoms/StyledTextButton'
+import StyledTextButtonAtom, {
+  StyledTextButtonProps,
+} from '@/atoms/StyledTextButton'
 import XButton from '@/components/atom_x_button'
 
 const DRAGGABLE_TITLE_ID = `draggable-dialog-title`
@@ -42,9 +44,7 @@ const StyledDialog: FC<StyledDialogProps> = (props) => {
         backdropFilter: props.completelyBlurOut ? `blur(18px)` : undefined,
       }}
     >
-      <DialogTitle
-        id={DRAGGABLE_TITLE_ID}
-      >
+      <DialogTitle id={DRAGGABLE_TITLE_ID}>
         <Stack direction="row" alignItems="center" spacing={2}>
           {props.TopLeftAlignment}
           <Box sx={{ flexGrow: 1 }} />

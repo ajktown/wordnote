@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { useResetRecoilState } from 'recoil'
 import RefreshIcon from '@mui/icons-material/Refresh'
 
-const WordCardsFrameRefreshButton: FC  = () => {
+const WordCardsFrameRefreshButton: FC = () => {
   const resetWords = useResetRecoilState(wordsState)
 
   return (

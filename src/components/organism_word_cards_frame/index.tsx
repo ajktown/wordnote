@@ -34,10 +34,7 @@ const WordCardsFrame: FC = () => {
         <Stack spacing={0.5} alignItems="center">
           <NewWordBox />
           {words.map((word) => (
-            <WordCard
-              key={word.id}
-              word={word}
-            />
+            <WordCard key={word.id} word={word} />
           ))}
         </Stack>
       </Stack>

@@ -11,9 +11,9 @@ interface Props {
 }
 const WordCardFavoriteIcon: FC<Props> = ({ word }) => {
   const [words, setWords] = useRecoilState(wordsState)
-  
+
   const handleClickFavoriteIcon = () => {
-    const foundIndex = words.findIndex(el => el.id === word.id)
+    const foundIndex = words.findIndex((el) => el.id === word.id)
     if (foundIndex === -1) return
 
     const modifyingWord = words[foundIndex]
@@ -28,12 +28,19 @@ const WordCardFavoriteIcon: FC<Props> = ({ word }) => {
   if (word.isFavorite)
     return (
       <StyledIconButtonAtom
-      handleClick={() => handleClickFavoriteIcon()}
-        jsxElementButton={<FavoriteWordIcon style={{ color: `FF0000` /* Red */ }} />}
+        handleClick={() => handleClickFavoriteIcon()}
+        jsxElementButton={
+          <FavoriteWordIcon style={{ color: `FF0000` /* Red */ }} />
+        }
       />
     )
 
-  return <StyledIconButtonAtom handleClick={() => handleClickFavoriteIcon()} jsxElementButton={<NotFavoriteWordIcon />} />
+  return (
+    <StyledIconButtonAtom
+      handleClick={() => handleClickFavoriteIcon()}
+      jsxElementButton={<NotFavoriteWordIcon />}
+    />
+  )
 }
 
 export default WordCardFavoriteIcon
