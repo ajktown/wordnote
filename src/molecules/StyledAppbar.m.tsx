@@ -4,6 +4,8 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import AppsIcon from '@mui/icons-material/Apps'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
+import AppbarSearchBar from '@/components/molecule_appbar_searchbar'
+// TODO: Move this to non-molecules.
 interface Props {
   title: string
   titleLogoPath?: string // i.e) src="logo.png"
@@ -37,6 +39,7 @@ const StyledAppbarMolecule: FC<Props> = (props) => {
           >
             {props.title}
           </Typography>
+          <AppbarSearchBar />
         </Toolbar>
       </AppBar>
       <Box height="calc(100vh - 48px)">{props.children}</Box>
