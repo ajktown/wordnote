@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton.a'
 
@@ -8,7 +8,7 @@ interface XButtonProps {
   buttonColor?: string
   size?: 'small' | 'medium' | 'large'
 }
-const XButton: React.FC<XButtonProps> = (props) => {
+const XButton: FC<XButtonProps> = (props) => {
   const handleClick = () => {
     if (!props.handleClick) return
     props.handleClick()
