@@ -9,7 +9,7 @@ import { postWordApi } from '@/api/words/post-word.api'
 import NewWordBox from '../molecule_new_word_box'
 import { WordData } from '@/api/words/words.interface'
 import { useRecoilState } from 'recoil'
-import { searchInputState } from '@/recoils/state_atoms/search.sa'
+import { searchInputState } from '@/recoils/state_atoms/searchInput.sa'
 import WordCardsFrameSearchNotFound from './index.search_not_found'
 
 const WordCardsFrame: FC = () => {

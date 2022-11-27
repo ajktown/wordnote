@@ -1,5 +1,5 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { searchInputState } from '@/recoils/state_atoms/search.sa'
+import { searchInputState } from '@/recoils/state_atoms/searchInput.sa'
 import { Typography, Stack } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilState } from 'recoil'
