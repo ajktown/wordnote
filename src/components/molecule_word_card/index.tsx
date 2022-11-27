@@ -4,27 +4,16 @@ import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import StyledTextButtonAtom from '../../atoms/StyledTextButton'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
-import WordCardUndoDeleteButton from '../atom_word_card_undo_delete_button'
+import WordCardDeleted from './index.deleted'
 
 interface Props {
   word: WordData
 }
 
 const WordCard: FC<Props> = ({ word }) => {
-  if (word.isDeleted)
-    return (
-      <Card style={{ width: `100%`, borderRadius: 9 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {`Word "` + word.term || `Unknown` + `" Deleted`}
-          </Typography>
-          <WordCardUndoDeleteButton wordId={word.id} />
-        </CardContent>
-      </Card>
-    )
+  if (word.isDeleted) return <WordCardDeleted word={word} />
 
   return (
     <Card style={{ width: `100%`, borderRadius: 9 }}>
