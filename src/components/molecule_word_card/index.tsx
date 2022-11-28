@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { WordData } from '../../api/words/words.interface'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -7,12 +6,18 @@ import Typography from '@mui/material/Typography'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
+import {  useRecoilValue } from 'recoil'
+import { wordsAtom } from '@/recoils/state_atoms/words.state'
+import WordCardUnknown from './index.unknown'
 
 interface Props {
-  word: WordData
+  wordId: string
 }
 
-const WordCard: FC<Props> = ({ word }) => {
+const WordCard: FC<Props> = ({ wordId }) => {
+  const word = useRecoilValue(wordsAtom(wordId))
+
+  if (word === null) return <WordCardUnknown />
   if (word.isDeleted) return <WordCardDeleted word={word} />
 
   return (

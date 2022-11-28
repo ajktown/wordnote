@@ -3,6 +3,7 @@ import { atom, atomFamily, selectorFamily, DefaultValue, selector } from 'recoil
 import { wordsSelector } from '../selectors/words.selector'
 import { AtomStateKey, AtomStateSuffix } from '../keys.recoil'
 import { getWordIdsApi } from '@/api/words/get-word-ids.api'
+import { getWordByIdApi } from '@/api/words/get-word-by-id.api'
 
 export const guardRecoilDefaultValue = (
   candidate: unknown
@@ -31,10 +32,16 @@ export const wordIdsSelector = selector<string[]>({
 
 export const wordsAtom = atomFamily<WordData | null, string>({
   key: AtomStateKey.Words + AtomStateSuffix.Family,
-  default: null
+  default: async (wordId: string) => {
+    try {
+      return await getWordByIdApi(wordId)
+    } catch {
+      return null
+    }
+  }
 })
 
-export const wordIds = atom<string[]>({
+export const wordIdsState = atom<string[]>({
   key: AtomStateKey.Words + AtomStateSuffix.Ids,
   default: wordIdsSelector,
 })
@@ -47,10 +54,10 @@ export const words = selectorFamily({
   set: (wordId: string) => ({ set, reset }, newWord) => {
     if (guardRecoilDefaultValue(newWord)) {
       reset(wordsAtom(wordId))
-      reset(wordIds)
+      reset(wordIdsState)
       return
     }
     set(wordsAtom(wordId), newWord)
-    set(wordIds, prev => [wordId, ...prev])
+    set(wordIdsState, prev => [wordId, ...prev])
   },
 })

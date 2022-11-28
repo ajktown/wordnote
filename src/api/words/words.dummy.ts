@@ -5,10 +5,12 @@ import { WordData } from './words.interface'
 enum DummyWordId {
   element1 = `2ce0dc45-4542-443b-9d20-f15f5d8c65e8`,
   element2 = `2ce0dc45-4542-443b-9d20-f15f5d8c65e9`,
+  UnknownElement = `unknown_word_id_sample`,
 }
 
 export const DUMMY_WORD_IDS: DummyWordId[] = [
   DummyWordId.element1,
+  DummyWordId.UnknownElement,
   DummyWordId.element2,
 ]
 
