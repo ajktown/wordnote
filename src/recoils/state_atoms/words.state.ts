@@ -14,7 +14,7 @@ export const guardRecoilDefaultValue = (
 
 // TODO: Deprecate it
 // ! Deprecated
-export const wordsState = atom<WordData[]>({
+export const deprecatedWordsState = atom<WordData[]>({
   key: AtomStateKey.Words,
   default: wordsSelector,
 })

@@ -5,11 +5,11 @@ import NewWordBox from '../molecule_new_word_box'
 import { useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoils/state_atoms/searchInput.state'
 import WordCardsFrameSearchNotFound from './index.search_not_found'
-import { wordsState } from '@/recoils/state_atoms/words.state'
+import { deprecatedWordsState } from '@/recoils/state_atoms/words.state'
 import WordCardsFrameRefreshButton from '../atom_word_cards_frame_refresh_button'
 
 const WordCardsFrame: FC = () => {
-  const words = useRecoilValue(wordsState)
+  const words = useRecoilValue(deprecatedWordsState)
   const searchInput = useRecoilValue(searchInputState)
 
   if (words === undefined) return <h3>"Loading..."</h3>

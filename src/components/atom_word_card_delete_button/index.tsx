@@ -2,13 +2,13 @@ import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
 import DeleteWordIcon from '@mui/icons-material/Delete'
 import { useRecoilState } from 'recoil'
-import { wordsState } from '@/recoils/state_atoms/words.state'
+import { deprecatedWordsState } from '@/recoils/state_atoms/words.state'
 import { deleteWordByIdApi } from '@/api/words/delete-words.api'
 interface Props {
   wordId: string
 }
 const WordCardDeleteButton: FC<Props> = ({ wordId }) => {
-  const [words, setWords] = useRecoilState(wordsState)
+  const [words, setWords] = useRecoilState(deprecatedWordsState)
   const onClickDeleteWord = async () => {
     try {
       await deleteWordByIdApi(wordId)

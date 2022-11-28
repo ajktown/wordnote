@@ -1,7 +1,7 @@
 import { postWordApi } from '@/api/words/post-word.api'
 import { WordData } from '@/api/words/words.interface'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { wordsState } from '@/recoils/state_atoms/words.state'
+import { deprecatedWordsState } from '@/recoils/state_atoms/words.state'
 import { FC } from 'react'
 import { useRecoilState } from 'recoil'
 
@@ -9,7 +9,7 @@ interface Props {
   wordId: string
 }
 const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
-  const [words, setWords] = useRecoilState(wordsState)
+  const [words, setWords] = useRecoilState(deprecatedWordsState)
 
   const onClickUndoDeleteWord = async () => {
     try {

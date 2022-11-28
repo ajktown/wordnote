@@ -5,11 +5,11 @@ import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useRecoilState } from 'recoil'
-import { wordsState } from '@/recoils/state_atoms/words.state'
+import { deprecatedWordsState } from '@/recoils/state_atoms/words.state'
 import { postWordApi } from '@/api/words/post-word.api'
 
 const NewWordBox: FC = () => {
-  const [words, setWords] = useRecoilState(wordsState)
+  const [words, setWords] = useRecoilState(deprecatedWordsState)
   const [userInput, setUserInput] = useState(``)
   const [isWritingMode, setWritingMode] = useState(false)
 
