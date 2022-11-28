@@ -39,7 +39,7 @@ const WordCard: FC<Props> = ({ wordId }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <WordCardFavoriteIcon word={word} />
+        <WordCardFavoriteIcon wordId={wordId} />
         <WordCardDeleteButton wordId={wordId} />
       </CardActions>
     </Card>

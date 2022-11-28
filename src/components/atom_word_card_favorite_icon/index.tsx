@@ -1,30 +1,27 @@
-import { WordData } from '@/api/words/words.interface'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
 import FavoriteWordIcon from '@mui/icons-material/FavoriteTwoTone'
 import NotFavoriteWordIcon from '@mui/icons-material/FavoriteBorderTwoTone'
 import { useRecoilState } from 'recoil'
-import { deprecatedWordsState } from '@/recoils/state_atoms/words.state'
+import { wordsFamily } from '@/recoils/state_atoms/words.state'
+import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
 
 interface Props {
-  word: WordData
+  wordId: string
 }
-const WordCardFavoriteIcon: FC<Props> = ({ word }) => {
-  const [words, setWords] = useRecoilState(deprecatedWordsState)
+const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
+  const [word, setWord] = useRecoilState(wordsFamily(wordId))
 
-  const handleClickFavoriteIcon = () => {
-    const foundIndex = words.findIndex((el) => el.id === word.id)
-    if (foundIndex === -1) return
+  if (word === null) return null
 
-    const modifyingWord = words[foundIndex]
-
-    const copiedWords = [...words]
-    copiedWords.splice(foundIndex, 1, {
-      ...modifyingWord,
-      isFavorite: !modifyingWord.isFavorite,
+  const handleClickFavoriteIcon = async () => {
+    const modifiedIsFavorite: boolean = !word.isFavorite
+    await putWordByIdApi(wordId, {
+      isFavorite: modifiedIsFavorite
     })
-    setWords(copiedWords)
+    setWord({ ...word, isFavorite: modifiedIsFavorite })
   }
+
   if (word.isFavorite)
     return (
       <StyledIconButtonAtom
