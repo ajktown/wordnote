@@ -5,4 +5,7 @@ export enum AtomStateKey {
 
 export enum AtomStateSuffix {
   Family = `Family`,
+  SelectorFamily = `SelectorFamily`,
+  Selector = `Selector`,
+  Ids = `Ids`,
 }
