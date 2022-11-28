@@ -1,11 +1,10 @@
-import { getWordsApi } from '@/api/words/get-words.api'
-import { WordData } from '@/api/words/words.interface'
-import { RecoilValueReadOnly, selector } from 'recoil'
-import { AtomStateKey } from '../keys.recoil'
+import { getWordIdsApi } from '@/api/words/get-word-ids.api'
+import { selector } from 'recoil'
+import { AtomStateKey, AtomStateSuffix } from '../keys.recoil'
 
-export const wordsSelector: RecoilValueReadOnly<WordData[]> = selector({
-  key: AtomStateKey.Words + `Selector`,
+export const wordIdsSelector = selector<string[]>({
+  key: AtomStateKey.Words + AtomStateSuffix.Selector,
   get: async () => {
-    return getWordsApi()
+    return getWordIdsApi()
   },
 })

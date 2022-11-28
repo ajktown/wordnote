@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
-import {  useRecoilValue } from 'recoil'
-import { wordsAtom } from '@/recoils/state_atoms/words.state'
+import { useRecoilValue } from 'recoil'
+import { wordsFamily } from '@/recoils/state_atoms/words.state'
 import WordCardUnknown from './index.unknown'
 
 interface Props {
@@ -15,10 +15,10 @@ interface Props {
 }
 
 const WordCard: FC<Props> = ({ wordId }) => {
-  const word = useRecoilValue(wordsAtom(wordId))
+  const word = useRecoilValue(wordsFamily(wordId))
 
   if (word === null) return <WordCardUnknown />
-  if (word.isDeleted) return <WordCardDeleted word={word} />
+  if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
 
   return (
     <Card style={{ width: `100%`, borderRadius: 9 }}>
@@ -40,7 +40,7 @@ const WordCard: FC<Props> = ({ wordId }) => {
       </CardContent>
       <CardActions>
         <WordCardFavoriteIcon word={word} />
-        <WordCardDeleteButton wordId={word.id} />
+        <WordCardDeleteButton wordId={wordId} />
       </CardActions>
     </Card>
   )
