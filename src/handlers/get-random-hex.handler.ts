@@ -3,8 +3,8 @@
  * @param hexLength (Default: 6)
  * @returns hex string
  */
- 
- // TODO: Write a test for this handler
+
+// TODO: Write a test for this handler
 
 const PRIVATE_FINAL_DEFAULT_HEX_LENGTH = 6
 
