@@ -6,5 +6,5 @@ export const putWordByIdApi = async (
   wordId: string,
   modifying: Partial<Omit<WordData, 'id'>>,
 ): Promise<void> => {
-  console.log(`Putting the word: ` + wordId + `with: ${JSON.stringify(modifying)}`)
+  console.log(`Putting the word: ` + wordId + ` with: ${JSON.stringify(modifying)}`)
 }
