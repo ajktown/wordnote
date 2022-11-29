@@ -4,7 +4,7 @@
  * @returns hex string
  */
 
-const PRIVATE_FINAL_DEFAULT_HEX_LENGTH: number = 6
+const PRIVATE_FINAL_DEFAULT_HEX_LENGTH = 6
 
 export const getRandomHexHandler = (hexLength?: number): string => {
   // The maximum hax length must be 1 or longer.
