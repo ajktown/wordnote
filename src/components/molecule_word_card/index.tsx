@@ -1,39 +1,24 @@
 import { FC } from 'react'
-import { WordData } from '../../api/words/words.interface'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import StyledIconButtonAtom from '../../atoms/StyledIconButton.a'
-import DeleteWordIcon from '@mui/icons-material/Delete'
-import StyledTextButtonAtom from '../../atoms/StyledTextButton.a'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
+import WordCardDeleteButton from '../atom_word_card_delete_button'
+import WordCardDeleted from './index.deleted'
+import { useRecoilValue } from 'recoil'
+import { wordsFamily } from '@/recoils/state_atoms/words.state'
+import WordCardUnknown from './index.unknown'
 
 interface Props {
-  word: WordData
-  onClickDeleteWord: (wordId: string) => void
-  onClickUndoDeleteWord: (wordId: string) => void
+  wordId: string
 }
 
-const WordCard: FC<Props> = ({
-  word,
-  onClickDeleteWord,
-  onClickUndoDeleteWord,
-}) => {
-  if (word.isDeleted)
-    return (
-      <Card style={{ width: `100%`, borderRadius: 9 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {`Word "` + word.term || `Unknown` + `" Deleted`}
-          </Typography>
-          <StyledTextButtonAtom
-            title={`Undo`}
-            handleClick={() => onClickUndoDeleteWord(word.id)}
-          />
-        </CardContent>
-      </Card>
-    )
+const WordCard: FC<Props> = ({ wordId }) => {
+  const word = useRecoilValue(wordsFamily(wordId))
+
+  if (word === null) return <WordCardUnknown />
+  if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
 
   return (
     <Card style={{ width: `100%`, borderRadius: 9 }}>
@@ -54,11 +39,8 @@ const WordCard: FC<Props> = ({
         </Typography>
       </CardContent>
       <CardActions>
-        <WordCardFavoriteIcon word={word} />
-        <StyledIconButtonAtom
-          handleClick={() => onClickDeleteWord(word.id)}
-          jsxElementButton={<DeleteWordIcon />}
-        />
+        <WordCardFavoriteIcon wordId={wordId} />
+        <WordCardDeleteButton wordId={wordId} />
       </CardActions>
     </Card>
   )

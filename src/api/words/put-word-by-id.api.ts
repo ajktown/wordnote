@@ -4,7 +4,9 @@ import { WordData } from './words.interface'
 
 export const putWordByIdApi = async (
   wordId: string,
-  modifying: Partial<Exclude<WordData, 'id'>>,
+  modifying: Partial<Omit<WordData, 'id'>>,
 ): Promise<void> => {
-  console.log(`Putting the word: ` + wordId + `with: ${modifying}`)
+  console.log(
+    `Putting the word: ` + wordId + ` with: ${JSON.stringify(modifying)}`,
+  )
 }

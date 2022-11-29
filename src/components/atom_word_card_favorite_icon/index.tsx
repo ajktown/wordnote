@@ -1,21 +1,43 @@
-import { WordData } from '@/api/words/words.interface'
-import StyledIconButtonAtom from '@/atoms/StyledIconButton.a'
+import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
 import FavoriteWordIcon from '@mui/icons-material/FavoriteTwoTone'
 import NotFavoriteWordIcon from '@mui/icons-material/FavoriteBorderTwoTone'
+import { useRecoilState } from 'recoil'
+import { wordsFamily } from '@/recoils/state_atoms/words.state'
+import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
 
 interface Props {
-  word: WordData
+  wordId: string
 }
-const WordCardFavoriteIcon: FC<Props> = ({ word }) => {
+const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
+  const [word, setWord] = useRecoilState(wordsFamily(wordId))
+
+  if (word === null) return null
+
+  const handleClickFavoriteIcon = async () => {
+    const modifiedIsFavorite = !word.isFavorite
+    await putWordByIdApi(wordId, {
+      isFavorite: modifiedIsFavorite,
+    })
+    setWord({ ...word, isFavorite: modifiedIsFavorite })
+  }
+
   if (word.isFavorite)
     return (
       <StyledIconButtonAtom
-        jsxElementButton={<FavoriteWordIcon style={{ color: `FF0000` }} />}
+        handleClick={() => handleClickFavoriteIcon()}
+        jsxElementButton={
+          <FavoriteWordIcon style={{ color: `FF0000` /* Red */ }} />
+        }
       />
     )
 
-  return <StyledIconButtonAtom jsxElementButton={<NotFavoriteWordIcon />} />
+  return (
+    <StyledIconButtonAtom
+      handleClick={() => handleClickFavoriteIcon()}
+      jsxElementButton={<NotFavoriteWordIcon />}
+    />
+  )
 }
 
 export default WordCardFavoriteIcon
