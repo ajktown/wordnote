@@ -1,7 +1,7 @@
 import { postWordApi } from '@/api/words/post-word.api'
 import { WordData } from '@/api/words/words.interface'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { deprecatedWordsState, wordsFamily } from '@/recoils/state_atoms/words.state'
+import { wordsFamily } from '@/recoils/state_atoms/words.state'
 import { FC } from 'react'
 import { useRecoilState } from 'recoil'
 
