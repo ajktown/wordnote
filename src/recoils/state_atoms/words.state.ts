@@ -38,7 +38,7 @@ export const wordIdsState = atom<string[]>({
   default: wordIdsSelector,
 })
 
-export const words = selectorFamily({
+export const wordsSelectorFamily = selectorFamily({
   key: AtomStateKey.Words + AtomStateSuffix.SelectorFamily,
   get: (wordId: string) => ({ get }) => {
     return get(wordsFamily(wordId))

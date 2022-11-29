@@ -4,12 +4,10 @@ import { WordData } from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { useRecoilState } from 'recoil'
-import { deprecatedWordsState } from '@/recoils/state_atoms/words.state'
 import { postWordApi } from '@/api/words/post-word.api'
+import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
 
 const NewWordBox: FC = () => {
-  const [words, setWords] = useRecoilState(deprecatedWordsState)
   const [userInput, setUserInput] = useState(``)
   const [isWritingMode, setWritingMode] = useState(false)
 
@@ -18,15 +16,16 @@ const NewWordBox: FC = () => {
 
     try {
       const newWord: WordData = {
-        id: userInput,
+        id: userInput + getRandomHexHandler(),
         term: userInput,
         pronunciation: ``,
         definition: ``,
-        example: ``,
+        example: ``,  
         isFavorite: false,
       }
       await postWordApi(newWord)
-      setWords(words.length > 0 ? [newWord, ...words] : [newWord])
+      // TODO: Apply in the frontend too.
+      // setWords(words.length > 0 ? [newWord, ...words] : [newWord])
     } catch {}
 
     setUserInput(``)
