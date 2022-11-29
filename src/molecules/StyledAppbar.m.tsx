@@ -30,6 +30,7 @@ const StyledAppbarMolecule: FC<Props> = (props) => {
               src={props.titleLogoPath}
               alt="logo"
               width={30}
+              height={30}
               style={{ marginRight: 8 }}
             />
           )}
