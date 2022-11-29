@@ -2,6 +2,7 @@ import { FC } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 
+// TODO: Move this file to src/atoms, as it does not contain any business info
 interface XButtonProps {
   handleClick?: any
   hoverMessage?: string
