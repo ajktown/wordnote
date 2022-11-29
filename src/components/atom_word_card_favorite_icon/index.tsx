@@ -17,7 +17,7 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   const handleClickFavoriteIcon = async () => {
     const modifiedIsFavorite: boolean = !word.isFavorite
     await putWordByIdApi(wordId, {
-      isFavorite: modifiedIsFavorite
+      isFavorite: modifiedIsFavorite,
     })
     setWord({ ...word, isFavorite: modifiedIsFavorite })
   }

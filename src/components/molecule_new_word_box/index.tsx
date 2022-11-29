@@ -20,7 +20,7 @@ const NewWordBox: FC = () => {
         term: userInput,
         pronunciation: ``,
         definition: ``,
-        example: ``,  
+        example: ``,
         isFavorite: false,
       }
       await postWordApi(newWord)

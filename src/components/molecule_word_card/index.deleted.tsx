@@ -20,9 +20,7 @@ const WordCardDeleted: FC<Props> = ({ wordId }) => {
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {`Word "`}
-          <span style={{ fontWeight: 700 }}>
-            {word.term}
-          </span>
+          <span style={{ fontWeight: 700 }}>{word.term}</span>
           {`" Deleted`}
         </Typography>
         <WordCardUndoDeleteButton wordId={wordId} />
