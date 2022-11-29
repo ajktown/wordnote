@@ -6,17 +6,14 @@ import { useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoils/state_atoms/searchInput.state'
 import WordCardsFrameSearchNotFound from './index.search_not_found'
 import {
-  deprecatedWordsState,
   wordIdsState,
 } from '@/recoils/state_atoms/words.state'
 import WordCardsFrameRefreshButton from '../atom_word_cards_frame_refresh_button'
 
 const WordCardsFrame: FC = () => {
-  const words = useRecoilValue(deprecatedWordsState)
   const searchInput = useRecoilValue(searchInputState)
   const wordIds = useRecoilValue(wordIdsState)
 
-  if (words === undefined) return <h3>"Loading..."</h3>
   if (!!searchInput) return <WordCardsFrameSearchNotFound />
 
   return (
