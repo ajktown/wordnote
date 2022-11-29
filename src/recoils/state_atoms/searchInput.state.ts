@@ -1,7 +1,7 @@
 import { atom, RecoilState } from 'recoil'
-import { AtomStateKey } from '../keys.recoil'
+import { RecoilKey } from '../keys.recoil'
 
 export const searchInputState: RecoilState<string> = atom({
-  key: AtomStateKey.SearchInput,
+  key: RecoilKey.SearchInput,
   default: ``,
 })

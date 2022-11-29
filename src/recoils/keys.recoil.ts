@@ -1,9 +1,9 @@
-export enum AtomStateKey {
+export enum RecoilKey {
   SearchInput = `SearchInput`,
   Words = `Words`,
 }
 
-export enum AtomStateSuffix {
+export enum RecoilKeySuffix {
   Family = `Family`,
   SelectorFamily = `SelectorFamily`,
   Selector = `Selector`,
