@@ -13,11 +13,11 @@ const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
 
   const onClickUndoDeleteWord = async () => {
     try {
-      const modifiedWord: WordData = Object.assign({}, word, {
+      const rePostingWord: WordData = Object.assign({}, word, {
         isDeleted: false,
       })
-      await postWordApi(modifiedWord)
-      setWord(modifiedWord)
+      await postWordApi(rePostingWord)
+      setWord(rePostingWord)
     } catch {}
   }
 
