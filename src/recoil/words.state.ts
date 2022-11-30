@@ -25,7 +25,6 @@ export const wordIdsSelector = selector<string[]>({
   },
 })
 
-
 export const wordIdsState = atom<string[]>({
   key: RecoilKey.Words + RecoilKeySuffix.Ids,
   default: wordIdsSelector,
