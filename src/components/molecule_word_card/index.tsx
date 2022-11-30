@@ -7,8 +7,8 @@ import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
 import { useRecoilValue } from 'recoil'
-import { wordsFamily } from '@/recoils/state_atoms/words.state'
 import WordCardUnknown from './index.unknown'
+import { wordsFamily } from '@/recoil/words.state'
 
 interface Props {
   wordId: string
