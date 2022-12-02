@@ -3,8 +3,8 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import WordCardUndoDeleteButton from '../atom_word_card_undo_delete_button'
-import { wordsFamily } from '@/recoils/state_atoms/words.state'
 import { useRecoilValue } from 'recoil'
+import { wordsFamily } from '@/recoil/words.state'
 
 interface Props {
   wordId: string

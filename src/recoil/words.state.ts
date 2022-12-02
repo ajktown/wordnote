@@ -1,17 +1,10 @@
 import { WordData } from '@/api/words/words.interface'
-import { atom, atomFamily, selectorFamily, DefaultValue } from 'recoil'
-import { wordIdsSelector } from '../selectors/words.selector'
-import { RecoilKey, RecoilKeySuffix } from '../keys.recoil'
+import { atom, atomFamily, selectorFamily, selector } from 'recoil'
 import { getWordByIdApi } from '@/api/words/get-word-by-id.api'
+import { RecoilKey, RecoilKeySuffix } from './index.keys'
+import { getWordIdsApi } from '@/api/words/get-word-ids.api'
+import { guardRecoilDefaultValue } from './index.guard'
 
-export const guardRecoilDefaultValue = (
-  candidate: unknown,
-): candidate is DefaultValue => {
-  if (candidate instanceof DefaultValue) return true
-  return false
-}
-
-//** START FROM HERE */
 // TODO: Rename the data later.
 
 export const wordsFamily = atomFamily<WordData | null, string>({
@@ -22,6 +15,13 @@ export const wordsFamily = atomFamily<WordData | null, string>({
     } catch {
       return null
     }
+  },
+})
+
+export const wordIdsSelector = selector<string[]>({
+  key: RecoilKey.Words + RecoilKeySuffix.Selector,
+  get: async () => {
+    return getWordIdsApi()
   },
 })
 

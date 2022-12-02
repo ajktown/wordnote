@@ -3,8 +3,8 @@ import { FC } from 'react'
 import FavoriteWordIcon from '@mui/icons-material/FavoriteTwoTone'
 import NotFavoriteWordIcon from '@mui/icons-material/FavoriteBorderTwoTone'
 import { useRecoilState } from 'recoil'
-import { wordsFamily } from '@/recoils/state_atoms/words.state'
 import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
+import { wordsFamily } from '@/recoil/words.state'
 
 interface Props {
   wordId: string
