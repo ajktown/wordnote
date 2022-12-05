@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
 import WordCard from '../molecule_word_card'
 import { Stack, Box } from '@mui/material'
 import NewWordBox from '../molecule_new_word_box'
@@ -7,6 +7,7 @@ import { searchInputState } from '@/recoil/searchInput.state'
 import WordCardsFrameSearchNotFound from './index.search_not_found'
 import WordCardsFrameRefreshButton from '../atom_word_cards_frame_refresh_button'
 import { wordIdsState } from '@/recoil/words.state'
+import StyledNull from '@/atoms/StyledNull'
 
 const WordCardsFrame: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
@@ -32,9 +33,11 @@ const WordCardsFrame: FC = () => {
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
           <NewWordBox />
-          {wordIds.map((wordId) => (
-            <WordCard key={wordId} wordId={wordId} />
-          ))}
+          <Suspense fallback={<StyledNull />}>
+            {wordIds.map((wordId) => (
+              <WordCard key={wordId} wordId={wordId} />
+            ))}
+          </Suspense>
         </Stack>
       </Stack>
     </Stack>
