@@ -6,16 +6,25 @@ import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { postWordApi } from '@/api/words/post-word.api'
 import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
-import { useRecoilState } from 'recoil'
-import { wordIdsState } from '@/recoil/words.state'
+import { useRecoilCallback, useRecoilState } from 'recoil'
+import { wordIdsState, wordsFamily } from '@/recoil/words.state'
 
 const NewWordBox: FC = () => {
   const [userInput, setUserInput] = useState(``)
   const [isWritingMode, setWritingMode] = useState(false)
   const [wordIds, setWordIds] = useRecoilState(wordIdsState)
 
+  const setWord = useRecoilCallback(({set}) => async (wordData: WordData) => {
+    // TODO: Refactor this and leave it out of this component "NewWordBox"
+    set(wordsFamily(wordData.id), wordData)
+  }, [])
+
+
   const handleClickAddWord = async () => {
     if (!userInput) return setWritingMode(false)
+
+    // TODO: Has the problem of rendering all data when inserted.
+    // TODO: Refactor this and leave it out of this component "NewWordBox"
 
     try {
       const newWord: WordData = {
@@ -29,8 +38,8 @@ const NewWordBox: FC = () => {
       const postedWord = await postWordApi(newWord)
 
       // Applying on the view side
+      setWord(postedWord)
       setWordIds([postedWord.id, ...wordIds])
-      // TODO: I need to push the new word itself.
     } catch {}
 
     setUserInput(``)
