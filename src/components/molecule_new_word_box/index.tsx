@@ -6,10 +6,13 @@ import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { postWordApi } from '@/api/words/post-word.api'
 import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
+import { useRecoilState } from 'recoil'
+import { wordIdsState } from '@/recoil/words.state'
 
 const NewWordBox: FC = () => {
   const [userInput, setUserInput] = useState(``)
   const [isWritingMode, setWritingMode] = useState(false)
+  const [wordIds, setWordIds] = useRecoilState(wordIdsState)
 
   const handleClickAddWord = async () => {
     if (!userInput) return setWritingMode(false)
@@ -23,9 +26,9 @@ const NewWordBox: FC = () => {
         example: ``,
         isFavorite: false,
       }
-      await postWordApi(newWord)
+      const postedWord = await postWordApi(newWord)
       // TODO: Apply in the frontend too.
-      // setWords(words.length > 0 ? [newWord, ...words] : [newWord])
+      setWordIds([postedWord.id, ...wordIds])
     } catch {}
 
     setUserInput(``)
