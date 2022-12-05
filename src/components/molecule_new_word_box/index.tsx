@@ -27,8 +27,10 @@ const NewWordBox: FC = () => {
         isFavorite: false,
       }
       const postedWord = await postWordApi(newWord)
-      // TODO: Apply in the frontend too.
+
+      // Applying on the view side
       setWordIds([postedWord.id, ...wordIds])
+      // TODO: I need to push the new word itself.
     } catch {}
 
     setUserInput(``)
