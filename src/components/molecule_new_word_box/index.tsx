@@ -14,11 +14,14 @@ const NewWordBox: FC = () => {
   const [isWritingMode, setWritingMode] = useState(false)
   const [wordIds, setWordIds] = useRecoilState(wordIdsState)
 
-  const setWord = useRecoilCallback(({set}) => async (wordData: WordData) => {
-    // TODO: Refactor this and leave it out of this component "NewWordBox"
-    set(wordsFamily(wordData.id), wordData)
-  }, [])
-
+  const setWord = useRecoilCallback(
+    ({ set }) =>
+      async (wordData: WordData) => {
+        // TODO: Refactor this and leave it out of this component "NewWordBox"
+        set(wordsFamily(wordData.id), wordData)
+      },
+    [],
+  )
 
   const handleClickAddWord = async () => {
     if (!userInput) return setWritingMode(false)

@@ -8,7 +8,7 @@ import { searchInputState } from './searchInput.state'
 
 export const wordsFamily = atomFamily<WordData | null, string>({
   key: RecoilKey.Words + RecoilKeySuffix.Family,
-  default: null
+  default: null,
 })
 
 export const wordIdsSelector = selector<string[]>({
@@ -32,9 +32,9 @@ export const filteredWordIdsState = selector<string[]>({
     const wordIds = get(wordIdsState)
     const searchInput = get(searchInputState)
 
-    if (searchInput === "") return wordIds // Return as it is, if it has no search input
+    if (searchInput === ``) return wordIds // Return as it is, if it has no search input
 
-    return wordIds.filter(wordId => {
+    return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
       if (word === null) return false
 

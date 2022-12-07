@@ -8,11 +8,7 @@ interface Props {
 const PrivateStyledNull: FC = () => null
 
 const StyledSuspense: FC<Props> = ({ children }) => {
-  return (
-    <Suspense fallback={<PrivateStyledNull />}>
-      {children}
-    </Suspense>
-  )
+  return <Suspense fallback={<PrivateStyledNull />}>{children}</Suspense>
 }
 
 export default StyledSuspense

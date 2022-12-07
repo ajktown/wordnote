@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
+import { FC } from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const StyledCircularLoading: FC = () => {
   return <CircularProgress />
