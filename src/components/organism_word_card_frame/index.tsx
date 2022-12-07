@@ -1,20 +1,10 @@
 import { FC } from 'react'
-import WordCard from '../molecule_word_card'
 import { Stack, Box } from '@mui/material'
 import NewWordBox from '../molecule_new_word_box'
-import { useRecoilValue } from 'recoil'
-import { searchInputState } from '@/recoil/searchInput.state'
-import WordCardsFrameSearchNotFound from './index.search_not_found'
 import WordCardsFrameRefreshButton from '../atom_word_cards_frame_refresh_button'
-import { wordIdsState } from '@/recoil/words.state'
-import StyledSuspense from '@/organisms/StyledSuspense'
+import WordCardsChunk from '../organism_word_card_chunk'
 
-const WordCardsFrame: FC = () => {
-  const searchInput = useRecoilValue(searchInputState)
-  const wordIds = useRecoilValue(wordIdsState)
-
-  if (!!searchInput) return <WordCardsFrameSearchNotFound />
-
+const WordCardFrame: FC = () => {
   return (
     <Stack width="100%" alignItems="center">
       <Stack
@@ -33,15 +23,11 @@ const WordCardsFrame: FC = () => {
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
           <NewWordBox />
-          <StyledSuspense>
-            {wordIds.map((wordId) => (
-              <WordCard key={wordId} wordId={wordId} />
-            ))}
-          </StyledSuspense>
+          <WordCardsChunk />
         </Stack>
       </Stack>
     </Stack>
   )
 }
 
-export default WordCardsFrame
+export default WordCardFrame

@@ -4,7 +4,7 @@ import { Typography, Stack } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilState } from 'recoil'
 
-const WordCardsFrameSearchNotFound: FC = () => {
+const WordCardChunkSearchNotFound: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
 
   return (
@@ -22,4 +22,4 @@ const WordCardsFrameSearchNotFound: FC = () => {
   )
 }
 
-export default WordCardsFrameSearchNotFound
+export default WordCardChunkSearchNotFound

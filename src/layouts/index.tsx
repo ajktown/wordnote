@@ -1,10 +1,10 @@
 import { FC, Fragment } from 'react'
-import WordCardsFrame from '@/components/organism_word_cards_frame'
+import WordCardFrame from '@/components/organism_word_card_frame'
 
 const HomeLayout: FC = () => {
   return (
     <Fragment>
-      <WordCardsFrame />
+      <WordCardFrame />
     </Fragment>
   )
 }
