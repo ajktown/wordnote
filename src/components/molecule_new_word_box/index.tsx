@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
 import { WordData } from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField'
@@ -8,6 +8,7 @@ import { postWordApi } from '@/api/words/post-word.api'
 import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
 import { useRecoilCallback, useRecoilState } from 'recoil'
 import { wordIdsState, wordsFamily } from '@/recoil/words.state'
+import { useKeyPress } from '@/hook/use-key-press.hook'
 
 const NewWordBox: FC = () => {
   const [userInput, setUserInput] = useState(``)
@@ -23,7 +24,7 @@ const NewWordBox: FC = () => {
     [],
   )
 
-  const handleClickAddWord = async () => {
+  const handleClickAddWord = useCallback(async () => {
     if (!userInput) return setWritingMode(false)
 
     // TODO: Has the problem of rendering all data when inserted.
@@ -47,8 +48,9 @@ const NewWordBox: FC = () => {
 
     setUserInput(``)
     setWritingMode(false)
-  }
+  }, [userInput, setWord, setWordIds])
 
+  useKeyPress(`Escape`, handleClickAddWord)
   const ref = useOutsideClicked(handleClickAddWord)
 
   if (isWritingMode) {
