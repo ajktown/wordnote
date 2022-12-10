@@ -2,13 +2,13 @@ import { FC, useCallback, useState } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
 import { WordData } from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField'
-import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
+import { useOutsideClicked } from '@/hooks/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { postWordApi } from '@/api/words/post-word.api'
 import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
 import { useRecoilCallback, useRecoilState } from 'recoil'
 import { wordIdsState, wordsFamily } from '@/recoil/words.state'
-import { useKeyPress } from '@/hook/use-key-press.hook'
+import { useKeyPress } from '@/hooks/use-key-press.hook'
 
 const NewWordBox: FC = () => {
   const [userInput, setUserInput] = useState(``)
