@@ -21,7 +21,6 @@ export const usePostWord = (): UsePostWord => {
   const setWord = useRecoilCallback(
     ({ set }) =>
       async (wordData: WordData) => {
-        // TODO: Refactor this and leave it out of this component "NewWordBox"
         set(wordsFamily(wordData.id), wordData)
       },
     [],
