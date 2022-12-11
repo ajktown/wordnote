@@ -1,8 +1,8 @@
 import { WordData } from '@/api/words/words.interface'
 import { atom, atomFamily, selector } from 'recoil'
 import { RecoilKey, RecoilKeySuffix } from './index.keys'
-import { getWordIdsApi } from '@/api/words/get-word-ids.api'
 import { searchInputState } from './searchInput.state'
+import { getWordsApi } from '@/api/words/get-words.api'
 
 // TODO: Rename the data later.
 
@@ -14,10 +14,10 @@ export const wordsFamily = atomFamily<WordData | null, string>({
 export const wordIdsSelector = selector<string[]>({
   key: RecoilKey.Words + RecoilKeySuffix.Selector,
   get: async () => {
-    const words = await getWordIdsApi()
+    const words = await getWordsApi()
     // TODO: Want to set the wordsFamily too when it gets the chunk of data.
 
-    return words
+    return words.map(word => word.id)
   },
 })
 
