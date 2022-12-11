@@ -6,6 +6,8 @@ import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useKeyPress } from '@/hooks/use-key-press.hook'
 import { usePostWord } from '@/hooks/words/use-post-word.hook'
 
+const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE: string = `Add your new words...`
+
 const NewWordBox: FC = () => {
   const [
     userInput,
@@ -28,7 +30,7 @@ const NewWordBox: FC = () => {
           <StyledTextField
             value={userInput}
             handleChange={setUserInput}
-            placeholder={`Add your new words...`}
+            placeholder={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
             isAutoFocused
           />
         </CardContent>
@@ -50,7 +52,7 @@ const NewWordBox: FC = () => {
     >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Add your new words...
+          {PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
         </Typography>
       </CardContent>
     </Card>
