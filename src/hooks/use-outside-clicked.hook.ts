@@ -3,9 +3,9 @@ import { useRef, useEffect, MutableRefObject } from 'react'
 type UseOutsideClickedData = HTMLDivElement | null
 
 /**
- * 
- * @param handleClickAddCallback 
- * 
+ *
+ * @param handleClickAddCallback
+ *
  * @returns Reference
  * Returned reference should be applied to the React component
  * i.e) <Component ref={ref} ><ComponentChild /><Component>
