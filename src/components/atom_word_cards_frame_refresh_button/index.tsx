@@ -1,18 +1,14 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
-import { useResetRecoilState } from 'recoil'
 import RefreshIcon from '@mui/icons-material/Refresh'
-import { wordIdsState } from '@/recoil/words.state'
+import { useWords } from '@/hooks/words/use-words.hook'
 
 const WordCardsFrameRefreshButton: FC = () => {
-  const resetWordIds = useResetRecoilState(wordIdsState)
+  const handleClickRefreshWords = useWords()
 
-  const handleReset = () => {
-    resetWordIds()
-  }
   return (
     <StyledIconButtonAtom
-      handleClick={() => handleReset()}
+      handleClick={() => handleClickRefreshWords()}
       jsxElementButton={<RefreshIcon />}
     />
   )

@@ -1,37 +1,25 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
-import { WordData } from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField'
-import { useOutsideClicked } from '@/hook/use-outside-clicked.hook'
+import { useOutsideClicked } from '@/hooks/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { postWordApi } from '@/api/words/post-word.api'
-import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
+import { useKeyPress } from '@/hooks/use-key-press.hook'
+import { usePostWord } from '@/hooks/words/use-post-word.hook'
+
+const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new words...`
 
 const NewWordBox: FC = () => {
-  const [userInput, setUserInput] = useState(``)
-  const [isWritingMode, setWritingMode] = useState(false)
+  // TODO: This is possibly too long. I think it could be better,
+  // TODO: But then for the current code status sake, it looks good.
+  const [
+    userInput,
+    setUserInput,
+    isWritingMode,
+    setWritingMode,
+    handleClickAddWord,
+  ] = usePostWord()
 
-  const handleClickAddWord = async () => {
-    if (!userInput) return setWritingMode(false)
-
-    try {
-      const newWord: WordData = {
-        id: userInput + getRandomHexHandler(),
-        term: userInput,
-        pronunciation: ``,
-        definition: ``,
-        example: ``,
-        isFavorite: false,
-      }
-      await postWordApi(newWord)
-      // TODO: Apply in the frontend too.
-      // setWords(words.length > 0 ? [newWord, ...words] : [newWord])
-    } catch {}
-
-    setUserInput(``)
-    setWritingMode(false)
-  }
-
+  useKeyPress(`Escape`, handleClickAddWord)
   const ref = useOutsideClicked(handleClickAddWord)
 
   if (isWritingMode) {
@@ -44,7 +32,7 @@ const NewWordBox: FC = () => {
           <StyledTextField
             value={userInput}
             handleChange={setUserInput}
-            placeholder={`Add your new words...`}
+            placeholder={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
             isAutoFocused
           />
         </CardContent>
@@ -66,7 +54,7 @@ const NewWordBox: FC = () => {
     >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Add your new words...
+          {PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
         </Typography>
       </CardContent>
     </Card>
