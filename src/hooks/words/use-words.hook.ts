@@ -19,11 +19,10 @@ export const useWords = (): UserWords => {
   )
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       const words = await getWordsApi()
-      words.forEach(word => setWord(word))
-      setWordIds(words.map(word => word.id))
-
+      words.forEach((word) => setWord(word))
+      setWordIds(words.map((word) => word.id))
     })()
   }, [internalFlag, setWord, setWordIds])
 

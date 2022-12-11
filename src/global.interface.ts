@@ -28,9 +28,9 @@ export type GlobalMuiPlacement =
 // TODO: If you find this from 3rd party source, deprecate it, use the source, and remove this type "KeyboardEventKey"
 // Only key events that are used for this application, will be added
 // To see the full list check here: https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
-export type GlobalKeyboardEventKey = 
+export type GlobalKeyboardEventKey =
   | 'Escape' // ESC Key
-  | "ArrowRight"
-  | "ArrowLeft"
-  | "ArrowUp"
-  | "ArrowDown"
+  | 'ArrowRight'
+  | 'ArrowLeft'
+  | 'ArrowUp'
+  | 'ArrowDown'

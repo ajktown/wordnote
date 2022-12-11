@@ -8,7 +8,7 @@ import { WordCardFrameStyle } from './index.style'
 const WordCardFrame: FC = () => {
   return (
     <Stack width="100%" alignItems="center">
-      <Stack {...WordCardFrameStyle} >
+      <Stack {...WordCardFrameStyle}>
         {/* Header */}
         <Stack direction="row" spacing={0.5}>
           <Box flexGrow={1} />

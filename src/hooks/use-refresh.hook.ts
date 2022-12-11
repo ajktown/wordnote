@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useState } from 'react'
 
 export type HandleRefresh = () => void
 type UseHookRefresh = [
@@ -8,7 +8,7 @@ type UseHookRefresh = [
 
 export const useHookRefresh = (): UseHookRefresh => {
   const [internalFlag, setInternalFlag] = useState(false)
-  
+
   const handleRefresh = useCallback(() => {
     setInternalFlag(!internalFlag)
   }, [internalFlag])

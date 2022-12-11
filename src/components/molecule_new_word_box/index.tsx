@@ -6,7 +6,7 @@ import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useKeyPress } from '@/hooks/use-key-press.hook'
 import { usePostWord } from '@/hooks/words/use-post-word.hook'
 
-const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE: string = `Add your new words...`
+const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new words...`
 
 const NewWordBox: FC = () => {
   const [

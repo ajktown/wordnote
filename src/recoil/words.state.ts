@@ -10,7 +10,7 @@ export const wordsFamily = atomFamily<WordData | null, string>({
 
 export const wordIdsState = atom<string[]>({
   key: RecoilKey.WordIds,
-  default: []
+  default: [],
 })
 
 export const filteredWordIdsState = selector<string[]>({
