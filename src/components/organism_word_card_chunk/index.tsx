@@ -6,6 +6,7 @@ import WordCardChunkSearchNotFound from './index.search_not_found'
 import { filteredWordIdsState } from '@/recoil/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardsChunkNoWordsFound from './index.no_words_found'
+import WordCardChunkSearchFound from './index.search_found'
 
 const WordCardsChunk: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
@@ -18,6 +19,7 @@ const WordCardsChunk: FC = () => {
 
   return (
     <StyledSuspense>
+      <WordCardChunkSearchFound />
       {filteredWordIds.map((wordId) => (
         <WordCard key={wordId} wordId={wordId} />
       ))}
