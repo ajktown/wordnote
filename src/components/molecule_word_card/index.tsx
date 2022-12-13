@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -6,9 +6,9 @@ import Typography from '@mui/material/Typography'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import WordCardUnknown from './index.unknown'
-import { wordsFamily } from '@/recoil/words.state'
+import { selectedWordIdForDialogState, wordsFamily } from '@/recoil/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 
 interface Props {
@@ -17,6 +17,11 @@ interface Props {
 
 const WordCard: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
+  const selectWordIdForDialog = useSetRecoilState(selectedWordIdForDialogState)
+
+  const handleClickWordCard = useCallback(() => {
+    selectWordIdForDialog(wordId)
+  }, [wordId, selectWordIdForDialog])
 
   if (word === null) return <WordCardUnknown />
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
@@ -24,7 +29,7 @@ const WordCard: FC<Props> = ({ wordId }) => {
   return (
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
-        <CardContent>
+        <CardContent onClick={handleClickWordCard}>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Word of the Day
           </Typography>
