@@ -1,9 +1,9 @@
 import { FC, ReactNode, useCallback } from 'react'
 import Dialog from '@mui/material/Dialog'
-import {  Breakpoint } from '@mui/material'
+import { Breakpoint } from '@mui/material'
 
-const PRIVATE_DEFAULT_FINAL_MAX_WIDTH: Breakpoint = "sm"
-const PRIVATE_DEFAULT_BLUR_OUT_PIXELS: number = 18 // higher, the blurrier it gets
+const PRIVATE_DEFAULT_FINAL_MAX_WIDTH: Breakpoint = `sm`
+const PRIVATE_DEFAULT_BLUR_OUT_PIXELS = 18 // higher, the blurrier it gets
 
 export interface StyledDialogProps {
   children: ReactNode
@@ -15,7 +15,10 @@ export interface StyledDialogProps {
   }
 }
 
-const StyledDialog: FC<StyledDialogProps> = ({handleCloseCallback, ...props}) => {
+const StyledDialog: FC<StyledDialogProps> = ({
+  handleCloseCallback,
+  ...props
+}) => {
   const handleCloseInternally = useCallback(() => {
     if (!handleCloseCallback) return
     handleCloseCallback()
@@ -28,7 +31,9 @@ const StyledDialog: FC<StyledDialogProps> = ({handleCloseCallback, ...props}) =>
       maxWidth={props.visuals?.maxWidth || PRIVATE_DEFAULT_FINAL_MAX_WIDTH}
       fullWidth
       style={{
-        backdropFilter: props.visuals?.completelyBlurOut ? `blur(${PRIVATE_DEFAULT_BLUR_OUT_PIXELS}px)` : undefined,
+        backdropFilter: props.visuals?.completelyBlurOut
+          ? `blur(${PRIVATE_DEFAULT_BLUR_OUT_PIXELS}px)`
+          : undefined,
       }}
       fullScreen={props.visuals?.fullScreen}
     >

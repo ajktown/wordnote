@@ -15,7 +15,7 @@ export const wordIdsState = atom<string[]>({
 
 export const selectedWordIdForDialogState = atom<null | string>({
   key: RecoilKey.Words + RecoilKeySuffix.Dialog,
-  default: null // nothing selected
+  default: null, // nothing selected
 })
 
 export const filteredWordIdsState = selector<string[]>({

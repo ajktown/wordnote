@@ -1,16 +1,20 @@
-import { FC, useState} from 'react'
+import { FC, useState } from 'react'
 import {
-   Card, TextField, CardActions, CardContent, Typography
+  Card,
+  TextField,
+  CardActions,
+  CardContent,
+  Typography,
 } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import { useSetRecoilState } from 'recoil'
-import {  wordsFamily } from '@/recoil/words.state'
+import { wordsFamily } from '@/recoil/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import { WordData } from '@/api/words/words.interface'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import CheckIcon from '@mui/icons-material/Check';
-import ClearIcon from '@mui/icons-material/Clear';
+import CheckIcon from '@mui/icons-material/Check'
+import ClearIcon from '@mui/icons-material/Clear'
 interface Props {
   word: WordData
 }
@@ -21,7 +25,6 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
 
   const [term, setTerm] = useState(word.term)
 
-
   return (
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
@@ -30,7 +33,7 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
             Word of the Day
           </Typography>
           <TextField
-            id="standard-basic" 
+            id="standard-basic"
             variant="standard"
             value={term}
             onChange={(e) => setTerm(e.target.value)}
@@ -38,10 +41,12 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
           {term !== word.term && (
             <StyledIconButtonAtom
               jsxElementButton={<CheckIcon />}
-              handleClick={() => setWord({
-                ...word,
-                term,
-              })}
+              handleClick={() =>
+                setWord({
+                  ...word,
+                  term,
+                })
+              }
             />
           )}
           {term !== word.term && (

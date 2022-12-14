@@ -4,7 +4,6 @@ import { useRecoilValue, useResetRecoilState } from 'recoil'
 import WordCard from '.'
 import { selectedWordIdForDialogState } from '@/recoil/words.state'
 
-
 const WordCardDialog: FC = () => {
   const selectedWordId = useRecoilValue(selectedWordIdForDialogState)
   const closeDialog = useResetRecoilState(selectedWordIdForDialogState)
