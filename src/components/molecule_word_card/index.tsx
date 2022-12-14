@@ -10,21 +10,25 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 import WordCardUnknown from './index.unknown'
 import { selectedWordIdForDialogState, wordsFamily } from '@/recoil/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
+import WordCardEditingMode from './index.editing_mode'
 
 interface Props {
   wordId: string
+  editingMode?: boolean
 }
 
-const WordCard: FC<Props> = ({ wordId }) => {
+const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const selectWordIdForDialog = useSetRecoilState(selectedWordIdForDialogState)
 
   const handleClickWordCard = useCallback(() => {
+    if (editingMode) return
     selectWordIdForDialog(wordId)
-  }, [wordId, selectWordIdForDialog])
+  }, [editingMode, wordId, selectWordIdForDialog])
 
   if (word === null) return <WordCardUnknown />
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
+  if (editingMode) return <WordCardEditingMode word={word} />
 
   return (
     <StyledSuspense>

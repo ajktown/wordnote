@@ -13,7 +13,7 @@ const WordCardDialog: FC = () => {
 
   return (
     <StyledDialog handleCloseCallback={closeDialog}>
-      <WordCard wordId={selectedWordId} />
+      <WordCard wordId={selectedWordId} editingMode />
     </StyledDialog>
   )
 }
