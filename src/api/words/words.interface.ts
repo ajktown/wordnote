@@ -10,4 +10,3 @@ export interface WordData extends DataStatus {
 }
 
 export type WordDataModifiable = Partial<Omit<WordData, 'id'>>
-

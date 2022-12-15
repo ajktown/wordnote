@@ -40,9 +40,7 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
           {term !== word.term && (
             <StyledIconButtonAtom
               jsxElementButton={<CheckIcon />}
-              handleClick={() =>
-                putWord(word.id, { term })
-              }
+              handleClick={() => putWord(word.id, { term })}
             />
           )}
           {term !== word.term && (

@@ -1,10 +1,13 @@
 import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
-import {  WordDataModifiable } from '@/api/words/words.interface'
-import {  wordsFamily } from '@/recoil/words.state'
+import { WordDataModifiable } from '@/api/words/words.interface'
+import { wordsFamily } from '@/recoil/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
-type UsePutWord = (wordId: string, modified: WordDataModifiable) => Promise<void> // handleModifyWord
+type UsePutWord = (
+  wordId: string,
+  modified: WordDataModifiable,
+) => Promise<void> // handleModifyWord
 
 export const usePutWord = (): UsePutWord => {
   const setWord = useRecoilCallback(
@@ -21,10 +24,13 @@ export const usePutWord = (): UsePutWord => {
     [],
   )
 
-  const handleModifyWord = useCallback(async (wordId: string, modified: WordDataModifiable) => {
-    await putWordByIdApi(wordId, modified)
-    setWord(wordId, modified)
-  }, [setWord])
+  const handleModifyWord = useCallback(
+    async (wordId: string, modified: WordDataModifiable) => {
+      await putWordByIdApi(wordId, modified)
+      setWord(wordId, modified)
+    },
+    [setWord],
+  )
 
   return handleModifyWord
 }

@@ -14,9 +14,12 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const putWord = usePutWord()
 
-  const handleClickFavoriteIcon = useCallback(async (givenWord: WordData) => {
-    await putWord(wordId, { isFavorite: !givenWord.isFavorite })
-  }, [putWord])
+  const handleClickFavoriteIcon = useCallback(
+    async (givenWord: WordData) => {
+      await putWord(wordId, { isFavorite: !givenWord.isFavorite })
+    },
+    [putWord],
+  )
 
   if (word === null) return null
 
