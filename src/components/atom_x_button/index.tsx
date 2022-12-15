@@ -4,12 +4,14 @@ import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 
 // TODO: Move this file to src/atoms, as it does not contain any business info
 interface XButtonProps {
-  handleClick?: any
+  handleClick?: any // TODO: onClickCallback
   hoverMessage?: string
   buttonColor?: string
   size?: 'small' | 'medium' | 'large'
 }
+
 const XButton: FC<XButtonProps> = (props) => {
+  // TODO: useCallback()
   const handleClick = () => {
     if (!props.handleClick) return
     props.handleClick()
