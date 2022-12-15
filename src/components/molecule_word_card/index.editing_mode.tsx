@@ -8,20 +8,19 @@ import {
 } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
-import { useSetRecoilState } from 'recoil'
-import { wordsFamily } from '@/recoil/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import { WordData } from '@/api/words/words.interface'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import CheckIcon from '@mui/icons-material/Check'
 import ClearIcon from '@mui/icons-material/Clear'
+import { usePutWord } from '@/hooks/words/use-put-word.hook'
+
 interface Props {
   word: WordData
 }
 
-// TODO: Create a beautiful hook for modifying resource
 const WordCardEditingMode: FC<Props> = ({ word }) => {
-  const setWord = useSetRecoilState(wordsFamily(word.id))
+  const putWord = usePutWord()
 
   const [term, setTerm] = useState(word.term)
 
@@ -42,10 +41,7 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
             <StyledIconButtonAtom
               jsxElementButton={<CheckIcon />}
               handleClick={() =>
-                setWord({
-                  ...word,
-                  term,
-                })
+                putWord(word.id, { term })
               }
             />
           )}
