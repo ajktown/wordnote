@@ -28,9 +28,6 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Word of the Day
-          </Typography>
           <TextField
             id="standard-basic"
             variant="standard"

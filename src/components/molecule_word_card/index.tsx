@@ -34,9 +34,6 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent onClick={handleClickWordCard}>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Word of the Day
-          </Typography>
           <Typography variant="h5" component="div">
             {word.term}
           </Typography>
