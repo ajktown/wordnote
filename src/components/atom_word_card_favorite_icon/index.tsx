@@ -23,20 +23,12 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
 
   if (word === null) return null
 
-  if (word.isFavorite)
-    return (
-      <StyledIconButtonAtom
-        handleClick={() => handleClickFavoriteIcon(word)}
-        jsxElementButton={
-          <FavoriteWordIcon style={{ color: `FF0000` /* Red */ }} />
-        }
-      />
-    )
-
   return (
     <StyledIconButtonAtom
       handleClick={() => handleClickFavoriteIcon(word)}
-      jsxElementButton={<NotFavoriteWordIcon />}
+      jsxElementButton={
+        <FavoriteWordIcon style={{ color: word.isFavorite ? `FF0000`: undefined  /* Red */ }} />
+      }
     />
   )
 }
