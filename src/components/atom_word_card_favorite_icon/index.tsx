@@ -15,17 +15,19 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   const putWord = usePutWord()
 
   const handleClickFavoriteIcon = useCallback(
-    async (givenWord: WordData) => {
-      await putWord(wordId, { isFavorite: !givenWord.isFavorite })
+    async () => {
+      if (word === null) return
+
+      await putWord(wordId, { isFavorite: !word.isFavorite })
     },
-    [putWord],
+    [word, putWord],
   )
 
   if (word === null) return null
 
   return (
     <StyledIconButtonAtom
-      handleClick={() => handleClickFavoriteIcon(word)}
+      onClickCallback={handleClickFavoriteIcon}
       jsxElementButton={
         <FavoriteWordIcon style={{ color: word.isFavorite ? `FF0000`: undefined  /* Red */ }} />
       }

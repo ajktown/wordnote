@@ -8,7 +8,7 @@ const WordCardsFrameRefreshButton: FC = () => {
 
   return (
     <StyledIconButtonAtom
-      handleClick={() => handleClickRefreshWords()}
+      onClickCallback={handleClickRefreshWords}
       jsxElementButton={<RefreshIcon />}
     />
   )

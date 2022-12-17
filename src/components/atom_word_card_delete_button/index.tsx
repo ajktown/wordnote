@@ -1,5 +1,5 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import DeleteWordIcon from '@mui/icons-material/Delete'
 import { useRecoilState } from 'recoil'
 import { deleteWordByIdApi } from '@/api/words/delete-words.api'
@@ -14,20 +14,21 @@ const WordCardDeleteButton: FC<Props> = ({ wordId }) => {
   // TODO: You may return null as the data is both deleted in FE and probably on server.
   // but will skip for now.
 
-  const onClickDeleteWord = async () => {
-    try {
-      await deleteWordByIdApi(wordId)
-
-      const modifiedWord: WordData = Object.assign({}, word, {
-        isDeleted: true,
-      })
-      setWord(modifiedWord)
-    } catch {}
-  }
+  // TODO: Use the seperate hook file useDeleteWord
+  const handleClickDeleteWordCallback = useCallback(async () => {
+      try {
+        await deleteWordByIdApi(wordId)
+  
+        const modifiedWord: WordData = Object.assign({}, word, {
+          isDeleted: true,
+        })
+        setWord(modifiedWord)
+      } catch {}
+  },[word, setWord])
 
   return (
     <StyledIconButtonAtom
-      handleClick={() => onClickDeleteWord()}
+      onClickCallback={handleClickDeleteWordCallback}
       jsxElementButton={<DeleteWordIcon />}
     />
   )
