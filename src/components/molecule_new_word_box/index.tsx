@@ -31,7 +31,7 @@ const NewWordBox: FC = () => {
         <CardContent>
           <StyledTextField
             value={userInput}
-            handleChange={setUserInput}
+            onChangeCallback={setUserInput}
             placeholder={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
             isAutoFocused
           />
