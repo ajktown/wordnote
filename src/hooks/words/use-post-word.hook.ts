@@ -13,6 +13,8 @@ type UsePostWord = [
   () => Promise<void>, // handleClickAddWord
 ]
 
+// TODO: There should be a specific hook that saves object as a word post
+// TODO: And the calculation must be done, if needed, in a separate hook!
 export const usePostWord = (): UsePostWord => {
   const [userInput, setUserInput] = useState(``)
   const [isWritingMode, setWritingMode] = useState(false)
