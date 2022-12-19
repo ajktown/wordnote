@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useCallback, useState } from 'react'
+import { FC, MouseEvent, useCallback, useState, useMemo } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import { GlobalMuiPlacement } from '../global.interface'
@@ -16,11 +16,11 @@ interface Props {
   size?: 'small' | 'medium' | 'large'
   disableOnHoverColor?: boolean
 }
-const StyledIconButtonAtom: FC<Props> = ({onClickCallback, ...props}) => {
+const StyledIconButtonAtom: FC<Props> = ({onClickCallback, disableOnHoverColor, ...props}) => {
   const [onHover, setHover] = useState(false)
 
-  const buttonColor =
-    !props.disableOnHoverColor && onHover ? `#a200aa` : undefined
+  const buttonColor = useMemo(() => !disableOnHoverColor && onHover ? `#a200aa` : undefined,
+  [disableOnHoverColor, onHover])
 
   const handleClickInternally = useCallback((e: MouseEvent<HTMLElement>) => {
     if (!onClickCallback) return
