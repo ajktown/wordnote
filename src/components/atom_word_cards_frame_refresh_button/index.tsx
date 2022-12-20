@@ -1,15 +1,13 @@
-import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
-import RefreshIcon from '@mui/icons-material/Refresh'
 import { useWords } from '@/hooks/words/use-words.hook'
+import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 
 const WordCardsFrameRefreshButton: FC = () => {
   const handleClickRefreshWords = useWords()
 
   return (
-    <StyledIconButtonAtom
+    <StyledCloudRefresher
       onClickCallback={handleClickRefreshWords}
-      jsxElementButton={<RefreshIcon />}
     />
   )
 }
