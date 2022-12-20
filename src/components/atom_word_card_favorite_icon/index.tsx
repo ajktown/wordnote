@@ -1,11 +1,9 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC, useCallback } from 'react'
 import FavoriteWordIcon from '@mui/icons-material/FavoriteTwoTone'
-import NotFavoriteWordIcon from '@mui/icons-material/FavoriteBorderTwoTone'
 import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words.state'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
-import { WordData } from '@/api/words/words.interface'
 
 interface Props {
   wordId: string
@@ -14,14 +12,11 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const putWord = usePutWord()
 
-  const handleClickFavoriteIcon = useCallback(
-    async () => {
-      if (word === null) return
+  const handleClickFavoriteIcon = useCallback(async () => {
+    if (word === null) return
 
-      await putWord(wordId, { isFavorite: !word.isFavorite })
-    },
-    [word, putWord],
-  )
+    await putWord(wordId, { isFavorite: !word.isFavorite })
+  }, [wordId, word, putWord])
 
   if (word === null) return null
 
@@ -29,7 +24,9 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
     <StyledIconButtonAtom
       onClickCallback={handleClickFavoriteIcon}
       jsxElementButton={
-        <FavoriteWordIcon style={{ color: word.isFavorite ? `FF0000`: undefined  /* Red */ }} />
+        <FavoriteWordIcon
+          style={{ color: word.isFavorite ? `FF0000` : undefined /* Red */ }}
+        />
       }
     />
   )

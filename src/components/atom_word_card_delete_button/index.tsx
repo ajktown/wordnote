@@ -10,7 +10,7 @@ const WordCardDeleteButton: FC<Props> = ({ wordId }) => {
 
   const handleClickDeleteWordCallback = useCallback(async () => {
     handleClickDeleteWord(wordId)
-  },[wordId, handleClickDeleteWord])
+  }, [wordId, handleClickDeleteWord])
 
   return (
     <StyledIconButtonAtom

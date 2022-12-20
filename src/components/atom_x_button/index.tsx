@@ -9,7 +9,7 @@ interface Props {
   size?: 'small' | 'medium' | 'large'
 }
 
-const XButton: FC<Props> = ({onClickCallback, ...props}) => {
+const XButton: FC<Props> = ({ onClickCallback, ...props }) => {
   const handleClickCallback = useCallback(() => {
     if (!onClickCallback) return
     onClickCallback()

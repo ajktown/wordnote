@@ -32,7 +32,9 @@ const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
     <Fragment>
       <StyledTextButtonAtom
         title={`Undo`}
-        handleClick={() => onClickUndoDeleteWord() /** TODO: Should use callback */}
+        handleClick={
+          () => onClickUndoDeleteWord() /** TODO: Should use callback */
+        }
       />
       <StyledTextButtonAtom
         title={`Hide`}

@@ -16,11 +16,13 @@ const StyledTextField: FC<CustomizedTextFieldProps> = ({
   maxChars,
   ...props
 }) => {
-  const handleChangeCallback = useCallback((changedText: string) => {
-    if (!onChangeCallback) return
-    onChangeCallback(changedText.slice(0, maxChars))
-
-  }, [onChangeCallback, maxChars])
+  const handleChangeCallback = useCallback(
+    (changedText: string) => {
+      if (!onChangeCallback) return
+      onChangeCallback(changedText.slice(0, maxChars))
+    },
+    [onChangeCallback, maxChars],
+  )
 
   return (
     <TextField

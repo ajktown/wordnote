@@ -3,9 +3,7 @@ import { wordsFamily } from '@/recoil/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
-type UseDeleteWord = (
-  wordId: string,
-) => Promise<void> // handleDeleteWord
+type UseDeleteWord = (wordId: string) => Promise<void> // handleDeleteWord
 
 export const useDeleteWord = (): UseDeleteWord => {
   const setWord = useRecoilCallback(
@@ -16,18 +14,21 @@ export const useDeleteWord = (): UseDeleteWord => {
 
         set(wordsFamily(wordId), {
           ...wordData,
-          isDeleted: true
+          isDeleted: true,
         })
       },
     [],
   )
 
-  const handleDeleteWord = useCallback(async (wordId: string) => {
-    try {
-      await deleteWordByIdApi(wordId)
-      setWord(wordId)
-    } catch {}
-},[setWord])
+  const handleDeleteWord = useCallback(
+    async (wordId: string) => {
+      try {
+        await deleteWordByIdApi(wordId)
+        setWord(wordId)
+      } catch {}
+    },
+    [setWord],
+  )
 
   return handleDeleteWord
 }

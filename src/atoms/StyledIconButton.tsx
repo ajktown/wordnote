@@ -16,16 +16,25 @@ interface Props {
   size?: 'small' | 'medium' | 'large'
   disableOnHoverColor?: boolean
 }
-const StyledIconButtonAtom: FC<Props> = ({onClickCallback, disableOnHoverColor, ...props}) => {
+const StyledIconButtonAtom: FC<Props> = ({
+  onClickCallback,
+  disableOnHoverColor,
+  ...props
+}) => {
   const [onHover, setHover] = useState(false)
 
-  const buttonColor = useMemo(() => !disableOnHoverColor && onHover ? `#a200aa` : undefined,
-  [disableOnHoverColor, onHover])
+  const buttonColor = useMemo(
+    () => (!disableOnHoverColor && onHover ? `#a200aa` : undefined),
+    [disableOnHoverColor, onHover],
+  )
 
-  const handleClickInternally = useCallback((e: MouseEvent<HTMLElement>) => {
-    if (!onClickCallback) return
-    onClickCallback(e)
-  }, [onClickCallback])
+  const handleClickInternally = useCallback(
+    (e: MouseEvent<HTMLElement>) => {
+      if (!onClickCallback) return
+      onClickCallback(e)
+    },
+    [onClickCallback],
+  )
 
   return (
     <Tooltip

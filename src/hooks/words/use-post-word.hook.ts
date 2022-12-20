@@ -20,6 +20,7 @@ export const usePostWord = (): UsePostWord => {
   const [isWritingMode, setWritingMode] = useState(false)
   const [wordIds, setWordIds] = useRecoilState(wordIdsState)
 
+  // TODO: These callbacks are required to be refactored as the other hooks. Looks a bit old and not studied enough
   const setWord = useRecoilCallback(
     ({ set }) =>
       async (wordData: WordData) => {
@@ -49,7 +50,7 @@ export const usePostWord = (): UsePostWord => {
 
     setUserInput(``)
     setWritingMode(false)
-  }, [userInput, setWord, setWordIds])
+  }, [wordIds, userInput, setWord, setWordIds])
 
   return [
     userInput,

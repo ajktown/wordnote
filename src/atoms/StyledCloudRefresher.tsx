@@ -1,7 +1,7 @@
 import { FC, useEffect, useCallback, useState, useMemo } from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
-import WarningIcon from '@mui/icons-material/Warning';
-import CloudDoneIcon from '@mui/icons-material/CloudDone';
+import WarningIcon from '@mui/icons-material/Warning'
+import CloudDoneIcon from '@mui/icons-material/CloudDone'
 import { runAfterHandler } from '@/handlers/run-after.handler'
 import StyledIconButtonAtom from './StyledIconButton'
 import RefreshIcon from '@mui/icons-material/Refresh'
@@ -19,10 +19,14 @@ interface Props {
   runOnClickCallbackOnce?: boolean // Default: false
 }
 const StyledCloudRefresher: FC<Props> = ({
-  onClickCallback, runOnClickCallbackOnce
+  onClickCallback,
+  runOnClickCallbackOnce,
 }) => {
   const [loading, setLoading] = useState<LoadingStatus>(LoadingStatus.Idle)
-  const showingTimeSecs = useMemo(() => loading === LoadingStatus.Failed ? 5 : 2, [loading])
+  const showingTimeSecs = useMemo(
+    () => (loading === LoadingStatus.Failed ? 5 : 2),
+    [loading],
+  )
 
   const internalHandleClick = useCallback(async () => {
     setLoading(LoadingStatus.Loading)
@@ -42,15 +46,19 @@ const StyledCloudRefresher: FC<Props> = ({
   }, [internalHandleClick, runOnClickCallbackOnce])
 
   switch (loading) {
-    case LoadingStatus.Idle: return (
-      <StyledIconButtonAtom
-        onClickCallback={internalHandleClick}
-        jsxElementButton={<RefreshIcon />}
-      />
-    )
-    case LoadingStatus.Loading: return <CircularProgress />
-    case LoadingStatus.Success: return <CloudDoneIcon />
-    default: return <WarningIcon /> // when failed
+    case LoadingStatus.Idle:
+      return (
+        <StyledIconButtonAtom
+          onClickCallback={internalHandleClick}
+          jsxElementButton={<RefreshIcon />}
+        />
+      )
+    case LoadingStatus.Loading:
+      return <CircularProgress />
+    case LoadingStatus.Success:
+      return <CloudDoneIcon />
+    default:
+      return <WarningIcon /> // when failed
   }
 }
 
