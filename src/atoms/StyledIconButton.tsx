@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import { GlobalMuiPlacement } from '../global.interface'
 
-const DEFAULT_SIZE = `small`
+const PRIVATE_FINAL_DEFAULT_SIZE = `small`
 
 interface Props {
   onClickCallback?: (e?: MouseEvent<HTMLElement>) => any
@@ -45,7 +45,7 @@ const StyledIconButtonAtom: FC<Props> = ({
     >
       <span>
         <IconButton
-          size={props.size || DEFAULT_SIZE}
+          size={props.size || PRIVATE_FINAL_DEFAULT_SIZE}
           aria-label="close"
           onClick={handleClickInternally}
           disabled={props.isDisabled}

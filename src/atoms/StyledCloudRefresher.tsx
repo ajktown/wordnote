@@ -5,6 +5,7 @@ import CloudDoneIcon from '@mui/icons-material/CloudDone'
 import { runAfterHandler } from '@/handlers/run-after.handler'
 import StyledIconButtonAtom from './StyledIconButton'
 import RefreshIcon from '@mui/icons-material/Refresh'
+import { Fade } from '@mui/material'
 
 enum LoadingStatus {
   Idle = 0,
@@ -13,7 +14,12 @@ enum LoadingStatus {
   Failed = -1,
 }
 
+const PRIVATE_FINAL_ICON_SIZE = `small`
+
 // TODO: This does not yet have the cool design. So I need to create one!
+// TODO: I have improved a bit, but it could be a cooler with taking the exact same space for all rendering!
+// TODO: Gotta write this clean... too.
+// TODO: Make this prolly business component..? (not sure yet)
 interface Props {
   onClickCallback: () => any
   runOnClickCallbackOnce?: boolean // Default: false
@@ -32,11 +38,11 @@ const StyledCloudRefresher: FC<Props> = ({
     setLoading(LoadingStatus.Loading)
     try {
       await onClickCallback()
-      setLoading(LoadingStatus.Success)
+      runAfterHandler(() => setLoading(LoadingStatus.Success), showingTimeSecs)
     } catch {
       setLoading(LoadingStatus.Failed)
     } finally {
-      runAfterHandler(() => setLoading(LoadingStatus.Idle), showingTimeSecs)
+      runAfterHandler(() => setLoading(LoadingStatus.Idle), showingTimeSecs + 2)
     }
   }, [showingTimeSecs, onClickCallback])
 
@@ -50,16 +56,32 @@ const StyledCloudRefresher: FC<Props> = ({
       return (
         <StyledIconButtonAtom
           onClickCallback={internalHandleClick}
-          jsxElementButton={<RefreshIcon />}
+          jsxElementButton={<RefreshIcon fontSize={PRIVATE_FINAL_ICON_SIZE} />}
+          size={PRIVATE_FINAL_ICON_SIZE}
         />
       )
     case LoadingStatus.Loading:
-      return <CircularProgress />
+      return <StyledCloudRefresherLoading />
     case LoadingStatus.Success:
-      return <CloudDoneIcon />
+      return <StyledCloudRefresherSuccess />
     default:
-      return <WarningIcon /> // when failed
+      return <WarningIcon fontSize={PRIVATE_FINAL_ICON_SIZE} /> // when failed
   }
+}
+
+const StyledCloudRefresherLoading: FC = () => {
+  return <CircularProgress size={20} />
+}
+
+const StyledCloudRefresherSuccess: FC = () => {
+  return (
+    <Fade in appear>
+      <CloudDoneIcon
+        style={{ animation: `1s fadeIn` }}
+        fontSize={PRIVATE_FINAL_ICON_SIZE}
+      />
+    </Fade>
+  )
 }
 
 export default StyledCloudRefresher
