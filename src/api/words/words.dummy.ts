@@ -24,9 +24,9 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element2,
     isFavorite: false,
-    term: `top`,
+    term: `insinuated`,
     pronunciation: ``,
-    definition: `(can be also) favorite`,
-    example: `Select your top colors, and we will send the samples!`,
+    definition: `(자기에게 유리한 일을 하기 위해 환심·존경 등을) 사다`,
+    example: `I never thought it insinuated date rape.`,
   },
 ]
