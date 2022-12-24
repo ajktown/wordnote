@@ -14,8 +14,8 @@ const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
   const handleDeleteWordCache = useDeleteWordCache()
   const resetSelectedWordIdForDialog = useResetRecoilState(selectedWordIdForDialogState)
 
-  // TODO: This should use a hook!!
-  const onClickUndoDeleteWord = async () => {
+  // TODO: This should use a a separate hook in a different file!
+  const onClickUndoDeleteWord = useCallback(async () => {
     try {
       const rePostingWord: WordData = Object.assign({}, word, {
         isDeleted: false,
@@ -23,7 +23,7 @@ const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
       await postWordApi(rePostingWord)
       setWord(rePostingWord)
     } catch {}
-  }
+  }, [word, setWord])
 
   const handleDeleteWordCacheCallback = useCallback(() => {
     handleDeleteWordCache(wordId)
@@ -34,9 +34,7 @@ const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
     <Fragment>
       <StyledTextButtonAtom
         title={`Undo`}
-        handleClick={
-          () => onClickUndoDeleteWord() /** TODO: Should use callback */
-        }
+        handleClick={onClickUndoDeleteWord}
       />
       <StyledTextButtonAtom
         title={`Hide`}
