@@ -10,13 +10,13 @@ interface Props {
 }
 const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
-  const putWord = usePutWord()
+  const putWord = usePutWord(wordId)
 
   const handleClickFavoriteIcon = useCallback(async () => {
     if (word === null) return
 
-    await putWord(wordId, { isFavorite: !word.isFavorite })
-  }, [wordId, word, putWord])
+    await putWord({ isFavorite: !word.isFavorite })
+  }, [word, putWord])
 
   if (word === null) return null
 

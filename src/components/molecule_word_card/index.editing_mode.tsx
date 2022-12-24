@@ -20,7 +20,7 @@ interface Props {
 }
 
 const WordCardEditingMode: FC<Props> = ({ word }) => {
-  const putWord = usePutWord()
+  const putWord = usePutWord(word.id)
 
   const [term, setTerm] = useState(word.term)
 
@@ -37,7 +37,7 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
           {term !== word.term && (
             <StyledIconButtonAtom
               jsxElementButton={<CheckIcon />}
-              onClickCallback={() => putWord(word.id, { term })}
+              onClickCallback={() => putWord({ term })}
             />
           )}
           {term !== word.term && (

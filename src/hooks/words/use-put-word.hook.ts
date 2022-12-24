@@ -5,11 +5,10 @@ import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
 type UsePutWord = (
-  wordId: string,
   modified: WordDataModifiable,
 ) => Promise<void> // handleModifyWord
 
-export const usePutWord = (): UsePutWord => {
+export const usePutWord = (wordId: string): UsePutWord => {
   const setWord = useRecoilCallback(
     ({ snapshot, set }) =>
       async (wordId: string, modified: WordDataModifiable) => {
@@ -25,11 +24,11 @@ export const usePutWord = (): UsePutWord => {
   )
 
   const handleModifyWord = useCallback(
-    async (wordId: string, modified: WordDataModifiable) => {
+    async (modified: WordDataModifiable) => {
       await putWordByIdApi(wordId, modified)
       setWord(wordId, modified)
     },
-    [setWord],
+    [wordId, setWord],
   )
 
   return handleModifyWord
