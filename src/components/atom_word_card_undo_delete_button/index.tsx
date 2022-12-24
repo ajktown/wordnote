@@ -1,29 +1,21 @@
-import { postWordApi } from '@/api/words/post-word.api'
-import { WordData } from '@/api/words/words.interface'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useDeleteWordCache } from '@/hooks/words/use-delete-word-cache.hook'
-import { selectedWordIdForDialogState, wordsFamily } from '@/recoil/words.state'
+import { usePostWordFromUndo } from '@/hooks/words/use-post-word-from-undo.hook'
+import { selectedWordIdForDialogState } from '@/recoil/words.state'
 import { FC, Fragment, useCallback } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import { useResetRecoilState } from 'recoil'
 
 interface Props {
   wordId: string
 }
 const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
-  const [word, setWord] = useRecoilState(wordsFamily(wordId))
   const handleDeleteWordCache = useDeleteWordCache()
   const resetSelectedWordIdForDialog = useResetRecoilState(selectedWordIdForDialogState)
+  const handlePostWordFromUndo = usePostWordFromUndo()
 
-  // TODO: This should use a a separate hook in a different file!
   const onClickUndoDeleteWord = useCallback(async () => {
-    try {
-      const rePostingWord: WordData = Object.assign({}, word, {
-        isDeleted: false,
-      })
-      await postWordApi(rePostingWord)
-      setWord(rePostingWord)
-    } catch {}
-  }, [word, setWord])
+    handlePostWordFromUndo(wordId)
+  }, [wordId, handlePostWordFromUndo])
 
   const handleDeleteWordCacheCallback = useCallback(() => {
     handleDeleteWordCache(wordId)
