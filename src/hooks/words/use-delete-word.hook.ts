@@ -20,15 +20,12 @@ export const useDeleteWord = (deletingWordId: string): UseDeleteWord => {
     [],
   )
 
-  const handleDeleteWord = useCallback(
-    async () => {
-      try {
-        await deleteWordByIdApi(deletingWordId)
-        setWord(deletingWordId)
-      } catch {}
-    },
-    [deletingWordId, setWord],
-  )
+  const handleDeleteWord = useCallback(async () => {
+    try {
+      await deleteWordByIdApi(deletingWordId)
+      setWord(deletingWordId)
+    } catch {}
+  }, [deletingWordId, setWord])
 
   return handleDeleteWord
 }

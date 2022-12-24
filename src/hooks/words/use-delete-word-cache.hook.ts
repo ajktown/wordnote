@@ -1,19 +1,29 @@
-import { wordIdsState } from '@/recoil/words.state'
-import { useRecoilCallback } from 'recoil'
+import {
+  selectedWordIdForDialogState,
+  wordIdsState,
+} from '@/recoil/words.state'
+import { useRecoilCallback, useResetRecoilState } from 'recoil'
 
-type UseDeleteWordCache = (wordId: string) => Promise<void> // handleDeleteWordCache
+type UseDeleteWordCache = () => Promise<void> // handleDeleteWordCache
 
-export const useDeleteWordCache = (): UseDeleteWordCache => {
+export const useDeleteWordCache = (
+  deletingWordId: string,
+): UseDeleteWordCache => {
+  const resetSelectedWordIdForDialog = useResetRecoilState(
+    selectedWordIdForDialogState,
+  )
+
   const handleDeleteWordCache = useRecoilCallback(
     ({ snapshot, set }) =>
-      async (givenWordId: string) => {
+      async () => {
         const wordIds = (await snapshot.getPromise(wordIdsState)).filter(
-          (wordId) => wordId !== givenWordId,
+          (wordId) => wordId !== deletingWordId,
         )
 
         set(wordIdsState, wordIds)
+        resetSelectedWordIdForDialog()
       },
-    [],
+    [deletingWordId, resetSelectedWordIdForDialog],
   )
 
   return handleDeleteWordCache
