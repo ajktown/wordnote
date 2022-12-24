@@ -1,7 +1,6 @@
 // TODO: This will be refactored as it goes.
 export enum RecoilKey {
   SearchInput = `SearchInput`,
-  Dialog = `Dialog`,
   Words = `Words`,
   WordIds = `WordIds`,
   FilteredWordIds = `FilteredWordIds`,
