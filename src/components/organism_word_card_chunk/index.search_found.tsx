@@ -13,8 +13,14 @@ const WordCardChunkSearchFound: FC = () => {
   const filteredWordIds = useRecoilValue(filteredWordIdsState)
 
   // TODO: Lol. troll code.
-  const filteredWordIdLength = useMemo(() => filteredWordIds.length, [filteredWordIds])
-  const resultsPluralFrom = useMemo(() => filteredWordIdLength === 1 ? "result" : "results", [filteredWordIdLength])
+  const filteredWordIdLength = useMemo(
+    () => filteredWordIds.length,
+    [filteredWordIds],
+  )
+  const resultsPluralFrom = useMemo(
+    () => (filteredWordIdLength === 1 ? `result` : `results`),
+    [filteredWordIdLength],
+  )
 
   if (!searchInput) return null
 

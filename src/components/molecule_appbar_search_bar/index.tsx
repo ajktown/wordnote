@@ -48,9 +48,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
 
-  const handleChangeInput = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setSearchInput(e.target.value)
-  }, [setSearchInput])
+  const handleChangeInput = useCallback(
+    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setSearchInput(e.target.value)
+    },
+    [setSearchInput],
+  )
 
   return (
     <Search>
