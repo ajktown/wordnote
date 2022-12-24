@@ -4,7 +4,7 @@ import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { searchInputState } from '@/recoil/searchInput.state'
 import { filteredWordIdsState } from '@/recoil/words.state'
 import { Typography, Stack } from '@mui/material'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 const WordCardChunkSearchFound: FC = () => {
@@ -12,12 +12,16 @@ const WordCardChunkSearchFound: FC = () => {
   const resetSearchInput = useResetRecoilState(searchInputState)
   const filteredWordIds = useRecoilValue(filteredWordIdsState)
 
+  // TODO: Lol. troll code.
+  const filteredWordIdLength = useMemo(() => filteredWordIds.length, [filteredWordIds])
+  const resultsPluralFrom = useMemo(() => filteredWordIdLength === 1 ? "result" : "results", [filteredWordIdLength])
+
   if (!searchInput) return null
 
   return (
     <Stack>
       <Typography>
-        {`Your search matched "${filteredWordIds.length}" result(s)`}
+        {`Your search matched "${filteredWordIdLength}" ${resultsPluralFrom}`}
       </Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
