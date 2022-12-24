@@ -9,7 +9,7 @@ import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 const WordCardChunkSearchFound: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
-  const setSearchInput = useResetRecoilState(searchInputState)
+  const resetSearchInput = useResetRecoilState(searchInputState)
   const filteredWordIds = useRecoilValue(filteredWordIdsState)
 
   if (!searchInput) return null
@@ -21,7 +21,7 @@ const WordCardChunkSearchFound: FC = () => {
       </Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
-        handleClick={setSearchInput}
+        handleClick={resetSearchInput}
       />
     </Stack>
   )
