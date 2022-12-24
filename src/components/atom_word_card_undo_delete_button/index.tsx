@@ -2,9 +2,9 @@ import { postWordApi } from '@/api/words/post-word.api'
 import { WordData } from '@/api/words/words.interface'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useDeleteWordCache } from '@/hooks/words/use-delete-word-cache.hook'
-import { wordsFamily } from '@/recoil/words.state'
+import { selectedWordIdForDialogState, wordsFamily } from '@/recoil/words.state'
 import { FC, Fragment, useCallback } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 
 interface Props {
   wordId: string
@@ -12,6 +12,7 @@ interface Props {
 const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
   const [word, setWord] = useRecoilState(wordsFamily(wordId))
   const handleDeleteWordCache = useDeleteWordCache()
+  const resetSelectedWordIdForDialog = useResetRecoilState(selectedWordIdForDialogState)
 
   // TODO: This should use a hook!!
   const onClickUndoDeleteWord = async () => {
@@ -26,7 +27,8 @@ const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
 
   const handleDeleteWordCacheCallback = useCallback(() => {
     handleDeleteWordCache(wordId)
-  }, [wordId, handleDeleteWordCache])
+    resetSelectedWordIdForDialog()
+  }, [wordId, handleDeleteWordCache, resetSelectedWordIdForDialog])
 
   return (
     <Fragment>
