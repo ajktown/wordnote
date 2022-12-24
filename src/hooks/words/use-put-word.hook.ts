@@ -4,9 +4,7 @@ import { wordsFamily } from '@/recoil/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
-type UsePutWord = (
-  modified: WordDataModifiable,
-) => Promise<void> // handleModifyWord
+type UsePutWord = (modified: WordDataModifiable) => Promise<void> // handleModifyWord
 
 export const usePutWord = (wordId: string): UsePutWord => {
   const setWord = useRecoilCallback(
