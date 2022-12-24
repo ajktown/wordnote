@@ -20,6 +20,22 @@ const PRIVATE_FINAL_ICON_SIZE = `small`
 // TODO: I have improved a bit, but it could be a cooler with taking the exact same space for all rendering!
 // TODO: Gotta write this clean... too.
 // TODO: Make this prolly business component..? (not sure yet)
+
+const StyledCloudRefresherLoading: FC = () => {
+  return <CircularProgress size={20} />
+}
+
+const StyledCloudRefresherSuccess: FC = () => {
+  return (
+    <Fade in appear>
+      <CloudDoneIcon
+        style={{ animation: `1s fadeIn` }}
+        fontSize={PRIVATE_FINAL_ICON_SIZE}
+      />
+    </Fade>
+  )
+}
+
 interface Props {
   onClickCallback: () => any
   runOnClickCallbackOnce?: boolean // Default: false
@@ -67,21 +83,6 @@ const StyledCloudRefresher: FC<Props> = ({
     default:
       return <WarningIcon fontSize={PRIVATE_FINAL_ICON_SIZE} /> // when failed
   }
-}
-
-const StyledCloudRefresherLoading: FC = () => {
-  return <CircularProgress size={20} />
-}
-
-const StyledCloudRefresherSuccess: FC = () => {
-  return (
-    <Fade in appear>
-      <CloudDoneIcon
-        style={{ animation: `1s fadeIn` }}
-        fontSize={PRIVATE_FINAL_ICON_SIZE}
-      />
-    </Fade>
-  )
 }
 
 export default StyledCloudRefresher

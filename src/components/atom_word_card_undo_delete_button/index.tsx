@@ -10,7 +10,9 @@ interface Props {
 }
 const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
   const handleDeleteWordCache = useDeleteWordCache()
-  const resetSelectedWordIdForDialog = useResetRecoilState(selectedWordIdForDialogState)
+  const resetSelectedWordIdForDialog = useResetRecoilState(
+    selectedWordIdForDialogState,
+  )
   const handlePostWordFromUndo = usePostWordFromUndo()
 
   const onClickUndoDeleteWord = useCallback(async () => {

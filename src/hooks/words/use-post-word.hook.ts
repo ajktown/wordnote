@@ -17,12 +17,15 @@ export const usePostWord = (): UsePostWord => {
     [],
   )
 
-  const handlePostWord = useCallback(async (newWord: WordData) => {
-    try {
-      const postedWord = await postWordApi(newWord)
-      setWord(postedWord)
-    } catch {}
-  }, [setWord])
+  const handlePostWord = useCallback(
+    async (newWord: WordData) => {
+      try {
+        const postedWord = await postWordApi(newWord)
+        setWord(postedWord)
+      } catch {}
+    },
+    [setWord],
+  )
 
   return handlePostWord
 }
