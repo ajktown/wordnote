@@ -19,9 +19,8 @@ const StyledTextField: FC<CustomizedTextFieldProps> = ({
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const text = e.target.value
       if (!onChange) return
-      onChange(text.slice(0, maxChars))
+      onChange(e.target.value.slice(0, maxChars))
     },
     [onChange, maxChars],
   )
