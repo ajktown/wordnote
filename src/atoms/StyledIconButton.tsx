@@ -27,6 +27,9 @@ const StyledIconButtonAtom: FC<Props> = ({
     () => (!disableOnHoverColor && onHover ? `#a200aa` : undefined),
     [disableOnHoverColor, onHover],
   )
+  
+  const handleMouseEnter = useCallback(() => setHover(true), [])
+  const handleMouseLeave = useCallback(() => setHover(false), [])
 
   const handleClickInternally = useCallback(
     (e: MouseEvent<HTMLElement>) => {
@@ -40,8 +43,8 @@ const StyledIconButtonAtom: FC<Props> = ({
     <Tooltip
       title={props.hoverMessage?.title || ``}
       placement={props.hoverMessage?.placement || `bottom`}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <span>
         <IconButton
