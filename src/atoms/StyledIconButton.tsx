@@ -1,10 +1,10 @@
 import { FC, MouseEvent, useCallback, useMemo } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
-import { GlobalMuiPlacement } from '../global.interface'
+import { GlobalMuiPlacement, GlobalMuiSize } from '../global.interface'
 import { useOnHover } from '@/hooks/use-on-hover.hook'
 
-const PRIVATE_FINAL_DEFAULT_SIZE = `small`
+const PRIVATE_FINAL_DEFAULT_SIZE: GlobalMuiSize = `small`
 
 interface Props {
   onClickCallback?: (e?: MouseEvent<HTMLElement>) => any
@@ -14,7 +14,7 @@ interface Props {
     title: string
     placement?: GlobalMuiPlacement
   }
-  size?: 'small' | 'medium' | 'large'
+  size?: GlobalMuiSize
   disableOnHoverColor?: boolean
 }
 const StyledIconButtonAtom: FC<Props> = ({
