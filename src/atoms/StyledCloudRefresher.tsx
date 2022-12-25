@@ -37,12 +37,12 @@ const StyledCloudRefresherSuccess: FC = () => {
 }
 
 interface Props {
-  onClickCallback: () => any
-  runOnClickCallbackOnce?: boolean // Default: false
+  onClick: () => any
+  runOnClickOnce?: boolean // Default: false
 }
 const StyledCloudRefresher: FC<Props> = ({
-  onClickCallback,
-  runOnClickCallbackOnce,
+  onClick,
+  runOnClickOnce,
 }) => {
   const [loading, setLoading] = useState<LoadingStatus>(LoadingStatus.Idle)
   const showingTimeSecs = useMemo(
@@ -50,28 +50,28 @@ const StyledCloudRefresher: FC<Props> = ({
     [loading],
   )
 
-  const internalHandleClick = useCallback(async () => {
+  const handleClick = useCallback(async () => {
     setLoading(LoadingStatus.Loading)
     try {
-      await onClickCallback()
+      await onClick()
       runAfterHandler(() => setLoading(LoadingStatus.Success), showingTimeSecs)
     } catch {
       setLoading(LoadingStatus.Failed)
     } finally {
       runAfterHandler(() => setLoading(LoadingStatus.Idle), showingTimeSecs + 2)
     }
-  }, [showingTimeSecs, onClickCallback])
+  }, [showingTimeSecs, onClick])
 
   useEffect(() => {
-    if (!runOnClickCallbackOnce) return
-    internalHandleClick()
-  }, [internalHandleClick, runOnClickCallbackOnce])
+    if (!runOnClickOnce) return
+    handleClick()
+  }, [handleClick, runOnClickOnce])
 
   switch (loading) {
     case LoadingStatus.Idle:
       return (
         <StyledIconButtonAtom
-          onClickCallback={internalHandleClick}
+          onClick={handleClick}
           jsxElementButton={<RefreshIcon fontSize={PRIVATE_FINAL_ICON_SIZE} />}
           size={PRIVATE_FINAL_ICON_SIZE}
         />

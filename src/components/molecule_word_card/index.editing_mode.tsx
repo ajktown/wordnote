@@ -37,13 +37,13 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
           {term !== word.term && (
             <StyledIconButtonAtom
               jsxElementButton={<CheckIcon />}
-              onClickCallback={() => putWord({ term })}
+              onClick={() => putWord({ term })}
             />
           )}
           {term !== word.term && (
             <StyledIconButtonAtom
               jsxElementButton={<ClearIcon />}
-              onClickCallback={() => setTerm(word.term)}
+              onClick={() => setTerm(word.term)}
             />
           )}
           <Typography sx={{ mb: 1.5 }} color="text.secondary">

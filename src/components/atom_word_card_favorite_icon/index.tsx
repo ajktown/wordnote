@@ -22,7 +22,7 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
 
   return (
     <StyledIconButtonAtom
-      onClickCallback={handleClickFavoriteIcon}
+      onClick={handleClickFavoriteIcon}
       jsxElementButton={
         <FavoriteWordIcon
           style={{ color: word.isFavorite ? `FF0000` /* Red */ : undefined }}

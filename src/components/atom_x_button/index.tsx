@@ -18,7 +18,7 @@ const XButton: FC<Props> = ({ onClickCallback, ...props }) => {
   return (
     <StyledIconButtonAtom
       size={props.size}
-      onClickCallback={handleClickCallback}
+      onClick={handleClickCallback}
       jsxElementButton={<CloseIcon fontSize={props.size} />}
     />
   )
