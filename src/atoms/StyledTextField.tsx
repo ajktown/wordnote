@@ -16,7 +16,6 @@ const StyledTextField: FC<CustomizedTextFieldProps> = ({
   maxChars,
   ...props
 }) => {
-
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       if (!onChange) return

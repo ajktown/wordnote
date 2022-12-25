@@ -4,7 +4,7 @@ import { WordDataModifiable } from './words.interface'
 
 export const putWordByIdApi = async (
   wordId: string,
-  modifying: WordDataModifiable,
+  modifying: Partial<WordDataModifiable>,
 ): Promise<void> => {
   console.log(
     `Putting the word: ` + wordId + ` with: ${JSON.stringify(modifying)}`,

@@ -38,10 +38,7 @@ const NewWordBox: FC = () => {
         </CardContent>
         <CardActions>
           <Box flexGrow={1} />
-          <StyledTextButtonAtom
-            onClick={handleClickAddWord}
-            title={`Close`}
-          />
+          <StyledTextButtonAtom onClick={handleClickAddWord} title={`Close`} />
         </CardActions>
       </Card>
     )

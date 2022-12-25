@@ -4,12 +4,12 @@ import { wordsFamily } from '@/recoil/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
-type UsePutWord = (modified: WordDataModifiable) => Promise<void> // handleModifyWord
+type UsePutWord = (modified: Partial<WordDataModifiable>) => Promise<void> // handlePutWord
 
 export const usePutWord = (wordId: string): UsePutWord => {
   const setWord = useRecoilCallback(
     ({ snapshot, set }) =>
-      async (wordId: string, modified: WordDataModifiable) => {
+      async (wordId: string, modified: Partial<WordDataModifiable>) => {
         const wordData = await snapshot.getPromise(wordsFamily(wordId))
         if (wordData === null) return
 
@@ -21,13 +21,13 @@ export const usePutWord = (wordId: string): UsePutWord => {
     [],
   )
 
-  const handleModifyWord = useCallback(
-    async (modified: WordDataModifiable) => {
+  const handlePutWord: UsePutWord = useCallback(
+    async (modified: Partial<WordDataModifiable>) => {
       await putWordByIdApi(wordId, modified)
       setWord(wordId, modified)
     },
     [wordId, setWord],
   )
 
-  return handleModifyWord
+  return handlePutWord
 }

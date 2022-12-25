@@ -21,7 +21,10 @@ export interface StyledTextButtonProps {
   IconRight?: JSX.Element // Try to give a space within the jsx element for better usage
 }
 
-const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({onClick, ...props}) => {
+const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
+  onClick,
+  ...props
+}) => {
   return (
     <Box>
       <Tooltip

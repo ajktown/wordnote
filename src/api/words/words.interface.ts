@@ -9,4 +9,4 @@ export interface WordData extends DataStatus {
   example: string
 }
 
-export type WordDataModifiable = Partial<Omit<WordData, 'id'>>
+export type WordDataModifiable = Omit<WordData, 'id'>
