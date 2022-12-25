@@ -14,11 +14,11 @@ const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
     <Fragment>
       <StyledTextButtonAtom
         title={`Undo`}
-        handleClick={handlePostWordFromUndo}
+        onClick={handlePostWordFromUndo}
       />
       <StyledTextButtonAtom
         title={`Hide`}
-        handleClick={handleDeleteWordCache}
+        onClick={handleDeleteWordCache}
       />
     </Fragment>
   )

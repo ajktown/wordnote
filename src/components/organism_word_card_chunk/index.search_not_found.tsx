@@ -17,7 +17,7 @@ const WordCardChunkSearchNotFound: FC = () => {
       </Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
-        handleClick={resetSearchInput}
+        onClick={resetSearchInput}
       />
     </Stack>
   )

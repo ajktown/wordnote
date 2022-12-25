@@ -31,7 +31,7 @@ const NewWordBox: FC = () => {
         <CardContent>
           <StyledTextField
             value={userInput}
-            onChangeCallback={setUserInput}
+            onChange={setUserInput}
             placeholder={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
             isAutoFocused
           />
@@ -39,7 +39,7 @@ const NewWordBox: FC = () => {
         <CardActions>
           <Box flexGrow={1} />
           <StyledTextButtonAtom
-            handleClick={() => handleClickAddWord()}
+            onClick={handleClickAddWord}
             title={`Close`}
           />
         </CardActions>
