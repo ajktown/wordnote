@@ -7,7 +7,7 @@ const PRIVATE_DEFAULT_BLUR_OUT_PIXELS = 18 // higher, the blurrier it gets
 
 export interface StyledDialogProps {
   children: ReactNode
-  handleCloseCallback?: any // If given, it will allow you to close outside.
+  onClose?: any // If given, it will allow you to close outside.
   visuals?: {
     maxWidth?: Breakpoint // Default: PRIVATE_DEFAULT_FINAL_MAX_WIDTH
     fullScreen?: boolean // Default: false
@@ -16,18 +16,15 @@ export interface StyledDialogProps {
 }
 
 const StyledDialog: FC<StyledDialogProps> = ({
-  handleCloseCallback,
+  onClose,
   ...props
 }) => {
-  const handleCloseInternally = useCallback(() => {
-    if (!handleCloseCallback) return
-    handleCloseCallback()
-  }, [handleCloseCallback])
+  const handleCloseInternally = useCallback(() => onClose && onClose(), [onClose])
 
   return (
     <Dialog
       open
-      onClose={() => handleCloseInternally()}
+      onClose={handleCloseInternally}
       maxWidth={props.visuals?.maxWidth || PRIVATE_DEFAULT_FINAL_MAX_WIDTH}
       fullWidth
       style={{

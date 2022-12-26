@@ -6,12 +6,12 @@ import { selectedWordIdForDialogState } from '@/recoil/words.state'
 
 const WordCardDialog: FC = () => {
   const selectedWordId = useRecoilValue(selectedWordIdForDialogState)
-  const closeDialog = useResetRecoilState(selectedWordIdForDialogState)
+  const handleCloseDialog = useResetRecoilState(selectedWordIdForDialogState)
 
   if (!selectedWordId) return null
 
   return (
-    <StyledDialog handleCloseCallback={closeDialog}>
+    <StyledDialog onClose={handleCloseDialog}>
       <WordCard wordId={selectedWordId} editingMode />
     </StyledDialog>
   )
