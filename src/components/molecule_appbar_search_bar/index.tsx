@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useCallback, ChangeEvent } from 'react'
 import { styled, alpha } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
@@ -48,6 +48,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
 
+  const handleChangeInput = useCallback(
+    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setSearchInput(e.target.value)
+    },
+    [setSearchInput],
+  )
+
   return (
     <Search>
       <SearchIconWrapper>
@@ -57,7 +64,7 @@ const AppbarSearchBar: FC = () => {
         placeholder="Search…"
         inputProps={{ 'aria-label': `search` }}
         value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
+        onChange={handleChangeInput}
       />
     </Search>
   )

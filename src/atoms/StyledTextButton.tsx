@@ -10,7 +10,7 @@ import { LoadingButton } from '@mui/lab'
 export interface StyledTextButtonProps {
   title: string
   isLoading?: boolean
-  handleClick?: any
+  onClick?: any
   isDisabled?: boolean
   color?: GlobalMuiColor
   variant?: GlobalMuiVariant
@@ -21,12 +21,10 @@ export interface StyledTextButtonProps {
   IconRight?: JSX.Element // Try to give a space within the jsx element for better usage
 }
 
-const StyledTextButtonAtom: FC<StyledTextButtonProps> = (props) => {
-  const handleClickButton = () => {
-    if (!props.handleClick) return
-    props.handleClick()
-  }
-
+const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
+  onClick,
+  ...props
+}) => {
   return (
     <Box>
       <Tooltip
@@ -41,7 +39,7 @@ const StyledTextButtonAtom: FC<StyledTextButtonProps> = (props) => {
             disabled={props.isDisabled}
             loading={props.isLoading}
             color={props.color || `inherit`}
-            onClick={handleClickButton}
+            onClick={onClick}
             sx={{ textTransform: `none` }}
           >
             {props.title}

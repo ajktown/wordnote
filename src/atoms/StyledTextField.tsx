@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { FC, useCallback, ChangeEvent } from 'react'
 import { TextField } from '@mui/material'
 
 interface CustomizedTextFieldProps {
   value: string
-  handleChange?: (changedText: string) => any
+  onChange?: (changedText: string) => any
   isAutoFocused?: boolean // Default: false;
   rows?: number // Default: 1;
   maxChars?: number // Default: Unlimited, unless specified;
@@ -11,14 +11,18 @@ interface CustomizedTextFieldProps {
   disabled?: boolean // Default: false; Disable text field.
 }
 
-const StyledTextField: FC<CustomizedTextFieldProps> = (props) => {
-  const handleChange = (changedText: string) => {
-    if (!props.handleChange) return
-    if (props.maxChars) {
-      return props.handleChange(changedText.slice(0, props.maxChars))
-    }
-    props.handleChange(changedText)
-  }
+const StyledTextField: FC<CustomizedTextFieldProps> = ({
+  onChange,
+  maxChars,
+  ...props
+}) => {
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (!onChange) return
+      onChange(e.target.value.slice(0, maxChars))
+    },
+    [onChange, maxChars],
+  )
 
   return (
     <TextField
@@ -27,7 +31,7 @@ const StyledTextField: FC<CustomizedTextFieldProps> = (props) => {
       multiline={props.rows ? props.rows > 1 : undefined}
       rows={props.rows || 1}
       value={props.value}
-      onChange={(e) => handleChange(e.target.value)}
+      onChange={handleChange}
       placeholder={props.placeholder}
       size="small"
       disabled={props.disabled}

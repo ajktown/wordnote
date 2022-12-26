@@ -4,7 +4,7 @@ import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hooks/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useKeyPress } from '@/hooks/use-key-press.hook'
-import { usePostWord } from '@/hooks/words/use-post-word.hook'
+import { usePostWordWithStringHook } from '@/hooks/words/use-post-word-with-string.hook'
 
 const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new words...`
 
@@ -17,7 +17,7 @@ const NewWordBox: FC = () => {
     isWritingMode,
     setWritingMode,
     handleClickAddWord,
-  ] = usePostWord()
+  ] = usePostWordWithStringHook()
 
   useKeyPress(`Escape`, handleClickAddWord)
   const ref = useOutsideClicked(handleClickAddWord)
@@ -31,17 +31,14 @@ const NewWordBox: FC = () => {
         <CardContent>
           <StyledTextField
             value={userInput}
-            handleChange={setUserInput}
+            onChange={setUserInput}
             placeholder={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
             isAutoFocused
           />
         </CardContent>
         <CardActions>
           <Box flexGrow={1} />
-          <StyledTextButtonAtom
-            handleClick={() => handleClickAddWord()}
-            title={`Close`}
-          />
+          <StyledTextButtonAtom onClick={handleClickAddWord} title={`Close`} />
         </CardActions>
       </Card>
     )

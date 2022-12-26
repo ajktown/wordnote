@@ -1,59 +1,31 @@
 import { postWordApi } from '@/api/words/post-word.api'
 import { WordData } from '@/api/words/words.interface'
-import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
 import { wordIdsState, wordsFamily } from '@/recoil/words.state'
-import { useCallback, useState, Dispatch, SetStateAction } from 'react'
-import { useRecoilCallback, useRecoilState } from 'recoil'
+import { useCallback } from 'react'
+import { useRecoilCallback } from 'recoil'
 
-type UsePostWord = [
-  string, // userInput
-  Dispatch<SetStateAction<string>>, // setUserInput
-  boolean, // isWritingMode
-  Dispatch<SetStateAction<boolean>>, // setWritingMode
-  () => Promise<void>, // handleClickAddWord
-]
+type UsePostWord = (newWord: WordData) => Promise<void> // handlePostWord
 
 export const usePostWord = (): UsePostWord => {
-  const [userInput, setUserInput] = useState(``)
-  const [isWritingMode, setWritingMode] = useState(false)
-  const [wordIds, setWordIds] = useRecoilState(wordIdsState)
-
   const setWord = useRecoilCallback(
-    ({ set }) =>
+    ({ set, snapshot }) =>
       async (wordData: WordData) => {
+        const wordIds = await snapshot.getPromise(wordIdsState)
+        set(wordIdsState, [wordData.id, ...wordIds])
         set(wordsFamily(wordData.id), wordData)
       },
     [],
   )
 
-  const handleClickAddWord = useCallback(async () => {
-    if (!userInput) return setWritingMode(false)
+  const handlePostWord = useCallback(
+    async (newWord: WordData) => {
+      try {
+        const postedWord = await postWordApi(newWord)
+        setWord(postedWord)
+      } catch {}
+    },
+    [setWord],
+  )
 
-    try {
-      const newWord: WordData = {
-        id: userInput + getRandomHexHandler(),
-        term: userInput,
-        pronunciation: ``,
-        definition: ``,
-        example: ``,
-        isFavorite: false,
-      }
-      const postedWord = await postWordApi(newWord)
-
-      // Applying on the view side
-      setWord(postedWord)
-      setWordIds([postedWord.id, ...wordIds])
-    } catch {}
-
-    setUserInput(``)
-    setWritingMode(false)
-  }, [userInput, setWord, setWordIds])
-
-  return [
-    userInput,
-    setUserInput,
-    isWritingMode,
-    setWritingMode,
-    handleClickAddWord,
-  ]
+  return handlePostWord
 }

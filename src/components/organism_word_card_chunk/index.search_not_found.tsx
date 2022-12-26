@@ -2,10 +2,11 @@ import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { searchInputState } from '@/recoil/searchInput.state'
 import { Typography, Stack } from '@mui/material'
 import { FC } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 const WordCardChunkSearchNotFound: FC = () => {
-  const [searchInput, setSearchInput] = useRecoilState(searchInputState)
+  const searchInput = useRecoilValue(searchInputState)
+  const resetSearchInput = useResetRecoilState(searchInputState)
 
   return (
     <Stack>
@@ -16,7 +17,7 @@ const WordCardChunkSearchNotFound: FC = () => {
       </Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
-        handleClick={() => setSearchInput(``)}
+        onClick={resetSearchInput}
       />
     </Stack>
   )

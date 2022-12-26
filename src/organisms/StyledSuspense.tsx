@@ -1,7 +1,7 @@
-import { FC, Suspense } from 'react'
+import { FC, ReactNode, Suspense } from 'react'
 
 interface Props {
-  children?: JSX.Element[] | JSX.Element
+  children?: ReactNode
 }
 
 // This is a legit troll component, but I love it.

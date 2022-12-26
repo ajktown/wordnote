@@ -8,3 +8,5 @@ export interface WordData extends DataStatus {
   definition: string
   example: string
 }
+
+export type WordDataModifiable = Omit<WordData, 'id'>
