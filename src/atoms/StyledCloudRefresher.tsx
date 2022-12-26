@@ -40,10 +40,7 @@ interface Props {
   onClick: () => any
   runOnClickOnce?: boolean // Default: false
 }
-const StyledCloudRefresher: FC<Props> = ({
-  onClick,
-  runOnClickOnce,
-}) => {
+const StyledCloudRefresher: FC<Props> = ({ onClick, runOnClickOnce }) => {
   const [loading, setLoading] = useState<LoadingStatus>(LoadingStatus.Idle)
   const showingTimeSecs = useMemo(
     () => (loading === LoadingStatus.Failed ? 5 : 2),
@@ -63,8 +60,7 @@ const StyledCloudRefresher: FC<Props> = ({
   }, [showingTimeSecs, onClick])
 
   useEffect(() => {
-    if (!runOnClickOnce) return
-    handleClick()
+    runOnClickOnce && handleClick()
   }, [handleClick, runOnClickOnce])
 
   switch (loading) {
