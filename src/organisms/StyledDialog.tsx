@@ -16,7 +16,7 @@ export interface StyledDialogProps {
 }
 
 const StyledDialog: FC<StyledDialogProps> = ({ onClose, ...props }) => {
-  const handleCloseInternally = useCallback(
+  const handleClose = useCallback(
     () => onClose && onClose(),
     [onClose],
   )
@@ -24,7 +24,7 @@ const StyledDialog: FC<StyledDialogProps> = ({ onClose, ...props }) => {
   return (
     <Dialog
       open
-      onClose={handleCloseInternally}
+      onClose={handleClose}
       maxWidth={props.visuals?.maxWidth || PRIVATE_DEFAULT_FINAL_MAX_WIDTH}
       fullWidth
       style={{
