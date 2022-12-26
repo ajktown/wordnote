@@ -7,4 +7,4 @@ export interface UserData extends DataStatus {
   nickname: string
 }
 
-export type WordDataModifiable = Omit<UserData, 'id'>
+export type UserDataModifiable = Omit<UserData, 'id'>
