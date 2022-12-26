@@ -11,7 +11,7 @@ const WordCardDialog: FC = () => {
   if (!selectedWordId) return null
 
   return (
-    <StyledDialog handleCloseCallback={closeDialog}>
+    <StyledDialog onClose={closeDialog}>
       <WordCard wordId={selectedWordId} editingMode />
     </StyledDialog>
   )
