@@ -1,4 +1,4 @@
-import { FC, useEffect, useCallback, useState, useMemo } from 'react'
+import { FC, useCallback, useState, useMemo } from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
 import WarningIcon from '@mui/icons-material/Warning'
 import CloudDoneIcon from '@mui/icons-material/CloudDone'
@@ -7,6 +7,7 @@ import StyledIconButtonAtom from './StyledIconButton'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { Fade } from '@mui/material'
 import { GlobalMuiFontSize } from '@/global.interface'
+import { useRunOnlyOnce } from '@/hooks/use-run-only-once.hook'
 
 enum LoadingStatus {
   Idle = 0,
@@ -60,9 +61,7 @@ const StyledCloudRefresher: FC<Props> = ({ onClick, runOnClickOnce }) => {
     }
   }, [showingTimeSecs, onClick])
 
-  useEffect(() => {
-    runOnClickOnce && handleClick()
-  }, [handleClick, runOnClickOnce])
+  useRunOnlyOnce(handleClick, runOnClickOnce)
 
   switch (loading) {
     case LoadingStatus.Idle:
