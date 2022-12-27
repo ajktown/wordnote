@@ -1,12 +1,13 @@
 import { FC, useCallback } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
+import { GlobalMuiSize } from '@/global.interface'
 
 interface Props {
   onClick?: any
   hoverMessage?: string
   buttonColor?: string
-  size?: 'small' | 'medium' | 'large'
+  size?: GlobalMuiSize
 }
 
 const XButton: FC<Props> = ({ onClick, ...props }) => {

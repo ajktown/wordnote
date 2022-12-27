@@ -6,6 +6,7 @@ import { runAfterHandler } from '@/handlers/run-after.handler'
 import StyledIconButtonAtom from './StyledIconButton'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { Fade } from '@mui/material'
+import { GlobalMuiFontSize } from '@/global.interface'
 
 enum LoadingStatus {
   Idle = 0,
@@ -14,7 +15,7 @@ enum LoadingStatus {
   Failed = -1,
 }
 
-const PRIVATE_FINAL_ICON_SIZE = `small`
+const PRIVATE_FINAL_ICON_SIZE: GlobalMuiFontSize = `small`
 
 // TODO: This does not yet have the cool design. So I need to create one!
 // TODO: I have improved a bit, but it could be a cooler with taking the exact same space for all rendering!
