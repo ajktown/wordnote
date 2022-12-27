@@ -3,17 +3,16 @@ import CloseIcon from '@mui/icons-material/Close'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 
 interface Props {
-  onClickCallback?: any
+  onClick?: any
   hoverMessage?: string
   buttonColor?: string
   size?: 'small' | 'medium' | 'large'
 }
 
-const XButton: FC<Props> = ({ onClickCallback, ...props }) => {
+const XButton: FC<Props> = ({ onClick, ...props }) => {
   const handleClickCallback = useCallback(() => {
-    if (!onClickCallback) return
-    onClickCallback()
-  }, [onClickCallback])
+    onClick && onClick()
+  }, [onClick])
 
   return (
     <StyledIconButtonAtom
