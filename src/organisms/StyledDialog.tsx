@@ -16,10 +16,7 @@ export interface StyledDialogProps {
 }
 
 const StyledDialog: FC<StyledDialogProps> = ({ onClose, ...props }) => {
-  const handleClose = useCallback(
-    () => onClose && onClose(),
-    [onClose],
-  )
+  const handleClose = useCallback(() => onClose && onClose(), [onClose])
 
   return (
     <Dialog
