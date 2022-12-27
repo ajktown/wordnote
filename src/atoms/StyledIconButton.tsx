@@ -31,8 +31,7 @@ const StyledIconButtonAtom: FC<Props> = ({
 
   const handleClick = useCallback(
     (e: MouseEvent<HTMLElement>) => {
-      if (!onClick) return
-      onClick(e)
+      onClick && onClick(e)
     },
     [onClick],
   )
