@@ -33,17 +33,17 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
             />
             <WordCardEditingTextField
               wordKey={`pronunciation`}
-              originalInput={word.term}
+              originalInput={word.pronunciation}
               onClickModify={handleClickModify}
             />
             <WordCardEditingTextField
               wordKey={`definition`}
-              originalInput={word.term}
+              originalInput={word.definition}
               onClickModify={handleClickModify}
             />
             <WordCardEditingTextField
               wordKey={`example`}
-              originalInput={word.term}
+              originalInput={word.example}
               onClickModify={handleClickModify}
             />
           </Stack>
