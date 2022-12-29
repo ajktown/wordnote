@@ -10,3 +10,5 @@ export interface WordData extends DataStatus {
 }
 
 export type WordDataModifiable = Omit<WordData, 'id'>
+
+export type WordDataModifiableKey = keyof WordDataModifiable

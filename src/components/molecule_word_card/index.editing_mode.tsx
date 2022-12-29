@@ -1,7 +1,6 @@
-import { FC, useState } from 'react'
+import { FC, useCallback } from 'react'
 import {
   Card,
-  TextField,
   CardActions,
   CardContent,
   Typography,
@@ -9,11 +8,9 @@ import {
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import StyledSuspense from '@/organisms/StyledSuspense'
-import { WordData } from '@/api/words/words.interface'
-import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import CheckIcon from '@mui/icons-material/Check'
-import ClearIcon from '@mui/icons-material/Clear'
+import { WordData, WordDataModifiableKey } from '@/api/words/words.interface'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
+import WordCardEditingTextField from '../atom_word_card_editing_text_field'
 
 interface Props {
   word: WordData
@@ -22,30 +19,19 @@ interface Props {
 const WordCardEditingMode: FC<Props> = ({ word }) => {
   const putWord = usePutWord(word.id)
 
-  const [term, setTerm] = useState(word.term)
+  const handleClickModify = useCallback((wordKey: WordDataModifiableKey, newInput: string) => {
+    putWord({ [wordKey]: newInput })
+  }, [putWord])
 
   return (
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
-          <TextField
-            id="standard-basic"
-            variant="standard"
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
+          <WordCardEditingTextField
+            wordKey={"term"}
+            originalInput={word.term}
+            onClickModify={handleClickModify}
           />
-          {term !== word.term && (
-            <StyledIconButtonAtom
-              jsxElementButton={<CheckIcon />}
-              onClick={() => putWord({ term })}
-            />
-          )}
-          {term !== word.term && (
-            <StyledIconButtonAtom
-              jsxElementButton={<ClearIcon />}
-              onClick={() => setTerm(word.term)}
-            />
-          )}
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             {word.pronunciation}
           </Typography>
