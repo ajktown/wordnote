@@ -20,7 +20,7 @@ const WordCardChunkSearchFound: FC = () => {
   )
   const resultsPluralForm = useMemo(
     () => stringCaseHandler.toPlural(filteredWordIdLength, `result`, `results`),
-    [filteredWordIdLength]
+    [filteredWordIdLength],
   )
 
   if (!searchInput) return null

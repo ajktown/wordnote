@@ -5,24 +5,27 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { WordDataModifiableKey } from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
+import { GlobalMuiTextFieldVariant } from '@/global.interface'
 
 const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
   switch (key) {
-    case "term": 
-      return "Word"
-    case "example":
-      return "Example Sentence"
+    case `term`:
+      return `Word`
+    case `example`:
+      return `Example Sentence`
     default:
       return stringCaseHandler.toSentence(key)
   }
 }
+
+const PRIVATE_DEFAULT_TEXT_FIELD_VARIANT: GlobalMuiTextFieldVariant = `standard`
 
 interface Props {
   wordKey: WordDataModifiableKey
   originalInput: string
   onClickModify: (wordKey: WordDataModifiableKey, newInput: string) => any
 }
-const WordCardEditingTextField: FC<Props>  = ({
+const WordCardEditingTextField: FC<Props> = ({
   wordKey,
   originalInput,
   onClickModify,
@@ -61,7 +64,10 @@ const WordCardEditingTextField: FC<Props>  = ({
         value={input}
         onChange={setInput}
         placeholder={{
-          message: privatelyGetPlaceholder(wordKey)
+          message: privatelyGetPlaceholder(wordKey),
+        }}
+        designs={{
+          variant: PRIVATE_DEFAULT_TEXT_FIELD_VARIANT,
         }}
         buttons={{ right: buttonsRight }}
       />

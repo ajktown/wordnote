@@ -22,7 +22,10 @@ const NewWordBox: FC = () => {
   useKeyPress(`Escape`, handleClickAddWord)
   const ref = useOutsideClicked(handleClickAddWord)
 
-  const handleClickCard = useCallback(() => setWritingMode(true), [setWritingMode])
+  const handleClickCard = useCallback(
+    () => setWritingMode(true),
+    [setWritingMode],
+  )
 
   if (isWritingMode) {
     return (
@@ -34,7 +37,7 @@ const NewWordBox: FC = () => {
           <StyledTextField
             value={userInput}
             onChange={setUserInput}
-            placeholder={{ 
+            placeholder={{
               message: PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE,
               hideLabelWithInput: true,
             }}

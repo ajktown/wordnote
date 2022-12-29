@@ -38,3 +38,5 @@ export type GlobalKeyboardEventKey =
 export type GlobalMuiSize = 'small' | 'medium' | 'large'
 
 export type GlobalMuiFontSize = 'inherit' | 'large' | 'medium' | 'small'
+
+export type GlobalMuiTextFieldVariant = 'outlined' | 'filled' | 'standard'
