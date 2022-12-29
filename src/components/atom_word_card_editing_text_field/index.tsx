@@ -63,9 +63,7 @@ const WordCardEditingTextField: FC<Props> = ({
       <StyledTextField
         value={input}
         onChange={setInput}
-        placeholder={{
-          message: privatelyGetPlaceholder(wordKey),
-        }}
+        label={privatelyGetPlaceholder(wordKey)}
         designs={{
           variant: PRIVATE_DEFAULT_TEXT_FIELD_VARIANT,
         }}

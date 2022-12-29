@@ -37,10 +37,8 @@ const NewWordBox: FC = () => {
           <StyledTextField
             value={userInput}
             onChange={setUserInput}
-            placeholder={{
-              message: PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE,
-              hideLabelWithInput: true,
-            }}
+            label={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
+            usePlaceholder
             isAutoFocused
           />
         </CardContent>
