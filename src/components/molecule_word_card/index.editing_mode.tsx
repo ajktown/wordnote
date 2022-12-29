@@ -5,7 +5,7 @@ import WordCardDeleteButton from '../atom_word_card_delete_button'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import { WordData, WordDataModifiableKey } from '@/api/words/words.interface'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
-import WordCardEditingTextField from '../atom_word_card_editing_text_field'
+import WordCardEditingTextField from '../molecule_word_card_editing_text_field'
 
 interface Props {
   word: WordData
