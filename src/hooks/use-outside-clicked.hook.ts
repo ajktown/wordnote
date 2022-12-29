@@ -4,7 +4,7 @@ type UseOutsideClickedData = HTMLDivElement | null
 
 /**
  *
- * @param onClickAdd
+ * @param handleClick
  *
  * @returns Reference
  * Returned reference should be applied to the React component
@@ -12,17 +12,18 @@ type UseOutsideClickedData = HTMLDivElement | null
  */
 
 export const useOutsideClicked = (
-  onClickAdd?: () => void,
+  handleClick?: () => any,
 ): MutableRefObject<UseOutsideClickedData> => {
   const reference = useRef<UseOutsideClickedData>(null)
 
   useEffect(() => {
-    if (onClickAdd === undefined) return
+    if (!handleClick) return
 
-    const handleClickOutside = (event: any) => {
+   
+    const handleClickOutside = (event: any) => {  // TODO: You may put the event type here.
       // Runs the onClickAdd(), if fits.
       if (reference.current && !reference.current.contains(event.target)) {
-        onClickAdd()
+        handleClick()
       }
     }
     // Bind the event listener
@@ -31,7 +32,7 @@ export const useOutsideClicked = (
       // Unbind the event listener on clean up
       document.removeEventListener(`mousedown`, handleClickOutside)
     }
-  }, [reference, onClickAdd])
+  }, [reference, handleClick])
 
   return reference
 }
