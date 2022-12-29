@@ -4,14 +4,14 @@ import { useEffect } from 'react'
 // TODO: This will eventually have multiple keys pushed, or it will have a separate file for such.
 export const useKeyPress = (
   keyName: GlobalKeyboardEventKey,
-  onPressCallback: () => any,
+  onPress: () => any,
 ) => {
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
       if (event.key !== keyName) return
 
       event.preventDefault()
-      onPressCallback()
+      onPress()
     }
 
     document.addEventListener(`keydown`, keyDownHandler)
@@ -20,5 +20,5 @@ export const useKeyPress = (
     return () => {
       document.removeEventListener(`keydown`, keyDownHandler)
     }
-  }, [keyName, onPressCallback])
+  }, [keyName, onPress])
 }

@@ -7,7 +7,7 @@ import { useOnHover } from '@/hooks/use-on-hover.hook'
 const PRIVATE_FINAL_DEFAULT_SIZE: GlobalMuiSize = `small`
 
 interface Props {
-  onClickCallback?: (e?: MouseEvent<HTMLElement>) => any
+  onClick?: (e?: MouseEvent<HTMLElement>) => any
   jsxElementButton: JSX.Element
   isDisabled?: boolean
   hoverMessage?: {
@@ -18,7 +18,7 @@ interface Props {
   disableOnHoverColor?: boolean
 }
 const StyledIconButtonAtom: FC<Props> = ({
-  onClickCallback,
+  onClick,
   disableOnHoverColor,
   ...props
 }) => {
@@ -29,12 +29,11 @@ const StyledIconButtonAtom: FC<Props> = ({
     [disableOnHoverColor, isOnHover],
   )
 
-  const handleClickInternally = useCallback(
+  const handleClick = useCallback(
     (e: MouseEvent<HTMLElement>) => {
-      if (!onClickCallback) return
-      onClickCallback(e)
+      onClick && onClick(e)
     },
-    [onClickCallback],
+    [onClick],
   )
 
   return (
@@ -48,7 +47,7 @@ const StyledIconButtonAtom: FC<Props> = ({
         <IconButton
           size={props.size || PRIVATE_FINAL_DEFAULT_SIZE}
           aria-label="close"
-          onClick={handleClickInternally}
+          onClick={handleClick}
           disabled={props.isDisabled}
           disableTouchRipple
           style={{ color: buttonColor }}

@@ -20,7 +20,7 @@ const StyledAppbarMolecule: FC<Props> = (props) => {
       <AppBar position="static">
         <Toolbar variant="dense">
           <StyledIconButtonAtom
-            onClickCallback={() => console.log(`TODO`)}
+            onClick={() => console.log(`TODO`)}
             jsxElementButton={<AppsIcon />}
             isDisabled={!props.onClickAppMenu}
           />

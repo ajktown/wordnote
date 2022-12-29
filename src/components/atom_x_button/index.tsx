@@ -1,24 +1,24 @@
 import { FC, useCallback } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
+import { GlobalMuiSize } from '@/global.interface'
 
 interface Props {
-  onClickCallback?: any
+  onClick?: any
   hoverMessage?: string
   buttonColor?: string
-  size?: 'small' | 'medium' | 'large'
+  size?: GlobalMuiSize
 }
 
-const XButton: FC<Props> = ({ onClickCallback, ...props }) => {
+const XButton: FC<Props> = ({ onClick, ...props }) => {
   const handleClickCallback = useCallback(() => {
-    if (!onClickCallback) return
-    onClickCallback()
-  }, [onClickCallback])
+    onClick && onClick()
+  }, [onClick])
 
   return (
     <StyledIconButtonAtom
       size={props.size}
-      onClickCallback={handleClickCallback}
+      onClick={handleClickCallback}
       jsxElementButton={<CloseIcon fontSize={props.size} />}
     />
   )

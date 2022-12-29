@@ -1,4 +1,4 @@
-import { FC, useEffect, useCallback, useState, useMemo } from 'react'
+import { FC, useCallback, useState, useMemo } from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
 import WarningIcon from '@mui/icons-material/Warning'
 import CloudDoneIcon from '@mui/icons-material/CloudDone'
@@ -6,6 +6,8 @@ import { runAfterHandler } from '@/handlers/run-after.handler'
 import StyledIconButtonAtom from './StyledIconButton'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { Fade } from '@mui/material'
+import { GlobalMuiFontSize } from '@/global.interface'
+import { useRunOnlyOnce } from '@/hooks/use-run-only-once.hook'
 
 enum LoadingStatus {
   Idle = 0,
@@ -14,7 +16,7 @@ enum LoadingStatus {
   Failed = -1,
 }
 
-const PRIVATE_FINAL_ICON_SIZE = `small`
+const PRIVATE_FINAL_ICON_SIZE: GlobalMuiFontSize = `small`
 
 // TODO: This does not yet have the cool design. So I need to create one!
 // TODO: I have improved a bit, but it could be a cooler with taking the exact same space for all rendering!
@@ -37,41 +39,35 @@ const StyledCloudRefresherSuccess: FC = () => {
 }
 
 interface Props {
-  onClickCallback: () => any
-  runOnClickCallbackOnce?: boolean // Default: false
+  onClick: () => any
+  runOnClickOnce?: boolean // Default: false
 }
-const StyledCloudRefresher: FC<Props> = ({
-  onClickCallback,
-  runOnClickCallbackOnce,
-}) => {
+const StyledCloudRefresher: FC<Props> = ({ onClick, runOnClickOnce }) => {
   const [loading, setLoading] = useState<LoadingStatus>(LoadingStatus.Idle)
   const showingTimeSecs = useMemo(
     () => (loading === LoadingStatus.Failed ? 5 : 2),
     [loading],
   )
 
-  const internalHandleClick = useCallback(async () => {
+  const handleClick = useCallback(async () => {
     setLoading(LoadingStatus.Loading)
     try {
-      await onClickCallback()
+      await onClick()
       runAfterHandler(() => setLoading(LoadingStatus.Success), showingTimeSecs)
     } catch {
       setLoading(LoadingStatus.Failed)
     } finally {
       runAfterHandler(() => setLoading(LoadingStatus.Idle), showingTimeSecs + 2)
     }
-  }, [showingTimeSecs, onClickCallback])
+  }, [showingTimeSecs, onClick])
 
-  useEffect(() => {
-    if (!runOnClickCallbackOnce) return
-    internalHandleClick()
-  }, [internalHandleClick, runOnClickCallbackOnce])
+  useRunOnlyOnce(handleClick, runOnClickOnce)
 
   switch (loading) {
     case LoadingStatus.Idle:
       return (
         <StyledIconButtonAtom
-          onClickCallback={internalHandleClick}
+          onClick={handleClick}
           jsxElementButton={<RefreshIcon fontSize={PRIVATE_FINAL_ICON_SIZE} />}
           size={PRIVATE_FINAL_ICON_SIZE}
         />

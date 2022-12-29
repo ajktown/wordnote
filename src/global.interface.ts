@@ -36,3 +36,5 @@ export type GlobalKeyboardEventKey =
   | 'ArrowDown'
 
 export type GlobalMuiSize = 'small' | 'medium' | 'large'
+
+export type GlobalMuiFontSize = 'inherit' | 'large' | 'medium' | 'small'

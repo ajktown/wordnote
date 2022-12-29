@@ -10,7 +10,7 @@ const WordCardDeleteButton: FC<Props> = ({ wordId }) => {
 
   return (
     <StyledIconButtonAtom
-      onClickCallback={handleClickDeleteWord}
+      onClick={handleClickDeleteWord}
       jsxElementButton={<DeleteWordIcon />}
     />
   )
