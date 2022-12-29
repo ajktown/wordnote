@@ -1,13 +1,16 @@
-import { FC, useCallback, ChangeEvent, ReactNode } from 'react'
+import { FC, useCallback, ChangeEvent, ReactNode, useMemo } from 'react'
 import { TextField } from '@mui/material'
 
-interface CustomizedTextFieldProps {
+interface Props {
   value: string
   onChange?: (changedText: string) => any
   isAutoFocused?: boolean // Default: false;
   rows?: number // Default: 1;
   maxChars?: number // Default: Unlimited, unless specified;
-  placeholder?: string // Default: null; Shows secondary text inside the text field.
+  placeholder?: {
+    message: string // Default: null; Shows secondary text inside the text field.
+    hideLabelWithInput?: boolean // Shows the label on top when input is given.
+  }
   disabled?: boolean // Default: false; Disable text field.
   buttons?: {
     left?: ReactNode
@@ -15,9 +18,11 @@ interface CustomizedTextFieldProps {
   }
 }
 
-const StyledTextField: FC<CustomizedTextFieldProps> = ({
+const StyledTextField: FC<Props> = ({
+  value,
   onChange,
   maxChars,
+  placeholder,
   ...props
 }) => {
   const handleChange = useCallback(
@@ -27,15 +32,24 @@ const StyledTextField: FC<CustomizedTextFieldProps> = ({
     [onChange, maxChars],
   )
 
+  const label: string = useMemo(() => {
+    if (!value) return "" // If no user input given, it should NOT show any label.
+    if (!placeholder) return "" // If use does not set the message for the placeholder
+    if (placeholder.hideLabelWithInput) return "" // If user sets to hide the label with input
+
+    return placeholder.message
+  }, [placeholder])
+
   return (
     <TextField
       autoFocus={props.isAutoFocused}
       fullWidth
       multiline={props.rows ? props.rows > 1 : undefined}
       rows={props.rows || 1}
-      value={props.value}
+      label={label}
+      value={value}
       onChange={handleChange}
-      placeholder={props.placeholder}
+      placeholder={placeholder?.message}
       size="small"
       disabled={props.disabled}
       autoComplete={`off`}

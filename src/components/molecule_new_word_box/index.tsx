@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
 import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hooks/use-outside-clicked.hook'
@@ -22,6 +22,8 @@ const NewWordBox: FC = () => {
   useKeyPress(`Escape`, handleClickAddWord)
   const ref = useOutsideClicked(handleClickAddWord)
 
+  const handleClickCard = useCallback(() => setWritingMode(true), [setWritingMode])
+
   if (isWritingMode) {
     return (
       <Card
@@ -32,7 +34,10 @@ const NewWordBox: FC = () => {
           <StyledTextField
             value={userInput}
             onChange={setUserInput}
-            placeholder={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
+            placeholder={{ 
+              message: PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE,
+              hideLabelWithInput: true,
+            }}
             isAutoFocused
           />
         </CardContent>
@@ -47,7 +52,7 @@ const NewWordBox: FC = () => {
   return (
     <Card
       style={{ width: `100%`, borderRadius: 9, cursor: `text` }}
-      onClick={() => setWritingMode(true)}
+      onClick={handleClickCard}
     >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>

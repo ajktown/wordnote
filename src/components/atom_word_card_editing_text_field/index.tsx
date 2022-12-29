@@ -60,7 +60,9 @@ const WordCardEditingTextField: FC<Props>  = ({
       <StyledTextField
         value={input}
         onChange={setInput}
-        placeholder={privatelyGetPlaceholder(wordKey)}
+        placeholder={{
+          message: privatelyGetPlaceholder(wordKey)
+        }}
         buttons={{ right: buttonsRight }}
       />
     </Fragment>
