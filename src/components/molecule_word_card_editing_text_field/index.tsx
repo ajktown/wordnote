@@ -46,12 +46,12 @@ const WordCardEditingTextField: FC<Props> = ({
     return (
       <Fragment>
         <StyledIconButtonAtom
-          jsxElementButton={<CheckIcon />}
+          jsxElementButton={<CheckIcon fontSize='small'/>}
           onClick={handleClickModify}
           isDisabled={input === originalInput}
         />
         <StyledIconButtonAtom
-          jsxElementButton={<ClearIcon />}
+          jsxElementButton={<ClearIcon fontSize='small' />}
           onClick={handleResetInput}
         />
       </Fragment>
