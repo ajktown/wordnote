@@ -1,9 +1,21 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import { TextField } from '@mui/material'
-import { FC, Fragment, useState, useCallback, ChangeEvent } from 'react'
+import { FC, Fragment, useState, useCallback } from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import ClearIcon from '@mui/icons-material/Clear'
 import { WordDataModifiableKey } from '@/api/words/words.interface'
+import StyledTextField from '@/atoms/StyledTextField'
+import { stringCaseHandler } from '@/handlers/string-case.handler'
+
+const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
+  switch (key) {
+    case "term": 
+      return "Word"
+    case "example":
+      return "Example Sentence"
+    default:
+      return stringCaseHandler.toSentence(key)
+  }
+}
 
 interface Props {
   wordKey: WordDataModifiableKey
@@ -17,10 +29,6 @@ const WordCardEditingTextField: FC<Props>  = ({
 }) => {
   const [input, setInput] = useState(originalInput)
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    setInput(e.target.value)
-  }, [])
-
   const handleClickModify = useCallback(() => {
     onClickModify(wordKey, input)
   }, [wordKey, input, onClickModify])
@@ -29,15 +37,12 @@ const WordCardEditingTextField: FC<Props>  = ({
     setInput(originalInput)
   }, [originalInput])
 
-  // TODO: use styled text field
-
   return (
     <Fragment>
-      <TextField
-        id="standard-basic"
-        variant="standard"
+      <StyledTextField
         value={input}
-        onChange={handleChange}
+        onChange={setInput}
+        placeholder={privatelyGetPlaceholder(wordKey)}
       />
       {input !== originalInput && (
         <StyledIconButtonAtom
