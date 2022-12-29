@@ -1,5 +1,5 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import { FC, Fragment, useState, useCallback } from 'react'
+import { FC, Fragment, useState, useCallback, useMemo } from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import ClearIcon from '@mui/icons-material/Clear'
 import { WordDataModifiableKey } from '@/api/words/words.interface'
@@ -37,25 +37,32 @@ const WordCardEditingTextField: FC<Props>  = ({
     setInput(originalInput)
   }, [originalInput])
 
+  const buttonsRight = useMemo(() => {
+    if (input == originalInput) return null
+
+    return (
+      <Fragment>
+        <StyledIconButtonAtom
+          jsxElementButton={<CheckIcon />}
+          onClick={handleClickModify}
+          isDisabled={input === originalInput}
+        />
+        <StyledIconButtonAtom
+          jsxElementButton={<ClearIcon />}
+          onClick={handleResetInput}
+        />
+      </Fragment>
+    )
+  }, [input, originalInput, handleClickModify, handleResetInput])
+
   return (
     <Fragment>
       <StyledTextField
         value={input}
         onChange={setInput}
         placeholder={privatelyGetPlaceholder(wordKey)}
+        buttons={{ right: buttonsRight }}
       />
-      {input !== originalInput && (
-        <StyledIconButtonAtom
-          jsxElementButton={<CheckIcon />}
-          onClick={handleClickModify}
-        />
-      )}
-      {input !== originalInput && (
-        <StyledIconButtonAtom
-          jsxElementButton={<ClearIcon />}
-          onClick={handleResetInput}
-        />
-      )}
     </Fragment>
   )
 }

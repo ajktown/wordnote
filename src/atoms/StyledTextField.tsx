@@ -1,4 +1,4 @@
-import { FC, useCallback, ChangeEvent } from 'react'
+import { FC, useCallback, ChangeEvent, ReactNode } from 'react'
 import { TextField } from '@mui/material'
 
 interface CustomizedTextFieldProps {
@@ -9,6 +9,10 @@ interface CustomizedTextFieldProps {
   maxChars?: number // Default: Unlimited, unless specified;
   placeholder?: string // Default: null; Shows secondary text inside the text field.
   disabled?: boolean // Default: false; Disable text field.
+  buttons?: {
+    left?: ReactNode
+    right?: ReactNode
+  }
 }
 
 const StyledTextField: FC<CustomizedTextFieldProps> = ({
@@ -35,6 +39,10 @@ const StyledTextField: FC<CustomizedTextFieldProps> = ({
       size="small"
       disabled={props.disabled}
       autoComplete={`off`}
+      InputProps={{
+        startAdornment: props.buttons?.left,
+        endAdornment: props.buttons?.right,
+      }}
     />
   )
 }
