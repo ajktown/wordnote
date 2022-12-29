@@ -1,6 +1,7 @@
 // TODO: Not sure if this is a correct place to store the search found helper, but okay.
 
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { stringCaseHandler } from '@/handlers/string-case.handler'
 import { searchInputState } from '@/recoil/searchInput.state'
 import { filteredWordIdsState } from '@/recoil/words.state'
 import { Typography, Stack } from '@mui/material'
@@ -17,9 +18,9 @@ const WordCardChunkSearchFound: FC = () => {
     () => filteredWordIds.length,
     [filteredWordIds],
   )
-  const resultsPluralFrom = useMemo(
-    () => (filteredWordIdLength === 1 ? `result` : `results`),
-    [filteredWordIdLength],
+  const resultsPluralForm = useMemo(
+    () => stringCaseHandler.toPlural(filteredWordIdLength, `result`, `results`),
+    [filteredWordIdLength]
   )
 
   if (!searchInput) return null
@@ -27,7 +28,7 @@ const WordCardChunkSearchFound: FC = () => {
   return (
     <Stack>
       <Typography>
-        {`Your search matched "${filteredWordIdLength}" ${resultsPluralFrom}`}
+        {`Your search matched "${filteredWordIdLength}" ${resultsPluralForm}`}
       </Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
