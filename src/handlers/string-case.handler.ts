@@ -2,7 +2,7 @@
 
 export const stringCaseHandler = {
   toSentence: (str: string) => str.slice(0, 1).toUpperCase() + str.slice(1),
-  toPascalCase: (str: string) => str
+  toPascal: (str: string) => str
     .split(` `)
     .map((el) => el.slice(0, 1).toUpperCase() + el.slice(1).toLowerCase())
     .join(` `),
