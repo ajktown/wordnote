@@ -14,13 +14,9 @@ const WordCardChunkSearchFound: FC = () => {
   const filteredWordIds = useRecoilValue(filteredWordIdsState)
 
   // TODO: Lol. troll code.
-  const filteredWordIdLength = useMemo(
-    () => filteredWordIds.length,
-    [filteredWordIds],
-  )
   const resultsPluralForm = useMemo(
-    () => stringCaseHandler.toPlural(filteredWordIdLength, `result`, `results`),
-    [filteredWordIdLength],
+    () => stringCaseHandler.toPlural(filteredWordIds.length, `result`, `results`),
+    [filteredWordIds],
   )
 
   if (!searchInput) return null
@@ -28,7 +24,7 @@ const WordCardChunkSearchFound: FC = () => {
   return (
     <Stack>
       <Typography>
-        {`Your search matched "${filteredWordIdLength}" ${resultsPluralForm}`}
+        {`Your search matched ${resultsPluralForm}.`}
       </Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
