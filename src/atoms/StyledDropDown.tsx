@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
 import StyledDropDownStyle from './StyledDropDown.style'
 
@@ -11,14 +11,24 @@ interface Props {
   items: Item[]
   selectedId: string
   onChange?: (id: string) => any
+  runOnChangeWithSameIdSelected?: boolean // Enables running onChange, even when the same id is selected.
   disabled?: boolean
 }
-const StyledDropDown: FC<Props> = ({ onChange, ...props }) => {
+const StyledDropDown: FC<Props> = ({
+  onChange,
+  runOnChangeWithSameIdSelected,
+  ...props
+}) => {
+  const [lastSelected, setLastSelected] = useState(props.selectedId)
   const handleChange = useCallback(
     (e: SelectChangeEvent<string>) => {
-      onChange && onChange(e.target.value)
+      const selectedId = e.target.value
+      if (!runOnChangeWithSameIdSelected && lastSelected === selectedId) return
+
+      setLastSelected(selectedId)
+      onChange && onChange(selectedId)
     },
-    [onChange],
+    [lastSelected, runOnChangeWithSameIdSelected, onChange],
   )
 
   return (
