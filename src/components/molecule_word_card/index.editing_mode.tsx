@@ -6,6 +6,7 @@ import StyledSuspense from '@/organisms/StyledSuspense'
 import { WordData, WordDataModifiableKey } from '@/api/words/words.interface'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import WordCardEditingTextField from '../molecule_word_card_editing_text_field'
+import LanguageSelector from '../atom_language_selector'
 
 interface Props {
   word: WordData
@@ -26,6 +27,10 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
           <Stack spacing={1.5}>
+            <LanguageSelector
+              languageCode={word.languageCode}
+              onClickModify={handleClickModify}
+            />
             <WordCardEditingTextField
               wordKey={`term`}
               originalInput={word.term}

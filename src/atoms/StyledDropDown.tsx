@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react'
-import {FormControl, Select, MenuItem, SelectChangeEvent} from '@mui/material'
+import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
 import StyledDropDownStyle from './StyledDropDown.style'
 
 interface Item {
@@ -10,13 +10,16 @@ interface Item {
 interface Props {
   items: Item[]
   selectedId: string
-  onChange: (id: string) => any
+  onChange?: (id: string) => any
   disabled?: boolean
 }
 const StyledDropDown: FC<Props> = ({ onChange, ...props }) => {
-  const handleChange = useCallback((e: SelectChangeEvent<string>) => {
-    onChange(e.target.value)
-  }, [onChange])
+  const handleChange = useCallback(
+    (e: SelectChangeEvent<string>) => {
+      onChange && onChange(e.target.value)
+    },
+    [onChange],
+  )
 
   return (
     <FormControl variant="standard">
@@ -27,7 +30,12 @@ const StyledDropDown: FC<Props> = ({ onChange, ...props }) => {
         input={<StyledDropDownStyle />}
       >
         {props.items.map((item) => (
-          <MenuItem key={item.id} value={item.id} disabled={item.disabled}>
+          <MenuItem
+            key={item.id}
+            id={item.id}
+            value={item.id}
+            disabled={item.disabled}
+          >
             {item.title}
           </MenuItem>
         ))}

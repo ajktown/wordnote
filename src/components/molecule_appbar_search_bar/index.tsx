@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box} from '@mui/material'
+import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { searchInputState } from '@/recoil/searchInput.state'
@@ -15,16 +15,13 @@ const AppbarSearchBar: FC = () => {
       <StyledTextField
         value={searchInput}
         onChange={setSearchInput}
-        label={"Search..."}
+        label={`Search...`}
         usePlaceholder
         buttons={{
-          left: <SearchIcon  />,
+          left: <SearchIcon />,
           right: searchInput && (
-            <XButton
-              onClick={resetSearchInput}
-              hoverMessage={"Reset"}
-            />
-          )
+            <XButton onClick={resetSearchInput} hoverMessage={`Reset`} />
+          ),
         }}
       />
     </Box>

@@ -23,6 +23,7 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
     try {
       const newWord: WordData = {
         id: userInput + getRandomHexHandler(),
+        languageCode: `en`,
         term: userInput,
         pronunciation: ``,
         definition: ``,

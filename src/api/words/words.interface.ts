@@ -1,7 +1,9 @@
+import { LanguageCode } from 'iso-639-1'
 import { DataStatus } from '../index.interface'
 
 export interface WordData extends DataStatus {
   id: string
+  languageCode: LanguageCode
   isFavorite: boolean
   term: string
   pronunciation: string

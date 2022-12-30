@@ -15,7 +15,8 @@ const WordCardChunkSearchFound: FC = () => {
 
   // TODO: Lol. troll code.
   const resultsPluralForm = useMemo(
-    () => stringCaseHandler.toPlural(filteredWordIds.length, `result`, `results`),
+    () =>
+      stringCaseHandler.toPlural(filteredWordIds.length, `result`, `results`),
     [filteredWordIds],
   )
 
@@ -23,9 +24,7 @@ const WordCardChunkSearchFound: FC = () => {
 
   return (
     <Stack>
-      <Typography>
-        {`Your search matched ${resultsPluralForm}.`}
-      </Typography>
+      <Typography>{`Your search matched ${resultsPluralForm}.`}</Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
         onClick={resetSearchInput}
