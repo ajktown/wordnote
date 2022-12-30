@@ -42,6 +42,7 @@ const StyledAppbarMolecule: FC<Props> = (props) => {
           >
             {props.title}
           </Typography>
+          <Box pr={2} />
           <AppbarSearchBar />
         </Toolbar>
       </AppBar>
