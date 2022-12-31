@@ -30,6 +30,7 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
             <LanguageSelector
               languageCode={word.languageCode}
               onClickModify={handleClickModify}
+              useVerticalStyle
             />
             <WordCardEditingTextField
               wordKey={`term`}

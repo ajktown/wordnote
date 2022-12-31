@@ -5,13 +5,32 @@ import { PUBLIC_STATIC_AVAILABLE_LANGUAGES } from './index.dummy'
 import { LanguageCode } from 'iso-639-1'
 import { WordDataModifiableKey } from '@/api/words/words.interface'
 
+interface BoxStyle {
+  main: object
+  secondary: { mb?: number, mr?: number }
+  fontSize: number
+}
+
+const verticalStyle: BoxStyle = {
+  main: {}, // nothing
+  secondary: { mb: 0.4 },
+  fontSize: 12,
+}
+
+const horizontalStyle: BoxStyle = {
+  main: { display: `flex`, alignItems: `center` },
+  secondary: { mr: 0.7 },
+  fontSize: 14,
+}
+
 const PRIVATE_FINAL_MODIFIABLE_KEY: WordDataModifiableKey = `languageCode`
 
 interface Props {
   languageCode: LanguageCode
   onClickModify: (wordKey: WordDataModifiableKey, newInput: string) => any
+  useVerticalStyle?: boolean
 }
-const LanguageSelector: FC<Props> = ({ languageCode, onClickModify }) => {
+const LanguageSelector: FC<Props> = ({ languageCode, onClickModify, useVerticalStyle: useVertical }) => {
   const [selectedId, setSelectedId] = useState<LanguageCode>(languageCode)
   const handleChange = useCallback(
     (id: string) => {
@@ -22,13 +41,16 @@ const LanguageSelector: FC<Props> = ({ languageCode, onClickModify }) => {
     [onClickModify],
   )
 
+  const boxStyle = useVertical ? verticalStyle : horizontalStyle
+  
+
   return (
-    <Box sx={{ display: `flex`, alignItems: `center` }}>
-      <Typography color="text.secondary" fontSize={14}>
+    <Box { ...boxStyle.main }>
+      <Typography color="text.secondary" fontSize={boxStyle.fontSize}>
         {` `}
         {`Language`}
       </Typography>
-      <Box mr={0.7} />
+      <Box { ...boxStyle.secondary }/>
       <StyledDropDown
         items={PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
           id: lang.code,
