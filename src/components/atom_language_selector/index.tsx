@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useState, Fragment } from 'react'
 import { Box, Typography } from '@mui/material'
 import StyledDropDown from '@/atoms/StyledDropDown'
 import { PUBLIC_STATIC_AVAILABLE_LANGUAGES } from './index.dummy'
@@ -29,8 +29,9 @@ interface Props {
   languageCode: LanguageCode
   onClickModify: (wordKey: WordDataModifiableKey, newInput: string) => any
   useVerticalStyle?: boolean
+  hideTitle?: boolean
 }
-const LanguageSelector: FC<Props> = ({ languageCode, onClickModify, useVerticalStyle: useVertical }) => {
+const LanguageSelector: FC<Props> = ({ languageCode, onClickModify, useVerticalStyle, hideTitle }) => {
   const [selectedId, setSelectedId] = useState<LanguageCode>(languageCode)
   const handleChange = useCallback(
     (id: string) => {
@@ -41,16 +42,20 @@ const LanguageSelector: FC<Props> = ({ languageCode, onClickModify, useVerticalS
     [onClickModify],
   )
 
-  const boxStyle = useVertical ? verticalStyle : horizontalStyle
+  const boxStyle = useVerticalStyle ? verticalStyle : horizontalStyle
   
 
   return (
     <Box { ...boxStyle.main }>
-      <Typography color="text.secondary" fontSize={boxStyle.fontSize}>
-        {` `}
-        {`Language`}
-      </Typography>
-      <Box { ...boxStyle.secondary }/>
+      {!hideTitle && (
+        <Fragment>
+          <Typography color="text.secondary" fontSize={boxStyle.fontSize}>
+            {` `}
+            {`Language`}
+          </Typography>
+          <Box { ...boxStyle.secondary }/>
+        </Fragment>
+      )}
       <StyledDropDown
         items={PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
           id: lang.code,
