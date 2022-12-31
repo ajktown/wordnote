@@ -23,8 +23,9 @@ const LanguageSelector: FC<Props> = ({ languageCode, onClickModify }) => {
   )
 
   return (
-    <Box>
-      <Typography className="secondary">{`Language`}</Typography>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Typography color="text.secondary" fontSize={14} > {`Language`}</Typography>
+      <Box mr={0.7} />
       <StyledDropDown
         items={PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
           id: lang.code,
