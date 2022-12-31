@@ -7,7 +7,7 @@ import { WordDataModifiableKey } from '@/api/words/words.interface'
 
 interface BoxStyle {
   main: object
-  secondary: { mb?: number, mr?: number }
+  secondary: { mb?: number; mr?: number }
   fontSize: number
 }
 
@@ -31,7 +31,12 @@ interface Props {
   useVerticalStyle?: boolean
   hideTitle?: boolean
 }
-const LanguageSelector: FC<Props> = ({ languageCode, onClickModify, useVerticalStyle, hideTitle }) => {
+const LanguageSelector: FC<Props> = ({
+  languageCode,
+  onClickModify,
+  useVerticalStyle,
+  hideTitle,
+}) => {
   const [selectedId, setSelectedId] = useState<LanguageCode>(languageCode)
   const handleChange = useCallback(
     (id: string) => {
@@ -43,23 +48,22 @@ const LanguageSelector: FC<Props> = ({ languageCode, onClickModify, useVerticalS
   )
 
   const boxStyle = useVerticalStyle ? verticalStyle : horizontalStyle
-  
 
   return (
-    <Box { ...boxStyle.main }>
+    <Box {...boxStyle.main}>
       {!hideTitle && (
         <Fragment>
           <Typography color="text.secondary" fontSize={boxStyle.fontSize}>
             {` `}
             {`Language`}
           </Typography>
-          <Box { ...boxStyle.secondary }/>
+          <Box {...boxStyle.secondary} />
         </Fragment>
       )}
       <StyledDropDown
         items={PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
           id: lang.code,
-          title: lang.flagUnicode + " " + lang.nativeName,
+          title: lang.flagUnicode + ` ` + lang.nativeName,
         }))}
         selectedId={selectedId}
         onChange={handleChange}

@@ -14,7 +14,7 @@ interface Props {
   children?: JSX.Element | JSX.Element[]
   onClickAppMenu?: () => any // if not given, the menu button will be disabled
 }
-const StyledAppbarMolecule: FC<Props> = ({onClickAppMenu, ...props}) => {
+const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

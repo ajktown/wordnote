@@ -25,13 +25,10 @@ const StyledIconButtonAtom: FC<Props> = ({
 }) => {
   const [isOnHover, handleMouseEnter, handleMouseLeave] = useOnHover()
 
-  const buttonColor: undefined | string = useMemo(
-    () => {
-      if (isDisabled) return undefined
-      return !disableOnHoverColor && isOnHover ? `#a200aa` : undefined
-    },
-    [isDisabled, disableOnHoverColor, isOnHover],
-  )
+  const buttonColor: undefined | string = useMemo(() => {
+    if (isDisabled) return undefined
+    return !disableOnHoverColor && isOnHover ? `#a200aa` : undefined
+  }, [isDisabled, disableOnHoverColor, isOnHover])
 
   const handleClick = useCallback(
     (e: MouseEvent<HTMLElement>) => {
