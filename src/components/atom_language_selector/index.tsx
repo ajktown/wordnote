@@ -59,7 +59,7 @@ const LanguageSelector: FC<Props> = ({ languageCode, onClickModify, useVerticalS
       <StyledDropDown
         items={PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
           id: lang.code,
-          title: lang.nativeName + lang.flagUnicode,
+          title: lang.nativeName + " " + lang.flagUnicode,
         }))}
         selectedId={selectedId}
         onChange={handleChange}
