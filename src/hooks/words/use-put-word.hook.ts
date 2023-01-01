@@ -3,6 +3,7 @@ import {
   WordDataModifiable,
   WordDataModifiableKey,
 } from '@/api/words/words.interface'
+import { isEmptyObjectHandler } from '@/handlers/is-empty-object.handler'
 import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
@@ -67,6 +68,8 @@ export const usePutWord = (wordId: string, wordKey?: WordDataModifiableKey) => {
         const modified = wordKey
           ? await getObjectWithKey(wordKey)
           : await getObject()
+        if (isEmptyObjectHandler(modified)) return
+
         await putWordByIdApi(wordId, modified)
         console.log({ modified })
 
