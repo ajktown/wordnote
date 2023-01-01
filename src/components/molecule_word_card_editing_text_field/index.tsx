@@ -45,8 +45,8 @@ const WordCardEditingTextField: FC<Props> = ({ wordId, wordKey }) => {
         designs={{
           variant: PRIVATE_DEFAULT_TEXT_FIELD_VARIANT,
         }}
-        buttons={{ right: value !== null && originalWord[wordKey] !== value && (
-          (
+        buttons={{
+          right: value !== null && originalWord[wordKey] !== value && (
             <Fragment>
               <StyledIconButtonAtom
                 jsxElementButton={<CheckIcon fontSize="small" />}
@@ -57,8 +57,8 @@ const WordCardEditingTextField: FC<Props> = ({ wordId, wordKey }) => {
                 onClick={handleReset}
               />
             </Fragment>
-          
-        )) }}
+          ),
+        }}
       />
     </Fragment>
   )
