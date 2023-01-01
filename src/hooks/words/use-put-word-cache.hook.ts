@@ -9,7 +9,7 @@ import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
 export const usePutWordCache = (
-  wordId: string,
+  wordId: string | null,
   wordKey?: WordDataModifiableKey,
 ) => {
   const getObjectWithKey = useRecoilCallback(
@@ -65,6 +65,8 @@ export const usePutWordCache = (
   const handleChange = useRecoilCallback(
     ({ snapshot, set }) =>
       async () => {
+        if (wordId === null) return
+
         const wordData = await snapshot.getPromise(wordsFamily(wordId))
         if (wordData === null) return
 
