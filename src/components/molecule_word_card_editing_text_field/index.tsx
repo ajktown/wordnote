@@ -11,7 +11,7 @@ import { stringCaseHandler } from '@/handlers/string-case.handler'
 import { GlobalMuiTextFieldVariant } from '@/global.interface'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
-import { usePutWord } from '@/hooks/words/use-put-word.hook'
+import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
 const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
   switch (key) {
     case `term`:
@@ -32,7 +32,7 @@ interface Props {
 const WordCardEditingTextField: FC<Props> = ({ wordId, wordKey }) => {
   const originalWord = useRecoilValue(wordsFamily(wordId))
   const [value, setValue] = useRecoilState(modifyingWordFamily(wordKey))
-  const [handleChange, handleReset] = usePutWord(wordId, wordKey)
+  const [handleChange, handleReset] = usePutWordCache(wordId, wordKey)
 
   if (!originalWord) return null
 
