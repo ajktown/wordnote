@@ -76,7 +76,6 @@ export const usePutWordCache = (
         if (isEmptyObjectHandler(modified)) return
 
         await putWordByIdApi(wordId, modified)
-        console.log({ modified })
 
         set(wordsFamily(wordId), {
           ...wordData,
