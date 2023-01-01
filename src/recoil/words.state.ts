@@ -29,9 +29,7 @@ export const modifyingWordFamily = atomFamily<
   default: null,
 })
 
-// TODO: Refactor this two data into a better format
-// TODO: I think this will be wordId again.
-export const selectedWordForDialogState = atom<null | WordData>({
+export const selectedWordForDialogState = atom<null | string>({
   key: RecoilKey.Words + RecoilKeySuffix.Dialog,
   default: null, // nothing selected
 })

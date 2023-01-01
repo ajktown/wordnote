@@ -8,7 +8,10 @@ import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
-export const usePutWordCache = (wordId: string, wordKey?: WordDataModifiableKey) => {
+export const usePutWordCache = (
+  wordId: string,
+  wordKey?: WordDataModifiableKey,
+) => {
   const getObjectWithKey = useRecoilCallback(
     ({ snapshot }) =>
       async (

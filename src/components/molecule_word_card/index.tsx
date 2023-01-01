@@ -16,12 +16,14 @@ interface Props {
 
 const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   const word = useRecoilValue(wordsFamily(wordId))
-  const selectWordIdForDialog = useSetRecoilState(selectedWordForDialogState)
+  const setSelectedWordIdForDialog = useSetRecoilState(
+    selectedWordForDialogState,
+  )
 
   const handleClickWordCard = useCallback(() => {
     if (editingMode) return
-    selectWordIdForDialog(word)
-  }, [editingMode, word, selectWordIdForDialog])
+    setSelectedWordIdForDialog(wordId)
+  }, [editingMode, wordId, setSelectedWordIdForDialog])
 
   if (word === null) return <WordCardUnknown />
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
