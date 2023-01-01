@@ -3,7 +3,7 @@ import { TextField } from '@mui/material'
 import { GlobalMuiTextFieldVariant } from '@/global.interface'
 
 interface Props {
-  value: string
+  value: string | boolean | undefined // boolean or undefined won't be rendering anything.
   onChange?: (changedText: string) => any
   isAutoFocused?: boolean // Default: false;
   rows?: number // Default: 1;

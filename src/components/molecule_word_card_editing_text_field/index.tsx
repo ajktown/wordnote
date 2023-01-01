@@ -1,11 +1,17 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import { FC, Fragment, useState, useCallback, useMemo } from 'react'
+import { FC, Fragment, useCallback, useMemo, ReactNode } from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import ClearIcon from '@mui/icons-material/Clear'
-import { WordDataModifiableKey } from '@/api/words/words.interface'
+import {
+  WordDataModifiableKey,
+  WordDataModifiableStringKey,
+} from '@/api/words/words.interface'
 import StyledTextField from '@/atoms/StyledTextField'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
 import { GlobalMuiTextFieldVariant } from '@/global.interface'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { selectedWordForDialogState, wordsFamily } from '@/recoil/words.state'
+import { usePutWord } from '@/hooks/words/use-put-word.hook'
 
 const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
   switch (key) {
@@ -21,34 +27,45 @@ const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
 const PRIVATE_DEFAULT_TEXT_FIELD_VARIANT: GlobalMuiTextFieldVariant = `standard`
 
 interface Props {
-  wordKey: WordDataModifiableKey
-  originalInput: string
-  onClickModify: (wordKey: WordDataModifiableKey, newInput: string) => any
+  wordId: string
+  wordKey: WordDataModifiableStringKey
 }
-const WordCardEditingTextField: FC<Props> = ({
-  wordKey,
-  originalInput,
-  onClickModify,
-}) => {
-  const [input, setInput] = useState(originalInput)
+const WordCardEditingTextField: FC<Props> = ({ wordId, wordKey }) => {
+  const originalWord = useRecoilValue(wordsFamily(wordId))
+  const [selectedWordDialog, setSelectedWordDialog] = useRecoilState(
+    selectedWordForDialogState,
+  )
+  const putWord = usePutWord(wordId)
+
+  const handleChange = useCallback(
+    (newInput: string) => {
+      if (!selectedWordDialog) return
+      setSelectedWordDialog({
+        ...selectedWordDialog,
+        [wordKey]: newInput,
+      })
+    },
+    [wordKey, selectedWordDialog, setSelectedWordDialog],
+  )
 
   const handleClickModify = useCallback(() => {
-    onClickModify(wordKey, input)
-  }, [wordKey, input, onClickModify])
+    if (!selectedWordDialog) return
+    putWord(selectedWordDialog)
+  }, [selectedWordDialog, putWord])
 
   const handleResetInput = useCallback(() => {
-    setInput(originalInput)
-  }, [originalInput])
+    setSelectedWordDialog(originalWord)
+  }, [originalWord, setSelectedWordDialog])
 
-  const buttonsRight = useMemo(() => {
-    if (input == originalInput) return null
+  const ButtonsRight: ReactNode = useMemo(() => {
+    if (!originalWord || !selectedWordDialog) return null
+    if (originalWord[wordKey] === selectedWordDialog[wordKey]) return null
 
     return (
       <Fragment>
         <StyledIconButtonAtom
           jsxElementButton={<CheckIcon fontSize="small" />}
           onClick={handleClickModify}
-          isDisabled={input === originalInput}
         />
         <StyledIconButtonAtom
           jsxElementButton={<ClearIcon fontSize="small" />}
@@ -56,18 +73,26 @@ const WordCardEditingTextField: FC<Props> = ({
         />
       </Fragment>
     )
-  }, [input, originalInput, handleClickModify, handleResetInput])
+  }, [
+    wordKey,
+    originalWord,
+    selectedWordDialog,
+    handleClickModify,
+    handleResetInput,
+  ])
+
+  if (!selectedWordDialog || !originalWord) return null
 
   return (
     <Fragment>
       <StyledTextField
-        value={input}
-        onChange={setInput}
+        value={selectedWordDialog[wordKey]}
+        onChange={handleChange}
         label={privatelyGetPlaceholder(wordKey)}
         designs={{
           variant: PRIVATE_DEFAULT_TEXT_FIELD_VARIANT,
         }}
-        buttons={{ right: buttonsRight }}
+        buttons={{ right: ButtonsRight }}
       />
     </Fragment>
   )

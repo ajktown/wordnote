@@ -1,11 +1,11 @@
 import { FC, useCallback } from 'react'
-import { Card, CardActions , CardContent, Typography } from '@mui/material'
+import { Card, CardActions, CardContent, Typography } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import WordCardUnknown from './index.unknown'
-import { selectedWordIdForDialogState, wordsFamily } from '@/recoil/words.state'
+import { selectedWordForDialogState, wordsFamily } from '@/recoil/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingMode from './index.editing_mode'
 
@@ -16,12 +16,12 @@ interface Props {
 
 const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   const word = useRecoilValue(wordsFamily(wordId))
-  const selectWordIdForDialog = useSetRecoilState(selectedWordIdForDialogState)
+  const selectWordIdForDialog = useSetRecoilState(selectedWordForDialogState)
 
   const handleClickWordCard = useCallback(() => {
     if (editingMode) return
-    selectWordIdForDialog(wordId)
-  }, [editingMode, wordId, selectWordIdForDialog])
+    selectWordIdForDialog(word)
+  }, [editingMode, word, selectWordIdForDialog])
 
   if (word === null) return <WordCardUnknown />
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />

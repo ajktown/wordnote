@@ -2,17 +2,17 @@ import { FC } from 'react'
 import StyledDialog from '@/organisms/StyledDialog'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 import WordCard from '.'
-import { selectedWordIdForDialogState } from '@/recoil/words.state'
+import { selectedWordForDialogState } from '@/recoil/words.state'
 
 const WordCardDialog: FC = () => {
-  const selectedWordId = useRecoilValue(selectedWordIdForDialogState)
-  const handleCloseDialog = useResetRecoilState(selectedWordIdForDialogState)
+  const selectedWord = useRecoilValue(selectedWordForDialogState)
+  const handleCloseDialog = useResetRecoilState(selectedWordForDialogState)
 
-  if (!selectedWordId) return null
+  if (!selectedWord) return null
 
   return (
     <StyledDialog onClose={handleCloseDialog}>
-      <WordCard wordId={selectedWordId} editingMode />
+      <WordCard wordId={selectedWord.id} editingMode />
     </StyledDialog>
   )
 }

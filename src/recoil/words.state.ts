@@ -13,7 +13,7 @@ export const wordIdsState = atom<string[]>({
   default: [],
 })
 
-export const selectedWordIdForDialogState = atom<null | string>({
+export const selectedWordForDialogState = atom<null | WordData>({
   key: RecoilKey.Words + RecoilKeySuffix.Dialog,
   default: null, // nothing selected
 })

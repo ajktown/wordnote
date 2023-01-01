@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react'
-import { Card, CardActions, CardContent, Stack, Box} from '@mui/material'
+import { Card, CardActions, CardContent, Stack, Box } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import StyledSuspense from '@/organisms/StyledSuspense'
@@ -33,26 +33,13 @@ const WordCardEditingMode: FC<Props> = ({ word }) => {
               onClickModify={handleClickModify}
               useVerticalStyle
             />
-            <WordCardEditingTextField
-              wordKey={`term`}
-              originalInput={word.term}
-              onClickModify={handleClickModify}
-            />
+            <WordCardEditingTextField wordKey={`term`} wordId={word.id} />
             <WordCardEditingTextField
               wordKey={`pronunciation`}
-              originalInput={word.pronunciation}
-              onClickModify={handleClickModify}
+              wordId={word.id}
             />
-            <WordCardEditingTextField
-              wordKey={`definition`}
-              originalInput={word.definition}
-              onClickModify={handleClickModify}
-            />
-            <WordCardEditingTextField
-              wordKey={`example`}
-              originalInput={word.example}
-              onClickModify={handleClickModify}
-            />
+            <WordCardEditingTextField wordKey={`definition`} wordId={word.id} />
+            <WordCardEditingTextField wordKey={`example`} wordId={word.id} />
           </Stack>
         </CardContent>
         <CardActions>
