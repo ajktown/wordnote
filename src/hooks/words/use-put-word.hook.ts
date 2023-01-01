@@ -6,6 +6,11 @@ import { useRecoilCallback } from 'recoil'
 
 type UsePutWord = (modified: Partial<WordDataModifiable>) => Promise<void> // handlePutWord
 
+// TODO: This put word should be refactored..
+// 1. To return actual modification
+// 1. To modify the caching data only
+// 1. Also should modify one data with family state instead.
+
 export const usePutWord = (wordId: string): UsePutWord => {
   const setWord = useRecoilCallback(
     ({ snapshot, set }) =>
