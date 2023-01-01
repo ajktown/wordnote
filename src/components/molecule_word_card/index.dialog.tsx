@@ -8,7 +8,9 @@ import { useWarning } from '@/hooks/use-warning.hook'
 
 const WordCardDialog: FC = () => {
   const selectedWordId = useRecoilValue(selectedWordForDialogState)
-  const resetSelectedWordForDialog = useResetRecoilState(selectedWordForDialogState)
+  const resetSelectedWordForDialog = useResetRecoilState(
+    selectedWordForDialogState,
+  )
   const [, resetModify] = usePutWordCache(selectedWordId)
 
   const handleCloseDialog = useCallback(async () => {

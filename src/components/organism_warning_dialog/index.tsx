@@ -9,22 +9,14 @@ interface Props {
   onClickConfirm?: () => any
 }
 // TODO: Design this component
-const WarningDialog: FC<Props> = ({ open, onClickCancel,  onClickConfirm }) => {
+const WarningDialog: FC<Props> = ({ open, onClickCancel, onClickConfirm }) => {
   if (!open) return null
 
   return (
     <StyledDialog>
-      <Typography>
-        {"Are you sure?"}
-      </Typography>
-      <StyledTextButtonAtom 
-        title="Cancel"
-        onClick={onClickCancel}
-      />
-      <StyledTextButtonAtom
-        title="Confirm"
-        onClick={onClickConfirm}
-      />
+      <Typography>{`Are you sure?`}</Typography>
+      <StyledTextButtonAtom title="Cancel" onClick={onClickCancel} />
+      <StyledTextButtonAtom title="Confirm" onClick={onClickConfirm} />
     </StyledDialog>
   )
 }
