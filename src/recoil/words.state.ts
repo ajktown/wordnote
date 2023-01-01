@@ -1,7 +1,10 @@
-import { WordData } from '@/api/words/words.interface'
+import { WordData, WordDataModifiableKey } from '@/api/words/words.interface'
 import { atom, atomFamily, selector } from 'recoil'
 import { RecoilKey, RecoilKeySuffix } from './index.keys'
 import { searchInputState } from './searchInput.state'
+
+// TODO: Write this writing convention of
+// TODO: wordsFamily, wordIdsState, and ModifyingState and ModifiyngModeOn state...
 
 export const wordsFamily = atomFamily<WordData | null, string>({
   key: RecoilKey.Words + RecoilKeySuffix.Family,
@@ -13,6 +16,14 @@ export const wordIdsState = atom<string[]>({
   default: [],
 })
 
+// TODO: Refactor this two data into a better format
+export const modifyingWordState = atomFamily<WordDataModifiableKey | null, WordDataModifiableKey>({
+  key: RecoilKey.Words + RecoilKeySuffix.Family,
+  default: null,
+})
+
+// TODO: Refactor this two data into a better format
+// TODO: I think this will be wordId again.
 export const selectedWordForDialogState = atom<null | WordData>({
   key: RecoilKey.Words + RecoilKeySuffix.Dialog,
   default: null, // nothing selected
