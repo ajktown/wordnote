@@ -3,14 +3,14 @@ import { FC, useCallback } from 'react'
 import FavoriteWordIcon from '@mui/icons-material/FavoriteTwoTone'
 import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words.state'
-import { usePutWord } from '@/hooks/words/use-put-word.hook'
+import { useDeprecatedPutWord } from '@/hooks/words/deprecated-use-put-word.hook'
 
 interface Props {
   wordId: string
 }
 const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
-  const putWord = usePutWord(wordId)
+  const putWord = useDeprecatedPutWord(wordId)
 
   const handleClickFavoriteIcon = useCallback(async () => {
     if (word === null) return

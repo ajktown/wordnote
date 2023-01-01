@@ -1,4 +1,5 @@
 import { LanguageCode } from 'iso-639-1'
+import { ValueOf } from 'next/dist/shared/lib/constants'
 import { DataStatus } from '../index.interface'
 
 export interface WordData extends DataStatus {
@@ -16,6 +17,7 @@ export type WordDataModifiableString = Omit<
   WordDataModifiable,
   'isFavorite' | 'languageCode'
 >
-
+export type WordDataModifiableValue = ValueOf<WordDataModifiable>
 export type WordDataModifiableKey = keyof WordDataModifiable
+
 export type WordDataModifiableStringKey = keyof WordDataModifiableString

@@ -1,4 +1,4 @@
-import { WordData, WordDataModifiableKey } from '@/api/words/words.interface'
+import { WordData, WordDataModifiableKey, WordDataModifiableValue } from '@/api/words/words.interface'
 import { atom, atomFamily, selector } from 'recoil'
 import { RecoilKey, RecoilKeySuffix } from './index.keys'
 import { searchInputState } from './searchInput.state'
@@ -17,7 +17,7 @@ export const wordIdsState = atom<string[]>({
 })
 
 // TODO: Refactor this two data into a better format
-export const modifyingWordState = atomFamily<WordDataModifiableKey | null, WordDataModifiableKey>({
+export const modifyingWordFamily = atomFamily<WordDataModifiableValue | null, WordDataModifiableKey>({
   key: RecoilKey.Words + RecoilKeySuffix.Family,
   default: null,
 })
