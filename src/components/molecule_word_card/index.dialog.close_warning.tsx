@@ -21,7 +21,7 @@ const WordCardDialogCloseWarning: FC<Props> = ({
       <DialogTitle>{`Discard changes you made?`}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          {`Your changes have not been saved yet on cloud.`}
+          {`Your changes have not been saved yet on the cloud.`}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
