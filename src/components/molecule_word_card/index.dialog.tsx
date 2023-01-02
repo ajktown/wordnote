@@ -5,6 +5,7 @@ import WordCard from '.'
 import { selectedWordForDialogState } from '@/recoil/words.state'
 import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
 import { useWarning } from '@/hooks/use-warning.hook'
+import WarningDialog from '../organism_warning_dialog'
 
 const WordCardDialog: FC = () => {
   const selectedWordId = useRecoilValue(selectedWordForDialogState)
@@ -12,28 +13,28 @@ const WordCardDialog: FC = () => {
     selectedWordForDialogState,
   )
   const [, handleResetCache, isModified] = usePutWordCache(selectedWordId)
-  const isWarningDisabled = useCallback(
-    async () => !(await isModified()),
-    [isModified],
-  )
 
   const handleCloseDialog = useCallback(async () => {
     await handleResetCache()
     handleCloseWordEditingDialog()
   }, [handleCloseWordEditingDialog, handleResetCache])
 
-  const [WarningDialog, handleClick] = useWarning(
-    handleCloseDialog,
-    isWarningDisabled,
-    "It seems like there are some changes you have not saved on the cloud yet. Changes will be lost with confirmation."
-  )
+  const [
+    isDialogOpen,
+    handleClickOpenWarning,
+    handleClickCloseWarning,
+    handleClickConfirm,
+  ] = useWarning(handleCloseDialog, isModified, { isReversed: true })
 
   if (!selectedWordId) return null
 
   return (
-    <StyledDialog onClose={handleClick}>
+    <StyledDialog onClose={handleClickOpenWarning}>
       <WordCard wordId={selectedWordId} editingMode />
-      {WarningDialog}
+      {isDialogOpen && (<WarningDialog 
+        onClickConfirm={handleClickConfirm}
+        onClickCancel={handleClickCloseWarning}
+      />)}
     </StyledDialog>
   )
 }

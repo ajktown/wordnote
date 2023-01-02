@@ -3,17 +3,14 @@ import StyledDialog from '@/organisms/StyledDialog'
 import { DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
 import { FC } from 'react'
 interface Props {
-  open: boolean
-  message?: string
   onClickCancel?: () => any
   onClickConfirm?: () => any
+  message?: string
 }
 
-const WarningDialog: FC<Props> = ({ open, message, onClickCancel, onClickConfirm }) => {
-  if (!open) return null
-
+const WarningDialog: FC<Props> = ({ message , onClickCancel, onClickConfirm }) => {
   return (
-    <StyledDialog visuals={{ maxWidth: `xs` }}>
+    <StyledDialog visuals={{ maxWidth: `xs` }} onClose={onClickCancel}>
       <DialogTitle>{`Are you sure?`}</DialogTitle>
       <DialogContent>
         <DialogContentText>
