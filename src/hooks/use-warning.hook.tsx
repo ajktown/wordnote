@@ -27,6 +27,7 @@ export const useWarning = (
     <WarningDialog
       open={isDialogOpen}
       key="warning_dialog"
+      message={"It seems like there are some changes you have not confirmed yet."}
       onClickCancel={handleCloseWarningDialog}
       onClickConfirm={handleClickConfirm}
     />,
