@@ -25,7 +25,7 @@ const WordCardDialog: FC = () => {
   const [WarningDialog, handleClick] = useWarning(
     handleCloseDialog,
     isWarningDisabled,
-    "It seems like there are some changes you have not confirmed yet."
+    "It seems like there are some changes you have not saved on the cloud yet. Changes will be lost with confirmation."
   )
 
   if (!selectedWordId) return null
