@@ -13,7 +13,7 @@ interface Props {
   message?: string
 }
 
-const WarningDialog: FC<Props> = ({
+const WordCardDialogCloseWarning: FC<Props> = ({
   message,
   onClickCancel,
   onClickConfirm,
@@ -40,4 +40,4 @@ const WarningDialog: FC<Props> = ({
   )
 }
 
-export default WarningDialog
+export default WordCardDialogCloseWarning
