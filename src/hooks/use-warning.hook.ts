@@ -19,9 +19,9 @@ export const useWarning = (
 
   const handleClickCloseWarning = useCallback(() => setDialog(false), [])
   const handleClickOpenWarning = useCallback(async () => {
-    const isDisabled = await isWarningDisabled()
-    if (isReversed && isDisabled) return setDialog(true)
-    if (!isReversed && !isDisabled) return setDialog(true)
+    const isDisabled = isReversed ? await isWarningDisabled() : !await isWarningDisabled()
+    if (isDisabled) return setDialog(true)
+  
     await onClickConfirm()
   }, [isWarningDisabled, onClickConfirm, isReversed])
 
