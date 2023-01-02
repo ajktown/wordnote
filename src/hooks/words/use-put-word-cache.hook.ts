@@ -8,10 +8,15 @@ import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
+type UsePutWordCache = [
+  () => Promise<void>, // handleApplyCache
+  () => Promise<void>, // handleResetCache
+  () => Promise<boolean>, // isModified
+]
 export const usePutWordCache = (
   wordId: string | null,
   wordKey?: WordDataModifiableKey,
-) => {
+): UsePutWordCache => {
   const getObjectWithKey = useRecoilCallback(
     ({ snapshot }) =>
       async (
@@ -51,18 +56,28 @@ export const usePutWordCache = (
     [wordKey],
   )
 
-  const handleReset = useCallback(() => {
-    if (wordKey) return handleResetByKey(wordKey)
+  const isModified = useCallback(async () => {
+    const modified = wordKey
+      ? await getObjectWithKey(wordKey)
+      : await getObject()
+    return !isEmptyObjectHandler(modified)
+  }, [wordKey, getObjectWithKey, getObject])
 
-    handleResetByKey(`term`)
-    handleResetByKey(`languageCode`)
-    handleResetByKey(`isFavorite`)
-    handleResetByKey(`pronunciation`)
-    handleResetByKey(`definition`)
-    handleResetByKey(`example`)
+  const handleResetCache = useCallback(async() => {
+    if (wordKey) {
+      await handleResetByKey(wordKey)
+      return
+    } 
+
+    await handleResetByKey(`term`)
+    await handleResetByKey(`languageCode`)
+    await handleResetByKey(`isFavorite`)
+    await handleResetByKey(`pronunciation`)
+    await handleResetByKey(`definition`)
+    await handleResetByKey(`example`)
   }, [wordKey, handleResetByKey])
 
-  const handleChange = useRecoilCallback(
+  const handleApplyCache = useRecoilCallback(
     ({ snapshot, set }) =>
       async () => {
         if (wordId === null) return
@@ -82,10 +97,10 @@ export const usePutWordCache = (
           ...modified,
         })
 
-        handleReset()
+        handleResetCache()
       },
-    [wordId, wordKey, handleReset],
+    [wordId, wordKey, handleResetCache],
   )
 
-  return [handleChange, handleReset]
+  return [handleApplyCache, handleResetCache, isModified]
 }
