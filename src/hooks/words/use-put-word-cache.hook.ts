@@ -63,11 +63,11 @@ export const usePutWordCache = (
     return !isEmptyObjectHandler(modified)
   }, [wordKey, getObjectWithKey, getObject])
 
-  const handleResetCache = useCallback(async() => {
+  const handleResetCache = useCallback(async () => {
     if (wordKey) {
       await handleResetByKey(wordKey)
       return
-    } 
+    }
 
     await handleResetByKey(`term`)
     await handleResetByKey(`languageCode`)

@@ -14,14 +14,20 @@ const WordCardDialog: FC = () => {
     selectedWordForDialogState,
   )
   const [, handleResetCache, isModified] = usePutWordCache(selectedWordId)
-  const isWarningDisabled = useCallback(async () => !await isModified(), [isModified])
+  const isWarningDisabled = useCallback(
+    async () => !(await isModified()),
+    [isModified],
+  )
 
   const handleCloseDialog = useCallback(async () => {
     await handleResetCache()
     handleCloseWordEditingDialog()
   }, [handleCloseWordEditingDialog, handleResetCache])
 
-  const [warningDialog, handleClick] = useWarning(handleCloseDialog, isWarningDisabled)
+  const [warningDialog, handleClick] = useWarning(
+    handleCloseDialog,
+    isWarningDisabled,
+  )
 
   if (!selectedWordId) return null
 

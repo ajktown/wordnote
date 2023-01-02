@@ -13,13 +13,19 @@ const WarningDialog: FC<Props> = ({ open, onClickCancel, onClickConfirm }) => {
   if (!open) return null
 
   return (
-    <StyledDialog visuals={{ maxWidth: "xs" }}>
-      <DialogTitle>
-        {`Are you sure?`}
-      </DialogTitle>
+    <StyledDialog visuals={{ maxWidth: `xs` }}>
+      <DialogTitle>{`Are you sure?`}</DialogTitle>
       <DialogActions>
-        <StyledTextButtonAtom variant="text" title="Cancel" onClick={onClickCancel} />
-        <StyledTextButtonAtom variant="text" title="Confirm" onClick={onClickConfirm} />
+        <StyledTextButtonAtom
+          variant="text"
+          title="Cancel"
+          onClick={onClickCancel}
+        />
+        <StyledTextButtonAtom
+          variant="text"
+          title="Confirm"
+          onClick={onClickConfirm}
+        />
       </DialogActions>
     </StyledDialog>
   )
