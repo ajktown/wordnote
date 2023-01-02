@@ -6,19 +6,22 @@ import { selectedWordForDialogState } from '@/recoil/words.state'
 import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
 import { useWarning } from '@/hooks/use-warning.hook'
 
+// TODO: I think the warning dialog should be imported here.
+
 const WordCardDialog: FC = () => {
   const selectedWordId = useRecoilValue(selectedWordForDialogState)
-  const resetSelectedWordForDialog = useResetRecoilState(
+  const handleCloseWordEditingDialog = useResetRecoilState(
     selectedWordForDialogState,
   )
-  const [, resetModify] = usePutWordCache(selectedWordId)
+  const [, handleResetCache, isModified] = usePutWordCache(selectedWordId)
+  const isWarningDisabled = useCallback(async () => !await isModified(), [isModified])
 
   const handleCloseDialog = useCallback(async () => {
-    await resetModify()
-    resetSelectedWordForDialog()
-  }, [resetSelectedWordForDialog, resetModify])
+    await handleResetCache()
+    handleCloseWordEditingDialog()
+  }, [handleCloseWordEditingDialog, handleResetCache])
 
-  const [warningDialog, handleClick] = useWarning(handleCloseDialog)
+  const [warningDialog, handleClick] = useWarning(handleCloseDialog, isWarningDisabled)
 
   if (!selectedWordId) return null
 

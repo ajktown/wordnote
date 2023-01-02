@@ -1,20 +1,34 @@
-import WarningDialog from '@/components/organism_warning_dialog'
+  import WarningDialog from '@/components/organism_warning_dialog'
 import { ReactNode, useCallback, useState } from 'react'
 
-type UseWarning = [ReactNode, () => void]
-export const useWarning = (onRun: () => any): UseWarning => {
+type UseWarning = [
+  ReactNode, 
+  () => void // handleClickOpenWarningDialog
+]
+export const useWarning = (onClickConfirm: () => any, isWarningDisabled: () => Promise<boolean>): UseWarning => {
   const [isDialogOpen, setDialog] = useState(false)
 
-  const openDialog = useCallback(() => setDialog(true), [])
-  const closeDialog = useCallback(() => setDialog(false), [])
+  const handleCloseWarningDialog = useCallback(() => setDialog(false), [])
+
+  const handleClickOpenWarningDialog = useCallback(async () => {
+    if (!await isWarningDisabled()) return setDialog(true)
+    await onClickConfirm()
+  }, [ isWarningDisabled, onClickConfirm])
+
+
+  const handleClickConfirm = useCallback(async () => {
+    handleCloseWarningDialog()
+    await onClickConfirm()
+  }, [handleCloseWarningDialog, onClickConfirm])
+
 
   return [
     <WarningDialog
       open={isDialogOpen}
       key="warning_dialog"
-      onClickCancel={closeDialog}
-      onClickConfirm={onRun}
+      onClickCancel={handleCloseWarningDialog}
+      onClickConfirm={handleClickConfirm}
     />,
-    openDialog,
+    handleClickOpenWarningDialog,
   ]
 }
