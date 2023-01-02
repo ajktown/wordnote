@@ -10,19 +10,19 @@ import { FC } from 'react'
 interface Props {
   onClickCancel?: () => any
   onClickConfirm?: () => any
-  message?: string
 }
 
 const WordCardDialogCloseWarning: FC<Props> = ({
-  message,
   onClickCancel,
   onClickConfirm,
 }) => {
   return (
     <StyledDialog visuals={{ maxWidth: `xs` }} onClose={onClickCancel}>
-      <DialogTitle>{`Are you sure?`}</DialogTitle>
+      <DialogTitle>{`Discard changes you made?`}</DialogTitle>
       <DialogContent>
-        <DialogContentText>{message}</DialogContentText>
+        <DialogContentText>
+          {`Changes you made will be discarded.`}
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
         <StyledTextButtonAtom
@@ -31,8 +31,9 @@ const WordCardDialogCloseWarning: FC<Props> = ({
           onClick={onClickCancel}
         />
         <StyledTextButtonAtom
-          variant="text"
-          title="Confirm"
+          variant="contained"
+          title="Yes, Discard it."
+          color="error"
           onClick={onClickConfirm}
         />
       </DialogActions>
