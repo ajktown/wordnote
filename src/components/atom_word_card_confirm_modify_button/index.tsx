@@ -1,22 +1,18 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { FC, useCallback } from 'react'
+import { FC } from 'react'
 import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
 interface Props {
   wordId: string
 }
 
 const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
-  const [handleChange] = usePutWordCache(wordId)
-
-  const handleClickChange = useCallback(async () => {
-    await handleChange()
-  }, [handleChange])
+  const [handleApplyCache, ] = usePutWordCache(wordId)
 
   return (
     <StyledTextButtonAtom
       title="Modify"
       variant="text"
-      onClick={handleClickChange}
+      onClick={handleApplyCache}
     />
   )
 }
