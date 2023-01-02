@@ -6,8 +6,6 @@ import { selectedWordForDialogState } from '@/recoil/words.state'
 import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
 import { useWarning } from '@/hooks/use-warning.hook'
 
-// TODO: I think the warning dialog should be imported here.
-
 const WordCardDialog: FC = () => {
   const selectedWordId = useRecoilValue(selectedWordForDialogState)
   const handleCloseWordEditingDialog = useResetRecoilState(
@@ -24,9 +22,10 @@ const WordCardDialog: FC = () => {
     handleCloseWordEditingDialog()
   }, [handleCloseWordEditingDialog, handleResetCache])
 
-  const [warningDialog, handleClick] = useWarning(
+  const [WarningDialog, handleClick] = useWarning(
     handleCloseDialog,
     isWarningDisabled,
+    "It seems like there are some changes you have not confirmed yet."
   )
 
   if (!selectedWordId) return null
@@ -34,7 +33,7 @@ const WordCardDialog: FC = () => {
   return (
     <StyledDialog onClose={handleClick}>
       <WordCard wordId={selectedWordId} editingMode />
-      {warningDialog}
+      {WarningDialog}
     </StyledDialog>
   )
 }

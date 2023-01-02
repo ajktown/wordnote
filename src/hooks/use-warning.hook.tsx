@@ -2,12 +2,13 @@ import WarningDialog from '@/components/organism_warning_dialog'
 import { ReactNode, useCallback, useState } from 'react'
 
 type UseWarning = [
-  ReactNode,
+  ReactNode, // WarningDialog
   () => void, // handleClickOpenWarningDialog
 ]
 export const useWarning = (
   onClickConfirm: () => any,
   isWarningDisabled: () => Promise<boolean>,
+  message?: string
 ): UseWarning => {
   const [isDialogOpen, setDialog] = useState(false)
 
@@ -27,7 +28,7 @@ export const useWarning = (
     <WarningDialog
       open={isDialogOpen}
       key="warning_dialog"
-      message={"It seems like there are some changes you have not confirmed yet."}
+      message={message}
       onClickCancel={handleCloseWarningDialog}
       onClickConfirm={handleClickConfirm}
     />,
