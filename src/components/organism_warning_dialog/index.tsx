@@ -1,6 +1,11 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import StyledDialog from '@/organisms/StyledDialog'
-import { DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
+import {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material'
 import { FC } from 'react'
 interface Props {
   onClickCancel?: () => any
@@ -8,14 +13,16 @@ interface Props {
   message?: string
 }
 
-const WarningDialog: FC<Props> = ({ message , onClickCancel, onClickConfirm }) => {
+const WarningDialog: FC<Props> = ({
+  message,
+  onClickCancel,
+  onClickConfirm,
+}) => {
   return (
     <StyledDialog visuals={{ maxWidth: `xs` }} onClose={onClickCancel}>
       <DialogTitle>{`Are you sure?`}</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          {message}
-        </DialogContentText>
+        <DialogContentText>{message}</DialogContentText>
       </DialogContent>
       <DialogActions>
         <StyledTextButtonAtom

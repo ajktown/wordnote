@@ -1,6 +1,6 @@
-import {  useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 
-const PRIVATE_DEFAULT_IS_REVERSED: boolean = false
+const PRIVATE_DEFAULT_IS_REVERSED = false
 type UseWarning = [
   boolean, // isDialogOpen
   () => void, // handleClickOpenWarning
@@ -10,9 +10,9 @@ type UseWarning = [
 export const useWarning = (
   onClickConfirm: () => any,
   isWarningDisabled: () => Promise<boolean>,
-  options?: { 
-    isReversed: boolean // Default: PRIVATE_DEFAULT_IS_REVERSED 
-  } 
+  options?: {
+    isReversed: boolean // Default: PRIVATE_DEFAULT_IS_REVERSED
+  },
 ): UseWarning => {
   const [isDialogOpen, setDialog] = useState(false)
   const isReversed = options?.isReversed || PRIVATE_DEFAULT_IS_REVERSED

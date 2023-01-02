@@ -31,10 +31,12 @@ const WordCardDialog: FC = () => {
   return (
     <StyledDialog onClose={handleClickOpenWarning}>
       <WordCard wordId={selectedWordId} editingMode />
-      {isDialogOpen && (<WarningDialog 
-        onClickConfirm={handleClickConfirm}
-        onClickCancel={handleClickCloseWarning}
-      />)}
+      {isDialogOpen && (
+        <WarningDialog
+          onClickConfirm={handleClickConfirm}
+          onClickCancel={handleClickCloseWarning}
+        />
+      )}
     </StyledDialog>
   )
 }
