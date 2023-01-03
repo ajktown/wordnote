@@ -1,4 +1,4 @@
-import { FC, useCallback, useState, Fragment } from 'react'
+import { FC, useCallback, useState, Fragment, useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 import StyledDropDown from '@/atoms/StyledDropDown'
 import { PUBLIC_STATIC_AVAILABLE_LANGUAGES } from './index.dummy'
@@ -53,6 +53,10 @@ const LanguageSelector: FC<Props> = ({
   )
 
   const orientationStyle = useVerticalStyle ? verticalStyle : horizontalStyle
+  const items = useMemo(() => PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
+    id: lang.code,
+    title: lang.flagUnicode + ` ` + lang.nativeName,
+  })), [])
 
   return (
     <Box {...orientationStyle.mainBox}>
@@ -69,10 +73,7 @@ const LanguageSelector: FC<Props> = ({
         </Fragment>
       )}
       <StyledDropDown
-        items={PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
-          id: lang.code,
-          title: lang.flagUnicode + ` ` + lang.nativeName,
-        }))}
+        items={items}
         selectedId={selectedId}
         onChange={handleChange}
       />
