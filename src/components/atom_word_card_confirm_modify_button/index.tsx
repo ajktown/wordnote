@@ -8,21 +8,22 @@ interface Props {
 }
 
 const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
-  const [handleApplyCache, ] = usePutWordCache(wordId)
+  const [handleApplyCache] = usePutWordCache(wordId)
   const word = useRecoilValue(wordsFamily(wordId))
-  const term = useRecoilValue(modifyingWordFamily("term"))
-  const pronunciation = useRecoilValue(modifyingWordFamily("pronunciation"))
-  const definition = useRecoilValue(modifyingWordFamily("definition"))
-  const example = useRecoilValue(modifyingWordFamily("example"))
+  const term = useRecoilValue(modifyingWordFamily(`term`))
+  const pronunciation = useRecoilValue(modifyingWordFamily(`pronunciation`))
+  const definition = useRecoilValue(modifyingWordFamily(`definition`))
+  const example = useRecoilValue(modifyingWordFamily(`example`))
 
   if (word === null) return null
 
   if (
-    (term === null || word.term === term)
-    && (pronunciation === null || word.pronunciation === pronunciation)
-    && (definition === null || word.definition === definition)
-    && (example === null || word.example === example)
-  ) return null
+    (term === null || word.term === term) &&
+    (pronunciation === null || word.pronunciation === pronunciation) &&
+    (definition === null || word.definition === definition) &&
+    (example === null || word.example === example)
+  )
+    return null
 
   return (
     <StyledTextButtonAtom
