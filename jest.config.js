@@ -11,4 +11,9 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
 };
+
+// TODO: Somehow the moduleNameMapper new setting causes the problem of yarn test, where individual test passes no problem.
