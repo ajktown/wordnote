@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 
-const BOX_HEIGHT_PX = 7
+const PRIVATE_FINAL_BOX_HEIGHT_PX = 7
 
 export default styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -12,7 +12,7 @@ export default styled(InputBase)(({ theme }) => ({
     position: `relative`,
     border: `1px solid #7d7d7d`,
     fontSize: 12,
-    padding: `${BOX_HEIGHT_PX}px 26px ${BOX_HEIGHT_PX}px 12px`,
+    padding: `${PRIVATE_FINAL_BOX_HEIGHT_PX}px 26px ${PRIVATE_FINAL_BOX_HEIGHT_PX}px 12px`,
     transition: theme.transitions.create([`border-color`, `box-shadow`]),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
