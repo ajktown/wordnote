@@ -10,7 +10,7 @@ interface Props {
 const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const [handleApplyCache] = usePutWordCache(wordId)
-  
+
   const term = useRecoilValue(modifyingWordFamily(`term`))
   const pronunciation = useRecoilValue(modifyingWordFamily(`pronunciation`))
   const definition = useRecoilValue(modifyingWordFamily(`definition`))
