@@ -1,11 +1,11 @@
-import ISO6391, { LanguageCode } from 'iso-639-1'
+import ISO6391 from 'iso-639-1'
 import getUnicodeFlagIcon from 'country-flag-icons/unicode'
-import { GlobalCountryIsoCode } from '@/global.interface'
+import { GlobalCountryIsoCode, GlobalLanguageCode } from '@/global.interface'
 
 // TODO: At this point I am selecting only certain languages available, and will be extended later in the future.
 
 const wordnoteAvailableLanguageCodeAndCountries: [
-  LanguageCode,
+  GlobalLanguageCode,
   GlobalCountryIsoCode,
 ][] = [
   [`ko`, GlobalCountryIsoCode.KoreaRepublicOf],
@@ -16,7 +16,7 @@ const wordnoteAvailableLanguageCodeAndCountries: [
 ]
 
 interface AvailableLanguage {
-  code: LanguageCode
+  code: GlobalLanguageCode
   name: string
   nativeName: string
   flagUnicode: string

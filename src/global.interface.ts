@@ -1,3 +1,5 @@
+import { LanguageCode } from 'iso-639-1'
+
 export type GlobalMuiColor =
   | 'inherit'
   | 'primary'
@@ -292,3 +294,5 @@ export enum GlobalCountryIsoCode {
   Zambia = `ZM`,
   Zimbabwe = `ZW`,
 }
+
+export type GlobalLanguageCode = LanguageCode

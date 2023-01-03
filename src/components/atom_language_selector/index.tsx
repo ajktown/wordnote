@@ -2,10 +2,10 @@ import { FC, useCallback, useState, Fragment } from 'react'
 import { Box, Typography } from '@mui/material'
 import StyledDropDown from '@/atoms/StyledDropDown'
 import { PUBLIC_STATIC_AVAILABLE_LANGUAGES } from './index.dummy'
-import { LanguageCode } from 'iso-639-1'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words.state'
+import { GlobalLanguageCode } from '@/global.interface'
 
 interface OrientationStyleAttribute {
   mainBox: object
@@ -38,13 +38,13 @@ const LanguageSelector: FC<Props> = ({
   const word = useRecoilValue(wordsFamily(wordId))
   const putWord = usePutWord(wordId)
 
-  const [selectedId, setSelectedId] = useState<LanguageCode | undefined>(
+  const [selectedId, setSelectedId] = useState<GlobalLanguageCode | undefined>(
     word?.languageCode,
   )
 
   const handleChange = useCallback(
     (id: string) => {
-      const converted = id as LanguageCode
+      const converted = id as GlobalLanguageCode
       setSelectedId(converted)
 
       putWord({ languageCode: converted })
@@ -58,7 +58,10 @@ const LanguageSelector: FC<Props> = ({
     <Box {...orientationStyle.mainBox}>
       {!hideTitle && (
         <Fragment>
-          <Typography color="text.secondary" fontSize={orientationStyle.fontSize}>
+          <Typography
+            color="text.secondary"
+            fontSize={orientationStyle.fontSize}
+          >
             {` `}
             {`Language`}
           </Typography>
