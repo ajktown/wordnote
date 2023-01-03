@@ -5,7 +5,7 @@ import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import WordCardUnknown from './index.unknown'
-import { selectedWordForDialogState, wordsFamily } from '@/recoil/words.state'
+import { selectedWordIdForDialogState, wordsFamily } from '@/recoil/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingMode from './index.editing_mode'
 
@@ -17,7 +17,7 @@ interface Props {
 const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const setSelectedWordIdForDialog = useSetRecoilState(
-    selectedWordForDialogState,
+    selectedWordIdForDialogState,
   )
 
   const handleClickWordCard = useCallback(() => {

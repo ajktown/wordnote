@@ -2,15 +2,15 @@ import { FC, useCallback } from 'react'
 import StyledDialog from '@/organisms/StyledDialog'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 import WordCard from '.'
-import { selectedWordForDialogState } from '@/recoil/words.state'
+import { selectedWordIdForDialogState } from '@/recoil/words.state'
 import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
 import { useWarning } from '@/hooks/use-warning.hook'
 import WordCardDialogCloseWarning from './index.dialog.close_warning'
 
 const WordCardDialog: FC = () => {
-  const selectedWordId = useRecoilValue(selectedWordForDialogState)
+  const selectedWordId = useRecoilValue(selectedWordIdForDialogState)
   const handleCloseWordEditingDialog = useResetRecoilState(
-    selectedWordForDialogState,
+    selectedWordIdForDialogState,
   )
   const [, handleResetCache, isModified] = usePutWordCache(selectedWordId)
 

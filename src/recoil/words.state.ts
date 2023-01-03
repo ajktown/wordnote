@@ -29,7 +29,7 @@ export const modifyingWordFamily = atomFamily<
   default: null,
 })
 
-export const selectedWordForDialogState = atom<null | string>({
+export const selectedWordIdForDialogState = atom<null | string>({
   key: RecoilKey.Words + RecoilKeySuffix.Dialog,
   default: null, // nothing selected
 })
