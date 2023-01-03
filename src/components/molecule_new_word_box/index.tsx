@@ -15,17 +15,12 @@ const NewWordBox: FC = () => {
     userInput,
     setUserInput,
     isWritingMode,
-    setWritingMode,
+    handleClickOpenWritingMode,
     handleClickAddWord,
   ] = usePostWordWithStringHook()
 
   useKeyPress(`Escape`, handleClickAddWord)
   const ref = useOutsideClicked(handleClickAddWord)
-
-  const handleClickCard = useCallback(
-    () => setWritingMode(true),
-    [setWritingMode],
-  )
 
   if (isWritingMode) {
     return (
@@ -53,7 +48,7 @@ const NewWordBox: FC = () => {
   return (
     <Card
       style={{ width: `100%`, borderRadius: 9, cursor: `text` }}
-      onClick={handleClickCard}
+      onClick={handleClickOpenWritingMode}
     >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
