@@ -26,7 +26,7 @@ export const usePutWordCache = (
           modifyingWordFamily(wordKey),
         )
 
-        if (!modifiedPart) return {}
+        if (modifiedPart === null) return {}
         return {
           [wordKey]: modifiedPart,
         }
