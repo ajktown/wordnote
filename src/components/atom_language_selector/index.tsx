@@ -7,21 +7,21 @@ import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words.state'
 
-interface BoxStyle {
-  main: object
-  secondary: { mb?: number; mr?: number }
+interface OrientationStyleAttribute {
+  mainBox: object
+  secondaryBox: { mb?: number; mr?: number }
   fontSize: number
 }
 
-const verticalStyle: BoxStyle = {
-  main: {}, // nothing
-  secondary: { mb: 0.4 },
+const verticalStyle: OrientationStyleAttribute = {
+  mainBox: {}, // nothing
+  secondaryBox: { mb: 0.4 },
   fontSize: 12,
 }
 
-const horizontalStyle: BoxStyle = {
-  main: { display: `flex`, alignItems: `center` },
-  secondary: { mr: 0.7 },
+const horizontalStyle: OrientationStyleAttribute = {
+  mainBox: { display: `flex`, alignItems: `center` },
+  secondaryBox: { mr: 0.7 },
   fontSize: 14,
 }
 
@@ -52,17 +52,17 @@ const LanguageSelector: FC<Props> = ({
     [putWord],
   )
 
-  const boxStyle = useVerticalStyle ? verticalStyle : horizontalStyle
+  const orientationStyle = useVerticalStyle ? verticalStyle : horizontalStyle
 
   return (
-    <Box {...boxStyle.main}>
+    <Box {...orientationStyle.mainBox}>
       {!hideTitle && (
         <Fragment>
-          <Typography color="text.secondary" fontSize={boxStyle.fontSize}>
+          <Typography color="text.secondary" fontSize={orientationStyle.fontSize}>
             {` `}
             {`Language`}
           </Typography>
-          <Box {...boxStyle.secondary} />
+          <Box {...orientationStyle.secondaryBox} />
         </Fragment>
       )}
       <StyledDropDown
