@@ -1,10 +1,15 @@
 import { ParseUserInputIntoWordMicroResult, PROTECTED_FINAL_ESCAPE_CHAR } from "./index.lambda.interface"
 
-const PRIVATE_FINAL_EXAMPLE_CHAR: string = "="
+const PRIVATE_FINAL_DEF_1_CHAR: string = ":"
+const PRIVATE_FINAL_DEF_2_CHAR: string = "]"
+const PRIVATE_CHARS_ARR = [
+  PRIVATE_FINAL_DEF_1_CHAR,
+  PRIVATE_FINAL_DEF_2_CHAR,
+]
 
-export const parseFromGivenInputForExampleLambda = (given: string): ParseUserInputIntoWordMicroResult => {
+export const parseFromGivenInputForDefinitionLambda = (given: string): ParseUserInputIntoWordMicroResult => {
   for (let i = given.length - 1; i >= 0; i--) {
-    if (given[i] !== PRIVATE_FINAL_EXAMPLE_CHAR) continue
+    if (!PRIVATE_CHARS_ARR.includes(given[i])) continue
 
     if (i === 0) return ["", given.slice(1)]
 
