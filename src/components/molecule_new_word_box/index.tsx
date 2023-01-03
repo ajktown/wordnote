@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react'
+import { FC } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
 import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hooks/use-outside-clicked.hook'
