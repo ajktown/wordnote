@@ -32,7 +32,7 @@ interface Props {
 const WordCardEditingTextField: FC<Props> = ({ wordId, wordKey }) => {
   const originalWord = useRecoilValue(wordsFamily(wordId))
   const [value, setValue] = useRecoilState(modifyingWordFamily(wordKey))
-  const [handleChange, handleReset] = usePutWordCache(wordId, wordKey)
+  const [handleApplyCache, handleResetCache] = usePutWordCache(wordId, wordKey)
 
   if (!originalWord) return null
 
@@ -50,11 +50,11 @@ const WordCardEditingTextField: FC<Props> = ({ wordId, wordKey }) => {
             <Fragment>
               <StyledIconButtonAtom
                 jsxElementButton={<CheckIcon fontSize="small" />}
-                onClick={handleChange}
+                onClick={handleApplyCache}
               />
               <StyledIconButtonAtom
                 jsxElementButton={<ClearIcon fontSize="small" />}
-                onClick={handleReset}
+                onClick={handleResetCache}
               />
             </Fragment>
           ),
