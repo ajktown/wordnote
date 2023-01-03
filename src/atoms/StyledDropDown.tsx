@@ -9,7 +9,7 @@ interface Item {
 }
 interface Props {
   items: Item[]
-  selectedId: string
+  selectedId: string | undefined
   onChange?: (id: string) => any
   runOnChangeWithSameIdSelected?: boolean // Enables running onChange, even when the same id is selected.
   disabled?: boolean

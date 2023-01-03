@@ -1,10 +1,9 @@
-import { FC, useCallback } from 'react'
+import { FC } from 'react'
 import { Card, CardActions, CardContent, Stack, Box } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import StyledSuspense from '@/organisms/StyledSuspense'
-import { WordData, WordDataModifiableKey } from '@/api/words/words.interface'
-import { usePutWord } from '@/hooks/words/use-put-word.hook'
+import { WordData } from '@/api/words/words.interface'
 import WordCardEditingTextField from '../molecule_word_card_editing_text_field'
 import LanguageSelector from '../atom_language_selector'
 import WordCardConfirmModifyButton from '../atom_word_card_confirm_modify_button'
@@ -14,25 +13,12 @@ interface Props {
 }
 
 const WordCardEditingMode: FC<Props> = ({ word }) => {
-  const putWord = usePutWord(word.id)
-
-  const handleClickModify = useCallback(
-    (wordKey: WordDataModifiableKey, newInput: string) => {
-      putWord({ [wordKey]: newInput })
-    },
-    [putWord],
-  )
-
   return (
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
           <Stack spacing={1.5}>
-            <LanguageSelector
-              languageCode={word.languageCode}
-              onClickModify={handleClickModify}
-              useVerticalStyle
-            />
+            <LanguageSelector wordId={word.id} useVerticalStyle />
             <WordCardEditingTextField wordKey={`term`} wordId={word.id} />
             <WordCardEditingTextField
               wordKey={`pronunciation`}

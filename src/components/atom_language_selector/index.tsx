@@ -3,7 +3,9 @@ import { Box, Typography } from '@mui/material'
 import StyledDropDown from '@/atoms/StyledDropDown'
 import { PUBLIC_STATIC_AVAILABLE_LANGUAGES } from './index.dummy'
 import { LanguageCode } from 'iso-639-1'
-import { WordDataModifiableKey } from '@/api/words/words.interface'
+import { usePutWord } from '@/hooks/words/use-put-word.hook'
+import { useRecoilValue } from 'recoil'
+import { wordsFamily } from '@/recoil/words.state'
 
 interface BoxStyle {
   main: object
@@ -23,28 +25,31 @@ const horizontalStyle: BoxStyle = {
   fontSize: 14,
 }
 
-const PRIVATE_FINAL_MODIFIABLE_KEY: WordDataModifiableKey = `languageCode`
-
 interface Props {
-  languageCode: LanguageCode
-  onClickModify: (wordKey: WordDataModifiableKey, newInput: string) => any
+  wordId: string
   useVerticalStyle?: boolean
   hideTitle?: boolean
 }
 const LanguageSelector: FC<Props> = ({
-  languageCode,
-  onClickModify,
+  wordId,
   useVerticalStyle,
   hideTitle,
 }) => {
-  const [selectedId, setSelectedId] = useState<LanguageCode>(languageCode)
+  const word = useRecoilValue(wordsFamily(wordId))
+  const putWord = usePutWord(wordId)
+
+  const [selectedId, setSelectedId] = useState<LanguageCode | undefined>(
+    word?.languageCode,
+  )
+
   const handleChange = useCallback(
     (id: string) => {
       const converted = id as LanguageCode
       setSelectedId(converted)
-      onClickModify(PRIVATE_FINAL_MODIFIABLE_KEY, converted)
+
+      putWord({ languageCode: converted })
     },
-    [onClickModify],
+    [putWord],
   )
 
   const boxStyle = useVerticalStyle ? verticalStyle : horizontalStyle
