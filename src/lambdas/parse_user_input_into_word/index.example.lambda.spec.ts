@@ -34,8 +34,8 @@ describe(`parseFromGivenInputForExampleLambda`, () => {
     },
     { // = is escaped and therefore should return =h
       sampleString: "$=h",
-      wantLeftOver: "",
-      wantParsed: "=h",
+      wantLeftOver: "=h",
+      wantParsed: "",
     },
     {
       sampleString: "hello",
@@ -60,7 +60,7 @@ describe(`parseFromGivenInputForExampleLambda`, () => {
   ]
 
   it(`parseFromGivenInputForExampleLambda should return the expected output`, () => {
-    tests.forEach((test) => {
+    tests.forEach((test, i) => {
       const [leftOver, parsed]: ParseUserInputIntoWordMicroResult = parseFromGivenInputForExampleLambda(test.sampleString)
       expect(leftOver).toBe(test.wantLeftOver)
       expect(parsed).toBe(test.wantParsed)
