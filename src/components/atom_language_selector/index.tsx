@@ -53,10 +53,14 @@ const LanguageSelector: FC<Props> = ({
   )
 
   const orientationStyle = useVerticalStyle ? verticalStyle : horizontalStyle
-  const items = useMemo(() => PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
-    id: lang.code,
-    title: lang.flagUnicode + ` ` + lang.nativeName,
-  })), [])
+  const items = useMemo(
+    () =>
+      PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
+        id: lang.code,
+        title: lang.flagUnicode + ` ` + lang.nativeName,
+      })),
+    [],
+  )
 
   return (
     <Box {...orientationStyle.mainBox}>
