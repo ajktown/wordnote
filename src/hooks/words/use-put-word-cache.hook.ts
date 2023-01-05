@@ -15,7 +15,6 @@ type UsePutWordCache = [
 ]
 export const usePutWordCache = (
   wordId: string | null,
-  wordKey?: WordDataModifiableKey,
 ): UsePutWordCache => {
   const getObjectWithKey = useRecoilCallback(
     ({ snapshot }) =>
@@ -45,7 +44,7 @@ export const usePutWordCache = (
         ...(await getObjectWithKey(`example`)),
       }
     },
-    [getObjectWithKey, wordKey],
+    [getObjectWithKey],
   )
 
   const handleResetByKey = useRecoilCallback(
@@ -53,29 +52,22 @@ export const usePutWordCache = (
       async (wordKey: WordDataModifiableKey) => {
         set(modifyingWordFamily(wordKey), null)
       },
-    [wordKey],
+    [],
   )
 
   const isModified = useCallback(async () => {
-    const modified = wordKey
-      ? await getObjectWithKey(wordKey)
-      : await getObject()
+    const modified = await getObject()
     return !isEmptyObjectHandler(modified)
-  }, [wordKey, getObjectWithKey, getObject])
+  }, [getObjectWithKey, getObject])
 
   const handleResetCache = useCallback(async () => {
-    if (wordKey) {
-      await handleResetByKey(wordKey)
-      return
-    }
-
     await handleResetByKey(`term`)
     await handleResetByKey(`languageCode`)
     await handleResetByKey(`isFavorite`)
     await handleResetByKey(`pronunciation`)
     await handleResetByKey(`definition`)
     await handleResetByKey(`example`)
-  }, [wordKey, handleResetByKey])
+  }, [handleResetByKey])
 
   const handleApplyCache = useRecoilCallback(
     ({ snapshot, set }) =>
@@ -85,9 +77,7 @@ export const usePutWordCache = (
         const wordData = await snapshot.getPromise(wordsFamily(wordId))
         if (wordData === null) return
 
-        const modified = wordKey
-          ? await getObjectWithKey(wordKey)
-          : await getObject()
+        const modified = await getObject()
         if (isEmptyObjectHandler(modified)) return
 
         await putWordByIdApi(wordId, modified)
@@ -99,7 +89,7 @@ export const usePutWordCache = (
 
         handleResetCache()
       },
-    [wordId, wordKey, handleResetCache],
+    [wordId, handleResetCache],
   )
 
   return [handleApplyCache, handleResetCache, isModified]
