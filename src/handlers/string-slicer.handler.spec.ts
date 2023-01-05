@@ -17,50 +17,50 @@ describe(`stringSlicerHandler`, () => {
 
   const tests: Test[] = [
     {
-      sampleString: "",
-      wantLeftOver: "",
-      wantParsed: "",
+      sampleString: ``,
+      wantLeftOver: ``,
+      wantParsed: ``,
     },
     {
-      sampleString: ":",
-      wantLeftOver: "",
-      wantParsed: "",
+      sampleString: `:`,
+      wantLeftOver: ``,
+      wantParsed: ``,
     },
     {
-      sampleString: ":h",
-      wantLeftOver: "",
-      wantParsed: "h",
-    },
-    { 
-      sampleString: "$:h",
-      wantLeftOver: ":h",
-      wantParsed: "",
-    },
-    { 
-      sampleString: "$]h",
-      wantLeftOver: "]h",
-      wantParsed: "",
+      sampleString: `:h`,
+      wantLeftOver: ``,
+      wantParsed: `h`,
     },
     {
-      sampleString: "hello",
-      wantLeftOver: "hello",
-      wantParsed: "",
+      sampleString: `$:h`,
+      wantLeftOver: `:h`,
+      wantParsed: ``,
     },
     {
-      sampleString: "hello]world",
-      wantLeftOver: "hello",
-      wantParsed: "world",
+      sampleString: `$]h`,
+      wantLeftOver: `]h`,
+      wantParsed: ``,
     },
     {
-      sampleString: "hi:hello$]world",
-      wantLeftOver: "hi",
-      wantParsed: "hello]world",
+      sampleString: `hello`,
+      wantLeftOver: `hello`,
+      wantParsed: ``,
     },
     {
-      sampleString: "hello:world=is the simplest code for beginners",
-      wantLeftOver: "hello",
-      wantParsed: "world=is the simplest code for beginners",
-    }
+      sampleString: `hello]world`,
+      wantLeftOver: `hello`,
+      wantParsed: `world`,
+    },
+    {
+      sampleString: `hi:hello$]world`,
+      wantLeftOver: `hi`,
+      wantParsed: `hello]world`,
+    },
+    {
+      sampleString: `hello:world=is the simplest code for beginners`,
+      wantLeftOver: `hello`,
+      wantParsed: `world=is the simplest code for beginners`,
+    },
   ]
 
   it(`stringSlicerHandler should return the expected output`, () => {

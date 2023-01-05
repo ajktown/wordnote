@@ -1,5 +1,4 @@
 import { WordData } from '@/api/words/words.interface'
-import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
 import { parseFromGivenInputLambda } from '@/lambdas/parse-user-input-into-word.lambda'
 import { useCallback, useState, Dispatch, SetStateAction } from 'react'
 import { usePostWord } from './use-post-word.hook'

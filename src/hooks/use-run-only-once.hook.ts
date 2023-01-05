@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 
-export const useRunOnlyOnce = (onRun: () => any, runOnlyOnce?: boolean): void => {
+export const useRunOnlyOnce = (
+  onRun: () => any,
+  runOnlyOnce?: boolean,
+): void => {
   const [executed, setExecuted] = useState(false)
 
   useEffect(() => {
