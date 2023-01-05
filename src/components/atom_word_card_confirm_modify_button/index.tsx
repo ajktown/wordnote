@@ -1,28 +1,27 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { FC } from 'react'
 import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
-import { useRecoilValue } from 'recoil'
-import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
+import { usePutWordCacheByKey } from '@/hooks/words/use-put-word-cache-by-key.hook'
 interface Props {
   wordId: string
 }
 
 const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
-  const word = useRecoilValue(wordsFamily(wordId))
   const [handleApplyCache] = usePutWordCache(wordId)
 
-  const term = useRecoilValue(modifyingWordFamily(`term`))
-  const pronunciation = useRecoilValue(modifyingWordFamily(`pronunciation`))
-  const definition = useRecoilValue(modifyingWordFamily(`definition`))
-  const example = useRecoilValue(modifyingWordFamily(`example`))
-
-  if (word === null) return null
+  const [, , isTermModified] = usePutWordCacheByKey(wordId, `term`)
+  const [, , isPronunciationModified] = usePutWordCacheByKey(
+    wordId,
+    `pronunciation`,
+  )
+  const [, , isDefinitionModified] = usePutWordCacheByKey(wordId, `definition`)
+  const [, , isExampleModified] = usePutWordCacheByKey(wordId, `example`)
 
   if (
-    (term === null || word.term === term) &&
-    (pronunciation === null || word.pronunciation === pronunciation) &&
-    (definition === null || word.definition === definition) &&
-    (example === null || word.example === example)
+    !isTermModified &&
+    !isPronunciationModified &&
+    !isDefinitionModified &&
+    !isExampleModified
   )
     return null
 
