@@ -7,19 +7,19 @@ import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words.state'
 import { GlobalLanguageCode } from '@/global.interface'
 
-interface OrientationStyleAttribute {
+interface OrientationStyle {
   mainBox: object
   secondaryBox: { mb?: number; mr?: number }
   fontSize: number
 }
 
-const verticalStyle: OrientationStyleAttribute = {
+const verticalStyle: OrientationStyle = {
   mainBox: {}, // nothing
   secondaryBox: { mb: 0.4 },
   fontSize: 12,
 }
 
-const horizontalStyle: OrientationStyleAttribute = {
+const horizontalStyle: OrientationStyle = {
   mainBox: { display: `flex`, alignItems: `center` },
   secondaryBox: { mr: 0.7 },
   fontSize: 14,
