@@ -3,36 +3,35 @@ import { Card, CardActions, CardContent, Stack, Box } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import StyledSuspense from '@/organisms/StyledSuspense'
-import { WordData } from '@/api/words/words.interface'
 import WordCardEditingTextField from '../molecule_word_card_editing_text_field'
 import LanguageSelector from '../atom_language_selector'
 import WordCardConfirmModifyButton from '../atom_word_card_confirm_modify_button'
 
 interface Props {
-  word: WordData
+  wordId: string
 }
 
-const WordCardEditingMode: FC<Props> = ({ word }) => {
+const WordCardEditingMode: FC<Props> = ({ wordId }) => {
   return (
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
           <Stack spacing={1.5}>
-            <LanguageSelector wordId={word.id} useVerticalStyle />
-            <WordCardEditingTextField wordKey={`term`} wordId={word.id} />
+            <LanguageSelector wordId={wordId} useVerticalStyle />
+            <WordCardEditingTextField wordKey={`term`} wordId={wordId} />
             <WordCardEditingTextField
               wordKey={`pronunciation`}
-              wordId={word.id}
+              wordId={wordId}
             />
-            <WordCardEditingTextField wordKey={`definition`} wordId={word.id} />
-            <WordCardEditingTextField wordKey={`example`} wordId={word.id} />
+            <WordCardEditingTextField wordKey={`definition`} wordId={wordId} />
+            <WordCardEditingTextField wordKey={`example`} wordId={wordId} />
           </Stack>
         </CardContent>
         <CardActions>
-          <WordCardFavoriteIcon wordId={word.id} />
-          <WordCardDeleteButton wordId={word.id} />
+          <WordCardFavoriteIcon wordId={wordId} />
+          <WordCardDeleteButton wordId={wordId} />
           <Box flexGrow={1} />
-          <WordCardConfirmModifyButton wordId={word.id} />
+          <WordCardConfirmModifyButton wordId={wordId} />
         </CardActions>
       </Card>
     </StyledSuspense>

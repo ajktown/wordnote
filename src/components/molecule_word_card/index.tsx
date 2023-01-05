@@ -27,7 +27,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
 
   if (word === null) return <WordCardUnknown />
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
-  if (editingMode) return <WordCardEditingMode word={word} />
+  if (editingMode) return <WordCardEditingMode wordId={wordId} />
 
   return (
     <StyledSuspense>
