@@ -21,8 +21,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   )
 
   const handleClickWordCard = useCallback(() => {
-    if (editingMode) return
-    setSelectedWordIdForDialog(wordId)
+    !editingMode && setSelectedWordIdForDialog(wordId)
   }, [editingMode, wordId, setSelectedWordIdForDialog])
 
   if (word === null) return <WordCardUnknown />
