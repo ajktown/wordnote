@@ -12,6 +12,9 @@ import { GlobalMuiTextFieldVariant } from '@/global.interface'
 import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words.state'
 import { usePutWordCacheByKey } from '@/hooks/words/use-put-word-cache-by-key.hook'
+
+const PRIVATE_DEFAULT_TEXT_FIELD_VARIANT: GlobalMuiTextFieldVariant = `standard`
+
 const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
   switch (key) {
     case `term`:
@@ -22,8 +25,6 @@ const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
       return stringCaseHandler.toSentence(key)
   }
 }
-
-const PRIVATE_DEFAULT_TEXT_FIELD_VARIANT: GlobalMuiTextFieldVariant = `standard`
 
 interface Props {
   wordId: string
