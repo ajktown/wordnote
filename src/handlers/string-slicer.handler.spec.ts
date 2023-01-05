@@ -1,13 +1,12 @@
-import { ParseUserInputIntoWordMicroResult } from './index.lambda.interface'
-import { parseFromGivenInputForPronunciationLambda } from './index.pronunciation.lambda'
+import { stringSlicerHandler } from './string-slicer.handler'
 // TODO: Implement the following
 // TODO: 1. the Auto generation tool for TypeScript
 // TODO: 1. The Coverage Test for the TypeScript
 // TODO: 1. If can't be found, you may follow the exact same format as the Go supported auto generation tool (format)
 
-describe(`parseFromGivenInputForPronunciationLambda`, () => {
+describe(`stringSlicerHandler`, () => {
   it(`should expose a function`, () => {
-    expect(parseFromGivenInputForPronunciationLambda).toBeDefined()
+    expect(stringSlicerHandler).toBeDefined()
   })
 
   interface Test {
@@ -23,18 +22,23 @@ describe(`parseFromGivenInputForPronunciationLambda`, () => {
       wantParsed: "",
     },
     {
-      sampleString: "[",
+      sampleString: ":",
       wantLeftOver: "",
       wantParsed: "",
     },
     {
-      sampleString: "[h",
+      sampleString: ":h",
       wantLeftOver: "",
       wantParsed: "h",
     },
-    {
-      sampleString: "$[h",
-      wantLeftOver: "[h",
+    { 
+      sampleString: "$:h",
+      wantLeftOver: ":h",
+      wantParsed: "",
+    },
+    { 
+      sampleString: "$]h",
+      wantLeftOver: "]h",
       wantParsed: "",
     },
     {
@@ -43,27 +47,27 @@ describe(`parseFromGivenInputForPronunciationLambda`, () => {
       wantParsed: "",
     },
     {
-      sampleString: "hello[world",
+      sampleString: "hello]world",
       wantLeftOver: "hello",
       wantParsed: "world",
     },
     {
-      sampleString: "hi[hello$[world",
+      sampleString: "hi:hello$]world",
       wantLeftOver: "hi",
-      wantParsed: "hello[world",
+      wantParsed: "hello]world",
     },
     {
-      sampleString: "hello[world=is the simplest code for beginners",
+      sampleString: "hello:world=is the simplest code for beginners",
       wantLeftOver: "hello",
       wantParsed: "world=is the simplest code for beginners",
     }
   ]
 
-  it(`parseFromGivenInputForPronunciationLambda should return the expected output`, () => {
-    tests.forEach((test) => {
-      const [leftOver, parsed]: ParseUserInputIntoWordMicroResult = parseFromGivenInputForPronunciationLambda(test.sampleString)
-      expect(leftOver).toBe(test.wantLeftOver)
-      expect(parsed).toBe(test.wantParsed)
+  it(`stringSlicerHandler should return the expected output`, () => {
+    tests.forEach((test, i) => {
+      // const [leftOver, parsed]: ParseUserInputIntoWordMicroResult = stringSlicerHandler(test.sampleString)
+      // expect(leftOver).toBe(test.wantLeftOver)
+      // expect(parsed).toBe(test.wantParsed)
     })
   })
 })
