@@ -9,8 +9,8 @@ import {
 import StyledTextField from '@/atoms/StyledTextField'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
 import { GlobalMuiTextFieldVariant } from '@/global.interface'
-import {  useRecoilValue } from 'recoil'
-import {  wordsFamily } from '@/recoil/words.state'
+import { useRecoilValue } from 'recoil'
+import { wordsFamily } from '@/recoil/words.state'
 import { usePutWordCacheByKey } from '@/hooks/words/use-put-word-cache-by-key.hook'
 const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
   switch (key) {
@@ -31,13 +31,8 @@ interface Props {
 }
 const WordCardEditingTextField: FC<Props> = ({ wordId, wordKey }) => {
   const originalWord = useRecoilValue(wordsFamily(wordId))
-  const [
-    value, 
-    setValue, 
-    isModified, 
-    handleApplyCache, 
-    handleResetCache
-  ] = usePutWordCacheByKey(wordId, wordKey)
+  const [value, setValue, isModified, handleApplyCache, handleResetCache] =
+    usePutWordCacheByKey(wordId, wordKey)
 
   if (!originalWord) return null
 

@@ -8,14 +8,13 @@ import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
+// TODO: I think you can refactor this entire hook in a cleaner way.
 type UsePutWordCache = [
   () => Promise<void>, // handleApplyCache
   () => Promise<void>, // handleResetCache
   () => Promise<boolean>, // isModified
 ]
-export const usePutWordCache = (
-  wordId: string | null,
-): UsePutWordCache => {
+export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
   const getObjectWithKey = useRecoilCallback(
     ({ snapshot }) =>
       async (
@@ -58,7 +57,7 @@ export const usePutWordCache = (
   const isModified = useCallback(async () => {
     const modified = await getObject()
     return !isEmptyObjectHandler(modified)
-  }, [getObjectWithKey, getObject])
+  }, [getObject])
 
   const handleResetCache = useCallback(async () => {
     await handleResetByKey(`term`)

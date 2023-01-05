@@ -3,8 +3,8 @@ import {
   WordDataModifiableValue,
 } from '@/api/words/words.interface'
 import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
-import {  useCallback, useMemo } from 'react'
-import {  useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
+import { useCallback, useMemo } from 'react'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { usePutWord } from './use-put-word.hook'
 
 type Value = WordDataModifiableValue | null
@@ -22,27 +22,39 @@ export const usePutWordCacheByKey = (
 ): UsePutWordCache => {
   const word = useRecoilValue(wordsFamily(wordId))
   const putWord = usePutWord(wordId)
-  const [modifiedData, setModifiedData] = useRecoilState(modifyingWordFamily(wordKey))
-  const handleResetCacheByKey = useResetRecoilState(modifyingWordFamily(wordKey))
+  const [modifiedData, setModifiedData] = useRecoilState(
+    modifyingWordFamily(wordKey),
+  )
+  const handleResetCacheByKey = useResetRecoilState(
+    modifyingWordFamily(wordKey),
+  )
 
   const value: Value = useMemo(() => {
     if (word === null) return null
     if (modifiedData === null) return word[wordKey]
     return modifiedData
-  }, [wordKey , word, modifiedData])
+  }, [wordKey, word, modifiedData])
 
   const isModified: boolean = useMemo(() => {
-    if (word === null ||
+    if (
+      word === null ||
       modifiedData === null ||
       modifiedData === word[wordKey]
-    ) return false
+    )
+      return false
     return true
-  }, [wordKey , word, modifiedData])
+  }, [wordKey, word, modifiedData])
 
   const handleApplyCache = useCallback(() => {
     putWord({ [wordKey]: modifiedData })
     handleResetCacheByKey()
-  }, [putWord, modifiedData, putWord, handleResetCacheByKey])
+  }, [wordKey, putWord, modifiedData, handleResetCacheByKey])
 
-  return [value, setModifiedData, isModified, handleApplyCache, handleResetCacheByKey]
+  return [
+    value,
+    setModifiedData,
+    isModified,
+    handleApplyCache,
+    handleResetCacheByKey,
+  ]
 }
