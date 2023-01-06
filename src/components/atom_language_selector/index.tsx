@@ -38,16 +38,13 @@ const LanguageSelector: FC<Props> = ({
   const word = useRecoilValue(wordsFamily(wordId))
   const putWord = usePutWord(wordId)
 
-  const [selectedId, setSelectedId] = useState<GlobalLanguageCode | undefined>(
-    word?.languageCode,
-  )
+  const [selectedId, setSelectedId] = useState(word?.languageCode)
 
   const handleChange = useCallback(
     (id: string) => {
-      const converted = id as GlobalLanguageCode
-      setSelectedId(converted)
-
-      putWord({ languageCode: converted })
+      const convertedLnCode = id as GlobalLanguageCode
+      setSelectedId(convertedLnCode)
+      putWord({ languageCode: convertedLnCode })
     },
     [putWord],
   )
