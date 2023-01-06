@@ -15,7 +15,7 @@ import { usePutWordCacheByKey } from '@/hooks/words/use-put-word-cache-by-key.ho
 
 const PRIVATE_DEFAULT_TEXT_FIELD_VARIANT: GlobalMuiTextFieldVariant = `standard`
 
-const privatelyGetPlaceholder = (key: WordDataModifiableKey) => {
+const privateGetPlaceholder = (key: WordDataModifiableKey) => {
   switch (key) {
     case `term`:
       return `Word`
@@ -42,7 +42,7 @@ const WordCardEditingTextField: FC<Props> = ({ wordId, wordKey }) => {
       <StyledTextField
         value={value}
         onChange={setValue}
-        label={privatelyGetPlaceholder(wordKey)}
+        label={privateGetPlaceholder(wordKey)}
         designs={{
           variant: PRIVATE_DEFAULT_TEXT_FIELD_VARIANT,
         }}
