@@ -1,6 +1,6 @@
 // TODO: Write a test.
 
-export const stringSlicerHandler = (
+export const stringSliceHandler = (
   given: string,
   splitWith: string | string[],
   escaper: string,
