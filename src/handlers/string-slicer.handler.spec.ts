@@ -4,6 +4,9 @@ import { stringSlicerHandler } from './string-slicer.handler'
 // TODO: 1. The Coverage Test for the TypeScript
 // TODO: 1. If can't be found, you may follow the exact same format as the Go supported auto generation tool (format)
 
+const PRIVATE_FINAL_ESCAPE_CHAR = `$`
+const PRIVATE_FINAL_SLICE_WITH = ':'
+
 describe(`stringSlicerHandler`, () => {
   it(`should expose a function`, () => {
     expect(stringSlicerHandler).toBeDefined()
@@ -11,63 +14,28 @@ describe(`stringSlicerHandler`, () => {
 
   interface Test {
     sampleString: string
-    wantLeftOver: string
-    wantParsed: string
+    wantSlicedFront: string
+    wantSlicedRear: string
   }
 
   const tests: Test[] = [
     {
-      sampleString: ``,
-      wantLeftOver: ``,
-      wantParsed: ``,
-    },
-    {
-      sampleString: `:`,
-      wantLeftOver: ``,
-      wantParsed: ``,
-    },
-    {
-      sampleString: `:h`,
-      wantLeftOver: ``,
-      wantParsed: `h`,
-    },
-    {
-      sampleString: `$:h`,
-      wantLeftOver: `:h`,
-      wantParsed: ``,
-    },
-    {
-      sampleString: `$]h`,
-      wantLeftOver: `]h`,
-      wantParsed: ``,
-    },
-    {
-      sampleString: `hello`,
-      wantLeftOver: `hello`,
-      wantParsed: ``,
-    },
-    {
-      sampleString: `hello]world`,
-      wantLeftOver: `hello`,
-      wantParsed: `world`,
-    },
-    {
-      sampleString: `hi:hello$]world`,
-      wantLeftOver: `hi`,
-      wantParsed: `hello]world`,
-    },
-    {
-      sampleString: `hello:world=is the simplest code for beginners`,
-      wantLeftOver: `hello`,
-      wantParsed: `world=is the simplest code for beginners`,
-    },
+      sampleString: "",
+      wantSlicedFront: "",
+      wantSlicedRear: ""
+    }
+    // TODO: Add more test lines here...
   ]
 
   it(`stringSlicerHandler should return the expected output`, () => {
-    tests.forEach((test, i) => {
-      // const [leftOver, parsed]: ParseUserInputIntoWordMicroResult = stringSlicerHandler(test.sampleString)
-      // expect(leftOver).toBe(test.wantLeftOver)
-      // expect(parsed).toBe(test.wantParsed)
+    tests.forEach((test) => {
+      const [slicedFront, slicedRear] = stringSlicerHandler(
+        test.sampleString,
+        PRIVATE_FINAL_SLICE_WITH,
+        PRIVATE_FINAL_ESCAPE_CHAR,
+      )
+      expect(slicedFront).toBe(test.wantSlicedFront)
+      expect(slicedRear).toBe(test.wantSlicedRear)
     })
   })
 })
