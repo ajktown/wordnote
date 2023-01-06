@@ -12,63 +12,57 @@ describe(`parseInputIntoWordLambda`, () => {
 
   interface Test {
     sampleString: string
-    wantLeftOver: string
-    wantParsed: string
+    wantTerm?: string // if undefined, it is considered blank string or ""
+    wantPronunciation?: string // if undefined, it is considered blank string or ""
+    wantDefinition?: string // if undefined, it is considered blank string or ""
+    wantExample?: string // if undefined, it is considered blank string or ""
   }
 
-  const tests: Test[] = [
+  const termsOnlyTests: Test[] = [
     {
       sampleString: ``,
-      wantLeftOver: ``,
-      wantParsed: ``,
-    },
-    {
-      sampleString: `:`,
-      wantLeftOver: ``,
-      wantParsed: ``,
-    },
-    {
-      sampleString: `:h`,
-      wantLeftOver: ``,
-      wantParsed: `h`,
-    },
-    {
-      sampleString: `$:h`,
-      wantLeftOver: `:h`,
-      wantParsed: ``,
-    },
-    {
-      sampleString: `$]h`,
-      wantLeftOver: `]h`,
-      wantParsed: ``,
     },
     {
       sampleString: `hello`,
-      wantLeftOver: `hello`,
-      wantParsed: ``,
+      wantTerm: `hello`,
     },
-    {
-      sampleString: `hello]world`,
-      wantLeftOver: `hello`,
-      wantParsed: `world`,
-    },
-    {
-      sampleString: `hi:hello$]world`,
-      wantLeftOver: `hi`,
-      wantParsed: `hello]world`,
-    },
-    {
-      sampleString: `hello:world=is the simplest code for beginners`,
-      wantLeftOver: `hello`,
-      wantParsed: `world=is the simplest code for beginners`,
-    },
+    // TODO: Implement more test here.
+  ]
+
+  const termsPronunciationTests: Test[] = []
+
+  const termsPronunciationDefinitionsTests: Test[] = []
+
+  const termsPronunciationDefinitionsExamplesTests: Test[] = []
+
+  const pronunciationOnlyTests: Test[] = []
+
+  const pronunciationDefinitionsTests: Test[] = []
+
+  const pronunciationTestsDefinitionsExamples: Test[] = []
+
+  const tests: Test[] = [
+    ...termsOnlyTests,
+    ...termsPronunciationTests,
+    ...termsPronunciationDefinitionsTests,
+    ...termsPronunciationDefinitionsExamplesTests,
+    ...pronunciationOnlyTests,
+    ...pronunciationDefinitionsTests,
+    ...pronunciationTestsDefinitionsExamples,
+    // TODO: Add more testing type
   ]
 
   it(`parseInputIntoWordLambda should return the expected output`, () => {
-    tests.forEach((test, i) => {
-      // const [leftOver, parsed]: ParseUserInputIntoWordMicroResult = parseFromGivenInputForDefinitionLambda(test.sampleString)
-      // expect(leftOver).toBe(test.wantLeftOver)
-      // expect(parsed).toBe(test.wantParsed)
+    tests.forEach((test) => {
+      const parsedWordData = parseInputIntoWordLambda(test.sampleString)
+      expect(parsedWordData.term === (test.wantTerm || ``)).toBe(true)
+      expect(
+        parsedWordData.pronunciation === (test.wantPronunciation || ``),
+      ).toBe(true)
+      expect(parsedWordData.definition === (test.wantDefinition || ``)).toBe(
+        true,
+      )
+      expect(parsedWordData.example === (test.wantExample || ``)).toBe(true)
     })
   })
 })
