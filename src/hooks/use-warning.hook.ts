@@ -7,9 +7,11 @@ type UseWarning = [
   () => any, // handleClickCloseWarning
   () => any, // handleClickConfirm
 ]
+
 export const useWarning = (
   onClickConfirm: () => any,
   isWarningDisabled: () => Promise<boolean>,
+  // TODO: isWarningDisabled should be boolean, not the function that returns boolean. isReversed should be removed too.
   options?: {
     isReversed: boolean // Default: PRIVATE_DEFAULT_IS_REVERSED
   },
