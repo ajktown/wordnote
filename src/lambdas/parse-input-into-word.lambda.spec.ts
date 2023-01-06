@@ -31,24 +31,24 @@ describe(`parseInputIntoWordLambda`, () => {
 
   const termsPronunciationTests: Test[] = []
 
-  const termsPronunciationDefinitionsTests: Test[] = []
+  const termsPronunciationDefinitionTests: Test[] = []
 
-  const termsPronunciationDefinitionsExamplesTests: Test[] = []
+  const termsPronunciationDefinitionsExampleTests: Test[] = []
 
   const pronunciationOnlyTests: Test[] = []
 
-  const pronunciationDefinitionsTests: Test[] = []
+  const pronunciationDefinitionTests: Test[] = []
 
-  const pronunciationTestsDefinitionsExamples: Test[] = []
+  const pronunciationDefinitionExampleTests: Test[] = []
 
   const tests: Test[] = [
     ...termsOnlyTests,
     ...termsPronunciationTests,
-    ...termsPronunciationDefinitionsTests,
-    ...termsPronunciationDefinitionsExamplesTests,
+    ...termsPronunciationDefinitionTests,
+    ...termsPronunciationDefinitionsExampleTests,
     ...pronunciationOnlyTests,
-    ...pronunciationDefinitionsTests,
-    ...pronunciationTestsDefinitionsExamples,
+    ...pronunciationDefinitionTests,
+    ...pronunciationDefinitionExampleTests,
     // TODO: Add more testing type
   ]
 
