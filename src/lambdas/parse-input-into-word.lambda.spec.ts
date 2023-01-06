@@ -96,7 +96,7 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const termsPronunciationDefinitionsExampleTests: Test[] = []
+  const termsPronunciationDefinitionExampleTests: Test[] = []
 
   const pronunciationOnlyTests: Test[] = [
     {
@@ -126,7 +126,7 @@ describe(`parseInputIntoWordLambda`, () => {
     ...termsOnlyTests,
     ...termsPronunciationTests,
     ...termsPronunciationDefinitionTests,
-    ...termsPronunciationDefinitionsExampleTests,
+    ...termsPronunciationDefinitionExampleTests,
     ...pronunciationOnlyTests,
     ...pronunciationDefinitionTests,
     ...pronunciationDefinitionExampleTests,
