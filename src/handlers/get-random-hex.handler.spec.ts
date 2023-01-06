@@ -11,7 +11,7 @@ describe(`getRandomHexHandler`, () => {
 
   const DEFAULT_HEX_LENGTH = 6
   interface Test {
-    hexLength?: number
+    hexLength: undefined | number
     wantLength: number
   }
 
