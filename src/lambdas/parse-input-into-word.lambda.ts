@@ -27,10 +27,10 @@ export const parseInputIntoWordLambda = (given: string): WordData => {
 
   return {
     id: given + getRandomHexHandler(),
-    term,
-    pronunciation,
-    definition,
-    example,
+    term: term.trim(),
+    pronunciation: pronunciation.trim(),
+    definition: definition.trim(),
+    example: example.trim(),
     isFavorite: false,
   }
 }
