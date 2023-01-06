@@ -26,16 +26,97 @@ describe(`parseInputIntoWordLambda`, () => {
       sampleString: `hello`,
       wantTerm: `hello`,
     },
-    // TODO: Implement more test here.
+    {
+      sampleString: `hello:`,
+      wantTerm: `hello`,
+    },
+    {
+      sampleString: `hello=`,
+      wantTerm: `hello`,
+    },
+    {
+      sampleString: `hello]`,
+      wantTerm: `hello`,
+    },
+    {
+      sampleString: `hello[`,
+      wantTerm: `hello`,
+    },
+    {
+      sampleString: `hello  [`,
+      wantTerm: `hello`,
+    },
+    {
+      sampleString: `hello[ `,
+      wantTerm: `hello`,
+    },
   ]
 
-  const termsPronunciationTests: Test[] = []
+  const termsPronunciationTests: Test[] = [
+    {
+      sampleString: `world  ]`,
+      wantTerm: `world`,
+      wantPronunciation: ``,
+    },
+    {
+      sampleString: `[world  `,
+      wantTerm: ``,
+      wantPronunciation: `world`,
+    },
+    {
+      sampleString: `hello[world`,
+      wantTerm: `hello`,
+      wantPronunciation: `world`,
+    },
+    {
+      sampleString: `hello[world]`,
+      wantTerm: `hello`,
+      wantPronunciation: `world`,
+    },
+    {
+      sampleString: `hello[  world]`,
+      wantTerm: `hello`,
+      wantPronunciation: `world`,
+    },
+    {
+      sampleString: `hello[world  ]`,
+      wantTerm: `hello`,
+      wantPronunciation: `world`,
+    },
+  ]
 
-  const termsPronunciationDefinitionTests: Test[] = []
+  const termsPronunciationDefinitionTests: Test[] = [
+    {
+      sampleString: `]`,
+      wantDefinition: ``,
+    },
+    {
+      sampleString: `]world`,
+      wantDefinition: `world`,
+    },
+  ]
 
   const termsPronunciationDefinitionsExampleTests: Test[] = []
 
-  const pronunciationOnlyTests: Test[] = []
+  const pronunciationOnlyTests: Test[] = [
+    {
+      sampleString: `[]`,
+      wantPronunciation: ``,
+    },
+    {
+      sampleString: `world  ]`,
+      wantTerm: `world`,
+      wantPronunciation: ``,
+    },
+    {
+      sampleString: `[world]`,
+      wantPronunciation: `world`,
+    },
+    {
+      sampleString: `[world  ]`,
+      wantPronunciation: `world`,
+    },
+  ]
 
   const pronunciationDefinitionTests: Test[] = []
 
