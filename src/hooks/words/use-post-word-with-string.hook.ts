@@ -1,5 +1,5 @@
 import { WordData } from '@/api/words/words.interface'
-import { parseFromGivenInputLambda } from '@/lambdas/parse-user-input-into-word.lambda'
+import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda'
 import { useCallback, useState, Dispatch, SetStateAction } from 'react'
 import { usePostWord } from './use-post-word.hook'
 
@@ -20,7 +20,7 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
     if (!userInput) return setWritingMode(false)
 
     try {
-      const newWord: WordData = parseFromGivenInputLambda(userInput)
+      const newWord: WordData = parseInputIntoWordLambda(userInput)
       handlePostWord(newWord)
     } catch {}
 

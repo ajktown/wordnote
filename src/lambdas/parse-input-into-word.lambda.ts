@@ -8,7 +8,7 @@ const PRIVATE_FINAL_DEFINITION_CHARS = [`:`, `]`]
 const PRIVATE_FINAL_PRONUNCIATION_CHAR = `[`
 
 // TODO: Make a test
-export const parseFromGivenInputLambda = (given: string): WordData => {
+export const parseInputIntoWordLambda = (given: string): WordData => {
   const [leftOverAfterExample, example] = stringSlicerHandler(
     given,
     PRIVATE_FINAL_EXAMPLE_CHAR,

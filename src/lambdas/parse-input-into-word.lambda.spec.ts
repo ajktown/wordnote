@@ -1,13 +1,13 @@
-import { parseFromGivenInputLambda } from './parse-user-input-into-word.lambda'
+import { parseInputIntoWordLambda } from './parse-input-into-word.lambda'
 // TODO: Implement the following
 // TODO: 1. the Auto generation tool for TypeScript
 // TODO: 1. The Coverage Test for the TypeScript
 // TODO: 1. If can't be found, you may follow the exact same format as the Go supported auto generation tool (format)
 
 // TODO: Implement this test. it has not been tested yet.
-describe(`parseFromGivenInputLambda`, () => {
+describe(`parseInputIntoWordLambda`, () => {
   it(`should expose a function`, () => {
-    expect(parseFromGivenInputLambda).toBeDefined()
+    expect(parseInputIntoWordLambda).toBeDefined()
   })
 
   interface Test {
@@ -64,7 +64,7 @@ describe(`parseFromGivenInputLambda`, () => {
     },
   ]
 
-  it(`parseFromGivenInputLambda should return the expected output`, () => {
+  it(`parseInputIntoWordLambda should return the expected output`, () => {
     tests.forEach((test, i) => {
       // const [leftOver, parsed]: ParseUserInputIntoWordMicroResult = parseFromGivenInputForDefinitionLambda(test.sampleString)
       // expect(leftOver).toBe(test.wantLeftOver)
