@@ -5,7 +5,7 @@ import { getRandomHexHandler } from './get-random-hex.handler'
 // TODO: 1. If can't be found, you may follow the exact same format as the Go supported auto generation tool (format)
 
 describe(`getRandomHexHandler`, () => {
-  it(`should expose a function`, () => {
+  it(`should be exposed as a function`, () => {
     expect(getRandomHexHandler).toBeDefined()
   })
 

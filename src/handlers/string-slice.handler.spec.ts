@@ -8,7 +8,7 @@ const PRIVATE_FINAL_ESCAPE_CHAR = `$`
 const PRIVATE_FINAL_SLICE_WITH = `:`
 
 describe(`stringSliceHandler`, () => {
-  it(`should expose a function`, () => {
+  it(`should be exposed as a function`, () => {
     expect(stringSliceHandler).toBeDefined()
   })
 
