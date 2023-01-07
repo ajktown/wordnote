@@ -1,72 +1,30 @@
-import { FC, useCallback, ChangeEvent } from 'react'
-import { styled, alpha } from '@mui/material/styles'
-import InputBase from '@mui/material/InputBase'
+import { FC } from 'react'
+import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { searchInputState } from '@/recoil/searchInput.state'
-
-const Search = styled(`div`)(({ theme }) => ({
-  position: `relative`,
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: `100%`,
-  [theme.breakpoints.up(`sm`)]: {
-    marginLeft: theme.spacing(3),
-    width: `auto`,
-  },
-}))
-
-const SearchIconWrapper = styled(`div`)(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: `100%`,
-  position: `absolute`,
-  pointerEvents: `none`,
-  display: `flex`,
-  alignItems: `center`,
-  justifyContent: `center`,
-}))
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: `inherit`,
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create(`width`),
-    width: `100%`,
-    [theme.breakpoints.up(`md`)]: {
-      width: `20ch`,
-    },
-  },
-}))
+import StyledTextField from '@/atoms/StyledTextField'
+import XButton from '../atom_x_button'
 
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
-
-  const handleChangeInput = useCallback(
-    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setSearchInput(e.target.value)
-    },
-    [setSearchInput],
-  )
+  const resetSearchInput = useResetRecoilState(searchInputState)
 
   return (
-    <Search>
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
-      <StyledInputBase
-        placeholder="Search…"
-        inputProps={{ 'aria-label': `search` }}
+    <Box width={250}>
+      <StyledTextField
         value={searchInput}
-        onChange={handleChangeInput}
+        onChange={setSearchInput}
+        label={`Search...`}
+        usePlaceholder
+        buttons={{
+          left: <SearchIcon />,
+          right: searchInput && (
+            <XButton onClick={resetSearchInput} hoverMessage={`Reset`} />
+          ),
+        }}
       />
-    </Search>
+    </Box>
   )
 }
 

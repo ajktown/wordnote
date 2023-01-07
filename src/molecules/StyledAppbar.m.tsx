@@ -14,15 +14,15 @@ interface Props {
   children?: JSX.Element | JSX.Element[]
   onClickAppMenu?: () => any // if not given, the menu button will be disabled
 }
-const StyledAppbarMolecule: FC<Props> = (props) => {
+const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar variant="dense">
           <StyledIconButtonAtom
-            onClick={() => console.log(`TODO`)}
+            onClick={onClickAppMenu}
             jsxElementButton={<AppsIcon />}
-            isDisabled={!props.onClickAppMenu}
+            isDisabled={!onClickAppMenu}
           />
           <Box width={10} />
           {props.titleLogoPath && (
@@ -42,6 +42,7 @@ const StyledAppbarMolecule: FC<Props> = (props) => {
           >
             {props.title}
           </Typography>
+          <Box pr={2} />
           <AppbarSearchBar />
         </Toolbar>
       </AppBar>
