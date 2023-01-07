@@ -6,7 +6,7 @@ import { parseInputIntoWordLambda } from './parse-input-into-word.lambda'
 
 // TODO: Implement this test. it has not been tested yet.
 describe(`parseInputIntoWordLambda`, () => {
-  it(`should expose a function`, () => {
+  it(`should be exposed as a function`, () => {
     expect(parseInputIntoWordLambda).toBeDefined()
   })
 
@@ -96,7 +96,15 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const termsPronunciationDefinitionExampleTests: Test[] = []
+  const termsPronunciationDefinitionExampleTests: Test[] = [
+    {
+      sampleString: `hello[hallo] world = the first sentence hello world`,
+      wantTerm: `hello`,
+      wantPronunciation: `hallo`,
+      wantDefinition: `world`,
+      wantExample: `the first sentence hello world`,
+    },
+  ]
 
   const pronunciationOnlyTests: Test[] = [
     {
@@ -118,7 +126,18 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const pronunciationDefinitionTests: Test[] = []
+  const pronunciationDefinitionTests: Test[] = [
+    {
+      sampleString: `[hallo  ]world`,
+      wantPronunciation: `hallo`,
+      wantDefinition: `world`,
+    },
+    {
+      sampleString: `[hallo  world`,
+      wantPronunciation: `hallo  world`,
+      wantDefinition: ``,
+    },
+  ]
 
   const pronunciationDefinitionExampleTests: Test[] = []
 
@@ -133,9 +152,9 @@ describe(`parseInputIntoWordLambda`, () => {
     // TODO: Add more testing type
   ]
 
-  it(`parseInputIntoWordLambda should return the expected output`, () => {
-    tests.forEach((test) => {
-      const parsedWordData = parseInputIntoWordLambda(test.sampleString)
+  tests.forEach((test) => {
+    const parsedWordData = parseInputIntoWordLambda(test.sampleString)
+    it(`should return expected output from "${test.sampleString}"`, () => {
       expect(parsedWordData.term === (test.wantTerm || ``)).toBe(true)
       expect(
         parsedWordData.pronunciation === (test.wantPronunciation || ``),
