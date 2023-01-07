@@ -24,7 +24,41 @@ describe(`stringSliceHandler`, () => {
       wantSlicedFront: ``,
       wantSlicedRear: ``,
     },
-    // TODO: Add more test lines here...
+    {
+      sampleString: `:`,
+      wantSlicedFront: ``,
+      wantSlicedRear: ``,
+    },
+    {
+      sampleString: `$:`,
+      wantSlicedFront: `:`,
+      wantSlicedRear: ``,
+    },
+    {
+      sampleString: `hello:`,
+      wantSlicedFront: `hello`,
+      wantSlicedRear: ``,
+    },
+    {
+      sampleString: `hello:world`,
+      wantSlicedFront: `hello`,
+      wantSlicedRear: `world`,
+    },
+    {
+      sampleString: `hello$:world`,
+      wantSlicedFront: `hello:world`,
+      wantSlicedRear: ``,
+    },
+    {
+      sampleString: `new:hello$:world`,
+      wantSlicedFront: `new`,
+      wantSlicedRear: `hello:world`,
+    },
+    {
+      sampleString: `new:hello$$:world`,
+      wantSlicedFront: `new`,
+      wantSlicedRear: `hello:world$`,
+    },
   ]
 
   it(`stringSliceHandler should return the expected output`, () => {

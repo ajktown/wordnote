@@ -20,7 +20,8 @@ export const stringSliceHandler = (
     }
 
     // ! Escaped
-    given = given.slice(0, --index) + given.slice(index)
+    given = given.slice(0, index - 1) + given.slice(index)
+    index-- // TODO: Fix this sonar lint problem
   }
 
   return [given, ``]
