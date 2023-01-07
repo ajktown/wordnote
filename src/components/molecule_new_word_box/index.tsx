@@ -15,7 +15,7 @@ const NewWordBox: FC = () => {
     userInput,
     setUserInput,
     isWritingMode,
-    setWritingMode,
+    handleClickOpenWritingMode,
     handleClickAddWord,
   ] = usePostWordWithStringHook()
 
@@ -32,7 +32,8 @@ const NewWordBox: FC = () => {
           <StyledTextField
             value={userInput}
             onChange={setUserInput}
-            placeholder={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
+            label={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
+            usePlaceholder
             isAutoFocused
           />
         </CardContent>
@@ -47,7 +48,7 @@ const NewWordBox: FC = () => {
   return (
     <Card
       style={{ width: `100%`, borderRadius: 9, cursor: `text` }}
-      onClick={() => setWritingMode(true)}
+      onClick={handleClickOpenWritingMode}
     >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>

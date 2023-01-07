@@ -19,8 +19,8 @@ export const useOutsideClicked = (
   useEffect(() => {
     if (!handleClick) return
 
-   
-    const handleClickOutside = (event: any) => {  // TODO: You may put the event type here.
+    const handleClickOutside = (event: any) => {
+      // TODO: You may put the event type here.
       // Runs the onClickAdd(), if fits.
       if (reference.current && !reference.current.contains(event.target)) {
         handleClick()

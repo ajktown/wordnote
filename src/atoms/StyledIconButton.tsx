@@ -15,19 +15,20 @@ interface Props {
     placement?: GlobalMuiPlacement
   }
   size?: GlobalMuiSize
-  disableOnHoverColor?: boolean
+  disableOnHoverColor?: boolean // disabled icons won't show the hover color regardless of the given disableOnHoverColor
 }
 const StyledIconButtonAtom: FC<Props> = ({
   onClick,
   disableOnHoverColor,
+  isDisabled,
   ...props
 }) => {
   const [isOnHover, handleMouseEnter, handleMouseLeave] = useOnHover()
 
-  const buttonColor = useMemo(
-    () => (!disableOnHoverColor && isOnHover ? `#a200aa` : undefined),
-    [disableOnHoverColor, isOnHover],
-  )
+  const buttonColor: undefined | string = useMemo(() => {
+    if (isDisabled) return undefined
+    return !disableOnHoverColor && isOnHover ? `#a200aa` : undefined
+  }, [isDisabled, disableOnHoverColor, isOnHover])
 
   const handleClick = useCallback(
     (e: MouseEvent<HTMLElement>) => {
@@ -48,7 +49,7 @@ const StyledIconButtonAtom: FC<Props> = ({
           size={props.size || PRIVATE_FINAL_DEFAULT_SIZE}
           aria-label="close"
           onClick={handleClick}
-          disabled={props.isDisabled}
+          disabled={isDisabled}
           disableTouchRipple
           style={{ color: buttonColor }}
         >
