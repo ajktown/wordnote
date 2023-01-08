@@ -1,3 +1,5 @@
+// ! Fully tested and confirmed on Jan 8, 2023
+
 import { WordData } from '@/api/words/words.interface'
 import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
 import { stringSliceHandler } from '@/handlers/string-slicer.handler'

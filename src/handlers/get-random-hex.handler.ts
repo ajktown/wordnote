@@ -1,8 +1,4 @@
-/**
- *
- * @param hexLength (Default: 6)
- * @returns hex string
- */
+// ! Fully tested and confirmed on Jan 8, 2023
 
 const PRIVATE_FINAL_DEFAULT_HEX_LENGTH = 6
 

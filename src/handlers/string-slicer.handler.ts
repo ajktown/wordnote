@@ -1,4 +1,4 @@
-// TODO: Write a test.
+// ! Fully tested and confirmed on Jan 8, 2023
 
 export const stringSliceHandler = (
   given: string,

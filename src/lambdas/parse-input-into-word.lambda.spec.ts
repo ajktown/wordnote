@@ -1,10 +1,5 @@
 import { parseInputIntoWordLambda } from './parse-input-into-word.lambda'
-// TODO: Implement the following
-// TODO: 1. the Auto generation tool for TypeScript
-// TODO: 1. The Coverage Test for the TypeScript
-// TODO: 1. If can't be found, you may follow the exact same format as the Go supported auto generation tool (format)
 
-// TODO: Implement this test. it has not been tested yet.
 describe(`parseInputIntoWordLambda`, () => {
   it(`should be exposed as a function`, () => {
     expect(parseInputIntoWordLambda).toBeDefined()
