@@ -10,6 +10,7 @@ describe(`parseInputIntoWordLambda`, () => {
     expect(parseInputIntoWordLambda).toBeDefined()
   })
 
+  // TODO: Deprecated, use the test interface below and delete it.
   interface DeprecatedTest {
     sampleString: string
     wantTerm?: string // if undefined, it is considered blank string or ""
@@ -20,16 +21,10 @@ describe(`parseInputIntoWordLambda`, () => {
 
   interface Test {
     sampleString: string
-
-    // ! Below variables explanation begins
-    // if undefined, expecting empty string or ""
-    // if true, it expects PRIVATE_FINAL_WANT_TERM (PRONUNCIATION, DEFINITION, EXAMPLE)
-    // if false, expecting empty string or ""
-    wantTerm?: boolean
-    wantPronunciation?: boolean
-    wantDefinition?: boolean
-    wantExample?: boolean
-    // ! Above variables explanation ends
+    wantTerm?: boolean // if true, it expects PRIVATE_FINAL_WANT_TERM, else, empty string or ""
+    wantPronunciation?: boolean // if true, it expects PRIVATE_FINAL_WANT_PRONUNCIATION, else, empty string or ""
+    wantDefinition?: boolean // if true, it expects PRIVATE_FINAL_WANT_DEFINITION, else, empty string or ""
+    wantExample?: boolean // if true, it expects PRIVATE_FINAL_WANT_EXAMPLE, else, empty string or ""
   }
 
   const termsOnlyTests: DeprecatedTest[] = [
