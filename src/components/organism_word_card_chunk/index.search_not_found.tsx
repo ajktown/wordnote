@@ -1,12 +1,19 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda'
 import { searchInputState } from '@/recoil/searchInput.state'
 import { Typography, Stack } from '@mui/material'
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
+import { usePostWord } from '@/hooks/words/use-post-word.hook'
 
 const WordCardChunkSearchNotFound: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
   const resetSearchInput = useResetRecoilState(searchInputState)
+  const postWord = usePostWord()
+
+  const handleClickPostWord = useCallback(() => {
+    postWord(parseInputIntoWordLambda(searchInput))
+  }, [searchInput, postWord])
 
   return (
     <Stack>
@@ -18,6 +25,10 @@ const WordCardChunkSearchNotFound: FC = () => {
       <StyledTextButtonAtom
         title="Clear Search Input"
         onClick={resetSearchInput}
+      />
+      <StyledTextButtonAtom
+        title={`Or create a new word with "${searchInput}"`}
+        onClick={handleClickPostWord}
       />
     </Stack>
   )
