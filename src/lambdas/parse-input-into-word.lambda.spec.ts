@@ -1,10 +1,9 @@
 import { parseInputIntoWordLambda } from './parse-input-into-word.lambda'
 
-const PRIVATE_FINAL_WANT_ESCAPER_SIGN_INDEX = 2
-const PRIVATE_FINAL_WANT_TERM = "hello"
-const PRIVATE_FINAL_WANT_PRONUNCIATION = "hallo"
-const PRIVATE_FINAL_WANT_DEFINITION = "hello"
-const PRIVATE_FINAL_WANT_EXAMPLE = "is the first code for beginner"
+const PRIVATE_FINAL_WANT_TERM = "he:lo"
+const PRIVATE_FINAL_WANT_PRONUNCIATION = "ha[l$]o"
+const PRIVATE_FINAL_WANT_DEFINITION = "wor]d"
+const PRIVATE_FINAL_WANT_EXAMPLE = "is the first =code= for beginner"
 
 describe(`parseInputIntoWordLambda`, () => {
   it(`should be exposed as a function`, () => {
@@ -25,7 +24,7 @@ describe(`parseInputIntoWordLambda`, () => {
     // ! Below variables explanation begins
     // if undefined, expecting empty string or ""
     // if true, it expects PRIVATE_FINAL_WANT_TERM (PRONUNCIATION, DEFINITION, EXAMPLE)
-    // if false, expects dollar sign on index "PRIVATE_FINAL_WANT_ESCAPER_SIGN_INDEX"
+    // if false, expecting empty string or ""
     wantTerm?: boolean
     wantPronunciation?: boolean
     wantDefinition?: boolean
@@ -163,14 +162,31 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  // TODO: Implement
-  const definitionTests: Test[] = []
+  const definitionTests: Test[] = [
+    {
+      sampleString: `]wor$]d = `,
+      wantDefinition: true,
+    },
+    {
+      sampleString: `:wor$]d =`,
+      wantDefinition: true,
+    },
+  ]
 
-  // TODO: Implement
-  const definitionExampleTests: Test[] = []
+  const definitionExampleTests: Test[] = [
+    {
+      sampleString: `]wor$]d = is the first $=code$= for beginner`,
+      wantDefinition: true,
+      wantExample: true,
+    },
+  ]
 
-  // TODO: Implement
-  const exampleTests: Test[] = []
+  const exampleTests: Test[] = [
+    {
+      sampleString: ` = is the first $=code$= for beginner `,
+      wantExample: true,
+    },
+  ]
 
 
   const deprecatedTests: DeprecatedTest[] = [
@@ -203,8 +219,24 @@ describe(`parseInputIntoWordLambda`, () => {
     })
   })
 
+  const returnWant = (given: undefined | boolean, standard: string): string => {
+    if (given === true) return standard
+    return ""
+  }
+
   tests.forEach((test) => {
-    const expectParsedWordData = parseInputIntoWordLambda(test.sampleString)
-    // TODO: Implement
+    const parsed = parseInputIntoWordLambda(test.sampleString)
+
+    const wantTerm = returnWant(test.wantTerm, PRIVATE_FINAL_WANT_TERM)
+    const wantPronunciation = returnWant(test.wantPronunciation, PRIVATE_FINAL_WANT_PRONUNCIATION)
+    const wantDefinition = returnWant(test.wantDefinition, PRIVATE_FINAL_WANT_DEFINITION)
+    const wantExample = returnWant(test.wantExample, PRIVATE_FINAL_WANT_EXAMPLE)
+
+    it(`should return expected output from "${test.sampleString}"`, () => {
+      expect(parsed.term === wantTerm).toBe(true)
+      expect(parsed.pronunciation === wantPronunciation).toBe(true)
+      expect(parsed.definition === wantDefinition).toBe(true)
+      expect(parsed.example === wantExample).toBe(true)
+    })
   })
 })
