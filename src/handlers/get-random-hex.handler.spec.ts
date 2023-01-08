@@ -11,36 +11,36 @@ describe(`getRandomHexHandler`, () => {
 
   const DEFAULT_HEX_LENGTH = 6
   interface Test {
-    hexLength: undefined | number
+    sampleHexLength: undefined | number
     wantLength: number
   }
 
   const tests: Test[] = [
     {
-      hexLength: undefined,
+      sampleHexLength: undefined,
       wantLength: DEFAULT_HEX_LENGTH,
     },
     {
-      hexLength: 1,
+      sampleHexLength: 1,
       wantLength: 1,
     },
     {
-      hexLength: 2,
+      sampleHexLength: 2,
       wantLength: 2,
     },
     {
-      hexLength: 6,
+      sampleHexLength: 6,
       wantLength: 6,
     },
     {
-      hexLength: 10,
+      sampleHexLength: 10,
       wantLength: 10,
     },
   ]
 
-  it(`getRandomHexHandler should return the expected output with correct length`, () => {
-    tests.forEach((test) => {
-      expect(getRandomHexHandler(test.hexLength).length).toBe(test.wantLength)
+  tests.forEach((test) => {
+    it(`getRandomHexHandler should return the expected output with correct length from "${test.sampleHexLength}"`, () => {
+      expect(getRandomHexHandler(test.sampleHexLength).length).toBe(test.wantLength)
     })
   })
 })

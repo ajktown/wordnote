@@ -4,8 +4,6 @@
  * @returns hex string
  */
 
-// TODO: Write a test for this handler
-
 const PRIVATE_FINAL_DEFAULT_HEX_LENGTH = 6
 
 export const getRandomHexHandler = (hexLength?: number): string => {
