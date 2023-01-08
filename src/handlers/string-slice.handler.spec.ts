@@ -24,10 +24,19 @@ describe(`stringSliceHandler`, () => {
       sampleString: `:`,
       wantSlicedFront: ``,
       wantSlicedRear: ``,
+    },{
+      sampleString: `$`,
+      wantSlicedFront: `$`,
+      wantSlicedRear: ``,
     },
     {
       sampleString: `$:`,
       wantSlicedFront: `:`,
+      wantSlicedRear: ``,
+    },
+    {
+      sampleString: `hello`,
+      wantSlicedFront: `hello`,
       wantSlicedRear: ``,
     },
     {

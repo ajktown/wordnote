@@ -1,5 +1,8 @@
 // ! Fully tested and confirmed on Jan 8, 2023
 
+// Split a string with given splitWith matches. 
+// You can escape with given escaper.
+// If not sliced, the first variable of returning array will have the original string.
 export const stringSliceHandler = (
   given: string,
   splitWith: string | string[],
