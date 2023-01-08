@@ -1,5 +1,6 @@
 import { getRandomHexHandler } from './get-random-hex.handler'
 
+// TODO: Theory: This test sometimes fails, with the jest stores cache and Math.random() does not work properly.
 describe(`getRandomHexHandler`, () => {
   it(`should be exposed as a function`, () => {
     expect(getRandomHexHandler).toBeDefined()
