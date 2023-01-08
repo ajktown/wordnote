@@ -1,11 +1,17 @@
 import { parseInputIntoWordLambda } from './parse-input-into-word.lambda'
 
+const PRIVATE_FINAL_WANT_ESCAPER_SIGN_INDEX = 2
+const PRIVATE_FINAL_WANT_TERM = "hello"
+const PRIVATE_FINAL_WANT_PRONUNCIATION = "hallo"
+const PRIVATE_FINAL_WANT_DEFINITION = "hello"
+const PRIVATE_FINAL_WANT_EXAMPLE = "is the first code for beginner"
+
 describe(`parseInputIntoWordLambda`, () => {
   it(`should be exposed as a function`, () => {
     expect(parseInputIntoWordLambda).toBeDefined()
   })
 
-  interface Test {
+  interface DeprecatedTest {
     sampleString: string
     wantTerm?: string // if undefined, it is considered blank string or ""
     wantPronunciation?: string // if undefined, it is considered blank string or ""
@@ -13,7 +19,21 @@ describe(`parseInputIntoWordLambda`, () => {
     wantExample?: string // if undefined, it is considered blank string or ""
   }
 
-  const termsOnlyTests: Test[] = [
+  interface Test {
+    sampleString: string
+
+    // ! Below variables explanation begins
+    // if undefined, expecting empty string or ""
+    // if true, it expects PRIVATE_FINAL_WANT_TERM (PRONUNCIATION, DEFINITION, EXAMPLE)
+    // if false, expects dollar sign on index "PRIVATE_FINAL_WANT_ESCAPER_SIGN_INDEX"
+    wantTerm?: boolean
+    wantPronunciation?: boolean
+    wantDefinition?: boolean
+    wantExample?: boolean
+    // ! Above variables explanation ends
+  }
+
+  const termsOnlyTests: DeprecatedTest[] = [
     {
       sampleString: ``,
     },
@@ -47,7 +67,7 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const termsPronunciationTests: Test[] = [
+  const termsPronunciationTests: DeprecatedTest[] = [
     {
       sampleString: `world  ]`,
       wantTerm: `world`,
@@ -80,7 +100,7 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const termsPronunciationDefinitionTests: Test[] = [
+  const termsPronunciationDefinitionTests: DeprecatedTest[] = [
     {
       sampleString: `]`,
       wantDefinition: ``,
@@ -91,7 +111,7 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const termsPronunciationDefinitionExampleTests: Test[] = [
+  const termsPronunciationDefinitionExampleTests: DeprecatedTest[] = [
     {
       sampleString: `hello[hallo] world = is the first code for beginner`,
       wantTerm: `hello`,
@@ -101,7 +121,7 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const pronunciationOnlyTests: Test[] = [
+  const pronunciationOnlyTests: DeprecatedTest[] = [
     {
       sampleString: `[]`,
       wantPronunciation: ``,
@@ -121,7 +141,7 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const pronunciationDefinitionTests: Test[] = [
+  const pronunciationDefinitionTests: DeprecatedTest[] = [
     {
       sampleString: `[hallo  ]world`,
       wantPronunciation: `hallo`,
@@ -134,7 +154,7 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const pronunciationDefinitionExampleTests: Test[] = [
+  const pronunciationDefinitionExampleTests: DeprecatedTest[] = [
     {
       sampleString: `[hallo  ]world = is the first code for beginner `,
       wantPronunciation: `hallo`,
@@ -153,7 +173,7 @@ describe(`parseInputIntoWordLambda`, () => {
   const exampleTests: Test[] = []
 
 
-  const tests: Test[] = [
+  const deprecatedTests: DeprecatedTest[] = [
     ...termsOnlyTests,
     ...termsPronunciationTests,
     ...termsPronunciationDefinitionTests,
@@ -161,22 +181,30 @@ describe(`parseInputIntoWordLambda`, () => {
     ...pronunciationOnlyTests,
     ...pronunciationDefinitionTests,
     ...pronunciationDefinitionExampleTests,
+  ]
+
+  const tests: Test[] = [
     ...definitionTests,
     ...definitionExampleTests,
     ...exampleTests,
   ]
 
-  tests.forEach((test) => {
-    const expectParsedWordData = parseInputIntoWordLambda(test.sampleString)
-    it(`should return expected output from "${test.sampleString}"`, () => {
-      expect(expectParsedWordData.term === (test.wantTerm || ``)).toBe(true)
+  deprecatedTests.forEach((deprecatedTest) => {
+    const expectParsedWordData = parseInputIntoWordLambda(deprecatedTest.sampleString)
+    it(`should return expected output from "${deprecatedTest.sampleString}"`, () => {
+      expect(expectParsedWordData.term === (deprecatedTest.wantTerm || ``)).toBe(true)
       expect(
-        expectParsedWordData.pronunciation === (test.wantPronunciation || ``),
+        expectParsedWordData.pronunciation === (deprecatedTest.wantPronunciation || ``),
       ).toBe(true)
-      expect(expectParsedWordData.definition === (test.wantDefinition || ``)).toBe(
+      expect(expectParsedWordData.definition === (deprecatedTest.wantDefinition || ``)).toBe(
         true,
       )
-      expect(expectParsedWordData.example === (test.wantExample || ``)).toBe(true)
+      expect(expectParsedWordData.example === (deprecatedTest.wantExample || ``)).toBe(true)
     })
+  })
+
+  tests.forEach((test) => {
+    const expectParsedWordData = parseInputIntoWordLambda(test.sampleString)
+    // TODO: Implement
   })
 })
