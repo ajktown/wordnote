@@ -93,11 +93,11 @@ describe(`parseInputIntoWordLambda`, () => {
 
   const termsPronunciationDefinitionExampleTests: Test[] = [
     {
-      sampleString: `hello[hallo] world = the first sentence hello world`,
+      sampleString: `hello[hallo] world = is the first code for beginner`,
       wantTerm: `hello`,
       wantPronunciation: `hallo`,
       wantDefinition: `world`,
-      wantExample: `the first sentence hello world`,
+      wantExample: `is the first code for beginner`,
     },
   ]
 
@@ -134,7 +134,21 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  const pronunciationDefinitionExampleTests: Test[] = []
+  const pronunciationDefinitionExampleTests: Test[] = [
+    {
+      sampleString: `[hallo  ]world = is the first code for beginner `,
+      wantPronunciation: `hallo`,
+      wantDefinition: `world`,
+      wantExample: `is the first code for beginner`
+    },
+  ]
+
+  const definitionTests: Test[] = []
+
+  const definitionExampleTests: Test[] = []
+
+  const exampleTests: Test[] = []
+
 
   const tests: Test[] = [
     ...termsOnlyTests,
@@ -144,20 +158,22 @@ describe(`parseInputIntoWordLambda`, () => {
     ...pronunciationOnlyTests,
     ...pronunciationDefinitionTests,
     ...pronunciationDefinitionExampleTests,
-    // TODO: Add more testing type
+    ...definitionTests,
+    ...definitionExampleTests,
+    ...exampleTests,
   ]
 
   tests.forEach((test) => {
-    const parsedWordData = parseInputIntoWordLambda(test.sampleString)
+    const expectParsedWordData = parseInputIntoWordLambda(test.sampleString)
     it(`should return expected output from "${test.sampleString}"`, () => {
-      expect(parsedWordData.term === (test.wantTerm || ``)).toBe(true)
+      expect(expectParsedWordData.term === (test.wantTerm || ``)).toBe(true)
       expect(
-        parsedWordData.pronunciation === (test.wantPronunciation || ``),
+        expectParsedWordData.pronunciation === (test.wantPronunciation || ``),
       ).toBe(true)
-      expect(parsedWordData.definition === (test.wantDefinition || ``)).toBe(
+      expect(expectParsedWordData.definition === (test.wantDefinition || ``)).toBe(
         true,
       )
-      expect(parsedWordData.example === (test.wantExample || ``)).toBe(true)
+      expect(expectParsedWordData.example === (test.wantExample || ``)).toBe(true)
     })
   })
 })

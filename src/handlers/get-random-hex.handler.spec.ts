@@ -39,8 +39,9 @@ describe(`getRandomHexHandler`, () => {
   ]
 
   tests.forEach((test) => {
+    const expectLength = getRandomHexHandler(test.sampleHexLength).length
     it(`getRandomHexHandler should return the expected output with correct length from "${test.sampleHexLength}"`, () => {
-      expect(getRandomHexHandler(test.sampleHexLength).length).toBe(test.wantLength)
+      expect(expectLength).toBe(test.wantLength)
     })
   })
 })
