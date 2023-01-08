@@ -1,8 +1,4 @@
 import { getRandomHexHandler } from './get-random-hex.handler'
-// TODO: Implement the following
-// TODO: 1. the Auto generation tool for TypeScript
-// TODO: 1. The Coverage Test for the TypeScript
-// TODO: 1. If can't be found, you may follow the exact same format as the Go supported auto generation tool (format)
 
 describe(`getRandomHexHandler`, () => {
   it(`should be exposed as a function`, () => {
