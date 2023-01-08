@@ -54,10 +54,10 @@ describe(`stringSliceHandler`, () => {
       wantSlicedFront: `new`,
       wantSlicedRear: `hello:world`,
     },
-    { // TODO: This is failing
+    {
       sampleString: `new:hello$$:world`,
       wantSlicedFront: `new`,
-      wantSlicedRear: `hello:world$`,
+      wantSlicedRear: `hello$:world`,
     },
   ]
 
