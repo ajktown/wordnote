@@ -5,7 +5,9 @@ import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 const WordCardsFrameRefreshButton: FC = () => {
   const handleClickRefreshWords = useWords()
 
-  return <StyledCloudRefresher onClick={handleClickRefreshWords} />
+  return (
+    <StyledCloudRefresher onClick={handleClickRefreshWords} runOnClickOnce />
+  )
 }
 
 export default WordCardsFrameRefreshButton
