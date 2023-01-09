@@ -21,7 +21,7 @@ export const DUMMY_WORDS: WordData[] = [
     pronunciation: `breth`,
     definition: `폭 (Breadth First Search, BFS) (broad)`,
     example: ``,
-    tags: [`algorithm`],
+    tags: [`Algorithm`],
   },
   {
     id: DummyWordId.element2,
