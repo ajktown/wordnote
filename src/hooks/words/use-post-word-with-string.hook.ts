@@ -1,5 +1,5 @@
 import { WordData } from '@/api/words/words.interface'
-import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
+import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda'
 import { useCallback, useState, Dispatch, SetStateAction } from 'react'
 import { usePostWord } from './use-post-word.hook'
 
@@ -21,17 +21,8 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
   const handleClickPostWord = useCallback(async () => {
     if (!userInput) return setWritingMode(false)
 
-    // TODO: Will put a logic with handlers and and its test
     try {
-      const newWord: WordData = {
-        id: userInput + getRandomHexHandler(),
-        languageCode: `en`,
-        term: userInput,
-        pronunciation: ``,
-        definition: ``,
-        example: ``,
-        isFavorite: false,
-      }
+      const newWord: WordData = parseInputIntoWordLambda(userInput)
       handlePostWord(newWord)
     } catch {}
 
