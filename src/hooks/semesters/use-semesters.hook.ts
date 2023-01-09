@@ -1,0 +1,16 @@
+import { getSemestersApi } from '@/api/semesters/get-semesters.api'
+import { semestersState } from '@/recoil/semesters.state'
+import { useRecoilCallback } from 'recoil'
+
+export const useSemesters = () => {
+  const handleRefresh = useRecoilCallback(
+    ({ set }) =>
+      async () => {
+        const semesters = await getSemestersApi()
+        set(semestersState, semesters.map(sem => sem.code))
+      },
+    [],
+  )
+
+  return handleRefresh
+}
