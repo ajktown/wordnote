@@ -1,4 +1,4 @@
-import { GlobalCountryIsoCode, GlobalLanguageCode } from "./global.interface"
+import { GlobalCountryIsoCode, GlobalLanguageCode } from './global.interface'
 import ISO6391 from 'iso-639-1'
 import getUnicodeFlagIcon from 'country-flag-icons/unicode'
 
@@ -20,7 +20,7 @@ interface PrivateAvailableLanguage {
   flagUnicode: string
   nativeNameWithFlag: string
 }
-export const PROTECTED_AVAILABLE_LANGUAGES: PrivateAvailableLanguage[] = 
+export const PROTECTED_AVAILABLE_LANGUAGES: PrivateAvailableLanguage[] =
   PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY.map(
     ([languageCode, countryCode]) => {
       const nativeName = ISO6391.getNativeName(languageCode)

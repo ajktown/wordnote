@@ -11,12 +11,13 @@ const TagButtonChunk: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
 
   if (word === null) return null
-  
-  const tags = [word.languageCode]
 
   return (
     <Box>
-      {tags.map(tag => <TagButton key={tag} tagId={tag}/>)}
+      <TagButton tagId={word.languageCode} />
+      {word.tags.map((tag) => (
+        <TagButton key={tag} tagId={tag} />
+      ))}
     </Box>
   )
 }

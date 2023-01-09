@@ -9,6 +9,7 @@ export interface WordData extends DataStatus {
   pronunciation: string
   definition: string
   example: string
+  tags: string[]
 }
 
 export type WordDataModifiable = Omit<WordData, 'id'>

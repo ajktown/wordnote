@@ -35,5 +35,6 @@ export const parseInputIntoWordLambda = (given: string): WordData => {
     definition: definition.trim(),
     example: example.trim(),
     isFavorite: false,
+    tags: [], // TODO: Implement with hash tag parser.
   }
 }

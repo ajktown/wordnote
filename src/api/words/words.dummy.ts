@@ -21,6 +21,7 @@ export const DUMMY_WORDS: WordData[] = [
     pronunciation: `breth`,
     definition: `폭 (Breadth First Search, BFS) (broad)`,
     example: ``,
+    tags: [`algorithm`],
   },
   {
     id: DummyWordId.element2,
@@ -30,5 +31,6 @@ export const DUMMY_WORDS: WordData[] = [
     pronunciation: ``,
     definition: `(자기에게 유리한 일을 하기 위해 환심·존경 등을) 사다`,
     example: `I never thought it insinuated date rape.`,
+    tags: [],
   },
 ]

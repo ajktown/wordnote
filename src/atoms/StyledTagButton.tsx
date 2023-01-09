@@ -2,7 +2,7 @@ import { FC, ReactElement } from 'react'
 import { Chip } from '@mui/material'
 
 type Variant = 'filled' | 'outlined'
-const PRIVATE_DEFAULT_VARIANT: Variant = "outlined"
+const PRIVATE_DEFAULT_VARIANT: Variant = `outlined`
 
 interface Props {
   label: string
