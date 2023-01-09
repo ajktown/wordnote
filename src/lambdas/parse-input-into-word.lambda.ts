@@ -2,7 +2,7 @@
 
 import { WordData } from '@/api/words/words.interface'
 import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
-import { stringSliceHandler } from '@/handlers/string-slicer.handler'
+import { stringSliceHandler } from '@/handlers/string-slice.handler'
 
 const PRIVATE_FINAL_ESCAPE_CHAR = `$`
 const PRIVATE_FINAL_EXAMPLE_CHAR = `=`

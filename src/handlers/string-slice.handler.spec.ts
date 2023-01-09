@@ -1,4 +1,4 @@
-import { stringSliceHandler } from './string-slicer.handler'
+import { stringSliceHandler } from './string-slice.handler'
 
 const PRIVATE_FINAL_ESCAPE_CHAR = `$`
 const PRIVATE_FINAL_SLICE_WITH = `:`
