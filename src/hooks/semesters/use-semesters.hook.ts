@@ -7,7 +7,7 @@ export const useSemesters = () => {
     ({ set }) =>
       async () => {
         const semesters = await getSemestersApi()
-        set(semestersState, semesters.map(sem => sem.code))
+        set(semestersState, semesters)
       },
     [],
   )

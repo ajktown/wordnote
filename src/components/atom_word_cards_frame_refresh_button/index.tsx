@@ -6,17 +6,12 @@ import { useSemesters } from '@/hooks/semesters/use-semesters.hook'
 const WordCardsFrameRefreshButton: FC = () => {
   const getWords = useWords()
   const getSemesters = useSemesters()
-  
+
   const handleClickRefresh = useCallback(async () => {
-    await Promise.allSettled([
-      getWords(),
-      getSemesters(),
-    ])
+    await Promise.allSettled([getWords(), getSemesters()])
   }, [getWords, getSemesters])
 
-  return (
-    <StyledCloudRefresher onClick={handleClickRefresh} runOnClickOnce />
-  )
+  return <StyledCloudRefresher onClick={handleClickRefresh} runOnClickOnce />
 }
 
 export default WordCardsFrameRefreshButton

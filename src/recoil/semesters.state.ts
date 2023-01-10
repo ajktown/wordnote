@@ -1,3 +1,4 @@
+import { SemesterData } from '@/api/semesters/index.interface'
 import { atom } from 'recoil'
 
 enum PrivateSemesterRecoilKey {
@@ -5,7 +6,7 @@ enum PrivateSemesterRecoilKey {
   SemesterSelected = `SemesterSelected`,
 }
 
-export const semestersState = atom<number[]>({
+export const semestersState = atom<SemesterData[]>({
   key: PrivateSemesterRecoilKey.Semesters,
   default: [],
 })
