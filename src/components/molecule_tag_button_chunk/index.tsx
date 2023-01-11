@@ -4,15 +4,8 @@ import { wordsFamily } from '@/recoil/words.state'
 import { Box } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-
-const PRIVATE_HASH_TAG = `#`
-
-const getLabel = (tagId: string) => {
-  for (const { code, nativeNameWithFlag } of PROTECTED_AVAILABLE_LANGUAGES) {
-    if (tagId === code) return nativeNameWithFlag
-  }
-  return PRIVATE_HASH_TAG + tagId
-}
+import TagButtonCustomized from '../atom_tag_button/index.customized'
+import TagButtonLanguage from '../atom_tag_button/index.language'
 
 interface Props {
   wordId: string
@@ -24,9 +17,9 @@ const TagButtonChunk: FC<Props> = ({ wordId }) => {
 
   return (
     <Box>
-      <StyledTagButtonAtom label={getLabel(word.languageCode)} />
+      <TagButtonLanguage languageCode={word.languageCode}/>
       {word.tags.map((tag) => (
-        <StyledTagButtonAtom key={tag} label={getLabel(tag)} />
+        <TagButtonCustomized key={tag} label={tag} />
       ))}
     </Box>
   )
