@@ -1,13 +1,13 @@
 import { FC, ReactElement } from 'react'
 import { Chip } from '@mui/material'
+import { GlobalMuiTagVariant } from '@/global.interface'
 
-type Variant = 'filled' | 'outlined'
-const PRIVATE_DEFAULT_VARIANT: Variant = `outlined`
+const PRIVATE_DEFAULT_VARIANT: GlobalMuiTagVariant = `outlined`
 
 interface Props {
   label: string
   style?: {
-    variant?: Variant // Default: PRIVATE_DEFAULT_VARIANT
+    variant?: GlobalMuiTagVariant // Default: PRIVATE_DEFAULT_VARIANT
   }
   onClick?: () => any
   FrontIcon?: ReactElement // Front Icon does not have onClickFontIcon
