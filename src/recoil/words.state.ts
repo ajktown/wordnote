@@ -4,19 +4,22 @@ import {
   WordDataModifiableValue,
 } from '@/api/words/words.interface'
 import { atom, atomFamily, selector } from 'recoil'
-import { RecoilKey, RecoilKeySuffix } from './index.keys'
+import { RecoilKeySuffix } from './index.keys'
 import { searchInputState } from './searchInput.state'
 
-// TODO: Write this writing convention of
-// TODO: wordsFamily, wordIdsState, and ModifyingState and ModifiyngModeOn state...
+enum PrivateWordRecoilKey {
+  Words = `Words`,
+  WordIds = `WordIds`,
+  FilteredWordIds = `FilteredWordIds`,
+}
 
 export const wordsFamily = atomFamily<WordData | null, string>({
-  key: RecoilKey.Words + RecoilKeySuffix.Family,
+  key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Family,
   default: null,
 })
 
 export const wordIdsState = atom<string[]>({
-  key: RecoilKey.WordIds,
+  key: PrivateWordRecoilKey.WordIds,
   default: [],
 })
 
@@ -25,17 +28,17 @@ export const modifyingWordFamily = atomFamily<
   WordDataModifiableValue | null,
   WordDataModifiableKey
 >({
-  key: RecoilKey.Words + RecoilKeySuffix.Family,
+  key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Family,
   default: null,
 })
 
 export const selectedWordIdForDialogState = atom<null | string>({
-  key: RecoilKey.Words + RecoilKeySuffix.Dialog,
+  key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Dialog,
   default: null, // nothing selected
 })
 
 export const filteredWordIdsState = selector<string[]>({
-  key: RecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
+  key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
     const wordIds = get(wordIdsState)
     const searchInput = get(searchInputState)

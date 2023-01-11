@@ -1,11 +1,11 @@
 import { FC, useCallback, useState, Fragment, useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 import StyledDropDown from '@/atoms/StyledDropDown'
-import { PUBLIC_STATIC_AVAILABLE_LANGUAGES } from './index.dummy'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words.state'
 import { GlobalLanguageCode } from '@/global.interface'
+import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
 
 interface OrientationStyle {
   mainBox: object
@@ -52,9 +52,9 @@ const LanguageSelector: FC<Props> = ({
   const orientationStyle = useVerticalStyle ? verticalStyle : horizontalStyle
   const items = useMemo(
     () =>
-      PUBLIC_STATIC_AVAILABLE_LANGUAGES.map((lang) => ({
+      PROTECTED_AVAILABLE_LANGUAGES.map((lang) => ({
         id: lang.code,
-        title: lang.flagUnicode + ` ` + lang.nativeName,
+        title: lang.nativeNameWithFlag,
       })),
     [],
   )
