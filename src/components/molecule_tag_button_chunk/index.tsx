@@ -1,5 +1,3 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
-import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
 import { wordsFamily } from '@/recoil/words.state'
 import { Box } from '@mui/material'
 import { FC } from 'react'
@@ -17,7 +15,7 @@ const TagButtonChunk: FC<Props> = ({ wordId }) => {
 
   return (
     <Box>
-      <TagButtonLanguage languageCode={word.languageCode}/>
+      <TagButtonLanguage languageCode={word.languageCode} />
       {word.tags.map((tag) => (
         <TagButtonCustomized key={tag} label={tag} />
       ))}

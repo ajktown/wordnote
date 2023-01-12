@@ -9,12 +9,14 @@ interface Props {
   semester: SemesterData
 }
 const TagButtonSemester: FC<Props> = ({ semester }) => {
-  const [selectedSemester, setSelectedSemester] = useRecoilState(selectedSemesterState)
+  const [selectedSemester, setSelectedSemester] = useRecoilState(
+    selectedSemesterState,
+  )
   const { code } = semester
 
   const variant: GlobalMuiTagVariant = useMemo(() => {
-    if (selectedSemester === code) return "filled"
-    return "outlined"
+    if (selectedSemester === code) return `filled`
+    return `outlined`
   }, [selectedSemester, code])
 
   const handleClick = useCallback(() => {
@@ -27,7 +29,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
       label={`${semester.year}Y ${semester.quarter}Q`}
       onClick={handleClick}
       style={{
-        variant
+        variant,
       }}
     />
   )

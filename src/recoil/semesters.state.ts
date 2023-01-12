@@ -5,7 +5,7 @@ import { atom } from 'recoil'
 enum PrivateSemesterRecoilKey {
   Semesters = `Semesters`,
   SemesterSelected = `SemesterSelected`,
-  LanguageSelected = `LanguageSelected`
+  LanguageSelected = `LanguageSelected`,
 }
 
 export const semestersState = atom<SemesterData[]>({
@@ -20,5 +20,5 @@ export const selectedSemesterState = atom<null | number>({
 
 export const selectedLanguageState = atom<null | GlobalLanguageCode>({
   key: PrivateSemesterRecoilKey.LanguageSelected,
-  default: null
+  default: null,
 })
