@@ -6,6 +6,7 @@ import {
 import { atom, atomFamily, selector } from 'recoil'
 import { RecoilKeySuffix } from './index.keys'
 import { searchInputState } from './searchInput.state'
+import { selectedSemesterState } from './semesters.state'
 
 enum PrivateWordRecoilKey {
   Words = `Words`,
@@ -41,15 +42,27 @@ export const filteredWordIdsState = selector<string[]>({
   key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
     const wordIds = get(wordIdsState)
+
+    // ! BEGIN:: Filter searchInput
     const searchInput = get(searchInputState)
+    if (searchInput)
+      return wordIds.filter((wordId) => {
+        const word = get(wordsFamily(wordId))
+        if (word === null) return false
 
-    if (searchInput === ``) return wordIds // Return as it is, if it has no search input
+        return word.term.includes(searchInput)
+      })
+    // ! END:: Filter searchInput
 
+    // ! BEGIN: Filter selected Semester
+    const selectedSemester = get(selectedSemesterState)
     return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
-      if (word === null) return false
+      if (!word) return false
 
-      return word.term.includes(searchInput)
+      if (selectedSemester === null) return true
+      return word.semester === selectedSemester
     })
+    // ! END:: Filter searchInput
   },
 })

@@ -16,6 +16,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element1,
     languageCode: `en`,
+    semester: 231,
     isFavorite: true,
     term: `breadth`,
     pronunciation: `breth`,
@@ -26,6 +27,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element2,
     languageCode: `en`,
+    semester: 224,
     isFavorite: false,
     term: `insinuated`,
     pronunciation: ``,
