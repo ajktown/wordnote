@@ -4,6 +4,7 @@ import { atom } from 'recoil'
 
 enum PrivateSemesterRecoilKey {
   Semesters = `Semesters`,
+  SemesterExpanded = `SemesterExpanded`,
   SemesterSelected = `SemesterSelected`,
   LanguageSelected = `LanguageSelected`,
 }
@@ -11,6 +12,11 @@ enum PrivateSemesterRecoilKey {
 export const semestersState = atom<SemesterData[]>({
   key: PrivateSemesterRecoilKey.Semesters,
   default: [],
+})
+
+export const isSemesterExpandedState = atom<boolean>({
+  key: PrivateSemesterRecoilKey.SemesterExpanded,
+  default: false,
 })
 
 export const selectedSemesterState = atom<null | number>({

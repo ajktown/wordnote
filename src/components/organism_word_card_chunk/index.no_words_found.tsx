@@ -14,8 +14,7 @@ const WordCardsChunkNoWordsFound: FC = () => {
       <Typography>
         {selectedSemester
           ? PRIVATE_DEFAULT_SELECTED
-          : PRIVATE_DEFAULT_NOTHING_FOUND
-        }
+          : PRIVATE_DEFAULT_NOTHING_FOUND}
       </Typography>
     </Stack>
   )
