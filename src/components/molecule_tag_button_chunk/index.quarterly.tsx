@@ -3,6 +3,7 @@ import { Box } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 import TagButtonSemester from '@/components/atom_tag_button/index.semester'
+import TagButtonAllSemesters from '../atom_tag_button/index.all_semester'
 
 const TagButtonChunkQuarterly: FC = () => {
   const semesters = useRecoilValue(semestersState)
@@ -11,6 +12,7 @@ const TagButtonChunkQuarterly: FC = () => {
 
   return (
     <Box>
+      <TagButtonAllSemesters />
       {semesters.map((semester) => (
         <TagButtonSemester key={semester.code} semester={semester} />
       ))}
