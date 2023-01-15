@@ -5,7 +5,7 @@ import WordCardsFrameRefreshButton from '../atom_word_cards_frame_refresh_button
 import WordCardsChunk from '../organism_word_card_chunk'
 import { WordCardFrameStyle } from './index.style'
 import WordCardDialog from '../molecule_word_card/index.dialog'
-import TagButtonChunkQuarterly from '../molecule_tag_button_chunk/index.quarterly'
+import TagButtonChunkSemesters from '../molecule_tag_button_chunk/index.semesters'
 
 const WordCardFrame: FC = () => {
   return (
@@ -17,7 +17,7 @@ const WordCardFrame: FC = () => {
           <WordCardsFrameRefreshButton />
         </Stack>
         <Stack alignItems={`center`}>
-          <TagButtonChunkQuarterly />
+          <TagButtonChunkSemesters />
         </Stack>
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">

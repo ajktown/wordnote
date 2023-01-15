@@ -5,10 +5,8 @@ import { useRecoilValue } from 'recoil'
 import TagButtonSemester from '@/components/atom_tag_button/index.semester'
 import TagButtonAllSemesters from '../atom_tag_button/index.all_semesters'
 
-const TagButtonChunkQuarterly: FC = () => {
+const TagButtonChunkSemesters: FC = () => {
   const semesters = useRecoilValue(semestersState)
-
-  if (semesters.length === 0) return null
 
   return (
     <Box>
@@ -20,4 +18,4 @@ const TagButtonChunkQuarterly: FC = () => {
   )
 }
 
-export default TagButtonChunkQuarterly
+export default TagButtonChunkSemesters
