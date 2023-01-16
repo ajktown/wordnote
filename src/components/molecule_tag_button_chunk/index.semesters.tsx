@@ -15,17 +15,17 @@ const TagButtonChunkSemesters: FC = () => {
   const semesters = useRecoilValue(semestersState)
   const isSemesterExpanded = useRecoilValue(isSemesterExpandedState)
   const sliceAt = useMemo(
-    () => (isSemesterExpanded ? 0 : PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT * -1),
+    () => (isSemesterExpanded ? undefined : PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT),
     [isSemesterExpanded],
   )
 
   return (
     <Box>
       <TagButtonAllSemesters />
-      <TagButtonExpander visibleAt={PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT} />
-      {semesters.slice(sliceAt).map((semester) => (
+      {semesters.slice(0, sliceAt).map((semester) => (
         <TagButtonSemester key={semester.code} semester={semester} />
       ))}
+      <TagButtonExpander visibleAt={PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT} />
     </Box>
   )
 }

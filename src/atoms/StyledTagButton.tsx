@@ -1,11 +1,11 @@
-import { FC, ReactElement } from 'react'
+import { FC, ReactElement, ReactNode } from 'react'
 import { Chip } from '@mui/material'
 import { GlobalMuiTagVariant } from '@/global.interface'
 
 const PRIVATE_DEFAULT_VARIANT: GlobalMuiTagVariant = `outlined`
 
 interface Props {
-  label: string
+  label: string | ReactNode
   style?: {
     variant?: GlobalMuiTagVariant // Default: PRIVATE_DEFAULT_VARIANT
   }
