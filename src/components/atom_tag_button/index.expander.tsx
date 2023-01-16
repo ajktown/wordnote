@@ -5,7 +5,7 @@ import {
 } from '@/recoil/semesters.state'
 import { FC, useCallback } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 
 interface Props {
   visibleAt: number
@@ -26,7 +26,9 @@ const TagButtonExpander: FC<Props> = ({ visibleAt }) => {
   return (
     <StyledTagButtonAtom
       label={isSemesterExpanded ? null : `...`}
-      FrontIcon={isSemesterExpanded ? <ChevronLeftIcon fontSize="small" /> : undefined}
+      FrontIcon={
+        isSemesterExpanded ? <ChevronLeftIcon fontSize="small" /> : undefined
+      }
       onClick={onClick}
     />
   )

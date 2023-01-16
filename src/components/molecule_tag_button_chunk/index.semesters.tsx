@@ -15,7 +15,8 @@ const TagButtonChunkSemesters: FC = () => {
   const semesters = useRecoilValue(semestersState)
   const isSemesterExpanded = useRecoilValue(isSemesterExpandedState)
   const sliceAt = useMemo(
-    () => (isSemesterExpanded ? undefined : PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT),
+    () =>
+      isSemesterExpanded ? undefined : PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT,
     [isSemesterExpanded],
   )
 

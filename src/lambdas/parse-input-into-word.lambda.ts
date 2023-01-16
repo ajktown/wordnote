@@ -5,14 +5,31 @@ import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
 import { stringSliceHandler } from '@/handlers/string-slice.handler'
 
 const PRIVATE_FINAL_ESCAPE_CHAR = `$`
+const PRIVATE_FINAL_TAG_CHAR = `#`
 const PRIVATE_FINAL_EXAMPLE_CHAR = `=`
 const PRIVATE_FINAL_DEFINITION_CHARS = [`:`, `]`]
 const PRIVATE_FINAL_PRONUNCIATION_CHAR = `[`
 
-// TODO: Make a test
 export const parseInputIntoWordLambda = (given: string): WordData => {
+  const tags: string[] = []
+  let leftOverAfterTags: string = given
+
+  while (leftOverAfterTags) {
+    const [leftOverAfterEachTag, tag] = stringSliceHandler(
+      leftOverAfterTags,
+      PRIVATE_FINAL_TAG_CHAR,
+      PRIVATE_FINAL_ESCAPE_CHAR,
+    )
+    if (leftOverAfterTags === leftOverAfterEachTag) break
+
+    const trimmedTag = tag.trim()
+    if (trimmedTag) tags.push(trimmedTag) // Empty tag will not be pushed
+    leftOverAfterTags = leftOverAfterEachTag
+  }
+  tags.reverse() // Collected tags will be reversed.
+
   const [leftOverAfterExample, example] = stringSliceHandler(
-    given,
+    leftOverAfterTags,
     PRIVATE_FINAL_EXAMPLE_CHAR,
     PRIVATE_FINAL_ESCAPE_CHAR,
   )
@@ -36,6 +53,6 @@ export const parseInputIntoWordLambda = (given: string): WordData => {
     definition: definition.trim(),
     example: example.trim(),
     isFavorite: false,
-    tags: [], // TODO: Implement with hash tag parser.
+    tags,
   }
 }

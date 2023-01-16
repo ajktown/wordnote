@@ -40,6 +40,13 @@ describe(`stringSliceHandler`, () => {
       wantSlicedFront: `hello`,
       wantSlicedRear: ``,
     },
+    // TODO: This test is not passing
+    // FIXME: Not passing
+    {
+      sampleString: `he$:lo:`,
+      wantSlicedFront: `he:lo`,
+      wantSlicedRear: ``,
+    },
     {
       sampleString: `hello:`,
       wantSlicedFront: `hello`,
