@@ -24,6 +24,8 @@ export const selectedSemesterState = atom<null | number>({
   default: null,
 })
 
+// TODO: selectedLanguageState should be separated from this file, but not sure how to manage files yet
+// TODO: And therefore will do so later
 export const selectedLanguageState = atom<null | GlobalLanguageCode>({
   key: PrivateSemesterRecoilKey.LanguageSelected,
   default: null,
