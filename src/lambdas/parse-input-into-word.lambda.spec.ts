@@ -190,13 +190,11 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
-  // tag$#One`
-  // const PRIVATE_FINAL_WANT_TAG_B = `tag$Two$#`
   const wordDefinitionTagsTests: Test[] = [
     {
-      sampleString: ` he$:lo: wor$]d #  tag$$#One  #  tag$Two$$# `,
+      sampleString: ` he:lo: wor$]d #  tag$$#One  #  tag$Two$$# `,
       wantTerm: true,
-      wantExample: true,
+      wantDefinition: true,
       wantTags: true,
     },
   ]
