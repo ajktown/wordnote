@@ -11,6 +11,7 @@ import { selectedSemesterState } from './semesters.state'
 enum PrivateWordRecoilKey {
   Words = `Words`,
   WordIds = `WordIds`,
+  SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   FilteredWordIds = `FilteredWordIds`,
 }
 
@@ -38,13 +39,13 @@ export const selectedWordIdForDialogState = atom<null | string>({
   default: null, // nothing selected
 })
 
-export const filteredWordIdsState = selector<string[]>({
-  key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
+const privateSearchInputFilteredWordIdsState = selector<string[]>({
+  key:
+    PrivateWordRecoilKey.SearchInputFilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
     const wordIds = get(wordIdsState)
-
-    // ! BEGIN:: Filter searchInput
     const searchInput = get(searchInputState)
+
     if (searchInput)
       return wordIds.filter((wordId) => {
         const word = get(wordsFamily(wordId))
@@ -52,9 +53,15 @@ export const filteredWordIdsState = selector<string[]>({
 
         return word.term.includes(searchInput)
       })
-    // ! END:: Filter searchInput
+    return wordIds
+  },
+})
 
-    // ! BEGIN: Filter selected Semester
+export const filteredWordIdsState = selector<string[]>({
+  key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    const wordIds = get(privateSearchInputFilteredWordIdsState)
+
     const selectedSemester = get(selectedSemesterState)
     return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
@@ -63,6 +70,5 @@ export const filteredWordIdsState = selector<string[]>({
       if (selectedSemester === null) return true
       return word.semester === selectedSemester
     })
-    // ! END:: Filter searchInput
   },
 })
