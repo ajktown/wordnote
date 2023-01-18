@@ -260,8 +260,8 @@ describe(`parseInputIntoWordLambda`, () => {
     if (test.wantTags) {
       expect(parsed.tags.length).toBe(PRIVATE_FINAL_WANT_TAGS.length)
 
-      for (const eachTag of parsed.tags) {
-        expect(PRIVATE_FINAL_WANT_TAGS.includes(eachTag)).toBe(true)
+      for (const eachParsedTag of parsed.tags) {
+        expect(PRIVATE_FINAL_WANT_TAGS.includes(eachParsedTag)).toBe(true)
       }
     }
 
