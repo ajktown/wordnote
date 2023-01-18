@@ -46,14 +46,14 @@ const privateSearchInputFilteredWordIdsState = selector<string[]>({
     const wordIds = get(wordIdsState)
     const searchInput = get(searchInputState)
 
-    if (searchInput)
-      return wordIds.filter((wordId) => {
-        const word = get(wordsFamily(wordId))
-        if (word === null) return false
+    if (!searchInput) return wordIds
 
-        return word.term.includes(searchInput)
-      })
-    return wordIds
+    return wordIds.filter((wordId) => {
+      const word = get(wordsFamily(wordId))
+      if (word === null) return false
+
+      return word.term.includes(searchInput)
+    })
   },
 })
 
