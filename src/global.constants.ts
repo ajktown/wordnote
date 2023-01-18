@@ -13,14 +13,14 @@ const PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY: [
   [`fr`, GlobalCountryIsoCode.France],
 ]
 
-interface PrivateAvailableLanguage {
+interface ProtectedAvailableLanguage {
   code: GlobalLanguageCode
   name: string
   nativeName: string
   flagUnicode: string
   nativeNameWithFlag: string
 }
-export const PROTECTED_AVAILABLE_LANGUAGES: PrivateAvailableLanguage[] =
+export const PROTECTED_AVAILABLE_LANGUAGES: ProtectedAvailableLanguage[] =
   PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY.map(
     ([languageCode, countryCode]) => {
       const nativeName = ISO6391.getNativeName(languageCode)
