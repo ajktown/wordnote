@@ -7,11 +7,11 @@ const WordCardsFrameRefreshButton: FC = () => {
   const getWords = useWords()
   const getSemesters = useSemesters()
 
-  const handleClickRefresh = useCallback(async () => {
+  const onClickRefresh = useCallback(async () => {
     await Promise.allSettled([getWords(), getSemesters()])
   }, [getWords, getSemesters])
 
-  return <StyledCloudRefresher onClick={handleClickRefresh} runOnClickOnce />
+  return <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
 }
 
 export default WordCardsFrameRefreshButton
