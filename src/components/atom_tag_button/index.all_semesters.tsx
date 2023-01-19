@@ -10,10 +10,9 @@ const TagButtonAllSemesters: FC = () => {
   const onResetSelectedSemester = useResetRecoilState(selectedSemesterState)
   const filteredIds = useRecoilValue(wordIdsState)
 
-  const variant: GlobalMuiTagVariant = useMemo(() => {
-    if (selectedSemester === null) return `filled`
-    return `outlined`
-  }, [selectedSemester])
+  const variant: GlobalMuiTagVariant = useMemo(() => (
+    selectedSemester === null ? `filled` : `outlined`
+  ), [selectedSemester])
 
   return (
     <StyledTagButtonAtom
