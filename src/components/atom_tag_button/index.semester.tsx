@@ -19,7 +19,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
     return `outlined`
   }, [selectedSemester, code])
 
-  const handleClick = useCallback(() => {
+  const onClick = useCallback(() => {
     setSelectedSemester(code)
   }, [code, setSelectedSemester])
 
@@ -27,7 +27,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
     <StyledTagButtonAtom
       key={semester.code}
       label={`${semester.year}Y ${semester.quarter}Q`}
-      onClick={handleClick}
+      onClick={onClick}
       style={{
         variant,
       }}

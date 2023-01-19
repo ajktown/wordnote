@@ -16,7 +16,7 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
     return isTagSelected ? `filled` : `outlined`
   }, [isTagSelected])
 
-  const handleClick = useCallback(() => {
+  const onClick = useCallback(() => {
     setTagSelected(!isTagSelected)
   }, [isTagSelected, setTagSelected])
 
@@ -26,7 +26,7 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
       style={{
         variant,
       }}
-      onClick={handleClick}
+      onClick={onClick}
     />
   )
 }

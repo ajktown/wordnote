@@ -26,7 +26,7 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
     return `outlined`
   }, [selectedLanguage, languageCode])
 
-  const handleClick = useCallback(() => {
+  const onClick = useCallback(() => {
     if (languageCode === selectedLanguage) return resetSelectedLanguage()
     setSelectedLanguage(languageCode)
   }, [
@@ -39,7 +39,7 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
   return (
     <StyledTagButtonAtom
       label={getLabel(languageCode)}
-      onClick={handleClick}
+      onClick={onClick}
       style={{
         variant,
       }}
