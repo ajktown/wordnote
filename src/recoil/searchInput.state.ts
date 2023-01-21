@@ -1,7 +1,10 @@
 import { atom } from 'recoil'
-import { RecoilKey } from './index.keys'
+
+enum PrivateSearchInputRecoilKey {
+  SearchInput = `SearchInput`,
+}
 
 export const searchInputState = atom<string>({
-  key: RecoilKey.SearchInput,
+  key: PrivateSearchInputRecoilKey.SearchInput,
   default: ``,
 })

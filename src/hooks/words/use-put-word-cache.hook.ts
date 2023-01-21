@@ -60,6 +60,7 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
   }, [getObject])
 
   const handleResetCache = useCallback(async () => {
+    // TODO: Lol looks so bad here.
     await handleResetByKey(`term`)
     await handleResetByKey(`languageCode`)
     await handleResetByKey(`isFavorite`)

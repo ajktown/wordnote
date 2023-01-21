@@ -11,7 +11,7 @@ export type GlobalMuiColor =
   | undefined
 
 export type GlobalMuiVariant = 'text' | 'outlined' | 'contained' | undefined
-
+export type GlobalMuiTagVariant = 'filled' | 'outlined'
 export type GlobalMuiPlacement =
   | 'right'
   | 'left-start'

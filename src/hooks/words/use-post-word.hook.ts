@@ -1,30 +1,21 @@
 import { postWordApi } from '@/api/words/post-word.api'
 import { WordData } from '@/api/words/words.interface'
 import { wordIdsState, wordsFamily } from '@/recoil/words.state'
-import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 
 type UsePostWord = (newWord: WordData) => Promise<void> // handlePostWord
 
 export const usePostWord = (): UsePostWord => {
-  const setWord = useRecoilCallback(
+  const handlePostWord = useRecoilCallback(
     ({ set, snapshot }) =>
-      async (wordData: WordData) => {
+      async (newWord: WordData) => {
+        const postedWord = await postWordApi(newWord)
+
         const wordIds = await snapshot.getPromise(wordIdsState)
-        set(wordIdsState, [wordData.id, ...wordIds])
-        set(wordsFamily(wordData.id), wordData)
+        set(wordIdsState, [postedWord.id, ...wordIds])
+        set(wordsFamily(postedWord.id), postedWord)
       },
     [],
-  )
-
-  const handlePostWord = useCallback(
-    async (newWord: WordData) => {
-      try {
-        const postedWord = await postWordApi(newWord)
-        setWord(postedWord)
-      } catch {}
-    },
-    [setWord],
   )
 
   return handlePostWord

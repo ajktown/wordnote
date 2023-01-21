@@ -1,30 +1,20 @@
 import { getWordsApi } from '@/api/words/get-words.api'
-import { WordData } from '@/api/words/words.interface'
 import { wordIdsState, wordsFamily } from '@/recoil/words.state'
-import { useEffect } from 'react'
-import { useRecoilCallback, useSetRecoilState } from 'recoil'
-import { HandleRefresh, useHookRefresh } from '../use-refresh.hook'
+import { useRecoilCallback } from 'recoil'
 
-type UserWords = HandleRefresh
-
-export const useWords = (): UserWords => {
-  const [internalFlag, handleRefresh] = useHookRefresh()
-  const setWordIds = useSetRecoilState(wordIdsState)
-  const setWord = useRecoilCallback(
+export const useWords = () => {
+  const handleRefresh = useRecoilCallback(
     ({ set }) =>
-      async (wordData: WordData) => {
-        set(wordsFamily(wordData.id), wordData)
+      async () => {
+        const words = await getWordsApi()
+        words.forEach((word) => set(wordsFamily(word.id), word))
+        set(
+          wordIdsState,
+          words.map((word) => word.id),
+        )
       },
     [],
   )
-
-  useEffect(() => {
-    ;(async () => {
-      const words = await getWordsApi()
-      words.forEach((word) => setWord(word))
-      setWordIds(words.map((word) => word.id))
-    })()
-  }, [internalFlag, setWord, setWordIds])
 
   return handleRefresh
 }

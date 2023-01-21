@@ -4,6 +4,12 @@ const PRIVATE_FINAL_WANT_TERM = `he:lo`
 const PRIVATE_FINAL_WANT_PRONUNCIATION = `ha[l$]o`
 const PRIVATE_FINAL_WANT_DEFINITION = `wor]d`
 const PRIVATE_FINAL_WANT_EXAMPLE = `is the first =code= for beginner`
+const PRIVATE_FINAL_WANT_TAG_A = `tag$#One`
+const PRIVATE_FINAL_WANT_TAG_B = `tag$Two$#`
+const PRIVATE_FINAL_WANT_TAGS = [
+  PRIVATE_FINAL_WANT_TAG_A,
+  PRIVATE_FINAL_WANT_TAG_B,
+]
 
 describe(`parseInputIntoWordLambda`, () => {
   it(`should be exposed as a function`, () => {
@@ -25,6 +31,7 @@ describe(`parseInputIntoWordLambda`, () => {
     wantPronunciation?: boolean // if true, it expects PRIVATE_FINAL_WANT_PRONUNCIATION, else, empty string or ""
     wantDefinition?: boolean // if true, it expects PRIVATE_FINAL_WANT_DEFINITION, else, empty string or ""
     wantExample?: boolean // if true, it expects PRIVATE_FINAL_WANT_EXAMPLE, else, empty string or ""
+    wantTags?: boolean // if true, it expects PRIVATE_FINAL_WANT_TAGS, else, empty string or ""
   }
 
   const termsOnlyTests: DeprecatedTest[] = [
@@ -183,6 +190,15 @@ describe(`parseInputIntoWordLambda`, () => {
     },
   ]
 
+  const wordDefinitionTagsTests: Test[] = [
+    {
+      sampleString: ` he:lo: wor$]d #  tag$$#One  #  tag$Two$$# `,
+      wantTerm: true,
+      wantDefinition: true,
+      wantTags: true,
+    },
+  ]
+
   const deprecatedTests: DeprecatedTest[] = [
     ...termsOnlyTests,
     ...termsPronunciationTests,
@@ -197,6 +213,7 @@ describe(`parseInputIntoWordLambda`, () => {
     ...definitionTests,
     ...definitionExampleTests,
     ...exampleTests,
+    ...wordDefinitionTagsTests,
   ]
 
   deprecatedTests.forEach((deprecatedTest) => {
@@ -239,6 +256,14 @@ describe(`parseInputIntoWordLambda`, () => {
       PRIVATE_FINAL_WANT_DEFINITION,
     )
     const wantExample = returnWant(test.wantExample, PRIVATE_FINAL_WANT_EXAMPLE)
+
+    if (test.wantTags) {
+      expect(parsed.tags.length).toBe(PRIVATE_FINAL_WANT_TAGS.length)
+
+      for (const eachParsedTag of parsed.tags) {
+        expect(PRIVATE_FINAL_WANT_TAGS.includes(eachParsedTag)).toBe(true)
+      }
+    }
 
     it(`should return expected output from "${test.sampleString}"`, () => {
       expect(parsed.term === wantTerm).toBe(true)

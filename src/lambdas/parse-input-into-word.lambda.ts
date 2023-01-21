@@ -2,17 +2,34 @@
 
 import { WordData } from '@/api/words/words.interface'
 import { getRandomHexHandler } from '@/handlers/get-random-hex.handler'
-import { stringSliceHandler } from '@/handlers/string-slicer.handler'
+import { stringSliceHandler } from '@/handlers/string-slice.handler'
 
 const PRIVATE_FINAL_ESCAPE_CHAR = `$`
+const PRIVATE_FINAL_TAG_CHAR = `#`
 const PRIVATE_FINAL_EXAMPLE_CHAR = `=`
 const PRIVATE_FINAL_DEFINITION_CHARS = [`:`, `]`]
 const PRIVATE_FINAL_PRONUNCIATION_CHAR = `[`
 
-// TODO: Make a test
 export const parseInputIntoWordLambda = (given: string): WordData => {
+  const tags: string[] = []
+  let leftOverAfterTags: string = given
+
+  while (leftOverAfterTags) {
+    const [leftOverAfterEachTag, tag] = stringSliceHandler(
+      leftOverAfterTags,
+      PRIVATE_FINAL_TAG_CHAR,
+      PRIVATE_FINAL_ESCAPE_CHAR,
+    )
+    if (leftOverAfterTags === leftOverAfterEachTag) break
+
+    const trimmedTag = tag.trim()
+    if (trimmedTag) tags.push(trimmedTag) // Empty tag will not be pushed
+    leftOverAfterTags = leftOverAfterEachTag
+  }
+  tags.reverse() // Collected tags will be reversed.
+
   const [leftOverAfterExample, example] = stringSliceHandler(
-    given,
+    leftOverAfterTags,
     PRIVATE_FINAL_EXAMPLE_CHAR,
     PRIVATE_FINAL_ESCAPE_CHAR,
   )
@@ -30,10 +47,12 @@ export const parseInputIntoWordLambda = (given: string): WordData => {
   return {
     id: given + getRandomHexHandler(),
     languageCode: `en`,
+    semester: 231, // TODO: Remove, its only for test. Semester value should be created by server
     term: term.trim(),
     pronunciation: pronunciation.trim(),
     definition: definition.trim(),
     example: example.trim(),
     isFavorite: false,
+    tags,
   }
 }

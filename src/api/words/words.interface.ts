@@ -4,11 +4,13 @@ import { DataStatus } from '../index.interface'
 export interface WordData extends DataStatus {
   id: string
   languageCode: GlobalLanguageCode
+  semester: number
   isFavorite: boolean
   term: string
   pronunciation: string
   definition: string
   example: string
+  tags: string[]
 }
 
 export type WordDataModifiable = Omit<WordData, 'id'>
