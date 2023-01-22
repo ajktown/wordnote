@@ -1,7 +1,7 @@
 import { GlobalLanguageCode } from '@/global.interface'
 import { atom, selector } from 'recoil'
 import { RecoilKeySuffix } from './index.keys'
-import { wordIdsState, wordsFamily } from './words.state'
+import { semesterFilteredWordIds, wordsFamily } from './words.state'
 import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
 
 enum PrivateLanguageRecoilKey {
@@ -17,7 +17,7 @@ export const selectedLanguageState = atom<null | GlobalLanguageCode>({
 export const languagesPerSemesterState = selector<GlobalLanguageCode[]>({
   key: PrivateLanguageRecoilKey.languagesPerSemester + RecoilKeySuffix.Selector,
   get: ({ get }) => {
-    const wordIds = get(wordIdsState)
+    const wordIds = get(semesterFilteredWordIds)
     const set = new Set<GlobalLanguageCode>()
 
     for (const wordId of wordIds) {

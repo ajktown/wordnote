@@ -15,6 +15,7 @@ enum PrivateWordRecoilKey {
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
+  SemesterFilteredWordIds = `SemesterFilteredWordIds`,
   FilteredWordIds = `FilteredWordIds`,
 }
 
@@ -59,10 +60,26 @@ const privateSearchInputFilteredWordIdsState = selector<string[]>({
   },
 })
 
+export const semesterFilteredWordIds = selector<string[]>({
+  key: PrivateWordRecoilKey.SemesterFilteredWordIds + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    const wordIds = get(privateSearchInputFilteredWordIdsState)
+
+    const selectedSemester = get(selectedSemesterState)
+    return wordIds.filter((wordId) => {
+      const word = get(wordsFamily(wordId))
+      if (!word) return false
+
+      if (selectedSemester === null) return true
+      return word.semester === selectedSemester
+    })
+  },
+})
+
 const privateLanguageFilteredWordIds = selector<string[]>({
   key: PrivateWordRecoilKey.LanguageFilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
-    const wordIds = get(privateSearchInputFilteredWordIdsState)
+    const wordIds = get(semesterFilteredWordIds)
 
     const selectedLanguage = get(selectedLanguageState)
     if (!selectedLanguage) return wordIds
@@ -80,14 +97,6 @@ export const filteredWordIdsState = selector<string[]>({
   key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
     const wordIds = get(privateLanguageFilteredWordIds)
-
-    const selectedSemester = get(selectedSemesterState)
-    return wordIds.filter((wordId) => {
-      const word = get(wordsFamily(wordId))
-      if (!word) return false
-
-      if (selectedSemester === null) return true
-      return word.semester === selectedSemester
-    })
+    return wordIds
   },
 })
