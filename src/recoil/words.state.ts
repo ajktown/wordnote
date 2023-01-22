@@ -5,11 +5,13 @@ import {
 } from '@/api/words/words.interface'
 import { atom, atomFamily, selector } from 'recoil'
 import { RecoilKeySuffix } from './index.keys'
+import { selectedLanguageState } from './languages.state'
 import { searchInputState } from './searchInput.state'
-import { selectedLanguageState, selectedSemesterState } from './semesters.state'
+import { selectedSemesterState } from './semesters.state'
 
 enum PrivateWordRecoilKey {
   Words = `Words`,
+  ModifyingWords = `ModifyingWords`,
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
@@ -21,23 +23,22 @@ export const wordsFamily = atomFamily<WordData | null, string>({
   default: null,
 })
 
-export const wordIdsState = atom<string[]>({
-  key: PrivateWordRecoilKey.WordIds,
-  default: [],
-})
-
-// TODO: Refactor this two data into a better format
 export const modifyingWordFamily = atomFamily<
   WordDataModifiableValue | null,
   WordDataModifiableKey
 >({
-  key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Family,
+  key: PrivateWordRecoilKey.ModifyingWords + RecoilKeySuffix.Family,
   default: null,
 })
 
 export const selectedWordIdForDialogState = atom<null | string>({
   key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Dialog,
   default: null, // nothing selected
+})
+
+export const wordIdsState = atom<string[]>({
+  key: PrivateWordRecoilKey.WordIds,
+  default: [],
 })
 
 const privateSearchInputFilteredWordIdsState = selector<string[]>({

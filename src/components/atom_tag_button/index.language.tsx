@@ -1,7 +1,7 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
 import { GlobalLanguageCode, GlobalMuiTagVariant } from '@/global.interface'
-import { selectedLanguageState } from '@/recoil/semesters.state'
+import { selectedLanguageState } from '@/recoil/languages.state'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 
