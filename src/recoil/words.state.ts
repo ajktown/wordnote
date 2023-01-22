@@ -6,12 +6,13 @@ import {
 import { atom, atomFamily, selector } from 'recoil'
 import { RecoilKeySuffix } from './index.keys'
 import { searchInputState } from './searchInput.state'
-import { selectedSemesterState } from './semesters.state'
+import { selectedLanguageState, selectedSemesterState } from './semesters.state'
 
 enum PrivateWordRecoilKey {
   Words = `Words`,
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
+  LanguageFilteredWordIds = `LanguageFilterWordIds`,
   FilteredWordIds = `FilteredWordIds`,
 }
 
@@ -57,10 +58,27 @@ const privateSearchInputFilteredWordIdsState = selector<string[]>({
   },
 })
 
+const privateLanguageFilteredWordIds = selector<string[]>({
+  key: PrivateWordRecoilKey.LanguageFilteredWordIds + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    const wordIds = get(privateSearchInputFilteredWordIdsState)
+
+    const selectedLanguage = get(selectedLanguageState)
+    if (!selectedLanguage) return wordIds
+
+    return wordIds.filter((wordId) => {
+      const word = get(wordsFamily(wordId))
+      if (!word) return false
+
+      return word.languageCode === selectedLanguage
+    })
+  },
+})
+
 export const filteredWordIdsState = selector<string[]>({
   key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
-    const wordIds = get(privateSearchInputFilteredWordIdsState)
+    const wordIds = get(privateLanguageFilteredWordIds)
 
     const selectedSemester = get(selectedSemesterState)
     return wordIds.filter((wordId) => {
