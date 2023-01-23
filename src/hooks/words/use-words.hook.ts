@@ -7,11 +7,14 @@ export const useWords = () => {
     ({ set }) =>
       async () => {
         const words = await getWordsApi()
-        words.forEach((word) => set(wordsFamily(word.id), word))
-        set(
-          wordIdsState,
-          words.map((word) => word.id),
-        )
+        const wordIds: string[] = []
+
+        words.forEach((word) => {
+          set(wordsFamily(word.id), word)
+          wordIds.push(word.id)
+        })
+
+        set(wordIdsState, wordIds)
       },
     [],
   )
