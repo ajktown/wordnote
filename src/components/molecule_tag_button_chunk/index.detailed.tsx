@@ -1,16 +1,16 @@
 import { Box } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import { languagesPerSemesterState } from '@/recoil/languages.state'
+import { languageCodesBySemesterState } from '@/recoil/languages.state'
 import TagButtonLanguage from '../atom_tag_button/index.language'
 
 const TagButtonChunkDetailed: FC = () => {
-  const languages = useRecoilValue(languagesPerSemesterState)
+  const languageCodes = useRecoilValue(languageCodesBySemesterState)
 
   return (
     <Box>
-      {languages.map((language) => (
-        <TagButtonLanguage key={language} languageCode={language} />
+      {languageCodes.map((code) => (
+        <TagButtonLanguage key={code} languageCode={code} />
       ))}
     </Box>
   )
