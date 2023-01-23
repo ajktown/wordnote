@@ -6,7 +6,7 @@ import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
 
 enum PrivateLanguageRecoilKey {
   LanguageSelected = `LanguageSelected`,
-  languagesPerSemester = `languagesPerSemesterState`,
+  LanguagesPerSemester = `LanguagesPerSemesterState`,
 }
 
 export const selectedLanguageState = atom<null | GlobalLanguageCode>({
@@ -14,8 +14,8 @@ export const selectedLanguageState = atom<null | GlobalLanguageCode>({
   default: null,
 })
 
-export const languagesPerSemesterState = selector<GlobalLanguageCode[]>({
-  key: PrivateLanguageRecoilKey.languagesPerSemester + RecoilKeySuffix.Selector,
+export const languageCodesBySemesterState = selector<GlobalLanguageCode[]>({
+  key: PrivateLanguageRecoilKey.LanguagesPerSemester + RecoilKeySuffix.Selector,
   get: ({ get }) => {
     const wordIds = get(semesterFilteredWordIds)
     const set = new Set<GlobalLanguageCode>()
