@@ -5,10 +5,13 @@ import { useOutsideClicked } from '@/hooks/use-outside-clicked.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useKeyPress } from '@/hooks/use-key-press.hook'
 import { usePostWordWithStringHook } from '@/hooks/words/use-post-word-with-string.hook'
+import { useRecoilValue } from 'recoil'
+import { searchInputState } from '@/recoil/searchInput.state'
 
 const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new words...`
 
 const NewWordBox: FC = () => {
+  const searchInput = useRecoilValue(searchInputState)
   // TODO: This is possibly too long. I think it could be better,
   // TODO: But then for the current code status sake, it looks good.
   const [
@@ -21,6 +24,8 @@ const NewWordBox: FC = () => {
 
   useKeyPress(`Escape`, handleClickAddWord)
   const ref = useOutsideClicked(handleClickAddWord)
+
+  if (searchInput) return null
 
   if (isWritingMode) {
     return (
