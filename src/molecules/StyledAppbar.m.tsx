@@ -8,6 +8,7 @@ import AppbarSearchBar from '@/components/molecule_appbar_search_bar'
 import Image from 'next/image'
 
 // TODO: Move this to non-molecules.
+// TODO: Make this getting the children, create a new component Appbar and use it for the pages
 interface Props {
   title: string
   titleLogoPath?: string // i.e) src="logo.png"
