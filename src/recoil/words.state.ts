@@ -4,6 +4,7 @@ import {
   WordDataModifiableValue,
 } from '@/api/words/words.interface'
 import { atom, atomFamily, selector } from 'recoil'
+import { isFavoriteClickedState } from './favorites.state'
 import { RecoilKeySuffix } from './index.keys'
 import { selectedLanguageState } from './languages.state'
 import { searchInputState } from './searchInput.state'
@@ -16,6 +17,8 @@ enum PrivateWordRecoilKey {
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
   SemesterFilteredWordIds = `SemesterFilteredWordIds`,
+  TempLikedWordIds = `TempLikedWordIds`,
+  LikedWordIds = `LikedWordIds`,
   FilteredWordIds = `FilteredWordIds`,
 }
 
@@ -76,10 +79,32 @@ export const semesterFilteredWordIds = selector<string[]>({
   },
 })
 
+export const tempFavoriteWordIdsState = atom<string[]>({
+  key: PrivateWordRecoilKey.TempLikedWordIds + RecoilKeySuffix.Dialog,
+  default: [],
+})
+
+const privateLikedWordIds = selector<string[]>({
+  key: PrivateWordRecoilKey.TempLikedWordIds + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    const wordIds = get(semesterFilteredWordIds)
+
+    const isFavoriteClicked = get(isFavoriteClickedState)
+    if (!isFavoriteClicked) return wordIds
+
+    return wordIds.concat(get(tempFavoriteWordIdsState)).filter((wordId) => {
+      const word = get(wordsFamily(wordId))
+      if (!word) return false
+
+      return word.isFavorite
+    })
+  },
+})
+
 const privateLanguageFilteredWordIds = selector<string[]>({
   key: PrivateWordRecoilKey.LanguageFilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
-    const wordIds = get(semesterFilteredWordIds)
+    const wordIds = get(privateLikedWordIds)
 
     const selectedLanguage = get(selectedLanguageState)
     if (!selectedLanguage) return wordIds
