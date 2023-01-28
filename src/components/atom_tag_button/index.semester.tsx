@@ -25,7 +25,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
     // TODO: Requires to reset the language code too
     setSelectedSemester(code)
     onResetFavoriteClicked()
-  }, [code, setSelectedSemester])
+  }, [code, setSelectedSemester, onResetFavoriteClicked])
 
   return (
     <StyledTagButtonAtom
