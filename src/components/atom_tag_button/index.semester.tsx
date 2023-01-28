@@ -2,6 +2,7 @@ import { SemesterData } from '@/api/semesters/index.interface'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { isFavoriteClickedState } from '@/recoil/favorites.state'
+import { selectedLanguageState } from '@/recoil/languages.state'
 import { selectedSemesterState } from '@/recoil/semesters.state'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
@@ -14,6 +15,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
     selectedSemesterState,
   )
   const onResetFavoriteClicked = useResetRecoilState(isFavoriteClickedState)
+  const onResetSelectedLanguage = useResetRecoilState(selectedLanguageState)
   const { code } = semester
 
   const variant: GlobalMuiTagVariant = useMemo(() => {
@@ -22,10 +24,10 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
   }, [selectedSemester, code])
 
   const onClick = useCallback(() => {
-    // TODO: Requires to reset the language code too
     setSelectedSemester(code)
     onResetFavoriteClicked()
-  }, [code, setSelectedSemester, onResetFavoriteClicked])
+    onResetSelectedLanguage()
+  }, [code, setSelectedSemester, onResetFavoriteClicked, onResetSelectedLanguage])
 
   return (
     <StyledTagButtonAtom
