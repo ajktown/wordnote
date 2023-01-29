@@ -92,9 +92,11 @@ const privateLikedWordIds = selector<string[]>({
     const isFavoriteClicked = get(isFavoriteClickedState)
     if (!isFavoriteClicked) return wordIds
 
-    return wordIds.concat(get(tempFavoriteWordIdsState)).filter((wordId) => {
+    return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
       if (!word) return false
+
+      if (get(tempFavoriteWordIdsState).includes(word.id)) return true
 
       return word.isFavorite
     })
