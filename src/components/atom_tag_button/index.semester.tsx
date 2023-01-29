@@ -27,7 +27,12 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
     setSelectedSemester(code)
     onResetFavoriteClicked()
     onResetSelectedLanguage()
-  }, [code, setSelectedSemester, onResetFavoriteClicked, onResetSelectedLanguage])
+  }, [
+    code,
+    setSelectedSemester,
+    onResetFavoriteClicked,
+    onResetSelectedLanguage,
+  ])
 
   return (
     <StyledTagButtonAtom
