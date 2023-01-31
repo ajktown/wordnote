@@ -17,10 +17,8 @@ const TagButtonFavorite: FC = () => {
   )
 
   const onClick = useCallback(() => {
-    const changingTo = !isFavoriteClicked
-    if (!changingTo) resetTempFavoriteWordIds()
-
-    setFavoriteClicked(changingTo)
+    resetTempFavoriteWordIds()
+    setFavoriteClicked(!isFavoriteClicked)
   }, [isFavoriteClicked, setFavoriteClicked, resetTempFavoriteWordIds])
 
   return (
