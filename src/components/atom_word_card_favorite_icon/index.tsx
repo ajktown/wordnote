@@ -22,7 +22,7 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
     await putWord({ isFavorite: modifyingTo })
 
     if (!isFavoriteClicked) return
-    if (modifyingTo) setTempIds([...tempIds].filter(id => id !== word.id))
+    if (modifyingTo) setTempIds([...tempIds].filter((id) => id !== word.id))
     else setTempIds([...tempIds, word.id])
   }, [isFavoriteClicked, word, putWord, tempIds, setTempIds])
 
