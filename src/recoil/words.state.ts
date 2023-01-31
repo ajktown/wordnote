@@ -80,7 +80,7 @@ export const semesterFilteredWordIds = selector<string[]>({
 })
 
 export const tempFavoriteWordIdsState = atom<string[]>({
-  key: PrivateWordRecoilKey.TempLikedWordIds + RecoilKeySuffix.Dialog,
+  key: PrivateWordRecoilKey.TempLikedWordIds,
   default: [],
 })
 
