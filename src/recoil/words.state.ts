@@ -96,9 +96,7 @@ const privateLikedWordIds = selector<string[]>({
       const word = get(wordsFamily(wordId))
       if (!word) return false
 
-      if (get(tempFavoriteWordIdsState).includes(word.id)) return true
-
-      return word.isFavorite
+      return get(tempFavoriteWordIdsState).includes(word.id) || word.isFavorite
     })
   },
 })
