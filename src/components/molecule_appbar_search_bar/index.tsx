@@ -8,7 +8,7 @@ import XButton from '../atom_x_button'
 
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
-  const resetSearchInput = useResetRecoilState(searchInputState)
+  const onResetSearchInput = useResetRecoilState(searchInputState)
 
   return (
     <Box width={250}>
@@ -20,7 +20,7 @@ const AppbarSearchBar: FC = () => {
         buttons={{
           left: <SearchIcon />,
           right: searchInput && (
-            <XButton onClick={resetSearchInput} hoverMessage={`Reset`} />
+            <XButton onClick={onResetSearchInput} hoverMessage={`Reset`} />
           ),
         }}
       />

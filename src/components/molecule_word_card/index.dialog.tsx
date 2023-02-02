@@ -9,15 +9,15 @@ import WordCardDialogCloseWarning from './index.dialog.close_warning'
 
 const WordCardDialog: FC = () => {
   const selectedWordId = useRecoilValue(selectedWordIdForDialogState)
-  const handleCloseWordEditingDialog = useResetRecoilState(
+  const onCloseWordEditingDialog = useResetRecoilState(
     selectedWordIdForDialogState,
   )
   const [, handleResetCache, isModified] = usePutWordCache(selectedWordId)
 
   const handleCloseDialog = useCallback(async () => {
     await handleResetCache()
-    handleCloseWordEditingDialog()
-  }, [handleCloseWordEditingDialog, handleResetCache])
+    onCloseWordEditingDialog()
+  }, [onCloseWordEditingDialog, handleResetCache])
 
   const [
     isDialogOpen,

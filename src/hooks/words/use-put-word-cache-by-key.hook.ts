@@ -25,7 +25,7 @@ export const usePutWordCacheByKey = (
   const [modifiedData, setModifiedData] = useRecoilState(
     modifyingWordFamily(wordKey),
   )
-  const handleResetCacheByKey = useResetRecoilState(
+  const onResetCacheByKey = useResetRecoilState(
     modifyingWordFamily(wordKey),
   )
 
@@ -47,14 +47,14 @@ export const usePutWordCacheByKey = (
 
   const handleApplyCache = useCallback(() => {
     putWord({ [wordKey]: modifiedData })
-    handleResetCacheByKey()
-  }, [wordKey, putWord, modifiedData, handleResetCacheByKey])
+    onResetCacheByKey()
+  }, [wordKey, putWord, modifiedData, onResetCacheByKey])
 
   return [
     value,
     setModifiedData,
     isModified,
     handleApplyCache,
-    handleResetCacheByKey,
+    onResetCacheByKey,
   ]
 }

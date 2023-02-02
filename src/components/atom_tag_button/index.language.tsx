@@ -19,7 +19,7 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
   const [selectedLanguage, setSelectedLanguage] = useRecoilState(
     selectedLanguageState,
   )
-  const resetSelectedLanguage = useResetRecoilState(selectedLanguageState)
+  const onResetSelectedLanguage = useResetRecoilState(selectedLanguageState)
 
   const variant: GlobalMuiTagVariant = useMemo(() => {
     if (selectedLanguage === languageCode) return `filled`
@@ -27,13 +27,13 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
   }, [selectedLanguage, languageCode])
 
   const onClick = useCallback(() => {
-    if (languageCode === selectedLanguage) return resetSelectedLanguage()
+    if (languageCode === selectedLanguage) return onResetSelectedLanguage()
     setSelectedLanguage(languageCode)
   }, [
     selectedLanguage,
     languageCode,
     setSelectedLanguage,
-    resetSelectedLanguage,
+    onResetSelectedLanguage,
   ])
 
   return (

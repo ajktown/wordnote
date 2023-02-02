@@ -9,7 +9,7 @@ const TagButtonFavorite: FC = () => {
   const [isFavoriteClicked, setFavoriteClicked] = useRecoilState(
     isFavoriteClickedState,
   )
-  const resetTempFavoriteWordIds = useResetRecoilState(tempFavoriteWordIdsState)
+  const onResetTempFavoriteWordIds = useResetRecoilState(tempFavoriteWordIdsState)
 
   const variant: GlobalMuiTagVariant = useMemo(
     () => (isFavoriteClicked ? `filled` : `outlined`),
@@ -17,9 +17,9 @@ const TagButtonFavorite: FC = () => {
   )
 
   const onClick = useCallback(() => {
-    resetTempFavoriteWordIds()
+    onResetTempFavoriteWordIds()
     setFavoriteClicked(!isFavoriteClicked)
-  }, [isFavoriteClicked, setFavoriteClicked, resetTempFavoriteWordIds])
+  }, [isFavoriteClicked, setFavoriteClicked, onResetTempFavoriteWordIds])
 
   return (
     <StyledTagButtonAtom

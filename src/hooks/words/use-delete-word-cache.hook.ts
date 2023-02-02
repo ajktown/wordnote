@@ -9,7 +9,7 @@ type UseDeleteWordCache = () => Promise<void> // handleDeleteWordCache
 export const useDeleteWordCache = (
   deletingWordId: string,
 ): UseDeleteWordCache => {
-  const resetSelectedWordIdForDialog = useResetRecoilState(
+  const onCloseWordEditingDialog = useResetRecoilState(
     selectedWordIdForDialogState,
   )
 
@@ -21,9 +21,9 @@ export const useDeleteWordCache = (
         )
 
         set(wordIdsState, wordIds)
-        resetSelectedWordIdForDialog()
+        onCloseWordEditingDialog()
       },
-    [deletingWordId, resetSelectedWordIdForDialog],
+    [deletingWordId, onCloseWordEditingDialog],
   )
 
   return handleDeleteWordCache

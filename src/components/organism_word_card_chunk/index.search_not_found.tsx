@@ -8,7 +8,7 @@ import { usePostWord } from '@/hooks/words/use-post-word.hook'
 
 const WordCardChunkSearchNotFound: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
-  const resetSearchInput = useResetRecoilState(searchInputState)
+  const onResetSearchInput = useResetRecoilState(searchInputState)
   const setSearchInput = useSetRecoilState(searchInputState)
   const postWord = usePostWord()
 
@@ -27,7 +27,7 @@ const WordCardChunkSearchNotFound: FC = () => {
       </Typography>
       <StyledTextButtonAtom
         title="Clear Search Input"
-        onClick={resetSearchInput}
+        onClick={onResetSearchInput}
       />
       <StyledTextButtonAtom
         title={`Or create a new word with "${searchInput}"`}
