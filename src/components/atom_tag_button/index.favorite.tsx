@@ -9,7 +9,9 @@ const TagButtonFavorite: FC = () => {
   const [isFavoriteClicked, setFavoriteClicked] = useRecoilState(
     isFavoriteClickedState,
   )
-  const onResetTempFavoriteWordIds = useResetRecoilState(tempFavoriteWordIdsState)
+  const onResetTempFavoriteWordIds = useResetRecoilState(
+    tempFavoriteWordIdsState,
+  )
 
   const variant: GlobalMuiTagVariant = useMemo(
     () => (isFavoriteClicked ? `filled` : `outlined`),

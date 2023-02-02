@@ -25,9 +25,7 @@ export const usePutWordCacheByKey = (
   const [modifiedData, setModifiedData] = useRecoilState(
     modifyingWordFamily(wordKey),
   )
-  const onResetCacheByKey = useResetRecoilState(
-    modifyingWordFamily(wordKey),
-  )
+  const onResetCacheByKey = useResetRecoilState(modifyingWordFamily(wordKey))
 
   const value: Value = useMemo(() => {
     if (word === null) return null
