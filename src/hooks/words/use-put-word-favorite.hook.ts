@@ -12,7 +12,7 @@ export const usePutWordFavorite = (wordId: string): UsePutWord => {
   const [tempIds, setTempIds] = useRecoilState(tempFavoriteWordIdsState)
   const isFavoriteClicked = useRecoilValue(isFavoriteClickedState)
 
-  const handleClickFavoriteIcon = useCallback(async () => {
+  const onClickFavoriteIcon = useCallback(async () => {
     if (word === null) return
 
     const modifyingTo = !word.isFavorite
@@ -23,5 +23,5 @@ export const usePutWordFavorite = (wordId: string): UsePutWord => {
     else setTempIds([...tempIds, word.id])
   }, [isFavoriteClicked, word, putWord, tempIds, setTempIds])
 
-  return [word, handleClickFavoriteIcon]
+  return [word, onClickFavoriteIcon]
 }
