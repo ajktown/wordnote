@@ -7,18 +7,18 @@ export const useKeyPress = (
   onPress: () => any,
 ) => {
   useEffect(() => {
-    const keyDownHandler = (event: KeyboardEvent) => {
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== keyName) return
 
       event.preventDefault()
       onPress()
     }
 
-    document.addEventListener(`keydown`, keyDownHandler)
+    document.addEventListener(`keydown`, onKeyDown)
 
     // Cleaning up the listener to prevent memory leak
     return () => {
-      document.removeEventListener(`keydown`, keyDownHandler)
+      document.removeEventListener(`keydown`, onKeyDown)
     }
   }, [keyName, onPress])
 }
