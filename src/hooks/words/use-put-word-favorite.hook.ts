@@ -8,7 +8,7 @@ import { WordData } from '@/api/words/words.interface'
 type UsePutWord = [null | WordData, () => Promise<void>]
 export const usePutWordFavorite = (wordId: string): UsePutWord => {
   const word = useRecoilValue(wordsFamily(wordId))
-  const putWord = usePutWord(wordId)
+  const handlePutWord = usePutWord(wordId)
   const [tempIds, setTempIds] = useRecoilState(tempFavoriteWordIdsState)
   const isFavoriteClicked = useRecoilValue(isFavoriteClickedState)
 
@@ -16,12 +16,12 @@ export const usePutWordFavorite = (wordId: string): UsePutWord => {
     if (word === null) return
 
     const modifyingTo = !word.isFavorite
-    await putWord({ isFavorite: modifyingTo })
+    await handlePutWord({ isFavorite: modifyingTo })
 
     if (!isFavoriteClicked) return
     if (modifyingTo) setTempIds([...tempIds].filter((id) => id !== word.id))
     else setTempIds([...tempIds, word.id])
-  }, [isFavoriteClicked, word, putWord, tempIds, setTempIds])
+  }, [isFavoriteClicked, word, handlePutWord, tempIds, setTempIds])
 
   return [word, onClickFavoriteIcon]
 }

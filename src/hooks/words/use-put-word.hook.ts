@@ -6,7 +6,7 @@ import { useRecoilCallback } from 'recoil'
 type UsePutWord = (modified: Partial<WordDataModifiable>) => Promise<void> // handlePutWord
 
 export const usePutWord = (wordId: string): UsePutWord => {
-  const handlePutWord = useRecoilCallback(
+  const onPutWord = useRecoilCallback(
     ({ snapshot, set }) =>
       async (modified: Partial<WordDataModifiable>) => {
         const wordData = await snapshot.getPromise(wordsFamily(wordId))
@@ -22,5 +22,5 @@ export const usePutWord = (wordId: string): UsePutWord => {
     [],
   )
 
-  return handlePutWord
+  return onPutWord
 }
