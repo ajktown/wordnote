@@ -9,7 +9,7 @@ interface Props {
 const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   const [word, handlePutWordFavorite] = usePutWordFavorite(wordId)
 
-  if (word === null) return null
+  if (!word) return null
 
   return (
     <StyledIconButtonAtom
