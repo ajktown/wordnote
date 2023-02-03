@@ -36,7 +36,7 @@ const LanguageSelector: FC<Props> = ({
   hideTitle,
 }) => {
   const word = useRecoilValue(wordsFamily(wordId))
-  const putWord = usePutWord(wordId)
+  const handlePutWord = usePutWord(wordId)
 
   const [selectedId, setSelectedId] = useState(word?.languageCode)
 
@@ -44,9 +44,9 @@ const LanguageSelector: FC<Props> = ({
     (id: string) => {
       const convertedLnCode = id as GlobalLanguageCode
       setSelectedId(convertedLnCode)
-      putWord({ languageCode: convertedLnCode })
+      handlePutWord({ languageCode: convertedLnCode })
     },
-    [putWord],
+    [handlePutWord],
   )
 
   const orientationStyle = useVerticalStyle ? verticalStyle : horizontalStyle

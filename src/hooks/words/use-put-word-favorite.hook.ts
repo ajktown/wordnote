@@ -7,10 +7,11 @@ import { WordData } from '@/api/words/words.interface'
 
 type UsePutWord = [null | WordData, () => Promise<void>]
 export const usePutWordFavorite = (wordId: string): UsePutWord => {
-  const word = useRecoilValue(wordsFamily(wordId))
-  const handlePutWord = usePutWord(wordId)
   const [tempIds, setTempIds] = useRecoilState(tempFavoriteWordIdsState)
+  const word = useRecoilValue(wordsFamily(wordId))
   const isFavoriteClicked = useRecoilValue(isFavoriteClickedState)
+
+  const handlePutWord = usePutWord(wordId)
 
   const onClickFavoriteIcon = useCallback(async () => {
     if (word === null) return
