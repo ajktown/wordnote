@@ -17,7 +17,7 @@ const TagButtonChunkDetailed: FC = () => {
       {languageCodes.map((code) => (
         <TagButtonLanguage key={code} languageCode={code} />
       ))}
-      {customizedTags.map(tag => (
+      {customizedTags.map((tag) => (
         <TagButtonCustomized key={tag} label={tag} />
       ))}
     </Box>

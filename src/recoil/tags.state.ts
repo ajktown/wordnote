@@ -1,15 +1,15 @@
-import { atomFamily, selector } from 'recoil'
+import { atom, selector } from 'recoil'
 import { RecoilKeySuffix } from './index.keys'
 import { semesterFilteredWordIds, wordsFamily } from './words.state'
 
 enum TagRecoilKey {
-  SelectedTag = `SelectedTag`,
+  SelectedTags = `SelectedTags`,
   CustomizedTags = `CustomizedTags`,
 }
 
-export const selectedTagFamily = atomFamily<boolean, string>({
-  key: TagRecoilKey.SelectedTag + RecoilKeySuffix.Family,
-  default: false,
+export const selectedTagsState = atom<string[]>({
+  key: TagRecoilKey.SelectedTags,
+  default: [],
 })
 
 export const customizedTagsState = selector<string[]>({
@@ -21,7 +21,7 @@ export const customizedTagsState = selector<string[]>({
     for (const wordId of wordIds) {
       const word = get(wordsFamily(wordId))
       if (!word) continue
-      word.tags.forEach(tag => tags.add(tag))
+      word.tags.forEach((tag) => tags.add(tag))
     }
 
     return Array.from(tags)

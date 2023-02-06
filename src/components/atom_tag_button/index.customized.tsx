@@ -1,6 +1,6 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { selectedTagFamily } from '@/recoil/tags.state'
+import { selectedTagsState } from '@/recoil/tags.state'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilState } from 'recoil'
 
@@ -8,17 +8,17 @@ interface Props {
   label: string
 }
 const TagButtonCustomized: FC<Props> = ({ label }) => {
-  const [isTagSelected, setTagSelected] = useRecoilState(
-    selectedTagFamily(label),
-  )
+  const [tags, setTags] = useRecoilState(selectedTagsState)
+  const isTagSelected = useMemo(() => tags.includes(label), [tags, label])
 
   const variant: GlobalMuiTagVariant = useMemo(() => {
     return isTagSelected ? `filled` : `outlined`
   }, [isTagSelected])
 
   const onClick = useCallback(() => {
-    setTagSelected(!isTagSelected)
-  }, [isTagSelected, setTagSelected])
+    if (!isTagSelected) setTags([...tags, label])
+    else setTags([...tags].filter((tag) => tag !== label))
+  }, [label, isTagSelected, setTags])
 
   return (
     <StyledTagButtonAtom
