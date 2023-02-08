@@ -18,7 +18,7 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
   const onClick = useCallback(() => {
     if (!isTagSelected) setTags([...tags, label])
     else setTags([...tags].filter((tag) => tag !== label))
-  }, [label, isTagSelected, setTags])
+  }, [label, tags, isTagSelected, setTags])
 
   return (
     <StyledTagButtonAtom

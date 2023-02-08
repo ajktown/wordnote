@@ -50,8 +50,8 @@ const StyledIconButtonAtom: FC<Props> = ({
           aria-label="close"
           onClick={handleClick}
           disabled={isDisabled}
-          disableTouchRipple
           style={{ color: buttonColor }}
+          disableRipple
         >
           {props.jsxElementButton}
         </IconButton>

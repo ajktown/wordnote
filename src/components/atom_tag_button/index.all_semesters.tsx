@@ -26,7 +26,12 @@ const TagButtonAllSemesters: FC = () => {
     onResetFavoriteClicked()
     onResetSelectedLanguage()
     onResetSelectedTagsState()
-  }, [onResetSelectedSemester, onResetFavoriteClicked, onResetSelectedLanguage, onResetSelectedTagsState])
+  }, [
+    onResetSelectedSemester,
+    onResetFavoriteClicked,
+    onResetSelectedLanguage,
+    onResetSelectedTagsState,
+  ])
 
   return (
     <StyledTagButtonAtom

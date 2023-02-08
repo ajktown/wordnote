@@ -1,7 +1,6 @@
-import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
-import FavoriteWordIcon from '@mui/icons-material/FavoriteTwoTone'
 import { usePutWordFavorite } from '@/hooks/words/use-put-word-favorite.hook'
+import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
 
 interface Props {
   wordId: string
@@ -12,13 +11,9 @@ const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   if (!word) return null
 
   return (
-    <StyledIconButtonAtom
+    <StyledIconButtonFavorite
+      isClicked={word.isFavorite}
       onClick={handlePutWordFavorite}
-      jsxElementButton={
-        <FavoriteWordIcon
-          style={{ color: word.isFavorite ? `FF0000` /* Red */ : undefined }}
-        />
-      }
     />
   )
 }
