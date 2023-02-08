@@ -26,7 +26,7 @@ const TagButtonFavorite: FC = () => {
 
   return (
     <StyledTagButtonAtom
-      label={<StyledIconButtonFavorite isClicked size="small" />}
+      label={<StyledIconButtonFavorite isClicked={isFavoriteClicked} size="small" />}
       onClick={onClick}
       style={{
         variant,
