@@ -4,7 +4,7 @@ import { GlobalMuiTagVariant } from '@/global.interface'
 import { isFavoriteClickedState } from '@/recoil/favorites.state'
 import { selectedLanguageState } from '@/recoil/languages.state'
 import { selectedSemesterState } from '@/recoil/semesters.state'
-import { selectedTagsState } from '@/recoil/tags.state'
+import { selectedCustomizedTagsState } from '@/recoil/tags.state'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 
@@ -17,7 +17,9 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
   )
   const onResetFavoriteClicked = useResetRecoilState(isFavoriteClickedState)
   const onResetSelectedLanguage = useResetRecoilState(selectedLanguageState)
-  const onResetSelectedTagsState = useResetRecoilState(selectedTagsState)
+  const onResetSelectedTagsState = useResetRecoilState(
+    selectedCustomizedTagsState,
+  )
   const { code } = semester
 
   const variant: GlobalMuiTagVariant = useMemo(() => {

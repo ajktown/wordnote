@@ -3,12 +3,12 @@ import { RecoilKeySuffix } from './index.keys'
 import { semesterFilteredWordIds, wordsFamily } from './words.state'
 
 enum TagRecoilKey {
-  SelectedTags = `SelectedTags`,
+  SelectedCustomizedTags = `SelectedCustomizedTags`,
   CustomizedTags = `CustomizedTags`,
 }
 
-export const selectedTagsState = atom<string[]>({
-  key: TagRecoilKey.SelectedTags,
+export const selectedCustomizedTagsState = atom<string[]>({
+  key: TagRecoilKey.SelectedCustomizedTags,
   default: [],
 })
 
