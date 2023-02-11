@@ -3,7 +3,9 @@ import {
   WordDataModifiableKey,
   WordDataModifiableValue,
 } from '@/api/words/words.interface'
+import { timeHandler } from '@/handlers/time.handler'
 import { atom, atomFamily, selector } from 'recoil'
+import { selectedCreatedDayState } from './created-date-tags.state'
 import { isFavoriteClickedState } from './favorites.state'
 import { RecoilKeySuffix } from './index.keys'
 import { selectedLanguageState } from './languages.state'
@@ -21,6 +23,7 @@ enum PrivateWordRecoilKey {
   TempLikedWordIds = `TempLikedWordIds`,
   LikedWordIds = `LikedWordIds`,
   CustomizedTagFilteredWordIds = `CustomizedTagFilteredWordIds`,
+  CreatedDaysFilteredWordIds = `CreatedDaysFilteredWordIds`,
   FilteredWordIds = `FilteredWordIds`,
 }
 
@@ -141,10 +144,28 @@ const privateCustomizedTagFilteredWordIds = selector<string[]>({
   },
 })
 
+const privateCreatedDaysFilteredWordIds = selector<string[]>({
+  key:
+    PrivateWordRecoilKey.CreatedDaysFilteredWordIds + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    const wordIds = get(privateCustomizedTagFilteredWordIds)
+
+    const selectedCreatedDay = get(selectedCreatedDayState)
+    if (!selectedCreatedDay) return wordIds
+
+    return wordIds.filter((wordId) => {
+      const word = get(wordsFamily(wordId))
+      if (!word) return false
+
+      return timeHandler.isWithinDaysAgo(selectedCreatedDay, word.createdAt)
+    })
+  },
+})
+
 export const filteredWordIdsState = selector<string[]>({
   key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
-    const wordIds = get(privateCustomizedTagFilteredWordIds)
+    const wordIds = get(privateCreatedDaysFilteredWordIds)
     return wordIds
   },
 })

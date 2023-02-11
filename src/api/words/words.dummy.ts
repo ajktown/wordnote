@@ -17,6 +17,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element1,
     languageCode: `en`,
+    createdAt: `2023-02-11T02:59:23.475Z`,
     semester: 231,
     isFavorite: true,
     term: `breadth`,
@@ -28,6 +29,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element2,
     languageCode: `en`,
+    createdAt: `2022-11-11T02:59:23.475Z`,
     semester: 224,
     isFavorite: false,
     term: `insinuated`,
@@ -39,6 +41,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element3,
     languageCode: `ko`,
+    createdAt: `2022-10-11T02:59:23.475Z`,
     semester: 224,
     isFavorite: false,
     term: `중용`,
