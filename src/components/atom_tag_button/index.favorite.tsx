@@ -1,3 +1,4 @@
+import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { isFavoriteClickedState } from '@/recoil/favorites.state'
@@ -25,7 +26,9 @@ const TagButtonFavorite: FC = () => {
 
   return (
     <StyledTagButtonAtom
-      label={`#Favorite`}
+      label={
+        <StyledIconButtonFavorite isClicked={isFavoriteClicked} size="small" />
+      }
       onClick={onClick}
       style={{
         variant,

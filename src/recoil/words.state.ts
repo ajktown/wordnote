@@ -9,6 +9,7 @@ import { RecoilKeySuffix } from './index.keys'
 import { selectedLanguageState } from './languages.state'
 import { searchInputState } from './searchInput.state'
 import { selectedSemesterState } from './semesters.state'
+import { selectedCustomizedTagsState } from './tags.state'
 
 enum PrivateWordRecoilKey {
   Words = `Words`,
@@ -19,6 +20,7 @@ enum PrivateWordRecoilKey {
   SemesterFilteredWordIds = `SemesterFilteredWordIds`,
   TempLikedWordIds = `TempLikedWordIds`,
   LikedWordIds = `LikedWordIds`,
+  CustomizedTagFilteredWordIds = `CustomizedTagFilteredWordIds`,
   FilteredWordIds = `FilteredWordIds`,
 }
 
@@ -118,10 +120,31 @@ const privateLanguageFilteredWordIds = selector<string[]>({
   },
 })
 
+const privateCustomizedTagFilteredWordIds = selector<string[]>({
+  key:
+    PrivateWordRecoilKey.CustomizedTagFilteredWordIds +
+    RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    const wordIds = get(privateLanguageFilteredWordIds)
+    const selectedCustomizedTags = get(selectedCustomizedTagsState)
+    if (selectedCustomizedTags.length === 0) return wordIds
+
+    return wordIds.filter((wordId) => {
+      const word = get(wordsFamily(wordId))
+      if (!word) return false
+
+      for (const tag of word.tags) {
+        if (selectedCustomizedTags.includes(tag)) return true
+      }
+      return false
+    })
+  },
+})
+
 export const filteredWordIdsState = selector<string[]>({
   key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
   get: ({ get }) => {
-    const wordIds = get(privateLanguageFilteredWordIds)
+    const wordIds = get(privateCustomizedTagFilteredWordIds)
     return wordIds
   },
 })
