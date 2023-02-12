@@ -4,6 +4,7 @@ import { isFavoriteClickedState } from '@/recoil/favorites.state'
 import { selectedLanguageState } from '@/recoil/languages.state'
 import { selectedSemesterState } from '@/recoil/semesters.state'
 import { selectedCustomizedTagsState } from '@/recoil/tags.state'
+import { selectedCreatedDayState } from '@/recoil/created-date-tags.state'
 
 export const useResetSelectedChips = (code?: number) => {
   const setSelectedSemester = useSetRecoilState(selectedSemesterState)
@@ -13,12 +14,14 @@ export const useResetSelectedChips = (code?: number) => {
   const onResetSelectedTagsState = useResetRecoilState(
     selectedCustomizedTagsState,
   )
-  // TODO: Add new reset for created ago chips
+  const onResetSelectedCustomizedTags = useResetRecoilState(selectedCreatedDayState)
+
   const onClick = useCallback(() => {
     code ? setSelectedSemester(code) : onResetSelectedSemester()
     onResetFavoriteClicked()
     onResetSelectedLanguage()
     onResetSelectedTagsState()
+    onResetSelectedCustomizedTags()
   }, [
     code,
     setSelectedSemester,
@@ -26,6 +29,7 @@ export const useResetSelectedChips = (code?: number) => {
     onResetFavoriteClicked,
     onResetSelectedLanguage,
     onResetSelectedTagsState,
+    onResetSelectedCustomizedTags,
   ])
 
   return onClick
