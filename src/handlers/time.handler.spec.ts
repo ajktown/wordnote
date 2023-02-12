@@ -1,4 +1,3 @@
-import { stringSliceHandler } from './string-slice.handler'
 import { timeHandler } from './time.handler'
 
 describe(`timeHandler.isWithinDaysAgo()`, () => {
@@ -8,7 +7,7 @@ describe(`timeHandler.isWithinDaysAgo()`, () => {
   })
 
   interface Test {
-    sampleDaysAgo: number,
+    sampleDaysAgo: number
     sampleDate: Date
     wantIsWithin: boolean
   }
@@ -24,11 +23,24 @@ describe(`timeHandler.isWithinDaysAgo()`, () => {
       sampleDate: new Date(),
       wantIsWithin: false,
     },
+    {
+      sampleDaysAgo: 1,
+      sampleDate: new Date(Date.now() - 24 * 60 * 60 * 1000), // TODO: Pretty darn hard coded. gotta use library.
+      wantIsWithin: true,
+    },
+    {
+      sampleDaysAgo: 2,
+      sampleDate: new Date(Date.now() - 24 * 60 * 60 * 1000), // TODO: Pretty darn hard coded. gotta use library.
+      wantIsWithin: false,
+    },
   ]
 
   tests.forEach((test) => {
-    const result = timeHandler.isWithinDaysAgo(test.sampleDaysAgo, test.sampleDate)
-    it(`should return the expected output in boolean from "${test.sampleDaysAgo} days ago and date "${test.sampleDate}"`, () => {
+    const result = timeHandler.isWithinDaysAgo(
+      test.sampleDaysAgo,
+      test.sampleDate,
+    )
+    it(`should return the expected output in boolean "${test.wantIsWithin}" from "${test.sampleDaysAgo} days ago and date "${test.sampleDate}"`, () => {
       expect(result).toBe(test.wantIsWithin)
     })
   })

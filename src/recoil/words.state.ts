@@ -151,7 +151,7 @@ const privateCreatedDaysFilteredWordIds = selector<string[]>({
     const wordIds = get(privateCustomizedTagFilteredWordIds)
 
     const selectedCreatedDay = get(selectedCreatedDayState)
-    if (!selectedCreatedDay) return wordIds
+    if (selectedCreatedDay === null) return wordIds
 
     return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
