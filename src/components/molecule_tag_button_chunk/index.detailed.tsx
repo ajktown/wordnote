@@ -5,21 +5,19 @@ import { languageCodesBySemesterState } from '@/recoil/languages.state'
 import TagButtonLanguage from '../atom_tag_button/index.language'
 import TagButtonFavorite from '../atom_tag_button/index.favorite'
 import { customizedTagsState } from '@/recoil/tags.state'
-import { createdDaysBeforePreferredDaysState } from '@/recoil/created-date-tags.state'
+import { simplifiedDaysBeforeState } from '@/recoil/created-date-tags.state'
 import TagButtonCustomized from '../atom_tag_button/index.customized'
 import TagButtonDaysAgo from '../atom_tag_button/index.days_ago'
 
 const TagButtonChunkDetailed: FC = () => {
   const languageCodes = useRecoilValue(languageCodesBySemesterState)
   const customizedTags = useRecoilValue(customizedTagsState)
-  const createdDaysBeforePreferredDays = useRecoilValue(
-    createdDaysBeforePreferredDaysState,
-  )
+  const simplifiedDaysBefore = useRecoilValue(simplifiedDaysBeforeState)
 
   return (
     <Box>
       <TagButtonFavorite />
-      {createdDaysBeforePreferredDays.map((daysAgo) => (
+      {simplifiedDaysBefore.map((daysAgo) => (
         <TagButtonDaysAgo key={daysAgo} daysAgo={daysAgo} />
       ))}
       {languageCodes.map((code) => (

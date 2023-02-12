@@ -3,19 +3,13 @@ type JsDateAccepter = number | string | Date
 const DAY_IN_MS = 24 * 60 * 60 * 1000
 
 export const timeHandler = {
-  isWithinDaysAgo: (nDaysAgo: number, givenDate: JsDateAccepter) => {
+  getDaysAgo: (givenDate: JsDateAccepter): number => {
     const today = new Date()
     const convertedDate = new Date(givenDate)
 
-    const nDaysAgoInMs = nDaysAgo * DAY_IN_MS
-    const dateNDaysAgo = new Date(today.getTime() - nDaysAgoInMs)
-    const startOfDate = new Date(
-      dateNDaysAgo.getFullYear(),
-      dateNDaysAgo.getMonth(),
-      dateNDaysAgo.getDate(),
-    )
-    const startOfNextDayDate = new Date(startOfDate.getTime() + DAY_IN_MS)
-
-    return startOfDate <= convertedDate && convertedDate < startOfNextDayDate
+    return ((today.valueOf() - convertedDate.valueOf()) / DAY_IN_MS) | 0
+  },
+  isWithinDaysAgo: (nDaysAgo: number, givenDate: JsDateAccepter) => {
+    return nDaysAgo === timeHandler.getDaysAgo(givenDate)
   },
 }

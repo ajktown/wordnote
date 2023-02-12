@@ -1,5 +1,35 @@
 import { timeHandler } from './time.handler'
 
+describe(`timeHandler.getDaysAgo()`, () => {
+  it(`should be exposed as a function`, () => {
+    expect(timeHandler).toBeDefined()
+    expect(timeHandler.getDaysAgo).toBeDefined()
+  })
+
+  interface Test {
+    sampleDate: Date
+    wantDaysAgo: number
+  }
+
+  const tests: Test[] = [
+    {
+      sampleDate: new Date(),
+      wantDaysAgo: 0,
+    },
+    {
+      sampleDate: new Date(Date.now() - 24 * 60 * 60 * 1000), // TODO: Pretty darn hard coded. gotta use library.
+      wantDaysAgo: 1,
+    },
+  ]
+
+  tests.forEach((test) => {
+    const gotDaysAgo = timeHandler.getDaysAgo(test.sampleDate)
+    it(`should return the expected output "${test.wantDaysAgo}" from ""${test.sampleDate}""`, () => {
+      expect(gotDaysAgo).toBe(test.wantDaysAgo)
+    })
+  })
+})
+
 describe(`timeHandler.isWithinDaysAgo()`, () => {
   it(`should be exposed as a function`, () => {
     expect(timeHandler).toBeDefined()
