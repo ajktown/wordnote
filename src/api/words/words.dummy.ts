@@ -17,7 +17,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element1,
     languageCode: `en`,
-    createdAt: `2023-02-11T02:59:23.475Z`,
+    createdAt: new Date().toString(),
     semester: 231,
     isFavorite: true,
     term: `breadth`,
