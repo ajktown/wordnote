@@ -5,6 +5,8 @@
 - [Wordnote](#wordnote)
   - [Overview](#overview)
   - [About the starter of this project](#about-the-starter-of-this-project)
+  - [Libraries](#libraries)
+    - [Luxon](#luxon)
     - [Getting Started](#getting-started)
     - [Learn More](#learn-more)
     - [Deploy on Vercel](#deploy-on-vercel)
@@ -19,6 +21,12 @@ Wordnote is the second generation project produced by AJK Town, or AJ Kim. It wa
 ## About the starter of this project
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Libraries
+
+### Luxon
+
+We use Luxon for date and time of this project.
 
 ### Getting Started
 

@@ -1,4 +1,5 @@
 import { timeHandler } from './time.handler'
+import { DateTime } from 'luxon';
 
 describe(`timeHandler.getDaysAgo()`, () => {
   it(`should be exposed as a function`, () => {
@@ -17,7 +18,7 @@ describe(`timeHandler.getDaysAgo()`, () => {
       wantDaysAgo: 0,
     },
     {
-      sampleDate: new Date(Date.now() - 24 * 60 * 60 * 1000), // TODO: Pretty darn hard coded. gotta use library.
+      sampleDate: DateTime.now().minus({ days: 1 }).toJSDate(),
       wantDaysAgo: 1,
     },
   ]
