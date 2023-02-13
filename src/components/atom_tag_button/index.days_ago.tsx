@@ -54,7 +54,7 @@ const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
 
   return (
     <StyledTagButtonAtom
-      label={`#` + getLabel(daysAgo)}
+      label={`🌀 ` + getLabel(daysAgo)}
       style={{
         variant,
       }}
