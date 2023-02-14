@@ -1,4 +1,5 @@
 import { WordData } from './words.interface'
+import { DateTime } from 'luxon'
 
 enum DummyWordId {
   element1 = `2ce0dc45-4542-443b-9d20-f15f5d8c65e8`,
@@ -17,7 +18,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element1,
     languageCode: `en`,
-    createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toString(),
+    createdAt: DateTime.now().minus({ day: 1 }).toString(),
     semester: 231,
     isFavorite: true,
     term: `breadth`,
@@ -29,7 +30,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element2,
     languageCode: `en`,
-    createdAt: `2022-11-11T02:59:23.475Z`,
+    createdAt: DateTime.now().minus({ day: 7 }).toString(),
     semester: 224,
     isFavorite: false,
     term: `insinuated`,
@@ -41,7 +42,7 @@ export const DUMMY_WORDS: WordData[] = [
   {
     id: DummyWordId.element3,
     languageCode: `ko`,
-    createdAt: `2022-10-11T02:59:23.475Z`,
+    createdAt: DateTime.now().minus({ day: 7 }).toString(),
     semester: 224,
     isFavorite: false,
     term: `중용`,

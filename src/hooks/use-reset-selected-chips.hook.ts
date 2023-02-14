@@ -14,7 +14,9 @@ export const useResetSelectedChips = (code?: number) => {
   const onResetSelectedTagsState = useResetRecoilState(
     selectedCustomizedTagsState,
   )
-  const onResetSelectedCustomizedTags = useResetRecoilState(selectedCreatedDayState)
+  const onResetSelectedCustomizedTags = useResetRecoilState(
+    selectedCreatedDayState,
+  )
 
   const onClick = useCallback(() => {
     code ? setSelectedSemester(code) : onResetSelectedSemester()

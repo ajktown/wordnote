@@ -1,5 +1,5 @@
 import { timeHandler } from './time.handler'
-import { DateTime } from 'luxon';
+import { DateTime } from 'luxon'
 
 describe(`timeHandler.getDaysAgo()`, () => {
   it(`should be exposed as a function`, () => {
