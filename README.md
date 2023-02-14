@@ -5,11 +5,11 @@
 - [Wordnote](#wordnote)
   - [Overview](#overview)
   - [About the starter of this project](#about-the-starter-of-this-project)
-  - [Libraries](#libraries)
-    - [Luxon](#luxon)
     - [Getting Started](#getting-started)
     - [Learn More](#learn-more)
     - [Deploy on Vercel](#deploy-on-vercel)
+  - [Depending Libraries](#depending-libraries)
+    - [Luxon](#luxon)
 
 <!-- /TOC -->
 
@@ -21,12 +21,6 @@ Wordnote is the second generation project produced by AJK Town, or AJ Kim. It wa
 ## About the starter of this project
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Libraries
-
-### Luxon
-
-We use Luxon for date and time of this project.
 
 ### Getting Started
 
@@ -55,3 +49,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Depending Libraries
+
+### Luxon
+
+We use Luxon for date and time management of this project.
