@@ -10,6 +10,8 @@
     - [Deploy on Vercel](#deploy-on-vercel)
   - [Depending Libraries](#depending-libraries)
     - [Luxon](#luxon)
+  - [Package json scripts](#package-json-scripts)
+    - [Upgrade all packages to the latest](#upgrade-all-packages-to-the-latest)
 
 <!-- /TOC -->
 
@@ -55,3 +57,20 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ### Luxon
 
 We use Luxon for date and time management of this project.
+
+## Package json scripts
+
+### Upgrade all packages to the latest
+
+Before you upgrade packages of this project
+```bash
+cat ./yarn-latest.log
+# 230215, meaning `$ yarn latest` was run on Feb 15, 2023
+```
+
+You can upgrade all packages together by
+```bash
+yarn latest
+# or
+npm run latest
+```

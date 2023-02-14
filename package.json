@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "inspect": "yarn format && yarn lint --fix  && yarn tsc && yarn audit",
-    "writeDate": "echo $(date +%d%m%y) > ./yarn-latest.log",
+    "writeDate": "echo $(date +%y%m%d) > ./yarn-latest.log",
     "latest": "yarn writeDate && yarn upgrade --latest && yarn audit",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "test": "yarn jest",
