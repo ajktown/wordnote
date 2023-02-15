@@ -16,6 +16,7 @@ const getLabel = (daysAgo: number) => {
     case 0:
     case 1:
       return stringCaseHandler.toSentence(time.toRelativeCalendar() || "")
+      // TODO: Use everything with luxon
     case 4:
       return `4 days ago`
     case 7:
