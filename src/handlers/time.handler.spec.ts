@@ -56,12 +56,12 @@ describe(`timeHandler.isWithinDaysAgo()`, () => {
     },
     {
       sampleDaysAgo: 1,
-      sampleDate: new Date(Date.now() - 24 * 60 * 60 * 1000), // TODO: Pretty darn hard coded. gotta use library.
+      sampleDate: DateTime.now().minus({ days: 1 }).toJSDate(),
       wantIsWithin: true,
     },
     {
       sampleDaysAgo: 2,
-      sampleDate: new Date(Date.now() - 24 * 60 * 60 * 1000), // TODO: Pretty darn hard coded. gotta use library.
+      sampleDate: DateTime.now().minus({ days: 1 }).toJSDate(),
       wantIsWithin: false,
     },
   ]
