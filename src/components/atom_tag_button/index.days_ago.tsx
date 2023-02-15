@@ -11,12 +11,12 @@ interface Props {
 
 const getLabel = (daysAgo: number) => {
   const time = DateTime.now().minus({ days: daysAgo })
-  
+
   switch (daysAgo) {
     case 0:
     case 1:
-      return stringCaseHandler.toSentence(time.toRelativeCalendar() || "")
-      // TODO: Use everything with luxon
+      return stringCaseHandler.toSentence(time.toRelativeCalendar() || ``)
+    // TODO: Use everything with luxon
     case 4:
       return `4 days ago`
     case 7:
