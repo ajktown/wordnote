@@ -67,12 +67,12 @@ describe(`timeHandler.isWithinDaysAgo()`, () => {
   ]
 
   tests.forEach((test) => {
-    const result = timeHandler.isWithinDaysAgo(
+    const gotIsWithin = timeHandler.isWithinDaysAgo(
       test.sampleDaysAgo,
       test.sampleDate,
     )
     it(`should return the expected output in boolean "${test.wantIsWithin}" from "${test.sampleDaysAgo} days ago and date "${test.sampleDate}"`, () => {
-      expect(result).toBe(test.wantIsWithin)
+      expect(gotIsWithin).toBe(test.wantIsWithin)
     })
   })
 })
