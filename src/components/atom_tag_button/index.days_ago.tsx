@@ -3,17 +3,19 @@ import { FC, useCallback, useMemo } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { selectedCreatedDayState } from '@/recoil/created-date-tags.state'
 import { GlobalMuiTagVariant } from '@/global.interface'
-
+import { DateTime } from 'luxon'
+import { stringCaseHandler } from '@/handlers/string-case.handler'
 interface Props {
   daysAgo: number
 }
 
 const getLabel = (daysAgo: number) => {
+  const time = DateTime.now().minus({ days: daysAgo })
+  
   switch (daysAgo) {
     case 0:
-      return `Today`
     case 1:
-      return `Yesterday`
+      return stringCaseHandler.toSentence(time.toRelativeCalendar() || "")
     case 4:
       return `4 days ago`
     case 7:

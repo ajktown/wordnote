@@ -1,5 +1,6 @@
+
 export const stringCaseHandler = {
-  toSentence: (str: string) => str.slice(0, 1).toUpperCase() + str.slice(1),
+  toSentence: (str: string = "") => str.slice(0, 1).toUpperCase() + str.slice(1),
   toPascal: (str: string) =>
     str
       .split(` `)
