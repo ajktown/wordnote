@@ -10,27 +10,25 @@ interface Props {
 }
 
 const getLabel = (daysAgo: number) => {
-  const time = DateTime.now().minus({ days: daysAgo })
+  const time = DateTime.now().minus({ days: daysAgo + 24 })
 
   switch (daysAgo) {
     case 0:
     case 1:
-      return stringCaseHandler.toSentence(time.toRelativeCalendar() || ``)
-    // TODO: Use everything with luxon
     case 4:
-      return `4 days ago`
+      return stringCaseHandler.toSentence(time.toRelativeCalendar() || ``)
     case 7:
-      return `1 week ago`
     case 14:
-      return `2 weeks ago`
     case 21:
-      return `3 weeks ago`
+      return stringCaseHandler.toSentence(time.toRelativeCalendar({
+        unit: "weeks"
+      }) || ``)
     case 30:
-      return `1 month ago`
+      return "A month ago"
     case 60:
-      return `2 months ago`
+      return "2 months ago"
     default:
-      return `Unknown`
+      return stringCaseHandler.toSentence(time.toRelativeCalendar() || ``)
   }
 }
 
