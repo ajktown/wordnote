@@ -10,6 +10,7 @@ interface Props {
 }
 
 const getLabel = (daysAgo: number) => {
+  // TODO: I think this should get a new handler for date
   const time = DateTime.now().minus({ days: daysAgo + 24 })
 
   switch (daysAgo) {
