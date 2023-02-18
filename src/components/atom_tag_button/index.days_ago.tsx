@@ -9,27 +9,30 @@ interface Props {
   daysAgo: number
 }
 
-const getLabel = (daysAgo: number) => {
-  // TODO: I think this should get a new handler for date
-  const time = DateTime.now().minus({ days: daysAgo + 24 })
-
+const getLabel = (daysAgo: number): string => {
+  // TODO: Use Luxon later when the user preference can be modified.
   switch (daysAgo) {
     case 0:
+      return `Today`
     case 1:
+      return `Yesterday`
     case 4:
-      return stringCaseHandler.toSentence(time.toRelativeCalendar() || ``)
+      return `4 days ago`
     case 7:
+      return `1 week ago`
     case 14:
+      return `2 weeks ago`
     case 21:
-      return stringCaseHandler.toSentence(time.toRelativeCalendar({
-        unit: "weeks"
-      }) || ``)
+      return `3 weeks ago`
     case 30:
-      return "A month ago"
+      return `1 month ago`
     case 60:
-      return "2 months ago"
+      return `2 months ago`
     default:
-      return stringCaseHandler.toSentence(time.toRelativeCalendar() || ``)
+      return stringCaseHandler.toSentence(
+        DateTime.now().minus({ days: daysAgo }).toRelativeCalendar() ||
+          `Unknown`,
+      )
   }
 }
 
