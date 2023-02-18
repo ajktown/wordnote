@@ -1,7 +1,7 @@
 import { GlobalLanguageCode } from '@/global.interface'
-import { DataStatus } from '../index.interface'
+import { DataBasics, DataStatus } from '../index.interface'
 
-export interface WordData extends DataStatus {
+export interface WordData extends DataStatus, DataBasics {
   id: string
   languageCode: GlobalLanguageCode
   semester: number

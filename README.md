@@ -8,6 +8,10 @@
     - [Getting Started](#getting-started)
     - [Learn More](#learn-more)
     - [Deploy on Vercel](#deploy-on-vercel)
+  - [Depending Libraries](#depending-libraries)
+    - [Luxon](#luxon)
+  - [Package json scripts](#package-json-scripts)
+    - [Upgrade all packages to the latest](#upgrade-all-packages-to-the-latest)
 
 <!-- /TOC -->
 
@@ -47,3 +51,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Depending Libraries
+
+### Luxon
+
+We use Luxon for date and time management of this project.
+
+## Package json scripts
+
+### Upgrade all packages to the latest
+
+Before you upgrade packages of this project
+```bash
+cat ./yarn-latest.log
+# 230215, meaning `$ yarn latest` was run on Feb 15, 2023
+```
+
+You can upgrade all packages together by
+```bash
+yarn latest
+# or
+npm run latest
+```

@@ -48,6 +48,7 @@ export const parseInputIntoWordLambda = (given: string): WordData => {
     id: given + getRandomHexHandler(),
     languageCode: `en`,
     semester: 231, // TODO: Remove, its only for test. Semester value should be created by server
+    createdAt: new Date().toString(),
     term: term.trim(),
     pronunciation: pronunciation.trim(),
     definition: definition.trim(),
