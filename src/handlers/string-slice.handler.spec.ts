@@ -83,14 +83,14 @@ describe(`stringSliceHandler`, () => {
   ]
 
   tests.forEach((test) => {
-    const [expectSlicedFront, expectSlicedRear] = stringSliceHandler(
+    const [gotSlicedFront, gotSlicedRear] = stringSliceHandler(
       test.sampleString,
       PRIVATE_FINAL_SLICE_WITH,
       PRIVATE_FINAL_ESCAPE_CHAR,
     )
     it(`should return the expected output from "${test.sampleString}"`, () => {
-      expect(expectSlicedFront).toBe(test.wantSlicedFront)
-      expect(expectSlicedRear).toBe(test.wantSlicedRear)
+      expect(gotSlicedFront).toBe(test.wantSlicedFront)
+      expect(gotSlicedRear).toBe(test.wantSlicedRear)
     })
   })
 })
