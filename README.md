@@ -68,6 +68,13 @@ cat ./yarn-latest.log
 # 230215, meaning `$ yarn latest` was run on Feb 15, 2023
 ```
 
+### Format into the standard format
+
+This function will fix lint for the repository.
+```bash
+yarn inspect
+```
+
 You can upgrade all packages together by
 ```bash
 yarn latest
