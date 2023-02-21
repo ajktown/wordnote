@@ -88,8 +88,10 @@ describe(`stringSliceHandler`, () => {
       PRIVATE_FINAL_SLICE_WITH,
       PRIVATE_FINAL_ESCAPE_CHAR,
     )
-    it(`should return the expected output from "${test.sampleString}"`, () => {
+    it(`should return "${test.wantSlicedFront}" with arg(s) "${test.sampleString}"`, () => {
       expect(gotSlicedFront).toBe(test.wantSlicedFront)
+    })
+    it(`should return "${test.wantSlicedRear}" with arg(s) "${test.sampleString}"`, () => {
       expect(gotSlicedRear).toBe(test.wantSlicedRear)
     })
   })
