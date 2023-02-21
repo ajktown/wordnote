@@ -1,7 +1,7 @@
 import { getRandomHexHandler } from './get-random-hex.handler'
 
 // TODO: Theory: This test sometimes fails, with the jest stores cache and Math.random() does not work properly.
-describe(`getRandomHexHandler`, () => {
+describe(`getRandomHexHandler(hexLength: number)`, () => {
   it(`should be exposed as a function`, () => {
     expect(getRandomHexHandler).toBeDefined()
   })
@@ -37,7 +37,7 @@ describe(`getRandomHexHandler`, () => {
 
   tests.forEach((test) => {
     const gotLength = getRandomHexHandler(test.sampleHexLength).length
-    it(`getRandomHexHandler should return the expected output with correct length from "${test.sampleHexLength}"`, () => {
+    it(`should return "${test.wantLength}" with arg(s) "${test.sampleHexLength}"`, () => {
       expect(gotLength).toBe(test.wantLength)
     })
   })

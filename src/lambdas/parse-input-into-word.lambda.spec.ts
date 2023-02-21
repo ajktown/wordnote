@@ -11,7 +11,7 @@ const PRIVATE_FINAL_WANT_TAGS = [
   PRIVATE_FINAL_WANT_TAG_B,
 ]
 
-describe(`parseInputIntoWordLambda`, () => {
+describe(`parseInputIntoWordLambda(given: string)`, () => {
   it(`should be exposed as a function`, () => {
     expect(parseInputIntoWordLambda).toBeDefined()
   })
@@ -220,7 +220,7 @@ describe(`parseInputIntoWordLambda`, () => {
     const expectParsedWordData = parseInputIntoWordLambda(
       deprecatedTest.sampleString,
     )
-    it(`should return expected output from "${deprecatedTest.sampleString}"`, () => {
+    it(`should return expected outputs with arg(s) "${deprecatedTest.sampleString}"`, () => {
       expect(
         expectParsedWordData.term === (deprecatedTest.wantTerm || ``),
       ).toBe(true)
@@ -265,7 +265,7 @@ describe(`parseInputIntoWordLambda`, () => {
       }
     }
 
-    it(`should return expected output from "${test.sampleString}"`, () => {
+    it(`should return expected outputs with arg(s) "${test.sampleString}"`, () => {
       expect(parsed.term === wantTerm).toBe(true)
       expect(parsed.pronunciation === wantPronunciation).toBe(true)
       expect(parsed.definition === wantDefinition).toBe(true)
