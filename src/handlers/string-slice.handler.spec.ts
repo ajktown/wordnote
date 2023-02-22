@@ -3,7 +3,7 @@ import { stringSliceHandler } from './string-slice.handler'
 const PRIVATE_FINAL_ESCAPE_CHAR = `$`
 const PRIVATE_FINAL_SLICE_WITH = `:`
 
-describe(`stringSliceHandler`, () => {
+describe(`stringSliceHandler(given: string, splitWith: string | string[], escaper: string)`, () => {
   it(`should be exposed as a function`, () => {
     expect(stringSliceHandler).toBeDefined()
   })
