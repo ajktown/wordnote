@@ -217,24 +217,23 @@ describe(`parseInputIntoWordLambda(given: string)`, () => {
   ]
 
   deprecatedTests.forEach((deprecatedTest) => {
-    const expectParsedWordData = parseInputIntoWordLambda(
-      deprecatedTest.sampleString,
-    )
-    it(`should return expected outputs with arg(s) "${deprecatedTest.sampleString}"`, () => {
-      expect(
-        expectParsedWordData.term === (deprecatedTest.wantTerm || ``),
-      ).toBe(true)
-      expect(
-        expectParsedWordData.pronunciation ===
-          (deprecatedTest.wantPronunciation || ``),
-      ).toBe(true)
-      expect(
-        expectParsedWordData.definition ===
-          (deprecatedTest.wantDefinition || ``),
-      ).toBe(true)
-      expect(
-        expectParsedWordData.example === (deprecatedTest.wantExample || ``),
-      ).toBe(true)
+    const gotParsedWord = parseInputIntoWordLambda(deprecatedTest.sampleString)
+    const wantTerm = deprecatedTest.wantTerm || ``
+    const wantPronunciation = deprecatedTest.wantPronunciation || ``
+    const wantDefinition = deprecatedTest.wantDefinition || ``
+    const wantExample = deprecatedTest.wantExample || ``
+
+    it(`should return term "${wantTerm}" with arg(s) "${deprecatedTest.sampleString}"`, () => {
+      expect(gotParsedWord.term).toBe(wantTerm)
+    })
+    it(`should return pronunciation "${wantPronunciation}" with arg(s) "${deprecatedTest.sampleString}"`, () => {
+      expect(gotParsedWord.pronunciation).toBe(wantPronunciation)
+    })
+    it(`should return definition "${wantDefinition}" with arg(s) "${deprecatedTest.sampleString}"`, () => {
+      expect(gotParsedWord.definition).toBe(wantDefinition)
+    })
+    it(`should return example "${wantExample}" with arg(s) "${deprecatedTest.sampleString}"`, () => {
+      expect(gotParsedWord.example).toBe(wantExample)
     })
   })
 
@@ -265,6 +264,7 @@ describe(`parseInputIntoWordLambda(given: string)`, () => {
       }
     }
 
+    // TODO: Refactor this for individual check
     it(`should return expected outputs with arg(s) "${test.sampleString}"`, () => {
       expect(parsed.term === wantTerm).toBe(true)
       expect(parsed.pronunciation === wantPronunciation).toBe(true)
