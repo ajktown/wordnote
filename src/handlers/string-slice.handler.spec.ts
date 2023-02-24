@@ -3,7 +3,7 @@ import { stringSliceHandler } from './string-slice.handler'
 const PRIVATE_FINAL_ESCAPE_CHAR = `$`
 const PRIVATE_FINAL_SLICE_WITH = `:`
 
-describe(`stringSliceHandler`, () => {
+describe(`stringSliceHandler(given: string, splitWith: string | string[], escaper: string)`, () => {
   it(`should be exposed as a function`, () => {
     expect(stringSliceHandler).toBeDefined()
   })
@@ -83,14 +83,16 @@ describe(`stringSliceHandler`, () => {
   ]
 
   tests.forEach((test) => {
-    const [expectSlicedFront, expectSlicedRear] = stringSliceHandler(
+    const [gotSlicedFront, gotSlicedRear] = stringSliceHandler(
       test.sampleString,
       PRIVATE_FINAL_SLICE_WITH,
       PRIVATE_FINAL_ESCAPE_CHAR,
     )
-    it(`should return the expected output from "${test.sampleString}"`, () => {
-      expect(expectSlicedFront).toBe(test.wantSlicedFront)
-      expect(expectSlicedRear).toBe(test.wantSlicedRear)
+    it(`should return "${test.wantSlicedFront}" with arg(s) "${test.sampleString}"`, () => {
+      expect(gotSlicedFront).toBe(test.wantSlicedFront)
+    })
+    it(`should return "${test.wantSlicedRear}" with arg(s) "${test.sampleString}"`, () => {
+      expect(gotSlicedRear).toBe(test.wantSlicedRear)
     })
   })
 })

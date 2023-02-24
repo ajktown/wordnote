@@ -12,6 +12,7 @@
     - [Luxon](#luxon)
   - [Package json scripts](#package-json-scripts)
     - [Upgrade all packages to the latest](#upgrade-all-packages-to-the-latest)
+    - [Format into the standard format](#format-into-the-standard-format)
 
 <!-- /TOC -->
 
@@ -70,7 +71,7 @@ cat ./yarn-latest.log
 
 ### Format into the standard format
 
-This function will fix lint for the repository.
+This function will fix lint for the repository. Run this every time before doing the PR. It won't pass the lint pipeline test (TODO: Not yet read, coming soon)
 ```bash
 yarn inspect
 ```

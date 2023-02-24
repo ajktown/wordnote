@@ -1,7 +1,7 @@
 import { timeHandler } from './time.handler'
 import { DateTime } from 'luxon'
 
-describe(`timeHandler.getDaysAgo()`, () => {
+describe(`timeHandler.getDaysAgo(date: Date)`, () => {
   it(`should be exposed as a function`, () => {
     expect(timeHandler).toBeDefined()
     expect(timeHandler.getDaysAgo).toBeDefined()
@@ -25,13 +25,13 @@ describe(`timeHandler.getDaysAgo()`, () => {
 
   tests.forEach((test) => {
     const gotDaysAgo = timeHandler.getDaysAgo(test.sampleDate)
-    it(`should return the expected output "${test.wantDaysAgo}" from ""${test.sampleDate}""`, () => {
+    it(`should return "${test.wantDaysAgo}" with arg(s) "${test.sampleDate}"`, () => {
       expect(gotDaysAgo).toBe(test.wantDaysAgo)
     })
   })
 })
 
-describe(`timeHandler.isWithinDaysAgo()`, () => {
+describe(`timeHandler.isWithinDaysAgo(daysAgo: number, date: Date)`, () => {
   it(`should be exposed as a function`, () => {
     expect(timeHandler).toBeDefined()
     expect(timeHandler.isWithinDaysAgo).toBeDefined()
@@ -71,7 +71,7 @@ describe(`timeHandler.isWithinDaysAgo()`, () => {
       test.sampleDaysAgo,
       test.sampleDate,
     )
-    it(`should return the expected output in boolean "${test.wantIsWithin}" from "${test.sampleDaysAgo} days ago and date "${test.sampleDate}"`, () => {
+    it(`should return "${test.wantIsWithin}" with arg(s) "${test.sampleDaysAgo}" and "${test.sampleDate}"`, () => {
       expect(gotIsWithin).toBe(test.wantIsWithin)
     })
   })
