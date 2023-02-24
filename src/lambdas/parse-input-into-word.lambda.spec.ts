@@ -243,7 +243,7 @@ describe(`parseInputIntoWordLambda(given: string)`, () => {
   }
 
   tests.forEach((test) => {
-    const parsed = parseInputIntoWordLambda(test.sampleString)
+    const gotParsedWord = parseInputIntoWordLambda(test.sampleString)
 
     const wantTerm = returnWant(test.wantTerm, PRIVATE_FINAL_WANT_TERM)
     const wantPronunciation = returnWant(
@@ -256,20 +256,29 @@ describe(`parseInputIntoWordLambda(given: string)`, () => {
     )
     const wantExample = returnWant(test.wantExample, PRIVATE_FINAL_WANT_EXAMPLE)
 
-    if (test.wantTags) {
-      expect(parsed.tags.length).toBe(PRIVATE_FINAL_WANT_TAGS.length)
+    it(`should return term "${wantTerm}" with arg(s) "${test.sampleString}"`, () => {
+      expect(gotParsedWord.term).toBe(wantTerm)
+    })
+    it(`should return pronunciation "${wantPronunciation}" with arg(s) "${test.sampleString}"`, () => {
+      expect(gotParsedWord.pronunciation).toBe(wantPronunciation)
+    })
+    it(`should return definition "${wantDefinition}" with arg(s) "${test.sampleString}"`, () => {
+      expect(gotParsedWord.definition).toBe(wantDefinition)
+    })
+    it(`should return example "${wantExample}" with arg(s) "${test.sampleString}"`, () => {
+      expect(gotParsedWord.example).toBe(wantExample)
+    })
 
-      for (const eachParsedTag of parsed.tags) {
-        expect(PRIVATE_FINAL_WANT_TAGS.includes(eachParsedTag)).toBe(true)
+    if (test.wantTags) {
+      it(`should return tags length "${PRIVATE_FINAL_WANT_TAGS.length}" with arg(s) "${test.sampleString}"`, () => {
+        expect(gotParsedWord.tags.length).toBe(PRIVATE_FINAL_WANT_TAGS.length)
+      })
+
+      for (const eachParsedTag of gotParsedWord.tags) {
+        it(`should contain a tag "${eachParsedTag}" with arg(s) "${test.sampleString}"`, () => {
+          expect(PRIVATE_FINAL_WANT_TAGS.includes(eachParsedTag)).toBe(true)
+        })
       }
     }
-
-    // TODO: Refactor this for individual check
-    it(`should return expected outputs with arg(s) "${test.sampleString}"`, () => {
-      expect(parsed.term === wantTerm).toBe(true)
-      expect(parsed.pronunciation === wantPronunciation).toBe(true)
-      expect(parsed.definition === wantDefinition).toBe(true)
-      expect(parsed.example === wantExample).toBe(true)
-    })
   })
 })
