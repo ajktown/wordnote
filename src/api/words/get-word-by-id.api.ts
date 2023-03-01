@@ -1,12 +1,9 @@
-// TODO: Implement
-
-import { DUMMY_WORDS } from './words.dummy'
+import axios from 'axios'
+import { CustomizedAxiosResponse } from '../index.interface'
 import { WordData } from './words.interface'
 
-export const getWordByIdApi = async (wordId: string): Promise<WordData> => {
-  console.log(`getting word for word with id: ` + wordId + `...`)
-  const foundIndex = DUMMY_WORDS.findIndex((el) => el.id === wordId)
-  if (foundIndex === -1) throw new Error()
-
-  return DUMMY_WORDS[foundIndex]
+export const getWordByIdApi = async (wordId: string): Promise<CustomizedAxiosResponse<WordData>> => {
+  const url = `/v1/words/${wordId}`
+  const res = await axios.get(url)
+  return [res.data, res]
 }
