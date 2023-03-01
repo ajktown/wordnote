@@ -6,15 +6,19 @@ export const useWords = () => {
   const handleRefresh = useRecoilCallback(
     ({ set }) =>
       async () => {
-        const words = await getWordsApi()
-        const wordIds: string[] = []
+        try {
+          const [words, ] = await getWordsApi()
+          const wordIds: string[] = []
 
-        words.forEach((word) => {
-          set(wordsFamily(word.id), word)
-          wordIds.push(word.id)
-        })
+          words.forEach((word) => {
+            set(wordsFamily(word.id), word)
+            wordIds.push(word.id)
+          })
 
-        set(wordIdsState, wordIds)
+          set(wordIdsState, wordIds)
+        } catch {
+
+        }
       },
     [],
   )
