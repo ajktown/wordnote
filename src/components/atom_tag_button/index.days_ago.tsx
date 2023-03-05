@@ -1,7 +1,7 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
-import { selectedCreatedDayState } from '@/recoil/created-date-tags.state'
+import { selectedCreatedDayState } from '@/recoil/words/created-date-tags.state'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { DateTime } from 'luxon'
 import { stringCaseHandler } from '@/handlers/string-case.handler'

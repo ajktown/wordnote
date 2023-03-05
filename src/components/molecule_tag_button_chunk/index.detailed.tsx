@@ -5,7 +5,7 @@ import { languageCodesBySemesterState } from '@/recoil/languages.state'
 import TagButtonLanguage from '../atom_tag_button/index.language'
 import TagButtonFavorite from '../atom_tag_button/index.favorite'
 import { customizedTagsState } from '@/recoil/tags.state'
-import { simplifiedDaysBeforeState } from '@/recoil/created-date-tags.state'
+import { simplifiedDaysBeforeState } from '@/recoil/words/created-date-tags.state'
 import TagButtonCustomized from '../atom_tag_button/index.customized'
 import TagButtonDaysAgo from '../atom_tag_button/index.days_ago'
 

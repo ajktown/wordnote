@@ -1,6 +1,6 @@
 import { timeHandler } from '@/handlers/time.handler'
 import { atom, selector } from 'recoil'
-import { RecoilKeySuffix } from './index.keys'
+import { RecoilKeySuffix } from '../index.keys'
 import { semesterFilteredWordIds, wordsFamily } from './words.state'
 
 enum PrivateRecoilKey {
