@@ -9,7 +9,7 @@ const ErrorApiConnectionFail: FC = () => {
 
   return (
     <StyledSnackbarMolecule
-      message="Connection error to the server. Please try after some time."
+      message="Server is not responding. Please try after some time."
       severity={isFailed ? `error` : null}
       handleClose={resetFailed}
     />
