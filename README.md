@@ -47,8 +47,6 @@ yarn inspect
 You can upgrade all packages together by
 ```bash
 yarn latest
-# or
-npm run latest
 ```
 
 ## About the starter of this project
