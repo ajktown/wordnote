@@ -1,6 +1,6 @@
 import { GlobalLanguageCode } from '@/global.interface'
 import { atom, selector } from 'recoil'
-import { RecoilKeySuffix } from './index.keys'
+import { RecoilKeySuffix } from '@/recoil/index.keys'
 import { semesterFilteredWordIds, wordsFamily } from './words.state'
 import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
 

@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil'
-import { RecoilKeySuffix } from './index.keys'
+import { RecoilKeySuffix } from '@/recoil/index.keys'
 import { semesterFilteredWordIds, wordsFamily } from './words.state'
 
 enum TagRecoilKey {
