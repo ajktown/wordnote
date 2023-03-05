@@ -8,9 +8,13 @@ type UseApiErrorHook = [HandleApiError]
 export const useApiErrorHook = (): UseApiErrorHook => {
   const setApiConnectFailed = useSetRecoilState(isApiConnectFailed)
 
-  const handleApiError: HandleApiError = useCallback((err: unknown) => {
-    setApiConnectFailed(true)
-  }, [])
+  const handleApiError: HandleApiError = useCallback(
+    (err: unknown) => {
+      console.log(err) // TODO: Actually use it
+      setApiConnectFailed(true)
+    },
+    [setApiConnectFailed],
+  )
 
   return [handleApiError]
 }
