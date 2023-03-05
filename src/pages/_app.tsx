@@ -4,7 +4,10 @@ import axios from 'axios'
 import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 
-axios.interceptors.request.use(axiosRequestSuccessLambda, axiosRequestErrorLambda);
+axios.interceptors.request.use(
+  axiosRequestSuccessLambda,
+  axiosRequestErrorLambda,
+)
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

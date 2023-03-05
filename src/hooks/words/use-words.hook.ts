@@ -7,7 +7,7 @@ export const useWords = () => {
     ({ set }) =>
       async () => {
         try {
-          const [words, ] = await getWordsApi()
+          const [words] = await getWordsApi()
           const wordIds: string[] = []
 
           words.forEach((word) => {
@@ -16,9 +16,7 @@ export const useWords = () => {
           })
 
           set(wordIdsState, wordIds)
-        } catch {
-
-        }
+        } catch {}
       },
     [],
   )

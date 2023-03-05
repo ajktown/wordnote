@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios"
+import { AxiosResponse } from 'axios'
 
 export interface DataStatus {
   isDeleted?: boolean // if undefined or false, it is considered NOT deleted.

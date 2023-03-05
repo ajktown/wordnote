@@ -1,5 +1,3 @@
-
-
 export const axiosRequestErrorLambda = (error: any) => {
-  return Promise.reject(error);
+  return Promise.reject(error)
 }
