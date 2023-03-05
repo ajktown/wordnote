@@ -1,8 +1,8 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useResetSelectedChips } from '@/hooks/use-reset-selected-chips.hook'
-import { selectedSemesterState } from '@/recoil/semesters.state'
-import { wordIdsState } from '@/recoil/words.state'
+import { selectedSemesterState } from '@/recoil/words/semesters.state'
+import { wordIdsState } from '@/recoil/words/words.state'
 import { FC, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 

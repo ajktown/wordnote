@@ -1,5 +1,5 @@
 import { getWordsApi } from '@/api/words/get-words.api'
-import { wordIdsState, wordsFamily } from '@/recoil/words.state'
+import { wordIdsState, wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
 
 export const useWords = () => {

@@ -6,7 +6,7 @@ import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useKeyPress } from '@/hooks/use-key-press.hook'
 import { usePostWordWithStringHook } from '@/hooks/words/use-post-word-with-string.hook'
 import { useRecoilValue } from 'recoil'
-import { searchInputState } from '@/recoil/searchInput.state'
+import { searchInputState } from '@/recoil/words/searchInput.state'
 
 const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new words...`
 

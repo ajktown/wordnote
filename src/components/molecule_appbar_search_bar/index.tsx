@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRecoilState, useResetRecoilState } from 'recoil'
-import { searchInputState } from '@/recoil/searchInput.state'
+import { searchInputState } from '@/recoil/words/searchInput.state'
 import StyledTextField from '@/atoms/StyledTextField'
 import XButton from '../atom_x_button'
 

@@ -1,5 +1,5 @@
 import { deleteWordByIdApi } from '@/api/words/delete-words.api'
-import { wordsFamily } from '@/recoil/words.state'
+import { wordsFamily } from '@/recoil/words/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 

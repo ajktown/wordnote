@@ -1,6 +1,6 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { selectedCustomizedTagsState } from '@/recoil/tags.state'
+import { selectedCustomizedTagsState } from '@/recoil/words/tags.state'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilState } from 'recoil'
 

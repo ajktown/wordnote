@@ -4,7 +4,7 @@ import {
   WordDataModifiableKey,
 } from '@/api/words/words.interface'
 import { isEmptyObjectHandler } from '@/handlers/is-empty-object.handler'
-import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
+import { modifyingWordFamily, wordsFamily } from '@/recoil/words/words.state'
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 

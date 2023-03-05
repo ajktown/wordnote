@@ -1,13 +1,17 @@
 import StyledSnackbarMolecule from '@/molecules/StyledSnackbar'
-import { FC, useCallback } from 'react'
+import { isApiConnectFailed } from '@/recoil/apis/error-api-connection-fail.state'
+import { FC } from 'react'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 const ErrorApiConnectionFail: FC = () => {
-  const onClickCloseSnackbar = useCallback(() => {}, [])
+  const isFailed = useRecoilValue(isApiConnectFailed)
+  const resetFailed = useResetRecoilState(isApiConnectFailed)
+
   return (
     <StyledSnackbarMolecule
       message="Connection error to the server. Please try after some time."
-      severity={`info`}
-      handleClose={onClickCloseSnackbar}
+      severity={isFailed ? `error` : null}
+      handleClose={resetFailed}
     />
   )
 }

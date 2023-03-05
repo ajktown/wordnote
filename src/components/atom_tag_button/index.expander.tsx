@@ -2,7 +2,7 @@ import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import {
   isSemesterExpandedState,
   semestersState,
-} from '@/recoil/semesters.state'
+} from '@/recoil/words/semesters.state'
 import { FC, useCallback } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'

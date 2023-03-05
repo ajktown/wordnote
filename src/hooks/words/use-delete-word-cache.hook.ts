@@ -1,7 +1,7 @@
 import {
   selectedWordIdForDialogState,
   wordIdsState,
-} from '@/recoil/words.state'
+} from '@/recoil/words/words.state'
 import { useRecoilCallback, useResetRecoilState } from 'recoil'
 
 type UseDeleteWordCache = () => Promise<void> // handleDeleteWordCache

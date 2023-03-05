@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material'
 import StyledDropDown from '@/atoms/StyledDropDown'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { useRecoilValue } from 'recoil'
-import { wordsFamily } from '@/recoil/words.state'
+import { wordsFamily } from '@/recoil/words/words.state'
 import { GlobalLanguageCode } from '@/global.interface'
 import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
 

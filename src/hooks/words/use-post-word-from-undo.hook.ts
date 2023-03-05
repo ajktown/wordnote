@@ -1,6 +1,6 @@
 import { postWordApi } from '@/api/words/post-word.api'
 import { WordData } from '@/api/words/words.interface'
-import { wordsFamily } from '@/recoil/words.state'
+import { wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
 
 type UsePostWordFromUndo = () => Promise<void> // handlePostWordFromUndo
