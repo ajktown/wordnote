@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import StyledAppbarMolecule from '../../molecules/StyledAppbar.m'
+import StyledAppbarMolecule from '../../molecules/StyledAppbar'
 
 interface Props {
   children?: JSX.Element | JSX.Element[]
