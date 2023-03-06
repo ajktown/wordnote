@@ -14,6 +14,7 @@ enum ButtonType {
   ToLastPage = `ToLastPage`,
 }
 const FIRST_PAGE_NUMBER = 1
+const DEFAULT_TITLE_PLURAL = `items`
 
 interface Props {
   titlePlural?: string
@@ -61,7 +62,7 @@ const StyledPaginatorButton: FC<BodyProps> = ({
       default: // last page
         return setCurrentPage(totalPages)
     }
-  }, [type, totalPages])
+  }, [type, totalPages, currentPage, setCurrentPage])
 
   const isDisabled: boolean = useMemo(() => {
     if (totalPages < 2) return true
@@ -75,7 +76,7 @@ const StyledPaginatorButton: FC<BodyProps> = ({
       default:
         return false
     }
-  }, [type, totalPages])
+  }, [type, totalPages, currentPage])
 
   return (
     <StyledIconButtonAtom
@@ -86,25 +87,33 @@ const StyledPaginatorButton: FC<BodyProps> = ({
   )
 }
 
-const StyledPaginatorMolecule: FC<Props> = (props) => {
-  const [currentPage] = props.currentPageState
-  const from = 1 + props.eachPageCount * (currentPage - 1)
-  const to = Math.min(from + props.eachPageCount - 1, props.totalCount)
+const StyledPaginatorTextDisplay: FC<Props> = ({
+  eachPageCount,
+  currentPageState,
+  totalCount,
+  titlePlural = DEFAULT_TITLE_PLURAL,
+}) => {
+  const [currentPage] = currentPageState
+  const from = 1 + eachPageCount * (currentPage - 1)
+  const to = Math.min(from + eachPageCount - 1, totalCount)
 
-  const titlePlural = props.titlePlural || `items`
+  if (totalCount === 0)
+    return <Typography variant="body2">{`No ${titlePlural}`}</Typography>
+
+  return (
+    <Typography variant="body2">
+      {from === to && `${from} of ${totalCount} ${titlePlural}`}
+      {from !== to && `${from} to ${to} of ${totalCount} ${titlePlural}`}
+    </Typography>
+  )
+}
+
+const StyledPaginatorMolecule: FC<Props> = (props) => {
   return (
     <Stack sx={{ alignItems: `center` }} direction={`row`} flexGrow={1}>
       <StyledPaginatorButton type={ButtonType.ToFirstPage} {...props} />
       <StyledPaginatorButton type={ButtonType.ToBeforePage} {...props} />
-      {props.totalCount === 0 ? (
-        <Typography variant="body2">{`No ${titlePlural}`}</Typography>
-      ) : (
-        <Typography variant="body2">
-          {from === to && `${from} of ${props.totalCount} ${titlePlural}`}
-          {from !== to &&
-            `${from} to ${to} of ${props.totalCount} ${titlePlural}`}
-        </Typography>
-      )}
+      <StyledPaginatorTextDisplay {...props} />
       <StyledPaginatorButton type={ButtonType.ToNextPage} {...props} />
       <StyledPaginatorButton type={ButtonType.ToLastPage} {...props} />
     </Stack>
