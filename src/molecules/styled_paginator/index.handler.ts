@@ -1,4 +1,4 @@
-import { ButtonType } from './index.type'
+import { ButtonType } from './index.data'
 
 const FIRST_PAGE_NUMBER = 1
 
@@ -22,11 +22,11 @@ export const handleClickButton = (
   }
 }
 
-export const getIfDisabled = (
+export const getIsDisabled = (
   type: ButtonType,
   currentPage: number,
   totalPages: number,
-) => {
+): boolean => {
   if ([0, 1].includes(totalPages)) return true
 
   switch (type) {

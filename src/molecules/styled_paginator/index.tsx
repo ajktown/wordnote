@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Stack, Typography } from '@mui/material'
-import * as lambda from './index.lambda'
+import { handleClickButton, getIsDisabled } from './index.handler'
 import { buttons } from './index.data'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
@@ -12,7 +12,8 @@ type Props = {
   totalCount: number
   eachPageCount: number
 }
-const Paginator: FC<Props> = (props) => {
+
+const StyledPaginator: FC<Props> = (props) => {
   const totalPages = Math.ceil(props.totalCount / props.eachPageCount)
   const from = 1 + props.eachPageCount * (props.currentPage - 1)
   const to = Math.min(from + props.eachPageCount - 1, props.totalCount)
@@ -25,7 +26,7 @@ const Paginator: FC<Props> = (props) => {
         <IconButton
           size={`small`}
           onClick={() =>
-            lambda.handleClickButton(
+            handleClickButton(
               button.id,
               props.currentPage,
               totalPages,
@@ -33,7 +34,7 @@ const Paginator: FC<Props> = (props) => {
             )
           }
           disableRipple
-          disabled={lambda.getIfDisabled(
+          disabled={getIsDisabled(
             button.id,
             props.currentPage,
             totalPages,
@@ -62,4 +63,4 @@ const Paginator: FC<Props> = (props) => {
   )
 }
 
-export default Paginator
+export default StyledPaginator
