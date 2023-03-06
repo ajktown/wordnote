@@ -9,8 +9,8 @@ import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 type CurrentPageState = [number, (newPageNumber: number) => any]
 enum ButtonType {
   ToFirstPage = `ToFirstPage`,
-  ToBeforePage = `BeforePage`,
-  ToNextPage = `NextPage`,
+  ToBeforePage = `ToBeforePage`,
+  ToNextPage = `ToNextPage`,
   ToLastPage = `ToLastPage`,
 }
 const FIRST_PAGE_NUMBER = 1
@@ -26,7 +26,7 @@ interface BodyProps extends Props {
   type: ButtonType
 }
 
-const StyledPaginatorBodyIcon: FC<{ type: ButtonType }> = ({ type }) => {
+const StyledPaginatorButtonIcon: FC<{ type: ButtonType }> = ({ type }) => {
   switch (type) {
     case ButtonType.ToFirstPage:
       return <ToFirstPageIcon />
@@ -81,7 +81,7 @@ const StyledPaginatorButton: FC<BodyProps> = ({
   return (
     <StyledIconButtonAtom
       onClick={onClickButton}
-      jsxElementButton={<StyledPaginatorBodyIcon type={type} />}
+      jsxElementButton={<StyledPaginatorButtonIcon type={type} />}
       isDisabled={isDisabled}
     />
   )
