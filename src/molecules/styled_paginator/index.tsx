@@ -5,17 +5,19 @@ import { buttons } from './index.data'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 
-type Props = {
+type CurrentPageState = [number, (newPageNumber: number) => any]
+
+interface Props {
   titlePlural?: string
-  currentPage: number
-  setCurrentPage: (newPageNumber: number) => any
+  currentPageState: CurrentPageState
   totalCount: number
   eachPageCount: number
 }
 
 const StyledPaginator: FC<Props> = (props) => {
+  const [currentPage, setCurrentPage] = props.currentPageState
   const totalPages = Math.ceil(props.totalCount / props.eachPageCount)
-  const from = 1 + props.eachPageCount * (props.currentPage - 1)
+  const from = 1 + props.eachPageCount * (currentPage - 1)
   const to = Math.min(from + props.eachPageCount - 1, props.totalCount)
 
   const titlePlural = props.titlePlural || `items`
@@ -28,15 +30,15 @@ const StyledPaginator: FC<Props> = (props) => {
           onClick={() =>
             handleClickButton(
               button.id,
-              props.currentPage,
+              currentPage,
               totalPages,
-              props.setCurrentPage,
+              setCurrentPage,
             )
           }
           disableRipple
           disabled={getIsDisabled(
             button.id,
-            props.currentPage,
+            currentPage,
             totalPages,
           )}
         >
