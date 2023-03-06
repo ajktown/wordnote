@@ -31,19 +31,39 @@ export const getIsDisabled = (
 
   switch (type) {
     case `FirstPage`:
-      if (currentPage === 1) return true
-      break
     case `BeforePage`:
-      if (currentPage === 1) return true
-      break
+      return currentPage === FIRST_PAGE_NUMBER
     case `NextPage`:
-      if (currentPage === totalPages) return true
-      break
     case `LastPage`:
-      if (currentPage === totalPages) return true
-      break
+      return currentPage === totalPages
     default:
       return false
   }
-  return false
 }
+
+// TODO: was refactored from this code: 
+// export const getIsDisabled = (
+//   type: ButtonType,
+//   currentPage: number,
+//   totalPages: number,
+// ): boolean => {
+//   if ([0, 1].includes(totalPages)) return true
+
+//   switch (type) {
+//     case `FirstPage`:
+//       if (currentPage === 1) return true
+//       break
+//     case `BeforePage`:
+//       if (currentPage === 1) return true
+//       break
+//     case `NextPage`:
+//       if (currentPage === totalPages) return true
+//       break
+//     case `LastPage`:
+//       if (currentPage === totalPages) return true
+//       break
+//     default:
+//       return false
+//   }
+//   return false
+// }
