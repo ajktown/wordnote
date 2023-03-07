@@ -4,7 +4,7 @@ import { useRecoilCallback } from 'recoil'
 import { useApiErrorHook } from '../use-api-error.hook'
 
 export const useWords = () => {
-  const [handleApiError] = useApiErrorHook()
+  const handleApiError = useApiErrorHook()
 
   const handleRefresh = useRecoilCallback(
     ({ set }) =>

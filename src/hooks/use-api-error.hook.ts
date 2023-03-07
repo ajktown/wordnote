@@ -1,20 +1,19 @@
 import { isApiConnectFailed } from '@/recoil/apis/error-api-connection-fail.state'
-import { useCallback } from 'react'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilCallback } from 'recoil'
 
 type HandleApiError = (err: unknown) => any
-type UseApiErrorHook = [HandleApiError]
+type UseApiErrorHook = HandleApiError
 
 export const useApiErrorHook = (): UseApiErrorHook => {
-  const setApiConnectFailed = useSetRecoilState(isApiConnectFailed)
+  const handleApiError: HandleApiError = useRecoilCallback(
+    ({ set }) =>
+      async (err: unknown) => {
+        console.log(err) // TODO: Actually use it
 
-  const handleApiError: HandleApiError = useCallback(
-    (err: unknown) => {
-      console.log(err) // TODO: Actually use it
-      setApiConnectFailed(true)
-    },
-    [setApiConnectFailed],
+        set(isApiConnectFailed, true)
+      },
+    [],
   )
 
-  return [handleApiError]
+  return handleApiError
 }
