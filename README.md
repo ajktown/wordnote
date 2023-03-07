@@ -4,15 +4,15 @@
 
 - [Wordnote](#wordnote)
   - [Overview](#overview)
-  - [About the starter of this project](#about-the-starter-of-this-project)
-    - [Getting Started](#getting-started)
-    - [Learn More](#learn-more)
-    - [Deploy on Vercel](#deploy-on-vercel)
   - [Depending Libraries](#depending-libraries)
     - [Luxon](#luxon)
   - [Package json scripts](#package-json-scripts)
     - [Upgrade all packages to the latest](#upgrade-all-packages-to-the-latest)
     - [Format into the standard format](#format-into-the-standard-format)
+  - [About the starter of this project](#about-the-starter-of-this-project)
+    - [Getting Started](#getting-started)
+    - [Learn More](#learn-more)
+    - [Deploy on Vercel](#deploy-on-vercel)
 
 <!-- /TOC -->
 
@@ -20,6 +20,34 @@
 
 Wordnote is the second generation project produced by AJK Town, or AJ Kim. It was renamed after "Wordy".
 
+
+## Depending Libraries
+
+### Luxon
+
+We use Luxon for date and time management of this project.
+
+## Package json scripts
+
+### Upgrade all packages to the latest
+
+Before you upgrade packages of this project
+```bash
+cat ./yarn-latest.log
+# 230215, meaning `$ yarn latest` was run on Feb 15, 2023
+```
+
+### Format into the standard format
+
+This function will fix lint for the repository. Run this every time before doing the PR. It won't pass the lint pipeline test (TODO: Not yet read, coming soon)
+```bash
+yarn inspect
+```
+
+You can upgrade all packages together by
+```bash
+yarn latest
+```
 
 ## About the starter of this project
 
@@ -52,33 +80,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Depending Libraries
-
-### Luxon
-
-We use Luxon for date and time management of this project.
-
-## Package json scripts
-
-### Upgrade all packages to the latest
-
-Before you upgrade packages of this project
-```bash
-cat ./yarn-latest.log
-# 230215, meaning `$ yarn latest` was run on Feb 15, 2023
-```
-
-### Format into the standard format
-
-This function will fix lint for the repository. Run this every time before doing the PR. It won't pass the lint pipeline test (TODO: Not yet read, coming soon)
-```bash
-yarn inspect
-```
-
-You can upgrade all packages together by
-```bash
-yarn latest
-# or
-npm run latest
-```

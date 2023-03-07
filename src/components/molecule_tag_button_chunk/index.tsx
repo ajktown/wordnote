@@ -1,4 +1,4 @@
-import { wordsFamily } from '@/recoil/words.state'
+import { wordsFamily } from '@/recoil/words/words.state'
 import { Box } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'

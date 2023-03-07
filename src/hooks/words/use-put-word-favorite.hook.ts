@@ -1,8 +1,11 @@
 import { useCallback } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { tempFavoriteWordIdsState, wordsFamily } from '@/recoil/words.state'
+import {
+  tempFavoriteWordIdsState,
+  wordsFamily,
+} from '@/recoil/words/words.state'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
-import { isFavoriteClickedState } from '@/recoil/favorites.state'
+import { isFavoriteClickedState } from '@/recoil/words/favorites.state'
 import { WordData } from '@/api/words/words.interface'
 
 type UsePutWord = [null | WordData, () => Promise<void>]

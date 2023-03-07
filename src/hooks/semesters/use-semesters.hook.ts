@@ -1,5 +1,5 @@
 import { getSemestersApi } from '@/api/semesters/get-semesters.api'
-import { semestersState } from '@/recoil/semesters.state'
+import { semestersState } from '@/recoil/words/semesters.state'
 import { useRecoilCallback } from 'recoil'
 
 export const useSemesters = () => {

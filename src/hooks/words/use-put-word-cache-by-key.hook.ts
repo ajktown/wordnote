@@ -2,7 +2,7 @@ import {
   WordDataModifiableKey,
   WordDataModifiableValue,
 } from '@/api/words/words.interface'
-import { modifyingWordFamily, wordsFamily } from '@/recoil/words.state'
+import { modifyingWordFamily, wordsFamily } from '@/recoil/words/words.state'
 import { useCallback, useMemo } from 'react'
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { usePutWord } from './use-put-word.hook'

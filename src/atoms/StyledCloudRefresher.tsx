@@ -1,4 +1,4 @@
-import { FC, useCallback, useState, useMemo } from 'react'
+import { FC, useCallback, useState } from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
 import WarningIcon from '@mui/icons-material/Warning'
 import CloudDoneIcon from '@mui/icons-material/CloudDone'
@@ -44,22 +44,18 @@ interface Props {
 }
 const StyledCloudRefresher: FC<Props> = ({ onClick, runOnClickOnce }) => {
   const [loading, setLoading] = useState<LoadingStatus>(LoadingStatus.Idle)
-  const showingTimeSecs = useMemo(
-    () => (loading === LoadingStatus.Failed ? 5 : 2),
-    [loading],
-  )
 
   const handleClick = useCallback(async () => {
     setLoading(LoadingStatus.Loading)
     try {
       await onClick()
-      runAfterHandler(() => setLoading(LoadingStatus.Success), showingTimeSecs)
+      setLoading(LoadingStatus.Success)
     } catch {
       setLoading(LoadingStatus.Failed)
     } finally {
-      runAfterHandler(() => setLoading(LoadingStatus.Idle), showingTimeSecs + 2)
+      runAfterHandler(() => setLoading(LoadingStatus.Idle), 2)
     }
-  }, [showingTimeSecs, onClick])
+  }, [onClick])
 
   useRunOnlyOnce(handleClick, runOnClickOnce)
 

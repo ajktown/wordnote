@@ -1,7 +1,7 @@
 import {
   isSemesterExpandedState,
   semestersState,
-} from '@/recoil/semesters.state'
+} from '@/recoil/words/semesters.state'
 import { Box } from '@mui/material'
 import { FC, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'

@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useResetRecoilState, useSetRecoilState } from 'recoil'
-import { isFavoriteClickedState } from '@/recoil/favorites.state'
-import { selectedLanguageState } from '@/recoil/languages.state'
-import { selectedSemesterState } from '@/recoil/semesters.state'
-import { selectedCustomizedTagsState } from '@/recoil/tags.state'
-import { selectedCreatedDayState } from '@/recoil/created-date-tags.state'
+import { isFavoriteClickedState } from '@/recoil/words/favorites.state'
+import { selectedLanguageState } from '@/recoil/words/languages.state'
+import { selectedSemesterState } from '@/recoil/words/semesters.state'
+import { selectedCustomizedTagsState } from '@/recoil/words/tags.state'
+import { selectedCreatedDayState } from '@/recoil/words/created-date-tags.state'
 
 export const useResetSelectedChips = (code?: number) => {
   const setSelectedSemester = useSetRecoilState(selectedSemesterState)

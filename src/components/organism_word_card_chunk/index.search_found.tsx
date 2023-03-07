@@ -2,8 +2,8 @@
 
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
-import { searchInputState } from '@/recoil/searchInput.state'
-import { filteredWordIdsState } from '@/recoil/words.state'
+import { searchInputState } from '@/recoil/words/searchInput.state'
+import { filteredWordIdsState } from '@/recoil/words/words.state'
 import { Typography, Stack } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue, useResetRecoilState } from 'recoil'

@@ -1,9 +1,11 @@
-import { DUMMY_WORDS } from './words.dummy'
+import axios from 'axios'
+import { CustomizedAxiosResponse } from '../index.interface'
 import { WordData } from './words.interface'
 
-// TODO: Implement
-
-export const getWordsApi = async (): Promise<WordData[]> => {
-  console.log(`Getting words from server...`)
-  return DUMMY_WORDS
+export const getWordsApi = async (): Promise<
+  CustomizedAxiosResponse<WordData[]>
+> => {
+  const url = `/v1/words`
+  const res = await axios.get(url)
+  return [res.data, res]
 }

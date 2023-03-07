@@ -1,8 +1,8 @@
 import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { isFavoriteClickedState } from '@/recoil/favorites.state'
-import { tempFavoriteWordIdsState } from '@/recoil/words.state'
+import { isFavoriteClickedState } from '@/recoil/words/favorites.state'
+import { tempFavoriteWordIdsState } from '@/recoil/words/words.state'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 

@@ -1,5 +1,5 @@
-import { isFavoriteClickedState } from '@/recoil/favorites.state'
-import { selectedSemesterState } from '@/recoil/semesters.state'
+import { isFavoriteClickedState } from '@/recoil/words/favorites.state'
+import { selectedSemesterState } from '@/recoil/words/semesters.state'
 import { Typography, Stack } from '@mui/material'
 import { FC, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'

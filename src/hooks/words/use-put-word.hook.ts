@@ -1,6 +1,6 @@
 import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
 import { WordDataModifiable } from '@/api/words/words.interface'
-import { wordsFamily } from '@/recoil/words.state'
+import { wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
 
 type UsePutWord = (modified: Partial<WordDataModifiable>) => Promise<void> // handlePutWord

@@ -5,7 +5,10 @@ import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import WordCardUnknown from './index.unknown'
-import { selectedWordIdForDialogState, wordsFamily } from '@/recoil/words.state'
+import {
+  selectedWordIdForDialogState,
+  wordsFamily,
+} from '@/recoil/words/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingMode from './index.editing_mode'
 import TagButtonChunk from '../molecule_tag_button_chunk'
