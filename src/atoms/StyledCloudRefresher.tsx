@@ -9,7 +9,7 @@ import { Fade } from '@mui/material'
 import { GlobalMuiFontSize } from '@/global.interface'
 import { useRunOnlyOnce } from '@/hooks/use-run-only-once.hook'
 
-enum LoadingStatus {
+enum PrivateLoadingStatus {
   Idle = 0,
   Loading = 1,
   Success = 2,
@@ -17,25 +17,31 @@ enum LoadingStatus {
 }
 
 const PRIVATE_FINAL_ICON_SIZE: GlobalMuiFontSize = `small`
+const PRIVATE_SUCCESS_ICON_SECS: number = 2
+const PRIVATE_FAILURE_ICON_SECS: number = 5
 
-// TODO: This does not yet have the cool design. So I need to create one!
-// TODO: I have improved a bit, but it could be a cooler with taking the exact same space for all rendering!
-// TODO: Gotta write this clean... too.
-// TODO: Make this prolly business component..? (not sure yet)
-
-const StyledCloudRefresherLoading: FC = () => {
-  return <CircularProgress size={20} />
-}
-
-const StyledCloudRefresherSuccess: FC = () => {
-  return (
-    <Fade in appear>
-      <CloudDoneIcon
-        style={{ animation: `1s fadeIn` }}
-        fontSize={PRIVATE_FINAL_ICON_SIZE}
-      />
-    </Fade>
-  )
+const StyledCloudRefresherBody: FC<{ loading: PrivateLoadingStatus }> = ({
+  loading,
+}) => {
+  switch (loading) {
+    case PrivateLoadingStatus.Idle:
+      return (
+        <RefreshIcon fontSize={PRIVATE_FINAL_ICON_SIZE} />
+      )
+    case PrivateLoadingStatus.Loading:
+      return <CircularProgress size={20} />
+    case PrivateLoadingStatus.Success:
+      return (
+        <Fade in appear>
+          <CloudDoneIcon
+            style={{ animation: `1s fadeIn` }}
+            fontSize={PRIVATE_FINAL_ICON_SIZE}
+          />
+        </Fade>
+      )
+    default:
+      return <WarningIcon fontSize={PRIVATE_FINAL_ICON_SIZE} /> // when failed
+  }
 }
 
 interface Props {
@@ -43,38 +49,38 @@ interface Props {
   runOnClickOnce?: boolean // Default: false
 }
 const StyledCloudRefresher: FC<Props> = ({ onClick, runOnClickOnce }) => {
-  const [loading, setLoading] = useState<LoadingStatus>(LoadingStatus.Idle)
+  const [loading, setLoading] = useState<PrivateLoadingStatus>(
+    PrivateLoadingStatus.Idle,
+  )
 
   const handleClick = useCallback(async () => {
-    setLoading(LoadingStatus.Loading)
+    setLoading(PrivateLoadingStatus.Loading)
     try {
       await onClick()
-      setLoading(LoadingStatus.Success)
+      setLoading(PrivateLoadingStatus.Success)
+      runAfterHandler(
+        () => setLoading(PrivateLoadingStatus.Idle),
+        PRIVATE_SUCCESS_ICON_SECS,
+      )
     } catch {
-      setLoading(LoadingStatus.Failed)
-    } finally {
-      runAfterHandler(() => setLoading(LoadingStatus.Idle), 2)
+      setLoading(PrivateLoadingStatus.Failed)
+      runAfterHandler(
+        () => setLoading(PrivateLoadingStatus.Idle),
+        PRIVATE_FAILURE_ICON_SECS,
+      )
     }
   }, [onClick])
 
   useRunOnlyOnce(handleClick, runOnClickOnce)
 
-  switch (loading) {
-    case LoadingStatus.Idle:
-      return (
-        <StyledIconButtonAtom
-          onClick={handleClick}
-          jsxElementButton={<RefreshIcon fontSize={PRIVATE_FINAL_ICON_SIZE} />}
-          size={PRIVATE_FINAL_ICON_SIZE}
-        />
-      )
-    case LoadingStatus.Loading:
-      return <StyledCloudRefresherLoading />
-    case LoadingStatus.Success:
-      return <StyledCloudRefresherSuccess />
-    default:
-      return <WarningIcon fontSize={PRIVATE_FINAL_ICON_SIZE} /> // when failed
-  }
+  return (
+    <StyledIconButtonAtom
+      onClick={handleClick}
+      isDisabled={loading !== PrivateLoadingStatus.Idle}
+      jsxElementButton={<StyledCloudRefresherBody loading={loading} />}
+      size={PRIVATE_FINAL_ICON_SIZE}
+    />
+  )
 }
 
 export default StyledCloudRefresher
