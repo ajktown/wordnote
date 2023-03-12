@@ -17,9 +17,7 @@ const StyledFadingIcon: FC<Props> = ({ showFirst, firstIcon, secondIcon }) => {
         {firstIcon}
       </Fade>
       <Fade in={!showFirst} timeout={PRIVATE_SPEED_MILLISECONDS}>
-        <span style={{ position: "absolute" }}>
-          {secondIcon}
-        </span>
+        <span style={{ position: `absolute` }}>{secondIcon}</span>
       </Fade>
     </Fragment>
   )

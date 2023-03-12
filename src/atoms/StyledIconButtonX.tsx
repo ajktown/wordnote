@@ -10,7 +10,7 @@ interface Props {
   size?: GlobalMuiSize
 }
 
-const XButton: FC<Props> = ({ onClick, ...props }) => {
+const StyledIconButtonX: FC<Props> = ({ onClick, ...props }) => {
   const handleClickCallback = useCallback(() => {
     onClick && onClick()
   }, [onClick])
@@ -24,4 +24,4 @@ const XButton: FC<Props> = ({ onClick, ...props }) => {
   )
 }
 
-export default XButton
+export default StyledIconButtonX

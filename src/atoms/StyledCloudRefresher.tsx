@@ -17,17 +17,15 @@ enum PrivateLoadingStatus {
 }
 
 const PRIVATE_FINAL_ICON_SIZE: GlobalMuiFontSize = `small`
-const PRIVATE_SUCCESS_ICON_SECS: number = 2
-const PRIVATE_FAILURE_ICON_SECS: number = 5
+const PRIVATE_SUCCESS_ICON_SECS = 2
+const PRIVATE_FAILURE_ICON_SECS = 5
 
 const StyledCloudRefresherBody: FC<{ loading: PrivateLoadingStatus }> = ({
   loading,
 }) => {
   switch (loading) {
     case PrivateLoadingStatus.Idle:
-      return (
-        <RefreshIcon fontSize={PRIVATE_FINAL_ICON_SIZE} />
-      )
+      return <RefreshIcon fontSize={PRIVATE_FINAL_ICON_SIZE} />
     case PrivateLoadingStatus.Loading:
       return <CircularProgress size={20} />
     case PrivateLoadingStatus.Success:
