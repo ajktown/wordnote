@@ -10,7 +10,7 @@ export const usePostWord = (): UsePostWord => {
     ({ set, snapshot }) =>
       async (newWord: WordData) => {
         try {
-          const postedWord = await postWordApi(newWord)
+          const [postedWord] = await postWordApi(newWord)
 
           const wordIds = await snapshot.getPromise(wordIdsState)
           set(wordIdsState, [postedWord.id, ...wordIds])
