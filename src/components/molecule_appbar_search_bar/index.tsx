@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
 import StyledTextField from '@/atoms/StyledTextField'
-import XButton from '../atom_x_button'
+import StyledIconButtonX from '@/atoms/StyledIconButtonX'
 
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
@@ -20,7 +20,10 @@ const AppbarSearchBar: FC = () => {
         buttons={{
           left: <SearchIcon />,
           right: searchInput && (
-            <XButton onClick={onResetSearchInput} hoverMessage={`Reset`} />
+            <StyledIconButtonX
+              onClick={onResetSearchInput}
+              hoverMessage={`Reset`}
+            />
           ),
         }}
       />

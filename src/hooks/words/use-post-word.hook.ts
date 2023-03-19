@@ -9,11 +9,13 @@ export const usePostWord = (): UsePostWord => {
   const handlePostWord = useRecoilCallback(
     ({ set, snapshot }) =>
       async (newWord: WordData) => {
-        const postedWord = await postWordApi(newWord)
+        try {
+          const [postedWord] = await postWordApi(newWord)
 
-        const wordIds = await snapshot.getPromise(wordIdsState)
-        set(wordIdsState, [postedWord.id, ...wordIds])
-        set(wordsFamily(postedWord.id), postedWord)
+          const wordIds = await snapshot.getPromise(wordIdsState)
+          set(wordIdsState, [postedWord.id, ...wordIds])
+          set(wordsFamily(postedWord.id), postedWord)
+        } catch {}
       },
     [],
   )
