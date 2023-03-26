@@ -1,6 +1,7 @@
+import { GetReqDtoRoot } from '@/api/index.interface'
 import { GlobalLanguageCode } from '@/global.interface'
 
-export interface WordSearchParams {
+export interface GetWordParams extends GetReqDtoRoot {
   id: string
   languageCode: GlobalLanguageCode
   semester: number
