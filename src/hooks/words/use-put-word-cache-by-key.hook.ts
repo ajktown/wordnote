@@ -1,7 +1,7 @@
 import {
   WordDataModifiableKey,
   WordDataModifiableValue,
-} from '@/api/words/words.interface'
+} from '@/api/words/interfaces'
 import { modifyingWordFamily, wordsFamily } from '@/recoil/words/words.state'
 import { useCallback, useMemo } from 'react'
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'

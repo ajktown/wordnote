@@ -1,6 +1,6 @@
 import { CustomizedAxiosResponse } from '../index.interface'
 import axios from 'axios'
-import { WordData } from './words.interface'
+import { WordData } from './interfaces'
 
 export const postWordApi = async (
   newWord: WordData,

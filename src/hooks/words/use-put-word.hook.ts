@@ -1,5 +1,5 @@
 import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
-import { WordDataModifiable } from '@/api/words/words.interface'
+import { WordDataModifiable } from '@/api/words/interfaces'
 import { wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
 

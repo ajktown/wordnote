@@ -6,7 +6,7 @@ import {
 } from '@/recoil/words/words.state'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { isFavoriteClickedState } from '@/recoil/words/favorites.state'
-import { WordData } from '@/api/words/words.interface'
+import { WordData } from '@/api/words/interfaces'
 
 type UsePutWord = [null | WordData, () => Promise<void>]
 export const usePutWordFavorite = (wordId: string): UsePutWord => {

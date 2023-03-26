@@ -1,5 +1,5 @@
 import { postWordApi } from '@/api/words/post-word.api'
-import { WordData } from '@/api/words/words.interface'
+import { WordData } from '@/api/words/interfaces'
 import { wordIdsState, wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
 

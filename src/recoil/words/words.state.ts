@@ -2,7 +2,7 @@ import {
   WordData,
   WordDataModifiableKey,
   WordDataModifiableValue,
-} from '@/api/words/words.interface'
+} from '@/api/words/interfaces'
 import { timeHandler } from '@/handlers/time.handler'
 import { atom, atomFamily, selector } from 'recoil'
 import { selectedCreatedDayState } from './created-date-tags.state'

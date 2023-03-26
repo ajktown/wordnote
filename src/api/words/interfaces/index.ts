@@ -1,5 +1,5 @@
 import { GlobalLanguageCode } from '@/global.interface'
-import { DataBasics, DataStatus } from '../index.interface'
+import { DataBasics, DataStatus } from '../../index.interface'
 
 export interface WordData extends DataStatus, DataBasics {
   id: string

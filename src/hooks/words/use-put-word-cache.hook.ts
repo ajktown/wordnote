@@ -2,7 +2,7 @@ import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
 import {
   WordDataModifiable,
   WordDataModifiableKey,
-} from '@/api/words/words.interface'
+} from '@/api/words/interfaces'
 import { isEmptyObjectHandler } from '@/handlers/is-empty-object.handler'
 import { modifyingWordFamily, wordsFamily } from '@/recoil/words/words.state'
 import { useCallback } from 'react'

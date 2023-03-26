@@ -1,4 +1,4 @@
-import { WordData } from '@/api/words/words.interface'
+import { WordData } from '@/api/words/interfaces'
 import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda'
 import { useCallback, useState, Dispatch, SetStateAction } from 'react'
 import { usePostWord } from './use-post-word.hook'
