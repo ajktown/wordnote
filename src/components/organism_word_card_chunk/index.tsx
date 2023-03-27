@@ -3,16 +3,16 @@ import WordCard from '../molecule_word_card'
 import { useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
 import WordCardChunkSearchNotFound from './index.search_not_found'
-import { filteredWordIdsState } from '@/recoil/words/words.state'
+import { wordIdsState } from '@/recoil/words/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardsChunkNoWordsFound from './index.no_words_found'
 import WordCardChunkSearchFound from './index.search_found'
 
 const WordCardsChunk: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
-  const filteredWordIds = useRecoilValue(filteredWordIdsState)
+  const wordIds = useRecoilValue(wordIdsState)
 
-  if (filteredWordIds.length === 0) {
+  if (wordIds.length === 0) {
     if (!searchInput) return <WordCardsChunkNoWordsFound />
     return <WordCardChunkSearchNotFound />
   }
@@ -20,7 +20,7 @@ const WordCardsChunk: FC = () => {
   return (
     <StyledSuspense>
       <WordCardChunkSearchFound />
-      {filteredWordIds.map((wordId) => (
+      {wordIds.map((wordId) => (
         <WordCard key={wordId} wordId={wordId} />
       ))}
     </StyledSuspense>
