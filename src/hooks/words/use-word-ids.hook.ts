@@ -7,12 +7,13 @@ export const useWordIds = () => {
   const handleApiError = useApiErrorHook()
 
   const handleRefresh = useRecoilCallback(
-    ({ set }) =>
+    ({ set, reset }) =>
       async () => {
         try {
           const [wordIds] = await getWordIdsApi()
           set(wordIdsState, wordIds)
         } catch (err) {
+          reset(wordIdsState)
           handleApiError(err)
         }
       },
