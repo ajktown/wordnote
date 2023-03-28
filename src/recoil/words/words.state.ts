@@ -27,9 +27,13 @@ enum PrivateWordRecoilKey {
   FilteredWordIds = `FilteredWordIds`,
 }
 
-export const wordsFamily = atomFamily<WordData | null, string>({
+type PrivateWordsFamily =
+  | undefined // not loaded
+  | null // loaded, but not found
+  | WordData
+export const wordsFamily = atomFamily<PrivateWordsFamily, string>({
   key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Family,
-  default: null,
+  default: undefined,
 })
 
 export const modifyingWordFamily = atomFamily<
@@ -61,7 +65,7 @@ const privateSearchInputFilteredWordIdsState = selector<string[]>({
 
     return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
-      if (word === null) return false
+      if (word == null) return false
 
       return word.term.includes(searchInput)
     })

@@ -28,17 +28,13 @@ export const usePutWordCacheByKey = (
   const onResetCacheByKey = useResetRecoilState(modifyingWordFamily(wordKey))
 
   const value: Value = useMemo(() => {
-    if (word === null) return null
+    if (word == null) return null
     if (modifiedData === null) return word[wordKey]
     return modifiedData
   }, [wordKey, word, modifiedData])
 
   const isModified: boolean = useMemo(() => {
-    if (
-      word === null ||
-      modifiedData === null ||
-      modifiedData === word[wordKey]
-    )
+    if (word == null || modifiedData === null || modifiedData === word[wordKey])
       return false
     return true
   }, [wordKey, word, modifiedData])

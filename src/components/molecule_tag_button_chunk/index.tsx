@@ -11,7 +11,7 @@ interface Props {
 const TagButtonChunk: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
 
-  if (word === null) return null
+  if (word == null) return null
 
   return (
     <Box>

@@ -14,6 +14,7 @@ import WordCardEditingMode from './index.editing_mode'
 import TagButtonChunk from '../molecule_tag_button_chunk'
 import { useWordById } from '@/hooks/words/use-word-by-id.hook'
 import { useIsObserved } from '@/hooks/use-is-observed.hook'
+import WordCardSkeleton from './index.skeleton'
 
 interface Props {
   wordId: string
@@ -30,6 +31,7 @@ const WordCardBody: FC<Props> = ({ wordId, editingMode }) => {
     !editingMode && setSelectedWordIdForDialog(wordId)
   }, [editingMode, wordId, setSelectedWordIdForDialog])
 
+  if (word === undefined) return <WordCardSkeleton />
   if (word === null) return <WordCardUnknown />
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
   if (editingMode) return <WordCardEditingMode wordId={wordId} />

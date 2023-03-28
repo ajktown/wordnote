@@ -8,7 +8,7 @@ import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { isFavoriteClickedState } from '@/recoil/words/favorites.state'
 import { WordData } from '@/api/words/interfaces'
 
-type UsePutWord = [null | WordData, () => Promise<void>]
+type UsePutWord = [undefined | null | WordData, () => Promise<void>]
 export const usePutWordFavorite = (wordId: string): UsePutWord => {
   const [tempIds, setTempIds] = useRecoilState(tempFavoriteWordIdsState)
   const word = useRecoilValue(wordsFamily(wordId))
@@ -17,7 +17,7 @@ export const usePutWordFavorite = (wordId: string): UsePutWord => {
   const handlePutWord = usePutWord(wordId)
 
   const onClickFavoriteIcon = useCallback(async () => {
-    if (word === null) return
+    if (word == null) return
 
     const modifyingTo = !word.isFavorite
     await handlePutWord({ isFavorite: modifyingTo })

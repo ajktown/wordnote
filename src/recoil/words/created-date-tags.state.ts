@@ -23,7 +23,7 @@ export const simplifiedDaysBeforeState = selector<number[]>({
 
     wordIds.forEach((wordId) => {
       const word = get(wordsFamily(wordId))
-      if (word !== null) daysAgo.add(timeHandler.getDaysAgo(word.createdAt))
+      if (word != null) daysAgo.add(timeHandler.getDaysAgo(word.createdAt))
     })
 
     return get(privateCreatedDaysBeforePreferredDaysState).filter(

@@ -75,7 +75,7 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
         if (wordId === null) return
 
         const wordData = await snapshot.getPromise(wordsFamily(wordId))
-        if (wordData === null) return
+        if (wordData == null) return
 
         const modified = await getObject()
         if (isEmptyObjectHandler(modified)) return
