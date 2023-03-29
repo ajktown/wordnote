@@ -3,7 +3,7 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
 import { searchInputState } from '@/recoil/words/searchInput.state'
-import { filteredWordIdsState } from '@/recoil/words/words.state'
+import { wordIdsState } from '@/recoil/words/words.state'
 import { Typography, Stack } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
@@ -11,14 +11,14 @@ import { useRecoilValue, useResetRecoilState } from 'recoil'
 const WordCardChunkSearchFound: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
   const onResetSearchInput = useResetRecoilState(searchInputState)
-  const filteredWordIds = useRecoilValue(filteredWordIdsState)
+  const wordIds = useRecoilValue(wordIdsState)
 
   if (!searchInput) return null
 
   return (
     <Stack>
       <Typography>{`Your search matched ${stringCaseHandler.toPlural(
-        filteredWordIds.length,
+        wordIds.length,
         `result`,
         `results`,
       )}.`}</Typography>

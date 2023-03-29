@@ -1,4 +1,4 @@
-import { isFavoriteClickedState } from '@/recoil/words/favorites.state'
+import { deprecatedIsFavoriteClickedState } from '@/recoil/words/favorites.state'
 import { selectedSemesterState } from '@/recoil/words/semesters.state'
 import { Typography, Stack } from '@mui/material'
 import { FC, Fragment } from 'react'
@@ -9,7 +9,7 @@ const PRIVATE_DEFAULT_NOTHING_FOUND = `It seems like you do not have any words s
 
 const WordCardsChunkNoWordsFoundBody: FC = () => {
   const selectedSemester = useRecoilValue(selectedSemesterState)
-  const isFavoriteClicked = useRecoilValue(isFavoriteClickedState)
+  const isFavoriteClicked = useRecoilValue(deprecatedIsFavoriteClickedState)
 
   if (isFavoriteClicked || selectedSemester)
     return <Fragment>{PRIVATE_DEFAULT_SELECTED}</Fragment>
