@@ -9,6 +9,7 @@ interface Props {
   style?: {
     variant?: GlobalMuiTagVariant // Default: PRIVATE_DEFAULT_VARIANT
   }
+  loading?: boolean
   onClick?: () => any
   FrontIcon?: ReactElement // Front Icon does not have onClickFontIcon
   RearIcon?: ReactElement
@@ -19,6 +20,7 @@ const StyledTagButtonAtom: FC<Props> = ({ RearIcon, ...props }) => {
   return (
     <Chip
       label={props.label}
+      disabled={props.loading}
       onClick={props.onClick}
       onDelete={props.onClickRearIcon}
       icon={props.FrontIcon}

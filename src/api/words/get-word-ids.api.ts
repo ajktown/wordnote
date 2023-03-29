@@ -7,6 +7,6 @@ export const getWordIdsApi = async (
 ): Promise<CustomizedAxiosResponse<string[]>> => {
   const url = `/v1/word-ids`
   const res = await axios.get(url, { params })
-  console.log({ res })
+
   return [res.data, res]
 }
