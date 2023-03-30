@@ -6,7 +6,7 @@ import {
 import { atom, atomFamily, selector } from 'recoil'
 import { RecoilKeySuffix } from '@/recoil/index.keys'
 import { searchInputState } from './searchInput.state'
-import { selectedSemesterState } from './semesters.state'
+import { deprecatedSelectedSemesterState } from './semesters.state'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
 
 enum PrivateWordRecoilKey {
@@ -14,6 +14,7 @@ enum PrivateWordRecoilKey {
   GetWordsParams = `getWordsParams`,
   ModifyingWords = `ModifyingWords`,
   isFavoriteClicked = `isFavoriteClicked`,
+  selectedSemester = `SelectedSemester`,
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
@@ -64,6 +65,13 @@ export const isFavoriteClickedSelector = selector<boolean>({
   },
 })
 
+export const selectedSemesterState = selector<undefined | number>({
+  key: PrivateWordRecoilKey.selectedSemester + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).semester
+  },
+})
+
 const privateSearchInputFilteredWordIdsState = selector<string[]>({
   key:
     PrivateWordRecoilKey.SearchInputFilteredWordIds + RecoilKeySuffix.Selector,
@@ -87,7 +95,7 @@ export const semesterFilteredWordIds = selector<string[]>({
   get: ({ get }) => {
     const wordIds = get(privateSearchInputFilteredWordIdsState)
 
-    const selectedSemester = get(selectedSemesterState)
+    const selectedSemester = get(deprecatedSelectedSemesterState)
     return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
       if (!word) return false

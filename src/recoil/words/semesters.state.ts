@@ -4,7 +4,7 @@ import { atom } from 'recoil'
 enum PrivateSemesterRecoilKey {
   Semesters = `Semesters`,
   SemesterExpanded = `SemesterExpanded`,
-  SemesterSelected = `SemesterSelected`,
+  DeprecatedSemesterSelected = `SemesterSelected`,
   LanguageSelected = `LanguageSelected`,
 }
 
@@ -18,7 +18,7 @@ export const isSemesterExpandedState = atom<boolean>({
   default: false,
 })
 
-export const selectedSemesterState = atom<null | number>({
-  key: PrivateSemesterRecoilKey.SemesterSelected,
+export const deprecatedSelectedSemesterState = atom<null | number>({
+  key: PrivateSemesterRecoilKey.DeprecatedSemesterSelected,
   default: null,
 })

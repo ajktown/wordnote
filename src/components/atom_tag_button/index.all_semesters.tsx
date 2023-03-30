@@ -1,25 +1,27 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { useResetSelectedChips } from '@/hooks/use-reset-selected-chips.hook'
-import { selectedSemesterState } from '@/recoil/words/semesters.state'
-import { wordIdsState } from '@/recoil/words/words.state'
-import { FC, useMemo } from 'react'
+import { useWordIds } from '@/hooks/words/use-word-ids.hook'
+import { selectedSemesterState } from '@/recoil/words/words.state'
+import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
 const TagButtonAllSemesters: FC = () => {
   const selectedSemester = useRecoilValue(selectedSemesterState)
-  const filteredIds = useRecoilValue(wordIdsState)
-  const handleClickResetSelectedChips = useResetSelectedChips()
-
   const variant: GlobalMuiTagVariant = useMemo(
-    () => (selectedSemester === null ? `filled` : `outlined`),
+    () => (selectedSemester === undefined ? `filled` : `outlined`),
     [selectedSemester],
   )
 
+  const [loading, handleGetWordIds] = useWordIds()
+  const onClick = useCallback(() => {
+    handleGetWordIds({ semester: undefined })
+  }, [handleGetWordIds])
+
   return (
     <StyledTagButtonAtom
-      label={`All (${filteredIds.length})`}
-      onClick={handleClickResetSelectedChips}
+      label={`⭐️ All`}
+      onClick={onClick}
+      loading={loading}
       style={{
         variant,
       }}
