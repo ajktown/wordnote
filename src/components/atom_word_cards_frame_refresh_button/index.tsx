@@ -4,7 +4,7 @@ import { useSemesters } from '@/hooks/semesters/use-semesters.hook'
 import { useWordIds } from '@/hooks/words/use-word-ids.hook'
 
 const WordCardsFrameRefreshButton: FC = () => {
-  const getWordIds = useWordIds()
+  const [, getWordIds] = useWordIds()
   const getSemesters = useSemesters()
 
   const onClickRefresh = useCallback(async () => {

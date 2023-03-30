@@ -1,25 +1,38 @@
 import { getWordIdsApi } from '@/api/words/get-word-ids.api'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
-import { wordIdsState } from '@/recoil/words/words.state'
+import { getWordsParamsState, wordIdsState } from '@/recoil/words/words.state'
+import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useApiErrorHook } from '../use-api-error.hook'
 
-export const useWordIds = () => {
+type HandleRefresh = (newParams?: Partial<GetWordParams>) => Promise<void>
+type UseWordIds = [boolean, HandleRefresh]
+export const useWordIds = (): UseWordIds => {
+  const [loading, setLoading] = useState(false)
   const handleApiError = useApiErrorHook()
 
-  const handleRefresh = useRecoilCallback(
-    ({ set, reset }) =>
-      async (params?: Partial<GetWordParams>) => {
+  const handleRefresh: HandleRefresh = useRecoilCallback(
+    ({ set, reset, snapshot }) =>
+      async (newParams?: Partial<GetWordParams>) => {
+        setLoading(true)
         try {
+          const params: Partial<GetWordParams> = {
+            ...(await snapshot.getPromise(getWordsParamsState)),
+            ...newParams,
+          }
+
           const [wordIds] = await getWordIdsApi(params)
           set(wordIdsState, wordIds)
+          set(getWordsParamsState, params)
         } catch (err) {
           reset(wordIdsState)
           handleApiError(err)
+        } finally {
+          setLoading(false)
         }
       },
     [handleApiError],
   )
 
-  return handleRefresh
+  return [loading, handleRefresh]
 }
