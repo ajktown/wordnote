@@ -1,5 +1,6 @@
 import { getWordIdsApi } from '@/api/words/get-word-ids.api'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
+import { languageCodesBySemesterState } from '@/recoil/words/languages.state'
 import { getWordsParamsState, wordIdsState } from '@/recoil/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
@@ -21,8 +22,9 @@ export const useWordIds = (): UseWordIds => {
             ...newParams,
           }
 
-          const [wordIds] = await getWordIdsApi(params)
-          set(wordIdsState, wordIds)
+          const [data] = await getWordIdsApi(params)
+          set(wordIdsState, data.wordIds)
+          set(languageCodesBySemesterState, data.languages)
           set(getWordsParamsState, params)
         } catch (err) {
           reset(wordIdsState)
