@@ -1,10 +1,9 @@
-import { timeHandler } from '@/handlers/time.handler'
 import { atom, selector } from 'recoil'
 import { RecoilKeySuffix } from '@/recoil/index.keys'
-import { semesterFilteredWordIds, wordsFamily } from './words.state'
 
 enum PrivateRecoilKey {
   CreatedDaysBeforePreferredDays = `ShowingCreatedDays`,
+  WordsCreatedDaysAgo = `WordsCreatedDaysAgo`,
   SelectedCreatedDay = `SelectedCreatedDay`,
 }
 
@@ -14,21 +13,20 @@ const privateCreatedDaysBeforePreferredDaysState = atom<number[]>({
   default: [0, 1, 4, 7, 14, 21, 30, 60],
 })
 
+export const wordsCreatedDaysAgoState = atom<number[]>({
+  key: PrivateRecoilKey.WordsCreatedDaysAgo,
+  default: [],
+})
+
 export const simplifiedDaysBeforeState = selector<number[]>({
   key:
     PrivateRecoilKey.CreatedDaysBeforePreferredDays + RecoilKeySuffix.Selector,
   get: ({ get }) => {
-    const wordIds = get(semesterFilteredWordIds)
-    const daysAgo = new Set<number>()
-
-    wordIds.forEach((wordId) => {
-      const word = get(wordsFamily(wordId))
-      if (word != null) daysAgo.add(timeHandler.getDaysAgo(word.createdAt))
-    })
+    const wordsCreatedDaysAgo = get(wordsCreatedDaysAgoState)
 
     return get(privateCreatedDaysBeforePreferredDaysState).filter(
       (dayBefore) => {
-        return daysAgo.has(dayBefore)
+        return wordsCreatedDaysAgo.includes(dayBefore)
       },
     )
   },
