@@ -1,9 +1,11 @@
-// TODO: Implement
-
-import { DUMMY_SEMESTERS } from './index.dummy'
+import axios from 'axios'
+import { CustomizedAxiosResponse } from '../index.interface'
 import { SemesterData } from './index.interface'
 
-export const getSemestersApi = async (): Promise<SemesterData[]> => {
-  console.log(`Getting semesters from server...`)
-  return DUMMY_SEMESTERS
+export const getSemestersApi = async (): Promise<
+  CustomizedAxiosResponse<SemesterData[]>
+> => {
+  const url = `/v1/semesters`
+  const res = await axios.get(url)
+  return [res.data, res]
 }
