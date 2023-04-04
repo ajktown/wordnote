@@ -6,7 +6,9 @@ import { getSemesterByIdApi } from '@/api/semesters/get-semester-by-id.api'
 export const useSemesterById = () => {
   const handleRefresh = useRecoilCallback(
     ({ set }) =>
-      async (id: string) => {
+      async (id: string | null) => {
+        if (id === null) return // TODO: Kind of weird way to write.
+
         const [semester] = await getSemesterByIdApi(id)
         set(wordsCreatedDaysAgoState, semester.details.daysAgo)
         set(languageCodesBySemesterState, semester.details.languages)
