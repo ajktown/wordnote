@@ -10,4 +10,5 @@ export interface GetWordParams extends GetReqDtoRoot {
   pronunciation: string
   definition: string
   example: string
+  daysAgo: number
 }

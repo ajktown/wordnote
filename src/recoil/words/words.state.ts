@@ -15,6 +15,7 @@ enum PrivateWordRecoilKey {
   ModifyingWords = `ModifyingWords`,
   isFavoriteClicked = `isFavoriteClicked`,
   selectedSemester = `SelectedSemester`,
+  SelectedDaysAgo = `SelectedDaysAgo`,
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
@@ -69,6 +70,13 @@ export const selectedSemesterState = selector<undefined | number>({
   key: PrivateWordRecoilKey.selectedSemester + RecoilKeySuffix.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).semester
+  },
+})
+
+export const selectedDaysAgoState = selector<undefined | number>({
+  key: PrivateWordRecoilKey.SelectedDaysAgo + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).daysAgo
   },
 })
 

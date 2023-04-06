@@ -4,7 +4,6 @@ import { RecoilKeySuffix } from '@/recoil/index.keys'
 enum PrivateRecoilKey {
   CreatedDaysBeforePreferredDays = `ShowingCreatedDays`,
   WordsCreatedDaysAgo = `WordsCreatedDaysAgo`,
-  SelectedCreatedDay = `SelectedCreatedDay`,
 }
 
 // TODO: This will be used for the user preference and will be exported in the future as non-private variable.
@@ -30,9 +29,4 @@ export const simplifiedDaysBeforeState = selector<number[]>({
       },
     )
   },
-})
-
-export const selectedCreatedDayState = atom<null | number>({
-  key: PrivateRecoilKey.SelectedCreatedDay,
-  default: null,
 })
