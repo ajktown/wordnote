@@ -5,6 +5,7 @@ import { selectedLanguageState } from '@/recoil/words/languages.state'
 import { deprecatedSelectedSemesterState } from '@/recoil/words/semesters.state'
 import { selectedCustomizedTagsState } from '@/recoil/words/tags.state'
 
+// TODO: Yuk, this is a mess. I need to refactor this.
 export const useResetSelectedChips = (code?: number) => {
   const setSelectedSemester = useSetRecoilState(deprecatedSelectedSemesterState)
   const onResetSelectedSemester = useResetRecoilState(
