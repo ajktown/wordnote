@@ -8,6 +8,7 @@ import { RecoilKeySuffix } from '@/recoil/index.keys'
 import { searchInputState } from './searchInput.state'
 import { deprecatedSelectedSemesterState } from './semesters.state'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
+import { GlobalLanguageCode } from '@/global.interface'
 
 enum PrivateWordRecoilKey {
   Words = `Words`,
@@ -16,6 +17,7 @@ enum PrivateWordRecoilKey {
   isFavoriteClicked = `isFavoriteClicked`,
   selectedSemester = `SelectedSemester`,
   SelectedDaysAgo = `SelectedDaysAgo`,
+  SelectedLanguages = `SelectedLanguages`,
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
@@ -77,6 +79,13 @@ export const selectedDaysAgoState = selector<undefined | number>({
   key: PrivateWordRecoilKey.SelectedDaysAgo + RecoilKeySuffix.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).daysAgo
+  },
+})
+
+export const selectedLanguagesState = selector<GlobalLanguageCode[]>({
+  key: PrivateWordRecoilKey.SelectedLanguages + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).languageCodes || []
   },
 })
 
