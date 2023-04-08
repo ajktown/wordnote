@@ -1,6 +1,8 @@
 import { GlobalLanguageCode } from '@/global.interface'
 import { DataBasics, DataStatus } from '../../index.interface'
 
+// TODO: Change the file name interfaces -> interface
+
 export interface WordData extends DataStatus, DataBasics {
   id: string
   languageCode: GlobalLanguageCode
