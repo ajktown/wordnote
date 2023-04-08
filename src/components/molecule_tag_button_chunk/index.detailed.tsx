@@ -1,33 +1,31 @@
 import { Box } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import { languageCodesBySemesterState } from '@/recoil/words/languages.state'
 import TagButtonLanguage from '../atom_tag_button/index.language'
 import TagButtonFavorite from '../atom_tag_button/index.favorite'
-import { customizedTagsState } from '@/recoil/words/tags.state'
-import { simplifiedDaysBeforeState } from '@/recoil/words/created-date-tags.state'
 import TagButtonCustomized from '../atom_tag_button/index.customized'
 import TagButtonDaysAgo from '../atom_tag_button/index.days_ago'
 import { selectedSemesterState } from '@/recoil/words/words.state'
+import { semesterDetailFamily } from '@/recoil/words/semesters.state'
 
 const TagButtonChunkDetailed: FC = () => {
-  const languageCodes = useRecoilValue(languageCodesBySemesterState)
-  const customizedTags = useRecoilValue(customizedTagsState)
-  const simplifiedDaysBefore = useRecoilValue(simplifiedDaysBeforeState)
   const selectedSemester = useRecoilValue(selectedSemesterState)
+  const semesterDetails = useRecoilValue(
+    semesterDetailFamily(selectedSemester?.toString() || ``),
+  )
 
   if (!selectedSemester) return null
 
   return (
     <Box>
       {<TagButtonFavorite />}
-      {simplifiedDaysBefore.map((daysAgo) => (
+      {semesterDetails.daysAgo.map((daysAgo) => (
         <TagButtonDaysAgo key={daysAgo} daysAgo={daysAgo} />
       ))}
-      {languageCodes.map((code) => (
+      {semesterDetails.languages.map((code) => (
         <TagButtonLanguage key={code} languageCode={code} />
       ))}
-      {customizedTags.map((tag) => (
+      {semesterDetails.tags.map((tag) => (
         <TagButtonCustomized key={tag} label={tag} />
       ))}
     </Box>
