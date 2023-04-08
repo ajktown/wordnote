@@ -8,7 +8,7 @@ import { RecoilKeySuffix } from '../index.keys'
 enum PrivateSemesterRecoilKey {
   Semesters = `Semesters`,
   SemesterExpanded = `SemesterExpanded`,
-  DeprecatedSemesterSelected = `SemesterSelected`,
+  DeprecatedSemesterSelected = `DeprecatedSemesterSelected`,
   LanguageSelected = `LanguageSelected`,
 }
 
