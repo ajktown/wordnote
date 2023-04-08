@@ -17,7 +17,7 @@ export const semestersState = atom<SemesterData[]>({
   default: [],
 })
 
-export const semesterDetails = atomFamily<SemesterDetailedInfo, string>({
+export const semesterDetailFamily = atomFamily<SemesterDetailedInfo, string>({
   key: PrivateSemesterRecoilKey.Semesters + RecoilKeySuffix.Family,
   default: undefined,
 })
