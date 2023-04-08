@@ -12,4 +12,5 @@ export interface GetWordParams extends GetReqDtoRoot {
   definition: string
   example: string
   daysAgo: number
+  tags: string[]
 }

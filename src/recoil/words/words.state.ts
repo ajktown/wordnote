@@ -18,6 +18,7 @@ enum PrivateWordRecoilKey {
   selectedSemester = `SelectedSemester`,
   SelectedDaysAgo = `SelectedDaysAgo`,
   SelectedLanguages = `SelectedLanguages`,
+  SelectedTags = `SelectedTags`,
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
@@ -86,6 +87,13 @@ export const selectedLanguagesState = selector<GlobalLanguageCode[]>({
   key: PrivateWordRecoilKey.SelectedLanguages + RecoilKeySuffix.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).languageCodes || []
+  },
+})
+
+export const selectedTagsState = selector<string[]>({
+  key: PrivateWordRecoilKey.SelectedTags + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).tags || []
   },
 })
 
