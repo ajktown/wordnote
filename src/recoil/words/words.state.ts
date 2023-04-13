@@ -9,12 +9,9 @@ import { GetWordParams } from '@/api/words/interfaces/index.search-params'
 
 enum PrivateWordRecoilKey {
   Words = `Words`,
+  WordIds = `WordIds`,
   GetWordsParams = `getWordsParams`,
   ModifyingWords = `ModifyingWords`,
-  isFavoriteClicked = `isFavoriteClicked`,
-  selectedSemester = `SelectedSemester`,
-  SelectedDaysAgo = `SelectedDaysAgo`,
-  WordIds = `WordIds`,
   TempLikedWordIds = `TempLikedWordIds`,
 }
 
@@ -25,6 +22,11 @@ type PrivateWordsFamily =
 export const wordsFamily = atomFamily<PrivateWordsFamily, string>({
   key: PrivateWordRecoilKey.Words + Rks.Family,
   default: undefined,
+})
+
+export const wordIdsState = atom<string[]>({
+  key: PrivateWordRecoilKey.WordIds,
+  default: [],
 })
 
 export const modifyingWordFamily = atomFamily<
@@ -38,11 +40,6 @@ export const modifyingWordFamily = atomFamily<
 export const selectedWordIdForDialogState = atom<null | string>({
   key: PrivateWordRecoilKey.Words + Rks.Dialog,
   default: null, // nothing selected
-})
-
-export const wordIdsState = atom<string[]>({
-  key: PrivateWordRecoilKey.WordIds,
-  default: [],
 })
 
 export const getWordsParamsState = atom<Partial<GetWordParams>>({
