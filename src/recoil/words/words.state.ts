@@ -5,8 +5,6 @@ import {
 } from '@/api/words/interfaces'
 import { atom, atomFamily, selector } from 'recoil'
 import { Rks } from '@/recoil/index.keys'
-import { searchInputState } from './searchInput.state'
-import { deprecatedSelectedSemesterState } from './semesters.state'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
 import { GlobalLanguageCode } from '@/global.interface'
 
@@ -22,7 +20,6 @@ enum PrivateWordRecoilKey {
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
-  SemesterFilteredWordIds = `SemesterFilteredWordIds`,
   TempLikedWordIds = `TempLikedWordIds`,
   LikedWordIds = `LikedWordIds`,
   CustomizedTagFilteredWordIds = `CustomizedTagFilteredWordIds`,
@@ -94,40 +91,6 @@ export const selectedTagsState = selector<string[]>({
   key: PrivateWordRecoilKey.SelectedTags + Rks.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).tags || []
-  },
-})
-
-const privateSearchInputFilteredWordIdsState = selector<string[]>({
-  key:
-    PrivateWordRecoilKey.SearchInputFilteredWordIds + Rks.Selector,
-  get: ({ get }) => {
-    const wordIds = get(wordIdsState)
-    const searchInput = get(searchInputState)
-
-    if (!searchInput) return wordIds
-
-    return wordIds.filter((wordId) => {
-      const word = get(wordsFamily(wordId))
-      if (word == null) return false
-
-      return word.term.includes(searchInput)
-    })
-  },
-})
-
-export const semesterFilteredWordIds = selector<string[]>({
-  key: PrivateWordRecoilKey.SemesterFilteredWordIds + Rks.Selector,
-  get: ({ get }) => {
-    const wordIds = get(privateSearchInputFilteredWordIdsState)
-
-    const selectedSemester = get(deprecatedSelectedSemesterState)
-    return wordIds.filter((wordId) => {
-      const word = get(wordsFamily(wordId))
-      if (!word) return false
-
-      if (selectedSemester === null) return true
-      return word.semester === selectedSemester
-    })
   },
 })
 

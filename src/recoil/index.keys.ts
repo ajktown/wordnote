@@ -1,7 +1,5 @@
 //* Recoil Key Prefix */
-export enum Rkp  {
-
-}
+export enum Rkp {}
 
 //*  Recoil Key Suffix */
 export enum Rks {
