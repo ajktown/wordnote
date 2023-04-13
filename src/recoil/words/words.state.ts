@@ -6,7 +6,6 @@ import {
 import { atom, atomFamily, selector } from 'recoil'
 import { Rks } from '@/recoil/index.keys'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
-import { GlobalLanguageCode } from '@/global.interface'
 
 enum PrivateWordRecoilKey {
   Words = `Words`,
@@ -15,16 +14,8 @@ enum PrivateWordRecoilKey {
   isFavoriteClicked = `isFavoriteClicked`,
   selectedSemester = `SelectedSemester`,
   SelectedDaysAgo = `SelectedDaysAgo`,
-  SelectedLanguages = `SelectedLanguages`,
-  SelectedTags = `SelectedTags`,
   WordIds = `WordIds`,
-  SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
-  LanguageFilteredWordIds = `LanguageFilterWordIds`,
   TempLikedWordIds = `TempLikedWordIds`,
-  LikedWordIds = `LikedWordIds`,
-  CustomizedTagFilteredWordIds = `CustomizedTagFilteredWordIds`,
-  CreatedDaysFilteredWordIds = `CreatedDaysFilteredWordIds`,
-  FilteredWordIds = `FilteredWordIds`,
 }
 
 type PrivateWordsFamily =
@@ -77,13 +68,6 @@ export const selectedDaysAgoState = selector<undefined | number>({
   key: PrivateWordRecoilKey.SelectedDaysAgo + Rks.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).daysAgo
-  },
-})
-
-export const selectedLanguagesState = selector<GlobalLanguageCode[]>({
-  key: PrivateWordRecoilKey.SelectedLanguages + Rks.Selector,
-  get: ({ get }) => {
-    return get(getWordsParamsState).languageCodes || []
   },
 })
 
