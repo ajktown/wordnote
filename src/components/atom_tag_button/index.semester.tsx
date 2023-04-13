@@ -1,7 +1,7 @@
 import { SemesterData } from '@/api/semesters/index.interface'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { useSemesterById } from '@/hooks/semesters/use-semster-by-id.hook'
+import { useSemesterById } from '@/hooks/semesters/use-semester-by-id.hook'
 import { useWordIds } from '@/hooks/words/use-word-ids.hook'
 import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
 import { FC, useMemo } from 'react'

@@ -3,26 +3,27 @@ import {
   SemesterDetailedInfo,
 } from '@/api/semesters/index.interface'
 import { atom, atomFamily } from 'recoil'
-import { Rks } from '../index.keys'
+import { Rkp, Rks } from '../index.keys'
 
 /** Private Recoil Key */
 enum Prk {
-  Semesters = `Semesters`,
+  Details = `Details`,
   SemesterExpanded = `SemesterExpanded`,
   DeprecatedSemesterSelected = `DeprecatedSemesterSelected`,
   LanguageSelected = `LanguageSelected`,
 }
 
 export const semestersState = atom<SemesterData[]>({
-  key: Prk.Semesters,
+  key: Rkp.Semesters,
   default: [],
 })
 
 export const semesterDetailFamily = atomFamily<SemesterDetailedInfo, string>({
-  key: Prk.Semesters + Rks.Family,
+  key: Rkp.Semesters + Prk.Details + Rks.Family,
   default: undefined,
 })
 
+// TODO: Move this to tags state!
 export const isSemesterExpandedState = atom<boolean>({
   key: Prk.SemesterExpanded,
   default: false,
