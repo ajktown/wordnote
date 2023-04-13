@@ -2,7 +2,7 @@ import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWordIds } from '@/hooks/words/use-word-ids.hook'
-import { isFavoriteClickedSelector } from '@/recoil/words/words.state'
+import { isFavoriteClickedSelector } from '@/recoil/words/tags.selectors'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 

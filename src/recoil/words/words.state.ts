@@ -3,7 +3,7 @@ import {
   WordDataModifiableKey,
   WordDataModifiableValue,
 } from '@/api/words/interfaces'
-import { atom, atomFamily, selector } from 'recoil'
+import { atom, atomFamily } from 'recoil'
 import { Rks } from '@/recoil/index.keys'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
 
@@ -48,13 +48,6 @@ export const wordIdsState = atom<string[]>({
 export const getWordsParamsState = atom<Partial<GetWordParams>>({
   key: PrivateWordRecoilKey.GetWordsParams,
   default: {},
-})
-
-export const isFavoriteClickedSelector = selector<boolean>({
-  key: PrivateWordRecoilKey.isFavoriteClicked + Rks.Selector,
-  get: ({ get }) => {
-    return !!get(getWordsParamsState).isFavorite
-  },
 })
 
 export const tempFavoriteWordIdsState = atom<string[]>({

@@ -6,6 +6,7 @@ import { GlobalLanguageCode } from '@/global.interface'
 /** Private Recoil Key */
 enum Prk {
   SelectedSemester = `SelectedSemester`,
+  IsFavoriteClicked = `IsFavoriteClicked`,
   SelectedCustomized = `SelectedCustomized`,
   SelectedLanguage = `SelectedLanguage`,
   SelectedDaysAgo = `SelectedDaysAgo`,
@@ -15,6 +16,13 @@ export const selectedSemesterSelector = selector<undefined | number>({
   key: Rkp.Tags + Prk.SelectedSemester + Rks.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).semester
+  },
+})
+
+export const isFavoriteClickedSelector = selector<boolean>({
+  key: Rkp.Tags + Prk.IsFavoriteClicked + Rks.Selector,
+  get: ({ get }) => {
+    return !!get(getWordsParamsState).isFavorite
   },
 })
 
