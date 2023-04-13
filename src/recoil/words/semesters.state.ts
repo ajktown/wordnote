@@ -1,10 +1,14 @@
-import { SemesterData } from '@/api/semesters/index.interface'
-import { atom } from 'recoil'
+import {
+  SemesterData,
+  SemesterDetailedInfo,
+} from '@/api/semesters/index.interface'
+import { atom, atomFamily } from 'recoil'
+import { RecoilKeySuffix } from '../index.keys'
 
 enum PrivateSemesterRecoilKey {
   Semesters = `Semesters`,
   SemesterExpanded = `SemesterExpanded`,
-  SemesterSelected = `SemesterSelected`,
+  DeprecatedSemesterSelected = `DeprecatedSemesterSelected`,
   LanguageSelected = `LanguageSelected`,
 }
 
@@ -13,12 +17,17 @@ export const semestersState = atom<SemesterData[]>({
   default: [],
 })
 
+export const semesterDetailFamily = atomFamily<SemesterDetailedInfo, string>({
+  key: PrivateSemesterRecoilKey.Semesters + RecoilKeySuffix.Family,
+  default: undefined,
+})
+
 export const isSemesterExpandedState = atom<boolean>({
   key: PrivateSemesterRecoilKey.SemesterExpanded,
   default: false,
 })
 
-export const selectedSemesterState = atom<null | number>({
-  key: PrivateSemesterRecoilKey.SemesterSelected,
+export const deprecatedSelectedSemesterState = atom<null | number>({
+  key: PrivateSemesterRecoilKey.DeprecatedSemesterSelected,
   default: null,
 })

@@ -13,7 +13,7 @@ interface Props {
 const WordCardDeleted: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
 
-  if (word === null) return null
+  if (word == null) return null
 
   return (
     <Card style={{ width: `100%`, borderRadius: 9 }}>

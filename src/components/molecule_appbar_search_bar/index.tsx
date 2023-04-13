@@ -6,6 +6,7 @@ import { searchInputState } from '@/recoil/words/searchInput.state'
 import StyledTextField from '@/atoms/StyledTextField'
 import StyledIconButtonX from '@/atoms/StyledIconButtonX'
 
+// TODO: SearchBar is temporarily disabled.
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
   const onResetSearchInput = useResetRecoilState(searchInputState)
@@ -15,6 +16,7 @@ const AppbarSearchBar: FC = () => {
       <StyledTextField
         value={searchInput}
         onChange={setSearchInput}
+        disabled
         label={`Search...`}
         usePlaceholder
         buttons={{

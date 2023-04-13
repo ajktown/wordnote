@@ -1,9 +1,10 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
-import { GlobalLanguageCode, GlobalMuiTagVariant } from '@/global.interface'
-import { selectedLanguageState } from '@/recoil/words/languages.state'
-import { FC, useCallback, useMemo } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import { GlobalLanguageCode } from '@/global.interface'
+import { useWordIds } from '@/hooks/words/use-word-ids.hook'
+import { selectedLanguagesState } from '@/recoil/words/words.state'
+import { FC, useCallback } from 'react'
+import { useRecoilValue } from 'recoil'
 
 const getLabel = (languageCode: GlobalLanguageCode) => {
   for (const { code, nativeNameWithFlag } of PROTECTED_AVAILABLE_LANGUAGES) {
@@ -16,32 +17,28 @@ interface Props {
   languageCode: GlobalLanguageCode
 }
 const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
-  const [selectedLanguage, setSelectedLanguage] = useRecoilState(
-    selectedLanguageState,
-  )
-  const onResetSelectedLanguage = useResetRecoilState(selectedLanguageState)
-
-  const variant: GlobalMuiTagVariant = useMemo(() => {
-    if (selectedLanguage === languageCode) return `filled`
-    return `outlined`
-  }, [selectedLanguage, languageCode])
+  const selectedLanguages = useRecoilValue(selectedLanguagesState)
+  const isSelected = selectedLanguages.includes(languageCode)
+  const [loading, handleGetWordIds] = useWordIds()
 
   const onClick = useCallback(() => {
-    if (languageCode === selectedLanguage) return onResetSelectedLanguage()
-    setSelectedLanguage(languageCode)
-  }, [
-    selectedLanguage,
-    languageCode,
-    setSelectedLanguage,
-    onResetSelectedLanguage,
-  ])
+    const newSelectedLanguages = isSelected
+      ? selectedLanguages.filter((code) => code !== languageCode)
+      : [...selectedLanguages, languageCode]
+
+    handleGetWordIds({
+      languageCodes:
+        newSelectedLanguages.length === 0 ? undefined : newSelectedLanguages,
+    })
+  }, [isSelected, selectedLanguages, languageCode, handleGetWordIds])
 
   return (
     <StyledTagButtonAtom
       label={getLabel(languageCode)}
       onClick={onClick}
+      loading={loading}
       style={{
-        variant,
+        variant: isSelected ? `filled` : `outlined`,
       }}
     />
   )

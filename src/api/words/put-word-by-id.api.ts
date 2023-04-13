@@ -1,6 +1,6 @@
 // TODO: Implement
 
-import { WordDataModifiable } from './words.interface'
+import { WordDataModifiable } from './interfaces'
 
 export const putWordByIdApi = async (
   wordId: string,

@@ -13,6 +13,7 @@ export const useWordById = (id: string) => {
           const [word] = await getWordByIdApi(id)
           set(wordsFamily(word.id), word)
         } catch (err) {
+          set(wordsFamily(id), null)
           handleApiError(err)
         }
       },

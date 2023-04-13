@@ -10,7 +10,7 @@ export const useDeleteWord = (deletingWordId: string): UseDeleteWord => {
     ({ snapshot, set }) =>
       async (wordId: string) => {
         const wordData = await snapshot.getPromise(wordsFamily(wordId))
-        if (wordData === null) return
+        if (wordData == null) return
 
         set(wordsFamily(wordId), {
           ...wordData,

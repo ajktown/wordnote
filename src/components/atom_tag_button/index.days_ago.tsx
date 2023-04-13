@@ -1,10 +1,11 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { FC, useCallback, useMemo } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
-import { selectedCreatedDayState } from '@/recoil/words/created-date-tags.state'
+import { useRecoilValue } from 'recoil'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { DateTime } from 'luxon'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
+import { useWordIds } from '@/hooks/words/use-word-ids.hook'
+import { selectedDaysAgoState } from '@/recoil/words/words.state'
 interface Props {
   daysAgo: number
 }
@@ -37,29 +38,24 @@ const getLabel = (daysAgo: number): string => {
 }
 
 const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
-  const [selectedCreatedDay, setSelectedCreatedDay] = useRecoilState(
-    selectedCreatedDayState,
-  )
-  const resetSelectedCreatedDay = useResetRecoilState(selectedCreatedDayState)
-
-  const variant: GlobalMuiTagVariant = useMemo(
-    () => (selectedCreatedDay === daysAgo ? `filled` : `outlined`),
-    [selectedCreatedDay, daysAgo],
-  )
+  const selectedDaysAgo = useRecoilValue(selectedDaysAgoState)
+  const [loading, handleGetWordIds] = useWordIds()
 
   const onClick = useCallback(() => {
-    if (daysAgo === selectedCreatedDay) return resetSelectedCreatedDay()
-    setSelectedCreatedDay(daysAgo)
-  }, [
-    daysAgo,
-    selectedCreatedDay,
-    setSelectedCreatedDay,
-    resetSelectedCreatedDay,
-  ])
+    handleGetWordIds({
+      daysAgo: daysAgo === selectedDaysAgo ? undefined : daysAgo,
+    })
+  }, [daysAgo, selectedDaysAgo, handleGetWordIds])
+
+  const variant: GlobalMuiTagVariant = useMemo(
+    () => (selectedDaysAgo === daysAgo ? `filled` : `outlined`),
+    [selectedDaysAgo, daysAgo],
+  )
 
   return (
     <StyledTagButtonAtom
       label={`🌀 ` + getLabel(daysAgo)}
+      loading={loading}
       style={{
         variant,
       }}

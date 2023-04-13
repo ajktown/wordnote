@@ -5,7 +5,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import {
   WordDataModifiableKey,
   WordDataModifiableStringKey,
-} from '@/api/words/words.interface'
+} from '@/api/words/interfaces'
 import StyledTextField from '@/atoms/StyledTextField'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
 import { GlobalMuiTextFieldVariant } from '@/global.interface'

@@ -2,20 +2,23 @@ import {
   WordData,
   WordDataModifiableKey,
   WordDataModifiableValue,
-} from '@/api/words/words.interface'
-import { timeHandler } from '@/handlers/time.handler'
+} from '@/api/words/interfaces'
 import { atom, atomFamily, selector } from 'recoil'
-import { selectedCreatedDayState } from './created-date-tags.state'
-import { isFavoriteClickedState } from './favorites.state'
 import { RecoilKeySuffix } from '@/recoil/index.keys'
-import { selectedLanguageState } from './languages.state'
 import { searchInputState } from './searchInput.state'
-import { selectedSemesterState } from './semesters.state'
-import { selectedCustomizedTagsState } from './tags.state'
+import { deprecatedSelectedSemesterState } from './semesters.state'
+import { GetWordParams } from '@/api/words/interfaces/index.search-params'
+import { GlobalLanguageCode } from '@/global.interface'
 
 enum PrivateWordRecoilKey {
   Words = `Words`,
+  GetWordsParams = `getWordsParams`,
   ModifyingWords = `ModifyingWords`,
+  isFavoriteClicked = `isFavoriteClicked`,
+  selectedSemester = `SelectedSemester`,
+  SelectedDaysAgo = `SelectedDaysAgo`,
+  SelectedLanguages = `SelectedLanguages`,
+  SelectedTags = `SelectedTags`,
   WordIds = `WordIds`,
   SearchInputFilteredWordIds = `searchInputFilteredWordIds`,
   LanguageFilteredWordIds = `LanguageFilterWordIds`,
@@ -27,9 +30,13 @@ enum PrivateWordRecoilKey {
   FilteredWordIds = `FilteredWordIds`,
 }
 
-export const wordsFamily = atomFamily<WordData | null, string>({
+type PrivateWordsFamily =
+  | undefined // not loaded
+  | null // loaded, but not found
+  | WordData
+export const wordsFamily = atomFamily<PrivateWordsFamily, string>({
   key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Family,
-  default: null,
+  default: undefined,
 })
 
 export const modifyingWordFamily = atomFamily<
@@ -50,6 +57,46 @@ export const wordIdsState = atom<string[]>({
   default: [],
 })
 
+export const getWordsParamsState = atom<Partial<GetWordParams>>({
+  key: PrivateWordRecoilKey.GetWordsParams,
+  default: {},
+})
+
+export const isFavoriteClickedSelector = selector<boolean>({
+  key: PrivateWordRecoilKey.isFavoriteClicked + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return !!get(getWordsParamsState).isFavorite
+  },
+})
+
+export const selectedSemesterState = selector<undefined | number>({
+  key: PrivateWordRecoilKey.selectedSemester + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).semester
+  },
+})
+
+export const selectedDaysAgoState = selector<undefined | number>({
+  key: PrivateWordRecoilKey.SelectedDaysAgo + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).daysAgo
+  },
+})
+
+export const selectedLanguagesState = selector<GlobalLanguageCode[]>({
+  key: PrivateWordRecoilKey.SelectedLanguages + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).languageCodes || []
+  },
+})
+
+export const selectedTagsState = selector<string[]>({
+  key: PrivateWordRecoilKey.SelectedTags + RecoilKeySuffix.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).tags || []
+  },
+})
+
 const privateSearchInputFilteredWordIdsState = selector<string[]>({
   key:
     PrivateWordRecoilKey.SearchInputFilteredWordIds + RecoilKeySuffix.Selector,
@@ -61,7 +108,7 @@ const privateSearchInputFilteredWordIdsState = selector<string[]>({
 
     return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
-      if (word === null) return false
+      if (word == null) return false
 
       return word.term.includes(searchInput)
     })
@@ -73,7 +120,7 @@ export const semesterFilteredWordIds = selector<string[]>({
   get: ({ get }) => {
     const wordIds = get(privateSearchInputFilteredWordIdsState)
 
-    const selectedSemester = get(selectedSemesterState)
+    const selectedSemester = get(deprecatedSelectedSemesterState)
     return wordIds.filter((wordId) => {
       const word = get(wordsFamily(wordId))
       if (!word) return false
@@ -87,85 +134,4 @@ export const semesterFilteredWordIds = selector<string[]>({
 export const tempFavoriteWordIdsState = atom<string[]>({
   key: PrivateWordRecoilKey.TempLikedWordIds,
   default: [],
-})
-
-const privateLikedWordIds = selector<string[]>({
-  key: PrivateWordRecoilKey.TempLikedWordIds + RecoilKeySuffix.Selector,
-  get: ({ get }) => {
-    const wordIds = get(semesterFilteredWordIds)
-
-    const isFavoriteClicked = get(isFavoriteClickedState)
-    if (!isFavoriteClicked) return wordIds
-
-    return wordIds.filter((wordId) => {
-      const word = get(wordsFamily(wordId))
-      if (!word) return false
-
-      return get(tempFavoriteWordIdsState).includes(word.id) || word.isFavorite
-    })
-  },
-})
-
-const privateLanguageFilteredWordIds = selector<string[]>({
-  key: PrivateWordRecoilKey.LanguageFilteredWordIds + RecoilKeySuffix.Selector,
-  get: ({ get }) => {
-    const wordIds = get(privateLikedWordIds)
-
-    const selectedLanguage = get(selectedLanguageState)
-    if (!selectedLanguage) return wordIds
-
-    return wordIds.filter((wordId) => {
-      const word = get(wordsFamily(wordId))
-      if (!word) return false
-
-      return word.languageCode === selectedLanguage
-    })
-  },
-})
-
-const privateCustomizedTagFilteredWordIds = selector<string[]>({
-  key:
-    PrivateWordRecoilKey.CustomizedTagFilteredWordIds +
-    RecoilKeySuffix.Selector,
-  get: ({ get }) => {
-    const wordIds = get(privateLanguageFilteredWordIds)
-    const selectedCustomizedTags = get(selectedCustomizedTagsState)
-    if (selectedCustomizedTags.length === 0) return wordIds
-
-    return wordIds.filter((wordId) => {
-      const word = get(wordsFamily(wordId))
-      if (!word) return false
-
-      for (const tag of word.tags) {
-        if (selectedCustomizedTags.includes(tag)) return true
-      }
-      return false
-    })
-  },
-})
-
-const privateCreatedDaysFilteredWordIds = selector<string[]>({
-  key:
-    PrivateWordRecoilKey.CreatedDaysFilteredWordIds + RecoilKeySuffix.Selector,
-  get: ({ get }) => {
-    const wordIds = get(privateCustomizedTagFilteredWordIds)
-
-    const selectedCreatedDay = get(selectedCreatedDayState)
-    if (selectedCreatedDay === null) return wordIds
-
-    return wordIds.filter((wordId) => {
-      const word = get(wordsFamily(wordId))
-      if (!word) return false
-
-      return timeHandler.isWithinDaysAgo(selectedCreatedDay, word.createdAt)
-    })
-  },
-})
-
-export const filteredWordIdsState = selector<string[]>({
-  key: PrivateWordRecoilKey.FilteredWordIds + RecoilKeySuffix.Selector,
-  get: ({ get }) => {
-    const wordIds = get(privateCreatedDaysFilteredWordIds)
-    return wordIds
-  },
 })

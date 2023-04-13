@@ -6,7 +6,7 @@ export const useSemesters = () => {
   const handleRefresh = useRecoilCallback(
     ({ set }) =>
       async () => {
-        const semesters = await getSemestersApi()
+        const [semesters] = await getSemestersApi()
         set(semestersState, semesters)
       },
     [],

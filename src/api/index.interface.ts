@@ -9,3 +9,7 @@ export interface DataBasics {
 }
 
 export type CustomizedAxiosResponse<T> = [T, AxiosResponse<T>]
+
+export interface GetReqDtoRoot {
+  limit: number
+}

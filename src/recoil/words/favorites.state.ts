@@ -1,10 +1,10 @@
 import { atom } from 'recoil'
 
 enum PrivateFavoriteRecoilKey {
-  IsFavoriteClicked = `IsFavoriteClicked`,
+  DeprecatedIsFavoriteClicked = `DeprecatedIsFavoriteClicked`,
 }
 
-export const isFavoriteClickedState = atom<boolean>({
-  key: PrivateFavoriteRecoilKey.IsFavoriteClicked,
+export const deprecatedIsFavoriteClickedState = atom<boolean>({
+  key: PrivateFavoriteRecoilKey.DeprecatedIsFavoriteClicked,
   default: false,
 })

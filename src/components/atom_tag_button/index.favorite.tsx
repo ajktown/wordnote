@@ -1,34 +1,31 @@
 import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { isFavoriteClickedState } from '@/recoil/words/favorites.state'
-import { tempFavoriteWordIdsState } from '@/recoil/words/words.state'
+import { useWordIds } from '@/hooks/words/use-word-ids.hook'
+import { isFavoriteClickedSelector } from '@/recoil/words/words.state'
 import { FC, useCallback, useMemo } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 
 const TagButtonFavorite: FC = () => {
-  const [isFavoriteClicked, setFavoriteClicked] = useRecoilState(
-    isFavoriteClickedState,
-  )
-  const onResetTempFavoriteWordIds = useResetRecoilState(
-    tempFavoriteWordIdsState,
-  )
+  const isFavoriteClicked = useRecoilValue(isFavoriteClickedSelector)
+
+  const [loading, handleGetWordIds] = useWordIds()
+
+  const onClick = useCallback(() => {
+    handleGetWordIds({ isFavorite: !isFavoriteClicked ? true : undefined })
+  }, [isFavoriteClicked, handleGetWordIds])
 
   const variant: GlobalMuiTagVariant = useMemo(
     () => (isFavoriteClicked ? `filled` : `outlined`),
     [isFavoriteClicked],
   )
 
-  const onClick = useCallback(() => {
-    onResetTempFavoriteWordIds()
-    setFavoriteClicked(!isFavoriteClicked)
-  }, [isFavoriteClicked, setFavoriteClicked, onResetTempFavoriteWordIds])
-
   return (
     <StyledTagButtonAtom
       label={
         <StyledIconButtonFavorite isClicked={isFavoriteClicked} size="small" />
       }
+      loading={loading}
       onClick={onClick}
       style={{
         variant,

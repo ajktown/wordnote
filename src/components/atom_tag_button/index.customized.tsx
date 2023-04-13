@@ -1,16 +1,17 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { selectedCustomizedTagsState } from '@/recoil/words/tags.state'
+import { useWordIds } from '@/hooks/words/use-word-ids.hook'
+import { selectedTagsState } from '@/recoil/words/words.state'
 import { FC, useCallback, useMemo } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 
 interface Props {
   label: string
 }
 const TagButtonCustomized: FC<Props> = ({ label }) => {
-  const [selectedCustomizedTags, setSelectedCustomizedTags] = useRecoilState(
-    selectedCustomizedTagsState,
-  )
+  const selectedCustomizedTags = useRecoilValue(selectedTagsState)
+  const [loading, handleGetWordIds] = useWordIds()
+
   const isTagSelected = useMemo(
     () => selectedCustomizedTags.includes(label),
     [selectedCustomizedTags, label],
@@ -21,17 +22,18 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
   }, [isTagSelected])
 
   const onClick = useCallback(() => {
-    if (!isTagSelected)
-      setSelectedCustomizedTags([...selectedCustomizedTags, label])
-    else
-      setSelectedCustomizedTags(
-        [...selectedCustomizedTags].filter((tag) => tag !== label),
-      )
-  }, [label, selectedCustomizedTags, isTagSelected, setSelectedCustomizedTags])
+    const newSelectedTags = isTagSelected
+      ? selectedCustomizedTags.filter((tag) => tag !== label)
+      : [...selectedCustomizedTags, label]
+    handleGetWordIds({
+      tags: newSelectedTags.length === 0 ? undefined : newSelectedTags,
+    })
+  }, [label, isTagSelected, selectedCustomizedTags, handleGetWordIds])
 
   return (
     <StyledTagButtonAtom
       label={`#` + label}
+      loading={loading}
       style={{
         variant,
       }}
