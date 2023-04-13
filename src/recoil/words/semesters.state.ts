@@ -23,7 +23,6 @@ export const semesterDetailFamily = atomFamily<SemesterDetailedInfo, string>({
   default: undefined,
 })
 
-// TODO: Move this to tags state!
 export const isSemesterExpandedState = atom<boolean>({
   key: Prk.SemesterExpanded,
   default: false,
