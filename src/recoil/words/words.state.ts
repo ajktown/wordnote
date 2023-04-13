@@ -64,13 +64,6 @@ export const selectedSemesterState = selector<undefined | number>({
   },
 })
 
-export const selectedDaysAgoState = selector<undefined | number>({
-  key: PrivateWordRecoilKey.SelectedDaysAgo + Rks.Selector,
-  get: ({ get }) => {
-    return get(getWordsParamsState).daysAgo
-  },
-})
-
 export const tempFavoriteWordIdsState = atom<string[]>({
   key: PrivateWordRecoilKey.TempLikedWordIds,
   default: [],

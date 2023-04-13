@@ -1,7 +1,7 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWordIds } from '@/hooks/words/use-word-ids.hook'
-import { selectedTagsSelector } from '@/recoil/words/tags.selectors'
+import { selectedCustomizedTagsSelector } from '@/recoil/words/tags.selectors'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
@@ -9,7 +9,7 @@ interface Props {
   label: string
 }
 const TagButtonCustomized: FC<Props> = ({ label }) => {
-  const selectedCustomizedTags = useRecoilValue(selectedTagsSelector)
+  const selectedCustomizedTags = useRecoilValue(selectedCustomizedTagsSelector)
   const [loading, handleGetWordIds] = useWordIds()
 
   const isTagSelected = useMemo(

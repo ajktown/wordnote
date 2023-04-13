@@ -5,7 +5,7 @@ import { GlobalMuiTagVariant } from '@/global.interface'
 import { DateTime } from 'luxon'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
 import { useWordIds } from '@/hooks/words/use-word-ids.hook'
-import { selectedDaysAgoState } from '@/recoil/words/words.state'
+import { selectedDaysAgoTagsSelector } from '@/recoil/words/tags.selectors'
 interface Props {
   daysAgo: number
 }
@@ -38,7 +38,7 @@ const getLabel = (daysAgo: number): string => {
 }
 
 const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
-  const selectedDaysAgo = useRecoilValue(selectedDaysAgoState)
+  const selectedDaysAgo = useRecoilValue(selectedDaysAgoTagsSelector)
   const [loading, handleGetWordIds] = useWordIds()
 
   const onClick = useCallback(() => {
