@@ -7,7 +7,8 @@ import { atom, atomFamily } from 'recoil'
 import { Rks } from '@/recoil/index.keys'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
 
-enum PrivateWordRecoilKey {
+/** Private Recoil Key */
+enum Prk {
   Words = `Words`,
   WordIds = `WordIds`,
   GetWordsParams = `getWordsParams`,
@@ -20,12 +21,12 @@ type PrivateWordsFamily =
   | null // loaded, but not found
   | WordData
 export const wordsFamily = atomFamily<PrivateWordsFamily, string>({
-  key: PrivateWordRecoilKey.Words + Rks.Family,
+  key: Prk.Words + Rks.Family,
   default: undefined,
 })
 
 export const wordIdsState = atom<string[]>({
-  key: PrivateWordRecoilKey.WordIds,
+  key: Prk.WordIds,
   default: [],
 })
 
@@ -33,21 +34,21 @@ export const modifyingWordFamily = atomFamily<
   WordDataModifiableValue | null,
   WordDataModifiableKey
 >({
-  key: PrivateWordRecoilKey.ModifyingWords + Rks.Family,
+  key: Prk.ModifyingWords + Rks.Family,
   default: null,
 })
 
 export const selectedWordIdForDialogState = atom<null | string>({
-  key: PrivateWordRecoilKey.Words + Rks.Dialog,
+  key: Prk.Words + Rks.Dialog,
   default: null, // nothing selected
 })
 
 export const getWordsParamsState = atom<Partial<GetWordParams>>({
-  key: PrivateWordRecoilKey.GetWordsParams,
+  key: Prk.GetWordsParams,
   default: {},
 })
 
 export const tempFavoriteWordIdsState = atom<string[]>({
-  key: PrivateWordRecoilKey.TempLikedWordIds,
+  key: Prk.TempLikedWordIds,
   default: [],
 })

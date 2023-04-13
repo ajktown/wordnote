@@ -1,10 +1,11 @@
 import { atom } from 'recoil'
 
-enum PrivateFavoriteRecoilKey {
+/** Private Recoil Key */
+enum Prk {
   IsApiConnectFailed = `IsApiConnectFailed`,
 }
 
 export const isApiConnectFailed = atom<boolean>({
-  key: PrivateFavoriteRecoilKey.IsApiConnectFailed,
+  key: Prk.IsApiConnectFailed,
   default: false,
 })

@@ -5,7 +5,8 @@ import {
 import { atom, atomFamily } from 'recoil'
 import { Rks } from '../index.keys'
 
-enum PrivateSemesterRecoilKey {
+/** Private Recoil Key */
+enum Prk {
   Semesters = `Semesters`,
   SemesterExpanded = `SemesterExpanded`,
   DeprecatedSemesterSelected = `DeprecatedSemesterSelected`,
@@ -13,21 +14,21 @@ enum PrivateSemesterRecoilKey {
 }
 
 export const semestersState = atom<SemesterData[]>({
-  key: PrivateSemesterRecoilKey.Semesters,
+  key: Prk.Semesters,
   default: [],
 })
 
 export const semesterDetailFamily = atomFamily<SemesterDetailedInfo, string>({
-  key: PrivateSemesterRecoilKey.Semesters + Rks.Family,
+  key: Prk.Semesters + Rks.Family,
   default: undefined,
 })
 
 export const isSemesterExpandedState = atom<boolean>({
-  key: PrivateSemesterRecoilKey.SemesterExpanded,
+  key: Prk.SemesterExpanded,
   default: false,
 })
 
 export const deprecatedSelectedSemesterState = atom<null | number>({
-  key: PrivateSemesterRecoilKey.DeprecatedSemesterSelected,
+  key: Prk.DeprecatedSemesterSelected,
   default: null,
 })
