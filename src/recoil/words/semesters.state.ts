@@ -3,7 +3,7 @@ import {
   SemesterDetailedInfo,
 } from '@/api/semesters/index.interface'
 import { atom, atomFamily } from 'recoil'
-import { RecoilKeySuffix } from '../index.keys'
+import { Rks } from '../index.keys'
 
 enum PrivateSemesterRecoilKey {
   Semesters = `Semesters`,
@@ -18,7 +18,7 @@ export const semestersState = atom<SemesterData[]>({
 })
 
 export const semesterDetailFamily = atomFamily<SemesterDetailedInfo, string>({
-  key: PrivateSemesterRecoilKey.Semesters + RecoilKeySuffix.Family,
+  key: PrivateSemesterRecoilKey.Semesters + Rks.Family,
   default: undefined,
 })
 

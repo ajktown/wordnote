@@ -4,7 +4,7 @@ import {
   WordDataModifiableValue,
 } from '@/api/words/interfaces'
 import { atom, atomFamily, selector } from 'recoil'
-import { RecoilKeySuffix } from '@/recoil/index.keys'
+import { Rks } from '@/recoil/index.keys'
 import { searchInputState } from './searchInput.state'
 import { deprecatedSelectedSemesterState } from './semesters.state'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
@@ -35,7 +35,7 @@ type PrivateWordsFamily =
   | null // loaded, but not found
   | WordData
 export const wordsFamily = atomFamily<PrivateWordsFamily, string>({
-  key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Family,
+  key: PrivateWordRecoilKey.Words + Rks.Family,
   default: undefined,
 })
 
@@ -43,12 +43,12 @@ export const modifyingWordFamily = atomFamily<
   WordDataModifiableValue | null,
   WordDataModifiableKey
 >({
-  key: PrivateWordRecoilKey.ModifyingWords + RecoilKeySuffix.Family,
+  key: PrivateWordRecoilKey.ModifyingWords + Rks.Family,
   default: null,
 })
 
 export const selectedWordIdForDialogState = atom<null | string>({
-  key: PrivateWordRecoilKey.Words + RecoilKeySuffix.Dialog,
+  key: PrivateWordRecoilKey.Words + Rks.Dialog,
   default: null, // nothing selected
 })
 
@@ -63,35 +63,35 @@ export const getWordsParamsState = atom<Partial<GetWordParams>>({
 })
 
 export const isFavoriteClickedSelector = selector<boolean>({
-  key: PrivateWordRecoilKey.isFavoriteClicked + RecoilKeySuffix.Selector,
+  key: PrivateWordRecoilKey.isFavoriteClicked + Rks.Selector,
   get: ({ get }) => {
     return !!get(getWordsParamsState).isFavorite
   },
 })
 
 export const selectedSemesterState = selector<undefined | number>({
-  key: PrivateWordRecoilKey.selectedSemester + RecoilKeySuffix.Selector,
+  key: PrivateWordRecoilKey.selectedSemester + Rks.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).semester
   },
 })
 
 export const selectedDaysAgoState = selector<undefined | number>({
-  key: PrivateWordRecoilKey.SelectedDaysAgo + RecoilKeySuffix.Selector,
+  key: PrivateWordRecoilKey.SelectedDaysAgo + Rks.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).daysAgo
   },
 })
 
 export const selectedLanguagesState = selector<GlobalLanguageCode[]>({
-  key: PrivateWordRecoilKey.SelectedLanguages + RecoilKeySuffix.Selector,
+  key: PrivateWordRecoilKey.SelectedLanguages + Rks.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).languageCodes || []
   },
 })
 
 export const selectedTagsState = selector<string[]>({
-  key: PrivateWordRecoilKey.SelectedTags + RecoilKeySuffix.Selector,
+  key: PrivateWordRecoilKey.SelectedTags + Rks.Selector,
   get: ({ get }) => {
     return get(getWordsParamsState).tags || []
   },
@@ -99,7 +99,7 @@ export const selectedTagsState = selector<string[]>({
 
 const privateSearchInputFilteredWordIdsState = selector<string[]>({
   key:
-    PrivateWordRecoilKey.SearchInputFilteredWordIds + RecoilKeySuffix.Selector,
+    PrivateWordRecoilKey.SearchInputFilteredWordIds + Rks.Selector,
   get: ({ get }) => {
     const wordIds = get(wordIdsState)
     const searchInput = get(searchInputState)
@@ -116,7 +116,7 @@ const privateSearchInputFilteredWordIdsState = selector<string[]>({
 })
 
 export const semesterFilteredWordIds = selector<string[]>({
-  key: PrivateWordRecoilKey.SemesterFilteredWordIds + RecoilKeySuffix.Selector,
+  key: PrivateWordRecoilKey.SemesterFilteredWordIds + Rks.Selector,
   get: ({ get }) => {
     const wordIds = get(privateSearchInputFilteredWordIdsState)
 

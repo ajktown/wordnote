@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil'
-import { RecoilKeySuffix } from '@/recoil/index.keys'
+import { Rks } from '@/recoil/index.keys'
 import { semesterFilteredWordIds, wordsFamily } from './words.state'
 
 enum TagRecoilKey {
@@ -13,7 +13,7 @@ export const selectedCustomizedTagsState = atom<string[]>({
 })
 
 export const customizedTagsState = selector<string[]>({
-  key: TagRecoilKey.CustomizedTags + RecoilKeySuffix.Selector,
+  key: TagRecoilKey.CustomizedTags + Rks.Selector,
   get: ({ get }) => {
     const wordIds = get(semesterFilteredWordIds)
     const tags = new Set<string>()
