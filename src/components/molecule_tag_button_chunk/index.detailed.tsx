@@ -5,7 +5,7 @@ import TagButtonLanguage from '../atom_tag_button/index.language'
 import TagButtonFavorite from '../atom_tag_button/index.favorite'
 import TagButtonCustomized from '../atom_tag_button/index.customized'
 import TagButtonDaysAgo from '../atom_tag_button/index.days_ago'
-import { semesterDetailFamily } from '@/recoil/words/semesters.state'
+import { semesterDetailsFamily } from '@/recoil/words/semesters.state'
 import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
 
 // TODO: move this somewhere else? Maybe should be stored in the database? At least API?
@@ -14,7 +14,7 @@ const visibleDaysAgoChunk = [0, 1, 4, 7, 14, 21, 30]
 const TagButtonChunkDetailed: FC = () => {
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
   const semesterDetails = useRecoilValue(
-    semesterDetailFamily(selectedSemester?.toString() || ``),
+    semesterDetailsFamily(selectedSemester?.toString() || ``),
   )
 
   if (!selectedSemester) return null
