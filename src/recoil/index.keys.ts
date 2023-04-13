@@ -1,5 +1,7 @@
 //* Recoil Key Prefix */
-export enum Rkp {}
+export enum Rkp {
+  Tags = `Tags`,
+}
 
 //*  Recoil Key Suffix */
 export enum Rks {

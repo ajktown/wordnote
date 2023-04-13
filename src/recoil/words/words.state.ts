@@ -87,13 +87,6 @@ export const selectedLanguagesState = selector<GlobalLanguageCode[]>({
   },
 })
 
-export const selectedTagsState = selector<string[]>({
-  key: PrivateWordRecoilKey.SelectedTags + Rks.Selector,
-  get: ({ get }) => {
-    return get(getWordsParamsState).tags || []
-  },
-})
-
 export const tempFavoriteWordIdsState = atom<string[]>({
   key: PrivateWordRecoilKey.TempLikedWordIds,
   default: [],
