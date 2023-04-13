@@ -57,13 +57,6 @@ export const isFavoriteClickedSelector = selector<boolean>({
   },
 })
 
-export const selectedSemesterState = selector<undefined | number>({
-  key: PrivateWordRecoilKey.selectedSemester + Rks.Selector,
-  get: ({ get }) => {
-    return get(getWordsParamsState).semester
-  },
-})
-
 export const tempFavoriteWordIdsState = atom<string[]>({
   key: PrivateWordRecoilKey.TempLikedWordIds,
   default: [],

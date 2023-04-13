@@ -5,10 +5,18 @@ import { GlobalLanguageCode } from '@/global.interface'
 
 /** Private Recoil Key */
 enum Prk {
+  SelectedSemester = `SelectedSemester`,
   SelectedCustomized = `SelectedCustomized`,
   SelectedLanguage = `SelectedLanguage`,
   SelectedDaysAgo = `SelectedDaysAgo`,
 }
+
+export const selectedSemesterSelector = selector<undefined | number>({
+  key: Rkp.Tags + Prk.SelectedSemester + Rks.Selector,
+  get: ({ get }) => {
+    return get(getWordsParamsState).semester
+  },
+})
 
 export const selectedCustomizedTagsSelector = selector<string[]>({
   key: Rkp.Tags + Prk.SelectedCustomized + Rks.Selector,

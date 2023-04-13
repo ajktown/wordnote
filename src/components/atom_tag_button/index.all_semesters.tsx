@@ -1,12 +1,12 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWordIds } from '@/hooks/words/use-word-ids.hook'
-import { selectedSemesterState } from '@/recoil/words/words.state'
+import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
 const TagButtonAllSemesters: FC = () => {
-  const selectedSemester = useRecoilValue(selectedSemesterState)
+  const selectedSemester = useRecoilValue(selectedSemesterSelector)
   const variant: GlobalMuiTagVariant = useMemo(
     () => (selectedSemester === undefined ? `filled` : `outlined`),
     [selectedSemester],
