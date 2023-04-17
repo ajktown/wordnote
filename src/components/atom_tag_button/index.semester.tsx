@@ -1,9 +1,9 @@
 import { SemesterData } from '@/api/semesters/index.interface'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { useSemesterById } from '@/hooks/semesters/use-semster-by-id.hook'
+import { useSemesterById } from '@/hooks/semesters/use-semester-by-id.hook'
 import { useWordIds } from '@/hooks/words/use-word-ids.hook'
-import { selectedSemesterState } from '@/recoil/words/words.state'
+import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
 import { FC, useMemo } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 
@@ -11,7 +11,7 @@ interface Props {
   semester: SemesterData
 }
 const TagButtonSemester: FC<Props> = ({ semester }) => {
-  const selectedSemester = useRecoilValue(selectedSemesterState)
+  const selectedSemester = useRecoilValue(selectedSemesterSelector)
   const getSemesterById = useSemesterById()
 
   const { code } = semester
