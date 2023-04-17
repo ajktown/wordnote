@@ -4,9 +4,8 @@ import { getWordsParamsState, wordIdsState } from '@/recoil/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useApiErrorHook } from '../use-api-error.hook'
-import { searchInputState } from '@/recoil/words/searchInput.state'
 
-type NewParams = Partial<Omit<GetWordParams, 'searchInput'>>
+type NewParams = Partial<GetWordParams>
 type HandleRefresh = (newParams?: NewParams) => Promise<void>
 type UseWordIds = [boolean, HandleRefresh]
 
@@ -19,12 +18,9 @@ export const useWordIds = (): UseWordIds => {
       async (newParams?: NewParams) => {
         setLoading(true)
         try {
-          const searchInput = await snapshot.getPromise(searchInputState)
-
           const params: Partial<GetWordParams> = {
             ...(await snapshot.getPromise(getWordsParamsState)),
             ...newParams,
-            ...(searchInput ? { searchInput } : {}),
           }
 
           const [data] = await getWordIdsApi(params)

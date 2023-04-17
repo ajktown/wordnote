@@ -14,7 +14,7 @@ const AppbarSearchBar: FC = () => {
   const [, onResetSearchInput] = useResetSearchInput()
 
   useEffect(() => {
-    handleGetWordIds()
+    handleGetWordIds({ searchInput: searchInput ? searchInput : undefined })
   }, [searchInput, handleGetWordIds])
 
   return (
