@@ -3,6 +3,7 @@ export enum Rkp {
   Words = `Words`,
   Tags = `Tags`,
   Semesters = `Semesters`,
+  SearchInput = `SearchInput`,
 }
 
 //*  Recoil Key Suffix */

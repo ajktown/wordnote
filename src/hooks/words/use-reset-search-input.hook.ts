@@ -1,3 +1,4 @@
+// Reset search input to undefined hook
 import { getWordIdsApi } from '@/api/words/get-word-ids.api'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
 import { getWordsParamsState, wordIdsState } from '@/recoil/words/words.state'
@@ -6,30 +7,26 @@ import { useRecoilCallback } from 'recoil'
 import { useApiErrorHook } from '../use-api-error.hook'
 import { searchInputState } from '@/recoil/words/searchInput.state'
 
-type NewParams = Partial<Omit<GetWordParams, 'searchInput'>>
-type HandleRefresh = (newParams?: NewParams) => Promise<void>
-type UseWordIds = [boolean, HandleRefresh]
-
-export const useWordIds = (): UseWordIds => {
+type HandleRefresh = () => Promise<void>
+type UseResetSearchInput = [boolean, HandleRefresh]
+export const useResetSearchInput = (): UseResetSearchInput => {
   const [loading, setLoading] = useState(false)
   const handleApiError = useApiErrorHook()
 
   const handleRefresh: HandleRefresh = useRecoilCallback(
     ({ set, reset, snapshot }) =>
-      async (newParams?: NewParams) => {
+      async () => {
         setLoading(true)
         try {
-          const searchInput = await snapshot.getPromise(searchInputState)
-
           const params: Partial<GetWordParams> = {
             ...(await snapshot.getPromise(getWordsParamsState)),
-            ...newParams,
-            ...(searchInput ? { searchInput } : {}),
+            searchInput: undefined,
           }
 
           const [data] = await getWordIdsApi(params)
           set(wordIdsState, data.wordIds)
           set(getWordsParamsState, params)
+          reset(searchInputState)
         } catch (err) {
           reset(wordIdsState)
           handleApiError(err)

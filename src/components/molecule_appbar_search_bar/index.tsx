@@ -1,31 +1,38 @@
-import { FC } from 'react'
+import { FC, Fragment, useEffect } from 'react'
 import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { useRecoilState, useResetRecoilState } from 'recoil'
-import { searchInputState } from '@/recoil/words/searchInput.state'
 import StyledTextField from '@/atoms/StyledTextField'
 import StyledIconButtonX from '@/atoms/StyledIconButtonX'
+import { useWordIds } from '@/hooks/words/use-word-ids.hook'
+import { useResetSearchInput } from '@/hooks/words/use-reset-search-input.hook'
+import { useRecoilState } from 'recoil'
+import { searchInputState } from '@/recoil/words/searchInput.state'
 
-// TODO: SearchBar is temporarily disabled.
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
-  const onResetSearchInput = useResetRecoilState(searchInputState)
+  const [, handleGetWordIds] = useWordIds()
+  const [, onResetSearchInput] = useResetSearchInput()
+
+  useEffect(() => {
+    handleGetWordIds()
+  }, [searchInput, handleGetWordIds])
 
   return (
     <Box width={250}>
       <StyledTextField
         value={searchInput}
         onChange={setSearchInput}
-        disabled
         label={`Search...`}
         usePlaceholder
         buttons={{
           left: <SearchIcon />,
           right: searchInput && (
-            <StyledIconButtonX
-              onClick={onResetSearchInput}
-              hoverMessage={`Reset`}
-            />
+            <Fragment>
+              <StyledIconButtonX
+                onClick={onResetSearchInput}
+                hoverMessage={`Reset`}
+              />
+            </Fragment>
           ),
         }}
       />
