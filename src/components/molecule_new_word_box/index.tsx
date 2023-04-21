@@ -12,6 +12,7 @@ const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new words...`
 
 const NewWordBox: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
+
   // TODO: This is possibly too long. I think it could be better,
   // TODO: But then for the current code status sake, it looks good.
   const [

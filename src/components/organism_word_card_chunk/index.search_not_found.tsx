@@ -3,12 +3,13 @@ import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda
 import { searchInputState } from '@/recoil/words/searchInput.state'
 import { Typography, Stack } from '@mui/material'
 import { FC, useCallback } from 'react'
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { usePostWord } from '@/hooks/words/use-post-word.hook'
+import { useResetSearchInput } from '@/hooks/words/use-reset-search-input.hook'
 
 const WordCardChunkSearchNotFound: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
-  const onResetSearchInput = useResetRecoilState(searchInputState)
+  const [, onResetSearchInput] = useResetSearchInput()
   const setSearchInput = useSetRecoilState(searchInputState)
   const postWord = usePostWord()
 

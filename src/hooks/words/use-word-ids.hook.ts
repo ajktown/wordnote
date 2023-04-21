@@ -5,15 +5,17 @@ import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useApiErrorHook } from '../use-api-error.hook'
 
-type HandleRefresh = (newParams?: Partial<GetWordParams>) => Promise<void>
+type NewParams = Partial<GetWordParams>
+type HandleRefresh = (newParams?: NewParams) => Promise<void>
 type UseWordIds = [boolean, HandleRefresh]
+
 export const useWordIds = (): UseWordIds => {
   const [loading, setLoading] = useState(false)
   const handleApiError = useApiErrorHook()
 
   const handleRefresh: HandleRefresh = useRecoilCallback(
     ({ set, reset, snapshot }) =>
-      async (newParams?: Partial<GetWordParams>) => {
+      async (newParams?: NewParams) => {
         setLoading(true)
         try {
           const params: Partial<GetWordParams> = {
