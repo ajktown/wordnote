@@ -1,3 +1,4 @@
+import ContinueWithGoogle from '@/components/atom_continue_with/index.google'
 import { Button } from '@mui/material'
 import { FC, Fragment } from 'react'
 
@@ -10,6 +11,7 @@ const SignInPage: FC = () => {
       <h3>{`Note for developer: the one tab of Google will be implemented.`}</h3>
       <Button> {`Sign in`}</Button>
       <Button> {`Sign up`}</Button>
+      <ContinueWithGoogle />
     </Fragment>
   )
 }
