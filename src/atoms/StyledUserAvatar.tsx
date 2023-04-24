@@ -2,12 +2,14 @@ import { FC } from 'react'
 import { Avatar } from '@mui/material'
 
 type PrivateIconSize =
+  | undefined // uses default of PRIVATE_DEFAULT_ICON_SIZE
   | 'xs' // 24
   | 'sm' // 32
-  | undefined // 40 (default, md)
   | 'md' // 40
   | 'lg' // 48
   | 'xl' // 56
+
+const PRIVATE_DEFAULT_ICON_SIZE: PrivateIconSize = `sm`
 
 interface Props {
   size?: PrivateIconSize
@@ -16,7 +18,7 @@ interface Props {
 }
 
 const privateGetWidth = (
-  size: PrivateIconSize,
+  size: PrivateIconSize = PRIVATE_DEFAULT_ICON_SIZE,
 ): { width: number; height: number } => {
   switch (size) {
     case `xs`:
