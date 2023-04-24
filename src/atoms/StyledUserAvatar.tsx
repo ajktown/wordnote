@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Avatar } from '@mui/material'
+import StyledIconButtonAtom from './StyledIconButton'
 
 type PrivateIconSize =
   | undefined // uses default of PRIVATE_DEFAULT_ICON_SIZE
@@ -15,6 +16,7 @@ interface Props {
   size?: PrivateIconSize
   imageUrl?: string
   imageName?: string
+  onClick?: () => any
 }
 
 const privateGetWidth = (
@@ -34,8 +36,20 @@ const privateGetWidth = (
       return { width: 40, height: 40 }
   }
 }
-const StyledUserAvatar: FC<Props> = ({ size, imageName, imageUrl }) => {
+
+const StyledUserAvatarBody: FC<Props> = ({ imageName, imageUrl, size }) => {
   return <Avatar alt={imageName} src={imageUrl} sx={privateGetWidth(size)} />
+}
+
+const StyledUserAvatar: FC<Props> = (props) => {
+  if (!props.onClick) return <StyledUserAvatarBody {...props} />
+
+  return (
+    <StyledIconButtonAtom
+      onClick={props.onClick}
+      jsxElementButton={<StyledUserAvatarBody {...props} />}
+    />
+  )
 }
 
 export default StyledUserAvatar
