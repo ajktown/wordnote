@@ -9,11 +9,10 @@ type PrivateIconSize =
   | 'lg' // 48
   | 'xl' // 56
 
-const IMAGE_NAME = `AJ Kim`
-const IMAGE_URL = ``
-
 interface Props {
   size?: PrivateIconSize
+  imageUrl?: string
+  imageName?: string
 }
 
 const privateGetWidth = (
@@ -33,8 +32,8 @@ const privateGetWidth = (
       return { width: 40, height: 40 }
   }
 }
-const UserIcon: FC<Props> = ({ size }) => {
-  return <Avatar alt={IMAGE_NAME} src={IMAGE_URL} sx={privateGetWidth(size)} />
+const StyledUserAvatar: FC<Props> = ({ size, imageName, imageUrl }) => {
+  return <Avatar alt={imageName} src={imageUrl} sx={privateGetWidth(size)} />
 }
 
-export default UserIcon
+export default StyledUserAvatar
