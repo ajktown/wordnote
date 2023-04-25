@@ -1,12 +1,13 @@
 import ContinueWithGoogle from '@/components/atom_continue_with/index.google'
-import { FC, Fragment } from 'react'
+import StyledCentered from '@/organisms/StyledCentered'
+import { FC } from 'react'
 
 const SignUpPage: FC = () => {
   return (
-    <Fragment>
+    <StyledCentered>
       <h3>{`Create your account by choosing your single sign-on account`}</h3>
       <ContinueWithGoogle />
-    </Fragment>
+    </StyledCentered>
   )
 }
 

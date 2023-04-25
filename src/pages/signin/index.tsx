@@ -1,12 +1,13 @@
 import ContinueWithGoogle from '@/components/atom_continue_with/index.google'
-import { FC, Fragment } from 'react'
+import StyledCentered from '@/organisms/StyledCentered'
+import { FC } from 'react'
 
 const SignInPage: FC = () => {
   return (
-    <Fragment>
+    <StyledCentered>
       <h3>{`Welcome Back!`}</h3>
       <ContinueWithGoogle />
-    </Fragment>
+    </StyledCentered>
   )
 }
 
