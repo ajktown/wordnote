@@ -10,6 +10,18 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@azure/msal-browser@^2.33.0":
+  version "2.36.0"
+  resolved "https://registry.yarnpkg.com/@azure/msal-browser/-/msal-browser-2.36.0.tgz#a95af979da1dd8572b6b3cb9fc86d51713d8ad91"
+  integrity sha512-OrVDZ9ftO7ExqZVHripAt+doKg6G14YbP2LoSygiWQoSqoO4CejoXLRLqANc/HGg18N0p/oaRETw4IHZvwsxZw==
+  dependencies:
+    "@azure/msal-common" "^12.1.0"
+
+"@azure/msal-common@^12.1.0":
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-12.1.0.tgz#e253a4912a359193c52c570a1e2585cfd0213bff"
+  integrity sha512-9RUiv0evSHvYtvF7r9ksShw9FgCeT6Rf6JB/SOMbMzI0VySZDUBSE+0b9e7DgL2Ph8wSARIh3m8c5pCK9TRY3w==
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.21.4":
   version "7.21.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.21.4.tgz#d0fa9e4413aca81f2b23b9442797bda1826edb39"
@@ -1366,6 +1378,11 @@
   dependencies:
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
+
+"@microsoft/microsoft-graph-types@^2.29.0":
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-types/-/microsoft-graph-types-2.29.0.tgz#d7579b2e82fc2a03be039f51d526934a8eaa2b73"
+  integrity sha512-FqmzEVwsKBO21ToSAgMQaXe5t7xd7u/9QMZqwsdRZQK5qzCuZPHXalY0FJ3imq6VhDLLeq6WD72PNFOO81ODtw==
 
 "@mui/base@5.0.0-alpha.126":
   version "5.0.0-alpha.126"
@@ -4467,6 +4484,13 @@ react-is@^18.0.0, react-is@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-microsoft-login@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-microsoft-login/-/react-microsoft-login-2.0.1.tgz#93ee40956a2b9728b5b995de4074384a52645563"
+  integrity sha512-zTc8lPQ+d3ByNu+PA9NA15pnkEJNGrtxjJWkO8mypGgT8l6bPSH+lZDqxKisRaQ6SHjnuiNa3ULcU5b0kt9djA==
+  dependencies:
+    "@azure/msal-browser" "^2.33.0"
 
 react-transition-group@^4.4.5:
   version "4.4.5"
