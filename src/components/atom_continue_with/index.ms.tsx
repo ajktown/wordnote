@@ -23,14 +23,26 @@ const ContinueWithMicrosoft: FC = () => {
 
   return (
     <MicrosoftLogin clientId={OauthConst.MsClientId} authCallback={onAuth}>
-      <Stack border="1px solid red" alignItems={`center`} direction="row">
+      <Stack
+        border="1px solid #8C8C8C"
+        alignItems={`center`}
+        direction="row"
+        p={1}
+        borderRadius={0.8}
+      >
         <Image
           src="/oauth/ms-logo.png"
           alt="microsoft"
           width={20}
           height={20}
+          style={{
+            marginRight: 7,
+          }}
         />
-        <Typography>{`Continue with Microsoft`}</Typography>
+        <Typography
+          fontFamily={`Open Sans`}
+          fontSize={12}
+        >{`Continue with Microsoft`}</Typography>
       </Stack>
     </MicrosoftLogin>
   )
