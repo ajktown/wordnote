@@ -1,5 +1,6 @@
 // credentialResponse: CredentialResponse
 
+import { postAuthGoogleApi } from '@/api/auth/post-auth-by-google.api'
 import { CredentialResponse } from '@react-oauth/google'
 import { useCallback } from 'react'
 
@@ -10,8 +11,7 @@ type UseGoogleSignInHandlers = [PrivateOnSuccess, PrivateOnError]
 
 export const useGoogleSignInHandlers = (): UseGoogleSignInHandlers => {
   const onSuccess: PrivateOnSuccess = useCallback((cr: CredentialResponse) => {
-    console.log(`onSuccess; ContinueWithGoogle!`) // TODO: implement
-    console.log(cr)
+    postAuthGoogleApi(cr)
   }, [])
 
   const onError: PrivateOnError = useCallback(() => {
