@@ -5,7 +5,7 @@ import { useIsSignedIn } from '../auth/use-is-signed-in.hook'
 import { useRouter } from 'next/router'
 import { PageConst } from '@/constants/pages.constant'
 
-export const useIsAppBooted = () => {
+export const useIsAppBooted = (): boolean => {
   const [isBooted, setBooted] = useRecoilState(isAppBootedState)
   const [onCheckIsSignedIn] = useIsSignedIn()
   const router = useRouter()
