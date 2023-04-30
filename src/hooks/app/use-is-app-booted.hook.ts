@@ -1,5 +1,5 @@
 import { isAppBootedState } from '@/recoil/app/app.state'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { useIsSignedIn } from '../auth/use-is-signed-in.hook'
 import { useRouter } from 'next/router'
@@ -10,17 +10,17 @@ export const useIsAppBooted = () => {
   const [onCheckIsSignedIn] = useIsSignedIn()
   const router = useRouter()
 
+  const handle = useCallback(async () => {
+    const isSignedIn = await onCheckIsSignedIn()
+    if (isSignedIn) router.push(PageConst.Home)
+    else router.push(PageConst.Welcome)
+    setBooted(true)
+  }, [onCheckIsSignedIn, router, setBooted])
+
   useEffect(() => {
     if (isBooted) return
-    const isSignedIn = onCheckIsSignedIn()
-    if (isSignedIn) {
-      router.push(PageConst.Home)
-    } else {
-      router.push(PageConst.Welcome)
-    }
-
-    setBooted(true)
-  }, [isBooted, router, setBooted, onCheckIsSignedIn])
+    handle()
+  }, [isBooted, handle])
 
   return isBooted
 }

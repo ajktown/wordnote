@@ -1,3 +1,3 @@
 export interface PostOauthRes {
-  accessToken: string
+  message: string // "OK"
 }

@@ -2,7 +2,6 @@
 
 import { postAuthGoogleApi } from '@/api/auth/post-auth-by-google.api'
 import { PageConst } from '@/constants/pages.constant'
-import { CookieKey, cookieLambda } from '@/lambdas/cookie.lambda'
 import { CredentialResponse } from '@react-oauth/google'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
@@ -17,8 +16,7 @@ export const useGoogleSignInHandlers = (): UseGoogleSignInHandlers => {
   const onSuccess: PrivateOnSuccess = useCallback(
     async (cr: CredentialResponse) => {
       try {
-        const [data] = await postAuthGoogleApi(cr)
-        cookieLambda.set(CookieKey.AjktownSecuredAccessToken, data.accessToken)
+        await postAuthGoogleApi(cr)
         router.push(PageConst.Home)
       } catch {
         throw new Error(`something went wrong`)

@@ -1,12 +1,11 @@
 import { useCallback } from 'react'
-import { CookieKey, cookieLambda } from '@/lambdas/cookie.lambda'
+import { getWhoAmIApi } from '@/api/auth/get-who-am-i.api'
 
-type UseIsSignedIn = [() => boolean]
+type UseIsSignedIn = [() => Promise<boolean>]
 export const useIsSignedIn = (): UseIsSignedIn => {
-  const onCheckIsSignedIn = useCallback(() => {
-    const cookie = cookieLambda.get(CookieKey.AjktownSecuredAccessToken)
-    // TODO: Will validate with API server eventually, but for now only checks existence.
-    return !!cookie
+  const onCheckIsSignedIn = useCallback(async () => {
+    const [data] = await getWhoAmIApi()
+    return data.isSignedIn
   }, [])
 
   return [onCheckIsSignedIn]
