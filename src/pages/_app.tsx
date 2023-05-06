@@ -8,6 +8,8 @@ import { axiosResponseErrorLambda } from '@/lambdas/axios-response-error.lambda'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { OauthConst } from '@/constants/oauth.constant'
 
+axios.defaults.withCredentials = true
+
 axios.interceptors.request.use(
   axiosRequestSuccessLambda,
   axiosRequestErrorLambda,

@@ -15,6 +15,6 @@ export const postAuthGoogleApi = async (
     clientId: cr.clientId || ``,
     credential: cr.credential || ``,
   }
-  const res = await axios.post(url, body, { withCredentials: true })
+  const res = await axios.post(url, body)
   return [res.data, res]
 }

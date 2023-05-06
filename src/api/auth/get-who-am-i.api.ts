@@ -20,6 +20,6 @@ export const getWhoAmIApi = async (): Promise<
   CustomizedAxiosResponse<PrivateGetWhoAmIRes>
 > => {
   const url = `/v1/auth/who-am-i`
-  const res = await axios.get(url, { withCredentials: true })
+  const res = await axios.get(url)
   return [res.data, res]
 }
