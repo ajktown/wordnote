@@ -11,10 +11,14 @@ export const useIsAppBooted = (): boolean => {
   const router = useRouter()
 
   const handle = useCallback(async () => {
-    const isSignedIn = await onCheckIsSignedIn()
-    if (isSignedIn) router.push(PageConst.Home)
-    else router.push(PageConst.Welcome)
-    setBooted(true)
+    try {
+      const isSignedIn = await onCheckIsSignedIn()
+      if (isSignedIn) router.push(PageConst.Home)
+      else router.push(PageConst.Welcome)
+    } finally {
+      router.push(PageConst.Welcome)
+      setBooted(true)
+    }
   }, [onCheckIsSignedIn, router, setBooted])
 
   useEffect(() => {
