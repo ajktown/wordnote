@@ -46,6 +46,7 @@ export const parseInputIntoWordLambda = (given: string): WordData => {
 
   return {
     id: given + getRandomHexHandler(),
+    userId: ``, // TODO: Is this correct? I think IWord should have PostWord interface that has no userId
     languageCode: `en`,
     semester: 231, // TODO: Remove, its only for test. Semester value should be created by server
     createdAt: new Date().toString(),
