@@ -15,8 +15,9 @@ export const useIsAppBooted = (): boolean => {
       const isSignedIn = await onCheckIsSignedIn()
       if (isSignedIn) router.push(PageConst.Home)
       else router.push(PageConst.Welcome)
-    } finally {
+    } catch {
       router.push(PageConst.Welcome)
+    } finally {
       setBooted(true)
     }
   }, [onCheckIsSignedIn, router, setBooted])
