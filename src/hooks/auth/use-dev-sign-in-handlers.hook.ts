@@ -1,20 +1,20 @@
 // credentialResponse: CredentialResponse
 
-import { postAuthByDevApi } from '@/api/auth/post-auth-by-dev.api'
+import { postAuthByDevTokenApi } from '@/api/auth/post-auth-by-dev-token.api'
 import { PageConst } from '@/constants/pages.constant'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 
-type PrivateOnSuccess = () => void
+type PrivateOnClick = () => void
 type PrivateOnError = () => void
 
-type UserDevSignInHandlers = [PrivateOnSuccess, PrivateOnError]
+type UseDevTokenSignInHandlers = [PrivateOnClick, PrivateOnError]
 
-export const useDevSignInHandlers = (): UserDevSignInHandlers => {
+export const useDevTokenSignInHandlers = (): UseDevTokenSignInHandlers => {
   const router = useRouter()
-  const onSuccess: PrivateOnSuccess = useCallback(async () => {
+  const onClick: PrivateOnClick = useCallback(async () => {
     try {
-      await postAuthByDevApi()
+      await postAuthByDevTokenApi()
       router.push(PageConst.Home)
       // TODO: This action to handle sign in
       // TODO: Successful or not must be under SSOT
@@ -27,5 +27,5 @@ export const useDevSignInHandlers = (): UserDevSignInHandlers => {
     console.log(`onError; ContinueWithDevToken`) // TODO: implement
   }, [])
 
-  return [onSuccess, onError]
+  return [onClick, onError]
 }

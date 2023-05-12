@@ -1,7 +1,5 @@
 import { PageConst } from '@/constants/pages.constant'
-import { useIsAppBooted } from '@/hooks/\bapp/use-is-app-booted.hook'
 import { useGoogleOneTabSignIn } from '@/hooks/auth/use-google-one-tab-sign-in.hook'
-import StyledBackdrop from '@/organisms/StyledBackdrop'
 import StyledCentered from '@/organisms/StyledCentered'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -18,8 +16,6 @@ const WelcomePage: FC = () => {
   const onClickSignUp = useCallback(() => {
     router.push(PageConst.SignUp)
   }, [router])
-
-  if (!useIsAppBooted()) return <StyledBackdrop />
 
   return (
     <StyledCentered>
