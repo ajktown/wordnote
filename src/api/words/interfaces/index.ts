@@ -5,6 +5,7 @@ import { DataBasics, DataStatus } from '../../index.interface'
 
 export interface WordData extends DataStatus, DataBasics {
   id: string
+  userId: string
   languageCode: GlobalLanguageCode
   semester: number
   isFavorite: boolean

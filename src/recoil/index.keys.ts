@@ -1,5 +1,6 @@
 //* Recoil Key Prefix */
 export enum Rkp {
+  App = `App`,
   Words = `Words`,
   Tags = `Tags`,
   Semesters = `Semesters`,

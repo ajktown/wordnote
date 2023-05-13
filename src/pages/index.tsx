@@ -2,7 +2,7 @@ import { FC } from 'react'
 import Appbar from '../components/organism_appbar'
 import HomeLayout from '../layouts'
 
-const Home: FC = () => {
+const HomePage: FC = () => {
   return (
     <Appbar>
       <HomeLayout />
@@ -10,4 +10,4 @@ const Home: FC = () => {
   )
 }
 
-export default Home
+export default HomePage

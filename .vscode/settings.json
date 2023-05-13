@@ -22,7 +22,10 @@
   "editor.gotoLocation.multipleDefinitions": "goto",
   "peacock.color": "#007fff",
   "cSpell.words": [
+    "Ajktown",
     "Appbar",
+    "msal",
+    "signin",
     "Wordnote"
   ]
 }
