@@ -12,14 +12,14 @@ interface PrivateGetWhoAmIResNoSignedIn {
   isSignedIn: false
 }
 
-type PrivateGetAuthPrepRes =
+export type GetAuthPrepRes =
   | PrivateGetWhoAmIResYesSignedIn
   | PrivateGetWhoAmIResNoSignedIn
 
 // Note: This api function purposefully does not have hook
 // as it is directly called by the use-is-app-booted.hook.ts
 export const getAuthPrepApi = async (): Promise<
-  CustomizedAxiosResponse<PrivateGetAuthPrepRes>
+  CustomizedAxiosResponse<GetAuthPrepRes>
 > => {
   const url = `/v1/auth/prep`
   const res = await axios.get(url)
