@@ -1,13 +1,13 @@
-import { isAppBootedState } from '@/recoil/app/app.state'
+import { isAppBootedSelector } from '@/recoil/app/app.state'
 import { useEffect } from 'react'
-import { useRecoilCallback, useRecoilState } from 'recoil'
+import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useRouter } from 'next/router'
 import { PageConst } from '@/constants/pages.constant'
 import { useOnClickSignOutApp } from './use-on-click-sign-out-app'
 import { useAuthPrep } from '../auth/use-auth-prep.hook'
 
 export const useIsAppBooted = (): boolean => {
-  const [isBooted, setBooted] = useRecoilState(isAppBootedState)
+  const isBooted = useRecoilValue(isAppBootedSelector)
   const onSignOutApp = useOnClickSignOutApp()
   const onGetAuthPrep = useAuthPrep()
   const router = useRouter()
@@ -20,11 +20,9 @@ export const useIsAppBooted = (): boolean => {
         else router.push(PageConst.Welcome)
       } catch {
         await onSignOutApp()
-      } finally {
-        setBooted(true)
       }
     },
-    [onGetAuthPrep, onSignOutApp, setBooted, router],
+    [onGetAuthPrep, onSignOutApp, router],
   )
 
   useEffect(() => {
