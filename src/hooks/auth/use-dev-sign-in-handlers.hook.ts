@@ -1,7 +1,7 @@
 // credentialResponse: CredentialResponse
 
 import { postAuthByDevTokenApi } from '@/api/auth/post-auth-by-dev-token.api'
-import { MAIN_APP_PAGE } from '@/constants/pages.constant'
+import { DEFAULT_MAIN_APP_PAGE } from '@/constants/pages.constant'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 
@@ -15,7 +15,7 @@ export const useDevTokenSignInHandlers = (): UseDevTokenSignInHandlers => {
   const onClick: PrivateOnClick = useCallback(async () => {
     try {
       await postAuthByDevTokenApi()
-      router.push(MAIN_APP_PAGE)
+      router.push(DEFAULT_MAIN_APP_PAGE)
     } catch {
       throw new Error(`something went wrong`)
     }

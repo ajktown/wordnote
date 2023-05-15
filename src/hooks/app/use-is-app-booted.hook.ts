@@ -2,13 +2,13 @@ import { isAppBootedSelector } from '@/recoil/app/app.state'
 import { useEffect } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useRouter } from 'next/router'
-import { MAIN_APP_PAGE } from '@/constants/pages.constant'
-import { useOnClickSignOutApp } from './use-on-click-sign-out-app'
+import { DEFAULT_MAIN_APP_PAGE } from '@/constants/pages.constant'
+import { useOnSignOutApp } from './use-on-sign-out-app.hook'
 import { useAuthPrep } from '../auth/use-auth-prep.hook'
 
 export const useIsAppBooted = (): boolean => {
   const isBooted = useRecoilValue(isAppBootedSelector)
-  const onSignOutApp = useOnClickSignOutApp()
+  const handleSignOutApp = useOnSignOutApp()
   const onGetAuthPrep = useAuthPrep()
   const router = useRouter()
 
@@ -17,12 +17,12 @@ export const useIsAppBooted = (): boolean => {
       try {
         const authPrep = await onGetAuthPrep()
         if (!authPrep || !authPrep.isSignedIn) throw new Error(`Not Signed In`)
-        router.push(MAIN_APP_PAGE)
+        router.push(DEFAULT_MAIN_APP_PAGE)
       } catch {
-        await onSignOutApp()
+        await handleSignOutApp()
       }
     },
-    [onGetAuthPrep, onSignOutApp, router],
+    [onGetAuthPrep, handleSignOutApp, router],
   )
 
   useEffect(() => {

@@ -4,10 +4,10 @@ import { PageConst } from '@/constants/pages.constant'
 import { wordIdsState } from '@/recoil/words/words.state'
 import { postSignOut } from '@/api/auth/post-sign-out.api'
 
-export const useOnClickSignOutApp = () => {
+export const useOnSignOutApp = () => {
   const router = useRouter()
 
-  const onClickSignOut = useRecoilCallback(
+  const onSignOutApp = useRecoilCallback(
     ({ reset }) =>
       async () => {
         await postSignOut()
@@ -18,5 +18,5 @@ export const useOnClickSignOutApp = () => {
     [router],
   )
 
-  return onClickSignOut
+  return onSignOutApp
 }

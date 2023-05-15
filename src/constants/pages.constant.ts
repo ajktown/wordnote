@@ -5,4 +5,4 @@ export enum PageConst {
   SignUp = `/signup`,
 }
 
-export const MAIN_APP_PAGE: PageConst = PageConst.Home
+export const DEFAULT_MAIN_APP_PAGE: PageConst = PageConst.Home

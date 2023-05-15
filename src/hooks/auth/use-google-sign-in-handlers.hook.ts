@@ -1,7 +1,7 @@
 // credentialResponse: CredentialResponse
 
 import { postAuthGoogleApi } from '@/api/auth/post-auth-by-google.api'
-import { MAIN_APP_PAGE } from '@/constants/pages.constant'
+import { DEFAULT_MAIN_APP_PAGE } from '@/constants/pages.constant'
 import { CredentialResponse } from '@react-oauth/google'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
@@ -17,7 +17,7 @@ export const useGoogleSignInHandlers = (): UseGoogleSignInHandlers => {
     async (cr: CredentialResponse) => {
       try {
         await postAuthGoogleApi(cr)
-        router.push(MAIN_APP_PAGE)
+        router.push(DEFAULT_MAIN_APP_PAGE)
       } catch {
         throw new Error(`something went wrong`)
       }

@@ -7,11 +7,6 @@ enum Prk {
   AuthPrepState = `AuthPrepState`,
 }
 
-export const isAppBootedState = atom<boolean>({
-  key: Rkp.App,
-  default: false,
-})
-
 type PrivateAuthPrepState =
   | undefined // not loaded
   | null // failed to load

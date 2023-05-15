@@ -8,7 +8,7 @@ import AppbarSearchBar from '@/components/molecule_appbar_search_bar'
 import Image from 'next/image'
 import EndUserAvatar from '@/components/atom_user_avatar/index.end-user'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { useOnClickSignOutApp } from '@/hooks/app/use-on-click-sign-out-app'
+import { useOnSignOutApp } from '@/hooks/app/use-on-sign-out-app.hook'
 
 // TODO: Move this to non-molecules.
 // TODO: Make this getting the children, create a new component Appbar and use it for the pages
@@ -19,7 +19,7 @@ interface Props {
   onClickAppMenu?: () => any // if not given, the menu button will be disabled
 }
 const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
-  const onClickSignOut = useOnClickSignOutApp()
+  const handleSignOutApp = useOnSignOutApp()
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -51,7 +51,7 @@ const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
           <Box pr={2} />
           <AppbarSearchBar />
           <Box flexGrow={1} />
-          <StyledTextButtonAtom title="Sign Out" onClick={onClickSignOut} />
+          <StyledTextButtonAtom title="Sign Out" onClick={handleSignOutApp} />
           <EndUserAvatar />
         </Toolbar>
       </AppBar>
