@@ -2,7 +2,7 @@ import { isAppBootedSelector } from '@/recoil/app/app.state'
 import { useEffect } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useRouter } from 'next/router'
-import { PageConst } from '@/constants/pages.constant'
+import { MAIN_APP_PAGE } from '@/constants/pages.constant'
 import { useOnClickSignOutApp } from './use-on-click-sign-out-app'
 import { useAuthPrep } from '../auth/use-auth-prep.hook'
 
@@ -17,7 +17,7 @@ export const useIsAppBooted = (): boolean => {
       try {
         const authPrep = await onGetAuthPrep()
         if (!authPrep || !authPrep.isSignedIn) throw new Error(`Not Signed In`)
-        router.push(PageConst.Home)
+        router.push(MAIN_APP_PAGE)
       } catch {
         await onSignOutApp()
       }
