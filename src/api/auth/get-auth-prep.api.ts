@@ -12,14 +12,14 @@ interface PrivateGetWhoAmIResNoSignedIn {
   isSignedIn: false
 }
 
-type PrivateGetWhoAmIRes =
+type PrivateGetAuthPrepRes =
   | PrivateGetWhoAmIResYesSignedIn
   | PrivateGetWhoAmIResNoSignedIn
 
-export const getWhoAmIApi = async (): Promise<
-  CustomizedAxiosResponse<PrivateGetWhoAmIRes>
+export const getAuthPrepApi = async (): Promise<
+  CustomizedAxiosResponse<PrivateGetAuthPrepRes>
 > => {
-  const url = `/v1/auth/who-am-i`
+  const url = `/v1/auth/prep`
   const res = await axios.get(url)
   return [res.data, res]
 }

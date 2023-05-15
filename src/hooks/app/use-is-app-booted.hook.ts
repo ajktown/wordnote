@@ -1,7 +1,7 @@
 import { isAppBootedState } from '@/recoil/app/app.state'
 import { useCallback, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { useIsSignedIn } from '../auth/use-is-signed-in.hook'
+import { useIsSignedIn } from '../auth/use-get-auth-prep.hook.'
 import { useRouter } from 'next/router'
 import { PageConst } from '@/constants/pages.constant'
 
