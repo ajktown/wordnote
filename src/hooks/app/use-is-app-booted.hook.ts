@@ -17,7 +17,7 @@ export const useIsAppBooted = (): boolean => {
       try {
         const authPrep = await onGetAuthPrep()
         if (!authPrep || !authPrep.isSignedIn) throw new Error(`Not Signed In`)
-        else router.push(PageConst.Welcome)
+        router.push(PageConst.Home)
       } catch {
         await onSignOutApp()
       }
