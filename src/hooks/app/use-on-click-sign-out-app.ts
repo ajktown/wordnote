@@ -13,6 +13,7 @@ export const useOnClickSignOutApp = () => {
         await postSignOut()
         reset(wordIdsState)
         router.push(PageConst.Welcome)
+        // TODO: Should set a snackbar for a reason.
       },
     [router],
   )
