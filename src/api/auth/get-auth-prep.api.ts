@@ -1,20 +1,29 @@
 import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
 
-interface PrivateGetWhoAmIResYesSignedIn {
-  isSignedIn: true
-  detailedInfo: {
-    id: string
+interface PrivateIOauthPayload {
+  userEmail: string
+  userId: string
+}
+interface GetAuthPrepResInfo {
+  env: {
+    currentEnv: string // StrictlyEnv
+    available: string[]
   }
 }
+interface PrivateGetAuthPrepResYesSignedIn extends GetAuthPrepResInfo {
+  isSignedIn: true
+  signedInUserInfo: PrivateIOauthPayload
+}
 
-interface PrivateGetWhoAmIResNoSignedIn {
+interface PrivateGetAuthPrepResNoSignedIn extends GetAuthPrepResInfo {
   isSignedIn: false
+  signedInUserInfo: null
 }
 
 export type GetAuthPrepRes =
-  | PrivateGetWhoAmIResYesSignedIn
-  | PrivateGetWhoAmIResNoSignedIn
+  | PrivateGetAuthPrepResYesSignedIn
+  | PrivateGetAuthPrepResNoSignedIn
 
 export const getAuthPrepApi = async (): Promise<
   CustomizedAxiosResponse<GetAuthPrepRes>
