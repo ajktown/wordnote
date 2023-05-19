@@ -1,31 +1,34 @@
-import { isAppBootedState } from '@/recoil/app/app.state'
-import { useCallback, useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { useIsSignedIn } from '../auth/use-is-signed-in.hook'
+import { isAppBootedSelector } from '@/recoil/app/app.state'
+import { useEffect } from 'react'
+import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useRouter } from 'next/router'
-import { PageConst } from '@/constants/pages.constant'
+import { DEFAULT_MAIN_APP_PAGE } from '@/constants/pages.constant'
+import { useOnSignOutApp } from './use-on-sign-out-app.hook'
+import { useAuthPrep } from '../auth/use-auth-prep.hook'
 
 export const useIsAppBooted = (): boolean => {
-  const [isBooted, setBooted] = useRecoilState(isAppBootedState)
-  const [onCheckIsSignedIn] = useIsSignedIn()
+  const isBooted = useRecoilValue(isAppBootedSelector)
+  const handleSignOutApp = useOnSignOutApp()
+  const onGetAuthPrep = useAuthPrep()
   const router = useRouter()
 
-  const handle = useCallback(async () => {
-    try {
-      const isSignedIn = await onCheckIsSignedIn()
-      if (isSignedIn) router.push(PageConst.Home)
-      else router.push(PageConst.Welcome)
-    } catch {
-      router.push(PageConst.Welcome)
-    } finally {
-      setBooted(true)
-    }
-  }, [onCheckIsSignedIn, router, setBooted])
+  const onAppBooting = useRecoilCallback(
+    () => async () => {
+      try {
+        const authPrep = await onGetAuthPrep()
+        if (!authPrep || !authPrep.isSignedIn) throw new Error(`Not Signed In`)
+        router.push(DEFAULT_MAIN_APP_PAGE)
+      } catch {
+        await handleSignOutApp()
+      }
+    },
+    [onGetAuthPrep, handleSignOutApp, router],
+  )
 
   useEffect(() => {
     if (isBooted) return
-    handle()
-  }, [isBooted, handle])
+    onAppBooting()
+  }, [isBooted, onAppBooting])
 
   return isBooted
 }
