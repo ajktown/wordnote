@@ -4,10 +4,14 @@ import { useRecoilCallback } from 'recoil'
 
 export const useSemesters = () => {
   const handleRefresh = useRecoilCallback(
-    ({ set }) =>
+    ({ set, reset }) =>
       async () => {
-        const [semesters] = await getSemestersApi()
-        set(semestersState, semesters)
+        try {
+          const [semesters] = await getSemestersApi()
+          set(semestersState, semesters)
+        } catch {
+          reset(semestersState)
+        }
       },
     [],
   )

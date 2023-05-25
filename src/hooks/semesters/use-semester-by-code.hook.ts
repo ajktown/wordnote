@@ -8,8 +8,10 @@ export const useSemesterByCode = () => {
       async (code: number | undefined) => {
         if (!code) return // TODO: Kind of weird way to write.
 
-        const [semester] = await getSemesterByCodeApi(code)
-        set(semesterDetailsFamily(semester.code), semester.details)
+        try {
+          const [semester] = await getSemesterByCodeApi(code)
+          set(semesterDetailsFamily(semester.code), semester.details)
+        } catch {}
       },
     [],
   )
