@@ -1,7 +1,7 @@
 import { SemesterData } from '@/api/semesters/index.interface'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { useSemesterById } from '@/hooks/semesters/use-semester-by-id.hook'
+import { useSemesterByCode } from '@/hooks/semesters/use-semester-by-code.hook'
 import { useWordIds } from '@/hooks/words/use-word-ids.hook'
 import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
 import { FC, useMemo } from 'react'
@@ -12,7 +12,7 @@ interface Props {
 }
 const TagButtonSemester: FC<Props> = ({ semester }) => {
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
-  const getSemesterById = useSemesterById()
+  const getSemesterByCode = useSemesterByCode()
 
   const { code } = semester
 
@@ -26,10 +26,10 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
   const onClick = useRecoilCallback(
     () => async () => {
       const modifyingTo = selectedSemester === code ? undefined : code
-      handleGetWordIds({ semester: modifyingTo })
-      getSemesterById(modifyingTo?.toString() || null)
+      await handleGetWordIds({ semester: modifyingTo })
+      getSemesterByCode(modifyingTo)
     },
-    [code, selectedSemester, handleGetWordIds, getSemesterById],
+    [code, selectedSemester, handleGetWordIds, getSemesterByCode],
   )
 
   return (

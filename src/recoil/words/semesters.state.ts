@@ -18,7 +18,7 @@ export const semestersState = atom<SemesterData[]>({
   default: [],
 })
 
-export const semesterDetailsFamily = atomFamily<SemesterDetailedInfo, string>({
+export const semesterDetailsFamily = atomFamily<SemesterDetailedInfo, number>({
   key: Rkp.Semesters + Prk.Details + Rks.Family,
   default: undefined,
 })
