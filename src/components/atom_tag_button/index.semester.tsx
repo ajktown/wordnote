@@ -27,7 +27,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
     () => async () => {
       const modifyingTo = selectedSemester === code ? undefined : code
       await handleGetWordIds({ semester: modifyingTo })
-      getSemesterByCode(modifyingTo)
+      await getSemesterByCode(modifyingTo)
     },
     [code, selectedSemester, handleGetWordIds, getSemesterByCode],
   )

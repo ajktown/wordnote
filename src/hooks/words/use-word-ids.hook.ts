@@ -22,10 +22,9 @@ export const useWordIds = (): UseWordIds => {
             ...(await snapshot.getPromise(getWordsParamsState)),
             ...newParams,
           }
-
+          set(getWordsParamsState, params)
           const [data] = await getWordIdsApi(params)
           set(wordIdsState, data.wordIds)
-          set(getWordsParamsState, params)
         } catch (err) {
           reset(wordIdsState)
           handleApiError(err)
