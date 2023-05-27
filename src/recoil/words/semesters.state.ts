@@ -13,7 +13,9 @@ enum Prk {
   LanguageSelected = `LanguageSelected`,
 }
 
-export const semestersState = atom<SemesterData[]>({
+// TODO: I do not understand why semestersState sometimes become undefined ...
+// TODO: And therefore has set undefined as a type
+export const semestersState = atom<SemesterData[] | undefined>({
   key: Rkp.Semesters,
   default: [],
 })
