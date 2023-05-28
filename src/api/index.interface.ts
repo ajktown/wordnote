@@ -8,13 +8,16 @@ export interface DataBasics {
   createdAt: string
 }
 
-export interface PaginationRoot {
+interface PrivatePaginationProps {
   pageIndex: number
   lastPageIndex: number
   isNextPageExist: boolean
   totalPages: number
   totalItems: number
   itemPerPage: number
+}
+export interface PaginationRoot {
+  pagination: PrivatePaginationProps
   dataLength: number
 }
 
