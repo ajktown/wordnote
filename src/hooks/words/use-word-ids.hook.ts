@@ -24,7 +24,7 @@ export const useWordIds = (): UseWordIds => {
           }
           set(getWordsParamsState, params)
           const [data] = await getWordIdsApi(params)
-          set(wordIdsState, data.data)
+          set(wordIdsState, data)
         } catch (err) {
           reset(wordIdsState)
           handleApiError(err)

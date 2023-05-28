@@ -1,4 +1,4 @@
-import { SemesterData } from '@/api/semesters/index.interface'
+import { ISemester } from '@/api/semesters/index.interface'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useSemesterByCode } from '@/hooks/semesters/use-semester-by-code.hook'
@@ -8,7 +8,7 @@ import { FC, useMemo } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 
 interface Props {
-  semester: SemesterData
+  semester: ISemester
 }
 const TagButtonSemester: FC<Props> = ({ semester }) => {
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
