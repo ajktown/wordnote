@@ -6,10 +6,12 @@ import {
 import { atom, atomFamily } from 'recoil'
 import { Rkp, Rks } from '@/recoil/index.keys'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
+import { PaginationRootProps } from '@/api/index.interface'
 
 /** Private Recoil Key */
 enum Prk {
   WordIds = `WordIds`,
+  WordPagination = `WordPagination`,
   GetWordsParams = `getWordsParams`,
   ModifyingWords = `ModifyingWords`,
   TempLikedWordIds = `TempLikedWordIds`,
@@ -27,6 +29,11 @@ export const wordsFamily = atomFamily<PrivateWordsFamily, string>({
 export const wordIdsState = atom<string[]>({
   key: Rkp.Words + Prk.WordIds,
   default: [],
+})
+
+export const wordIdsPagination = atom<undefined | PaginationRootProps>({
+  key: Rkp.Words + Prk.WordPagination,
+  default: undefined,
 })
 
 export const modifyingWordFamily = atomFamily<

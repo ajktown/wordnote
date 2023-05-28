@@ -8,7 +8,7 @@ export interface DataBasics {
   createdAt: string
 }
 
-interface PrivatePaginationProps {
+export interface PaginationRootProps {
   pageIndex: number
   lastPageIndex: number
   isNextPageExist: boolean
@@ -17,12 +17,17 @@ interface PrivatePaginationProps {
   itemPerPage: number
 }
 export interface PaginationRoot {
-  pagination: PrivatePaginationProps
+  pagination: PaginationRootProps
   dataLength: number
 }
 
 export type CustomizedAxiosResponse<T> = [T, AxiosResponse<T>]
 
-export interface GetReqDtoRoot {
+interface PaginationReqDTORoot {
+  pageIndex: number
+  itemsPerPage: number
+}
+
+export interface GetReqDtoRoot extends PaginationReqDTORoot {
   limit: number
 }

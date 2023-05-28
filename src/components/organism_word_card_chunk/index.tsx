@@ -7,6 +7,7 @@ import { wordIdsState } from '@/recoil/words/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardsChunkNoWordsFound from './index.no_words_found'
 import WordCardChunkSearchFound from './index.search_found'
+import WordIdsPagination from '../atom_word_ids_pagination'
 
 const WordCardsChunk: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
@@ -23,6 +24,7 @@ const WordCardsChunk: FC = () => {
       {wordIds.map((wordId) => (
         <WordCard key={wordId} wordId={wordId} />
       ))}
+      <WordIdsPagination />
     </StyledSuspense>
   )
 }
