@@ -1,5 +1,6 @@
-// TODO: Implement
+import axios from 'axios'
 
 export const deleteWordByIdApi = async (wordId: string): Promise<void> => {
-  console.log(`Deleting the word: ` + wordId)
+  const url = `/v1/words/${wordId}`
+  return axios.delete(url)
 }
