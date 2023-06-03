@@ -14,7 +14,7 @@ export interface WordData extends DataStatus, DataBasics {
   definition: string
   example: string
   tags: string[]
-  dateAdded: number
+  dateAdded?: number
 }
 
 export type WordDataModifiable = Omit<WordData, 'id'>
