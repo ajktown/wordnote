@@ -49,6 +49,8 @@ export const selectedWordIdForDialogState = atom<null | string>({
   default: null, // nothing selected
 })
 
+// TODO: I think this should be more of the derived state rather than itself.
+// And of course when data is required, the params get modified too.
 export const getWordsParamsState = atom<Partial<GetWordParams>>({
   key: Rkp.Words + Prk.GetWordsParams,
   default: {},
