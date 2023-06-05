@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { CustomizedAxiosResponse } from '../index.interface'
+import { CustomizedAxiosResponse, PaginationRoot } from '../index.interface'
 import { GetWordParams } from './interfaces/index.search-params'
 
-interface PrivateGetWordIdsApi {
-  wordIds: string[]
+interface PrivateGetWordIdsApi extends PaginationRoot {
+  data: string[]
 }
 export const getWordIdsApi = async (
   params?: Partial<GetWordParams>,

@@ -6,10 +6,12 @@ import {
 import { atom, atomFamily } from 'recoil'
 import { Rkp, Rks } from '@/recoil/index.keys'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
+import { PaginationRootProps } from '@/api/index.interface'
 
 /** Private Recoil Key */
 enum Prk {
   WordIds = `WordIds`,
+  WordPagination = `WordPagination`,
   GetWordsParams = `getWordsParams`,
   ModifyingWords = `ModifyingWords`,
   TempLikedWordIds = `TempLikedWordIds`,
@@ -29,6 +31,11 @@ export const wordIdsState = atom<string[]>({
   default: [],
 })
 
+export const wordIdsPagination = atom<undefined | PaginationRootProps>({
+  key: Rkp.Words + Prk.WordPagination,
+  default: undefined,
+})
+
 export const modifyingWordFamily = atomFamily<
   WordDataModifiableValue | null,
   WordDataModifiableKey
@@ -42,6 +49,8 @@ export const selectedWordIdForDialogState = atom<null | string>({
   default: null, // nothing selected
 })
 
+// TODO: I think this should be more of the derived state rather than itself.
+// And of course when data is required, the params get modified too.
 export const getWordsParamsState = atom<Partial<GetWordParams>>({
   key: Rkp.Words + Prk.GetWordsParams,
   default: {},

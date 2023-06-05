@@ -23,9 +23,12 @@ const TagButtonChunkSemesters: FC = () => {
   return (
     <Box>
       <TagButtonAllSemesters />
-      {semesters.slice(0, sliceAt).map((semester) => (
-        <TagButtonSemester key={semester.code} semester={semester} />
-      ))}
+      {semesters &&
+        semesters
+          .slice(0, sliceAt)
+          .map((semester) => (
+            <TagButtonSemester key={semester.code} semester={semester} />
+          ))}
       <TagButtonExpander visibleAt={PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT} />
     </Box>
   )

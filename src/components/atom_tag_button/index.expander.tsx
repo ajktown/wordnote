@@ -21,7 +21,7 @@ const TagButtonExpander: FC<Props> = ({ visibleAt }) => {
     setSemesterExpanded(!isSemesterExpanded)
   }, [isSemesterExpanded, setSemesterExpanded])
 
-  if (semesters.length < visibleAt) return null
+  if (!semesters || semesters.length < visibleAt) return null
 
   return (
     <StyledTagButtonAtom

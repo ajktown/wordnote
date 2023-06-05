@@ -14,10 +14,10 @@ const visibleDaysAgoChunk = [0, 1, 4, 7, 14, 21, 30]
 const TagButtonChunkDetailed: FC = () => {
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
   const semesterDetails = useRecoilValue(
-    semesterDetailsFamily(selectedSemester?.toString() || ``),
+    semesterDetailsFamily(selectedSemester || 0),
   )
 
-  if (!selectedSemester) return null
+  if (!semesterDetails) return null
 
   return (
     <Box>

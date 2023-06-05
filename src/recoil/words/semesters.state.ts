@@ -1,5 +1,5 @@
 import {
-  SemesterData,
+  ISemester,
   SemesterDetailedInfo,
 } from '@/api/semesters/index.interface'
 import { atom, atomFamily } from 'recoil'
@@ -13,12 +13,14 @@ enum Prk {
   LanguageSelected = `LanguageSelected`,
 }
 
-export const semestersState = atom<SemesterData[]>({
+// TODO: I do not understand why semestersState sometimes become undefined ...
+// TODO: And therefore has set undefined as a type
+export const semestersState = atom<ISemester[] | undefined>({
   key: Rkp.Semesters,
   default: [],
 })
 
-export const semesterDetailsFamily = atomFamily<SemesterDetailedInfo, string>({
+export const semesterDetailsFamily = atomFamily<SemesterDetailedInfo, number>({
   key: Rkp.Semesters + Prk.Details + Rks.Family,
   default: undefined,
 })

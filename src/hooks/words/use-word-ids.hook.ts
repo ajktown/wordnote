@@ -1,6 +1,10 @@
 import { getWordIdsApi } from '@/api/words/get-word-ids.api'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
-import { getWordsParamsState, wordIdsState } from '@/recoil/words/words.state'
+import {
+  getWordsParamsState,
+  wordIdsPagination,
+  wordIdsState,
+} from '@/recoil/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useApiErrorHook } from '../use-api-error.hook'
@@ -22,10 +26,10 @@ export const useWordIds = (): UseWordIds => {
             ...(await snapshot.getPromise(getWordsParamsState)),
             ...newParams,
           }
-
-          const [data] = await getWordIdsApi(params)
-          set(wordIdsState, data.wordIds)
           set(getWordsParamsState, params)
+          const [wordIds] = await getWordIdsApi(params)
+          set(wordIdsState, wordIds.data)
+          set(wordIdsPagination, wordIds.pagination)
         } catch (err) {
           reset(wordIdsState)
           handleApiError(err)

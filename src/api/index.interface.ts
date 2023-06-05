@@ -8,8 +8,26 @@ export interface DataBasics {
   createdAt: string
 }
 
+export interface PaginationRootProps {
+  pageIndex: number
+  lastPageIndex: number
+  isNextPageExist: boolean
+  totalPages: number
+  totalItems: number
+  itemPerPage: number
+}
+export interface PaginationRoot {
+  pagination: PaginationRootProps
+  dataLength: number
+}
+
 export type CustomizedAxiosResponse<T> = [T, AxiosResponse<T>]
 
-export interface GetReqDtoRoot {
+interface PaginationReqDTORoot {
+  pageIndex: number
+  itemsPerPage: number
+}
+
+export interface GetReqDtoRoot extends PaginationReqDTORoot {
   limit: number
 }
