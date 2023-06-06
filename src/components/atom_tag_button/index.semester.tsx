@@ -25,9 +25,9 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
 
   const onClick = useRecoilCallback(
     () => async () => {
-      const modifyingTo = selectedSemester === code ? undefined : code
-      await handleGetWordIds({ semester: modifyingTo })
-      await getSemesterByCode(modifyingTo)
+      if (selectedSemester === code) return // already selected
+      await handleGetWordIds({ semester: code })
+      await getSemesterByCode(code)
     },
     [code, selectedSemester, handleGetWordIds, getSemesterByCode],
   )
