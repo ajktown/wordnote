@@ -14,11 +14,13 @@ interface GetAuthPrepResInfo {
 interface PrivateGetAuthPrepResYesSignedIn extends GetAuthPrepResInfo {
   isSignedIn: true
   signedInUserInfo: PrivateIOauthPayload
+  profilePictureUrl: string
 }
 
 interface PrivateGetAuthPrepResNoSignedIn extends GetAuthPrepResInfo {
   isSignedIn: false
   signedInUserInfo: null
+  profilePictureUrl: null
 }
 
 export type GetAuthPrepRes =
