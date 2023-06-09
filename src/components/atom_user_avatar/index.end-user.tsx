@@ -7,7 +7,9 @@ const EndUserAvatar: FC = () => {
   const authPrep = useRecoilValue(authPrepState)
 
   return (
-    <StyledUserAvatar imageUrl={authPrep?.profilePictureUrl || undefined} />
+    <StyledUserAvatar
+      imageUrl={authPrep?.signedInUserInfo?.profileImageUrl || undefined}
+    />
   )
 }
 

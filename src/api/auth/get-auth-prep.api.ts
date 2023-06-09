@@ -4,6 +4,7 @@ import { CustomizedAxiosResponse } from '../index.interface'
 interface PrivateIOauthPayload {
   userEmail: string
   userId: string
+  profileImageUrl: string
 }
 interface GetAuthPrepResInfo {
   env: {
@@ -14,13 +15,11 @@ interface GetAuthPrepResInfo {
 interface PrivateGetAuthPrepResYesSignedIn extends GetAuthPrepResInfo {
   isSignedIn: true
   signedInUserInfo: PrivateIOauthPayload
-  profilePictureUrl: string
 }
 
 interface PrivateGetAuthPrepResNoSignedIn extends GetAuthPrepResInfo {
   isSignedIn: false
   signedInUserInfo: null
-  profilePictureUrl: null
 }
 
 export type GetAuthPrepRes =
