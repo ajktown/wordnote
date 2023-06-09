@@ -7,6 +7,7 @@ import { WordCardFrameStyle } from './index.style'
 import WordCardDialog from '../molecule_word_card/index.dialog'
 import TagButtonChunkSemesters from '../molecule_tag_button_chunk/index.semesters'
 import TagButtonChunkDetailed from '../molecule_tag_button_chunk/index.detailed'
+import ChooseSemester from '../molecule_choose_semester'
 
 const WordCardFrame: FC = () => {
   return (
@@ -24,6 +25,7 @@ const WordCardFrame: FC = () => {
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
           <NewWordBox />
+          <ChooseSemester />
           <WordCardsChunk />
         </Stack>
         {/* Dialog */}

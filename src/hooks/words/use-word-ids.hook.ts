@@ -8,6 +8,7 @@ import {
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useApiErrorHook } from '../use-api-error.hook'
+import { useApplySemesterDetails } from '../semesters/use-apply-semester-details'
 
 type NewParams = Partial<GetWordParams>
 type HandleRefresh = (newParams?: NewParams) => Promise<void>
@@ -16,6 +17,7 @@ type UseWordIds = [boolean, HandleRefresh]
 export const useWordIds = (): UseWordIds => {
   const [loading, setLoading] = useState(false)
   const handleApiError = useApiErrorHook()
+  const handleApplySemesterDetails = useApplySemesterDetails()
 
   const handleRefresh: HandleRefresh = useRecoilCallback(
     ({ set, reset, snapshot }) =>
@@ -27,9 +29,10 @@ export const useWordIds = (): UseWordIds => {
             ...newParams,
           }
           set(getWordsParamsState, params)
-          const [wordIds] = await getWordIdsApi(params)
-          set(wordIdsState, wordIds.data)
-          set(wordIdsPagination, wordIds.pagination)
+          const [apiResponse] = await getWordIdsApi(params)
+          set(wordIdsState, apiResponse.wordIds)
+          set(wordIdsPagination, apiResponse.pagination)
+          handleApplySemesterDetails(apiResponse)
         } catch (err) {
           reset(wordIdsState)
           handleApiError(err)
@@ -37,7 +40,7 @@ export const useWordIds = (): UseWordIds => {
           setLoading(false)
         }
       },
-    [handleApiError],
+    [handleApiError, handleApplySemesterDetails],
   )
 
   return [loading, handleRefresh]

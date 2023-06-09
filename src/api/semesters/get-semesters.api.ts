@@ -2,7 +2,7 @@ import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
 import { ISemester } from './index.interface'
 
-interface GetSemestersResDTO {
+export interface GetSemestersResDTO {
   // highly recommend frontend to use undefined as default
   latestSemesterCode: number | undefined // undefined if there is no semester
   semesters: ISemester[]

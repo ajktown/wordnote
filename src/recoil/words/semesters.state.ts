@@ -1,6 +1,6 @@
 import {
   ISemester,
-  SemesterDetailedInfo,
+  ISemesterDetailedInfo,
 } from '@/api/semesters/index.interface'
 import { atom, atomFamily } from 'recoil'
 import { Rkp, Rks } from '../index.keys'
@@ -20,7 +20,7 @@ export const semestersState = atom<ISemester[] | undefined>({
   default: [],
 })
 
-export const semesterDetailsFamily = atomFamily<SemesterDetailedInfo, number>({
+export const semesterDetailsFamily = atomFamily<ISemesterDetailedInfo, number>({
   key: Rkp.Semesters + Prk.Details + Rks.Family,
   default: undefined,
 })
