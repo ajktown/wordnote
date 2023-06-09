@@ -12,7 +12,7 @@ export const useWords = () => {
         try {
           const [words] = await getWordsApi()
 
-          words.forEach((word) => {
+          words.words.forEach((word) => {
             set(wordsFamily(word.id), word)
           })
         } catch (err) {

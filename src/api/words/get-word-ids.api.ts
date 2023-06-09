@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { CustomizedAxiosResponse, PaginationRoot } from '../index.interface'
 import { GetWordParams } from './interfaces/index.search-params'
+import { ISemester } from '../semesters/index.interface'
 
 interface PrivateGetWordIdsApi extends PaginationRoot {
-  data: string[]
+  wordIds: string[]
+  semester: undefined | ISemester
 }
 export const getWordIdsApi = async (
   params?: Partial<GetWordParams>,

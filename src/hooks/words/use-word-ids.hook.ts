@@ -28,7 +28,7 @@ export const useWordIds = (): UseWordIds => {
           }
           set(getWordsParamsState, params)
           const [wordIds] = await getWordIdsApi(params)
-          set(wordIdsState, wordIds.data)
+          set(wordIdsState, wordIds.wordIds)
           set(wordIdsPagination, wordIds.pagination)
         } catch (err) {
           reset(wordIdsState)

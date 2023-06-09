@@ -2,12 +2,14 @@ import { GlobalLanguageCode } from '@/global.interface'
 
 export interface ISemester {
   id: string
-  code: number // 221 (2022, 1st quarter)
-  year: number // 2022
-  quarter: number // 1 ~ 4
+  isExistInDb: boolean
+  code: number // 231
+  year: number // 2023
+  quarter: number // 1
+  details?: ISemesterDetailedInfo
 }
 
-export interface SemesterDetailedInfo {
+export interface ISemesterDetailedInfo {
   wordsTotalCount: number
   daysAgo: number[]
   languages: GlobalLanguageCode[]

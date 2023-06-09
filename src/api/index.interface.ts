@@ -18,7 +18,6 @@ export interface PaginationRootProps {
 }
 export interface PaginationRoot {
   pagination: PaginationRootProps
-  dataLength: number
 }
 
 export type CustomizedAxiosResponse<T> = [T, AxiosResponse<T>]
