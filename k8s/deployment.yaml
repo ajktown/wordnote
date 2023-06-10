@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ajktown-fe
+  namespace: ajktown
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ajktown-fe
+  template:
+    metadata:
+      labels:
+        app: ajktown-fe
+    spec:
+      containers:
+      - name: ajktown-fe
+        image: docker.io/library/ajktown-fe:latest
+        ports:
+        - containerPort: 3000
