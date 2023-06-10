@@ -1,15 +1,16 @@
 import StyledUserAvatar from '@/atoms/StyledUserAvatar'
-import { PageConst } from '@/constants/pages.constant'
-import { useRouter } from 'next/router'
-import { FC, useCallback } from 'react'
+import { authPrepState } from '@/recoil/app/app.state'
+import { FC } from 'react'
+import { useRecoilValue } from 'recoil'
 
 const EndUserAvatar: FC = () => {
-  const router = useRouter()
-  const onClick = useCallback(() => {
-    router.push(PageConst.Welcome)
-  }, [router])
+  const authPrep = useRecoilValue(authPrepState)
 
-  return <StyledUserAvatar onClick={onClick} />
+  return (
+    <StyledUserAvatar
+      imageUrl={authPrep?.signedInUserInfo?.profileImageUrl || undefined}
+    />
+  )
 }
 
 export default EndUserAvatar

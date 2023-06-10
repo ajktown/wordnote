@@ -52,6 +52,7 @@ const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
           <AppbarSearchBar />
           <Box flexGrow={1} />
           <StyledTextButtonAtom title="Sign Out" onClick={handleSignOutApp} />
+          <Box mr={1} className="will-be-deleted-simple-indent" />
           <EndUserAvatar />
         </Toolbar>
       </AppBar>
