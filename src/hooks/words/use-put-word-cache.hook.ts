@@ -80,14 +80,10 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
         const modified = await getObject()
         if (isEmptyObjectHandler(modified)) return
 
-        await putWordByIdApi(wordId, modified)
+        const [modifiedWord] = await putWordByIdApi(wordId, modified)
+        set(wordsFamily(wordId), modifiedWord)
 
-        set(wordsFamily(wordId), {
-          ...wordData,
-          ...modified,
-        })
-
-        handleResetCache()
+        await handleResetCache()
       },
     [wordId, handleResetCache],
   )
