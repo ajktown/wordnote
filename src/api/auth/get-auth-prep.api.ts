@@ -9,6 +9,7 @@ interface PrivateIOauthPayload {
 interface GetAuthPrepResInfo {
   env: {
     currentEnv: string // StrictlyEnv
+    isProduction: boolean
     available: string[]
   }
 }
