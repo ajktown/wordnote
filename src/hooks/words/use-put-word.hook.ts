@@ -12,12 +12,8 @@ export const usePutWord = (wordId: string): UsePutWord => {
         const wordData = await snapshot.getPromise(wordsFamily(wordId))
         if (wordData == null) return
 
-        await putWordByIdApi(wordId, modified)
-
-        set(wordsFamily(wordId), {
-          ...wordData,
-          ...modified,
-        })
+        const [modifiedWord] = await putWordByIdApi(wordId, modified)
+        set(wordsFamily(wordId), modifiedWord)
       },
     [],
   )

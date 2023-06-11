@@ -1,12 +1,12 @@
-// TODO: Implement
-
-import { WordDataModifiable } from './interfaces'
+import axios from 'axios'
+import { WordData, WordDataModifiable } from './interfaces'
+import { CustomizedAxiosResponse } from '../index.interface'
 
 export const putWordByIdApi = async (
   wordId: string,
   modifying: Partial<WordDataModifiable>,
-): Promise<void> => {
-  console.log(
-    `Putting the word: ` + wordId + ` with: ${JSON.stringify(modifying)}`,
-  )
+): Promise<CustomizedAxiosResponse<WordData>> => {
+  const url = `/v1/words/${wordId}`
+  const res = await axios.put(url, modifying)
+  return [res.data, res]
 }
