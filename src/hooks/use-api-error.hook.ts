@@ -4,9 +4,8 @@ import { useRecoilCallback } from 'recoil'
 import { useOnSignOutApp } from './app/use-on-sign-out-app.hook'
 
 type HandleApiError = (err: unknown) => any
-type UseApiErrorHook = HandleApiError
 
-export const useApiErrorHook = (): UseApiErrorHook => {
+export const useApiErrorHook = (): HandleApiError => {
   const handleSignOutApp = useOnSignOutApp()
 
   const handleApiError: HandleApiError = useRecoilCallback(
