@@ -1,25 +1,28 @@
 import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
 
-interface PrivateIOauthPayload {
+interface IOauthPayload {
   userEmail: string
   userId: string
   profileImageUrl: string
 }
-interface GetAuthPrepResInfo {
-  env: {
-    currentEnv: string // StrictlyEnv
-    available: string[]
-  }
-}
-interface PrivateGetAuthPrepResYesSignedIn extends GetAuthPrepResInfo {
-  isSignedIn: true
-  signedInUserInfo: PrivateIOauthPayload
+
+interface GetAuthPrepEnvInfo {
+  currentEnv: string // StrictlyEnv
+  isProduction: boolean
+  available: string[]
 }
 
-interface PrivateGetAuthPrepResNoSignedIn extends GetAuthPrepResInfo {
+interface PrivateGetAuthPrepResYesSignedIn {
+  isSignedIn: true
+  signedInUserInfo: IOauthPayload
+  env: GetAuthPrepEnvInfo
+}
+
+interface PrivateGetAuthPrepResNoSignedIn {
   isSignedIn: false
   signedInUserInfo: null
+  env: GetAuthPrepEnvInfo
 }
 
 export type GetAuthPrepRes =

@@ -6,8 +6,15 @@ import { PublicClientApplication } from '@azure/msal-browser'
 import { User } from '@microsoft/microsoft-graph-types'
 import { Stack, Typography } from '@mui/material'
 import Image from 'next/image'
+import { useRecoilValue } from 'recoil'
+import { authPrepState } from '@/recoil/app/app.state'
 
 const ContinueWithMicrosoft: FC = () => {
+  const authPrep = useRecoilValue(authPrepState)
+  if (authPrep?.env.isProduction) {
+    return null
+  }
+
   const onAuth = (
     error: AuthError | null,
     result?: AuthenticationResult | (AuthenticationResult & User),
