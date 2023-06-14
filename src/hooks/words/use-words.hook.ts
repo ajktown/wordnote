@@ -2,7 +2,8 @@ import { GetWordParams } from '@/api/words/interfaces/index.search-params'
 import {
   getWordsParamsState,
   wordIdsPagination,
-  wordsState,
+  wordIdsState,
+  wordsFamily,
 } from '@/recoil/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
@@ -30,11 +31,14 @@ export const useWords = (): UseWordIds => {
           }
           set(getWordsParamsState, params)
           const [apiResponse] = await getWordsApi(params)
-          set(wordsState, apiResponse.words)
+          apiResponse.words.forEach((word) => {
+            set(wordsFamily(word.id), word)
+          })
+          set(wordIdsState, apiResponse.wordIds)
           set(wordIdsPagination, apiResponse.pagination)
           handleApplySemesterDetails(apiResponse)
         } catch (err) {
-          reset(wordsState)
+          reset(wordIdsState)
           handleApiError(err)
         } finally {
           setLoading(false)

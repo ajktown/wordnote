@@ -12,16 +12,13 @@ import {
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingMode from './index.editing_mode'
 import TagButtonChunk from '../molecule_tag_button_chunk'
-import { useWordById } from '@/hooks/words/use-word-by-id.hook'
-import { useIsObserved } from '@/hooks/use-is-observed.hook'
 import WordCardSkeleton from './index.skeleton'
 
 interface Props {
   wordId: string
   editingMode?: boolean
 }
-
-const WordCardBody: FC<Props> = ({ wordId, editingMode }) => {
+const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const setSelectedWordIdForDialog = useSetRecoilState(
     selectedWordIdForDialogState,
@@ -59,17 +56,6 @@ const WordCardBody: FC<Props> = ({ wordId, editingMode }) => {
         </CardActions>
       </Card>
     </StyledSuspense>
-  )
-}
-
-const WordCard: FC<Props> = (props) => {
-  const handleGetWord = useWordById(props.wordId)
-  const ref = useIsObserved(handleGetWord)
-
-  return (
-    <span ref={ref} style={{ width: `100%` }}>
-      <WordCardBody {...props} />
-    </span>
   )
 }
 

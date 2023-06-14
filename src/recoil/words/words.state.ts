@@ -10,7 +10,6 @@ import { PaginationRootProps } from '@/api/index.interface'
 
 /** Private Recoil Key */
 enum Prk {
-  Words = `Words`,
   WordIds = `WordIds`,
   WordPagination = `WordPagination`,
   GetWordsParams = `getWordsParams`,
@@ -29,11 +28,6 @@ export const wordsFamily = atomFamily<PrivateWordsFamily, string>({
 
 export const wordIdsState = atom<string[]>({
   key: Rkp.Words + Prk.WordIds,
-  default: [],
-})
-
-export const wordsState = atom<WordData[]>({
-  key: Rkp.Words + Prk.Words,
   default: [],
 })
 
