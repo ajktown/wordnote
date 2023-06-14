@@ -19,18 +19,20 @@ interface Props {
 const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
   const selectedLanguages = useRecoilValue(selectedLanguageTagsSelector)
   const isSelected = selectedLanguages.includes(languageCode)
-  const [loading, handleGetWordIds] = useWords()
+  const [loading, getWords] = useWords()
 
-  const onClick = useCallback(() => {
+  const onClick = useCallback(async () => {
     const newSelectedLanguages = isSelected
       ? selectedLanguages.filter((code) => code !== languageCode)
       : [...selectedLanguages, languageCode]
 
-    handleGetWordIds({
-      languageCodes:
-        newSelectedLanguages.length === 0 ? undefined : newSelectedLanguages,
-    })
-  }, [isSelected, selectedLanguages, languageCode, handleGetWordIds])
+    try {
+      await getWords({
+        languageCodes:
+          newSelectedLanguages.length === 0 ? undefined : newSelectedLanguages,
+      })
+    } catch {}
+  }, [isSelected, selectedLanguages, languageCode, getWords])
 
   return (
     <StyledTagButtonAtom

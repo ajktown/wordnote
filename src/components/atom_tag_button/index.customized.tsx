@@ -10,7 +10,7 @@ interface Props {
 }
 const TagButtonCustomized: FC<Props> = ({ label }) => {
   const selectedCustomizedTags = useRecoilValue(selectedCustomizedTagsSelector)
-  const [loading, handleGetWordIds] = useWords()
+  const [loading, getWords] = useWords()
 
   const isTagSelected = useMemo(
     () => selectedCustomizedTags.includes(label),
@@ -21,14 +21,16 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
     return isTagSelected ? `filled` : `outlined`
   }, [isTagSelected])
 
-  const onClick = useCallback(() => {
+  const onClick = useCallback(async () => {
     const newSelectedTags = isTagSelected
       ? selectedCustomizedTags.filter((tag) => tag !== label)
       : [...selectedCustomizedTags, label]
-    handleGetWordIds({
-      tags: newSelectedTags.length === 0 ? undefined : newSelectedTags,
-    })
-  }, [label, isTagSelected, selectedCustomizedTags, handleGetWordIds])
+    try {
+      await getWords({
+        tags: newSelectedTags.length === 0 ? undefined : newSelectedTags,
+      })
+    } catch {}
+  }, [label, isTagSelected, selectedCustomizedTags, getWords])
 
   return (
     <StyledTagButtonAtom

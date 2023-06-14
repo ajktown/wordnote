@@ -9,11 +9,13 @@ import { useRecoilValue } from 'recoil'
 const TagButtonFavorite: FC = () => {
   const isFavoriteClicked = useRecoilValue(isFavoriteClickedSelector)
 
-  const [loading, handleGetWordIds] = useWords()
+  const [loading, getWords] = useWords()
 
-  const onClick = useCallback(() => {
-    handleGetWordIds({ isFavorite: !isFavoriteClicked ? true : undefined })
-  }, [isFavoriteClicked, handleGetWordIds])
+  const onClick = useCallback(async () => {
+    try {
+      await getWords({ isFavorite: !isFavoriteClicked ? true : undefined })
+    } catch {}
+  }, [isFavoriteClicked, getWords])
 
   const variant: GlobalMuiTagVariant = useMemo(
     () => (isFavoriteClicked ? `filled` : `outlined`),

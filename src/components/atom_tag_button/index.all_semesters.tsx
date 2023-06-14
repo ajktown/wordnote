@@ -13,10 +13,12 @@ const TagButtonAllSemesters: FC = () => {
     [selectedSemester],
   )
 
-  const [loading, handleGetWordIds] = useWords()
-  const onClick = useCallback(() => {
-    handleGetWordIds({ semester: undefined })
-  }, [handleGetWordIds])
+  const [loading, getWords] = useWords()
+  const onClick = useCallback(async () => {
+    try {
+      await getWords({ semester: undefined })
+    } catch {}
+  }, [getWords])
 
   return (
     <StyledTagButtonAtom

@@ -39,13 +39,15 @@ const getLabel = (daysAgo: number): string => {
 
 const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
   const selectedDaysAgo = useRecoilValue(selectedDaysAgoTagsSelector)
-  const [loading, handleGetWordIds] = useWords()
+  const [loading, getWords] = useWords()
 
-  const onClick = useCallback(() => {
-    handleGetWordIds({
-      daysAgo: daysAgo === selectedDaysAgo ? undefined : daysAgo,
-    })
-  }, [daysAgo, selectedDaysAgo, handleGetWordIds])
+  const onClick = useCallback(async () => {
+    try {
+      await getWords({
+        daysAgo: daysAgo === selectedDaysAgo ? undefined : daysAgo,
+      })
+    } catch {}
+  }, [daysAgo, selectedDaysAgo, getWords])
 
   const variant: GlobalMuiTagVariant = useMemo(
     () => (selectedDaysAgo === daysAgo ? `filled` : `outlined`),
