@@ -10,6 +10,7 @@ import { PaginationRootProps } from '@/api/index.interface'
 
 /** Private Recoil Key */
 enum Prk {
+  Words = `Words`,
   WordIds = `WordIds`,
   WordPagination = `WordPagination`,
   GetWordsParams = `getWordsParams`,
@@ -31,6 +32,13 @@ export const wordIdsState = atom<string[]>({
   default: [],
 })
 
+export const wordsState = atom<WordData[]>({
+  key: Rkp.Words + Prk.Words,
+  default: [],
+})
+
+/** Used by both word ids list and words. Word ids take too much DB consumption so it is disabled. */
+// TODO: Change to getWordsPaginationState
 export const wordIdsPagination = atom<undefined | PaginationRootProps>({
   key: Rkp.Words + Prk.WordPagination,
   default: undefined,
