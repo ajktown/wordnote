@@ -3,19 +3,26 @@ import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import StyledTextField from '@/atoms/StyledTextField'
 import StyledIconButtonX from '@/atoms/StyledIconButtonX'
-import { useWordIds } from '@/hooks/words/use-word-ids.hook'
 import { useResetSearchInput } from '@/hooks/words/use-reset-search-input.hook'
 import { useRecoilState } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
+import { useWords } from '@/hooks/words/use-words.hook'
 
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
-  const [, handleGetWordIds] = useWordIds()
+  const [, handleGetWords] = useWords()
   const [, onResetSearchInput] = useResetSearchInput()
 
   useEffect(() => {
-    handleGetWordIds({ searchInput: searchInput ? searchInput : undefined })
-  }, [searchInput, handleGetWordIds])
+    const handle = async () => {
+      try {
+        await handleGetWords({
+          searchInput: searchInput ? searchInput : undefined,
+        })
+      } catch {}
+    }
+    handle()
+  }, [searchInput, handleGetWords])
 
   return (
     <Box width={250}>

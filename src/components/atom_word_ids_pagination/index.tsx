@@ -1,4 +1,4 @@
-import { useWordIds } from '@/hooks/words/use-word-ids.hook'
+import { useWords } from '@/hooks/words/use-words.hook'
 import StyledPaginatorMolecule from '@/molecules/StyledPaginator'
 import { wordIdsPagination } from '@/recoil/words/words.state'
 import { FC, useCallback } from 'react'
@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil'
 
 const WordIdsPagination: FC = () => {
   const pagination = useRecoilValue(wordIdsPagination)
-  const [, handleWordIds] = useWordIds()
+  const [, handleWordIds] = useWords()
 
   const onChange = useCallback(
     async (newPage: number) => {
