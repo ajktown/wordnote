@@ -1,4 +1,4 @@
-import { FC, Fragment, useEffect } from 'react'
+import { FC, Fragment, useCallback, useEffect } from 'react'
 import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import StyledTextField from '@/atoms/StyledTextField'
@@ -13,16 +13,20 @@ const AppbarSearchBar: FC = () => {
   const [, handleGetWords] = useWords()
   const [, onResetSearchInput] = useResetSearchInput()
 
-  useEffect(() => {
-    const handle = async () => {
+  const onApplyChange = useCallback(
+    async (searchInput: string) => {
       try {
         await handleGetWords({
           searchInput: searchInput ? searchInput : undefined,
         })
       } catch {}
-    }
-    handle()
-  }, [searchInput, handleGetWords])
+    },
+    [handleGetWords],
+  )
+
+  useEffect(() => {
+    onApplyChange(searchInput)
+  }, [searchInput, onApplyChange])
 
   return (
     <Box width={250}>
