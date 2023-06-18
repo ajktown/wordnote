@@ -1,4 +1,4 @@
-import { FC, Fragment, useCallback, useEffect } from 'react'
+import { FC, Fragment, useCallback } from 'react'
 import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import StyledTextField from '@/atoms/StyledTextField'
@@ -7,26 +7,24 @@ import { useResetSearchInput } from '@/hooks/words/use-reset-search-input.hook'
 import { useRecoilState } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
 import { useWords } from '@/hooks/words/use-words.hook'
+import { useWait } from '@/hooks/use-wait.hook'
+import StyledCircularLoading from '@/atoms/StyledCircularLoading'
 
+const PRIVATE_DEFAULT_SEARCH_BEGIN_SECONDS = 0.5 // seconds
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
   const [, handleGetWords] = useWords()
   const [, onResetSearchInput] = useResetSearchInput()
 
-  const onApplyChange = useCallback(
-    async (searchInput: string) => {
-      try {
-        await handleGetWords({
-          searchInput: searchInput ? searchInput : undefined,
-        })
-      } catch {}
-    },
-    [handleGetWords],
-  )
+  const onApplyChange = useCallback(async () => {
+    try {
+      await handleGetWords({
+        searchInput: searchInput ? searchInput : undefined,
+      })
+    } catch {}
+  }, [searchInput, handleGetWords])
 
-  useEffect(() => {
-    onApplyChange(searchInput)
-  }, [searchInput, onApplyChange])
+  const isLoading = useWait(onApplyChange, PRIVATE_DEFAULT_SEARCH_BEGIN_SECONDS)
 
   return (
     <Box width={250}>
@@ -39,6 +37,7 @@ const AppbarSearchBar: FC = () => {
           left: <SearchIcon />,
           right: searchInput && (
             <Fragment>
+              {isLoading && <StyledCircularLoading />}
               <StyledIconButtonX
                 onClick={onResetSearchInput}
                 hoverMessage={`Reset`}
