@@ -42,6 +42,7 @@ const StyledCloudRefresherBody: FC<{ loading: PrivateLoadingStatus }> = ({
   }
 }
 
+/** Google keep inspired loading refresher */
 interface Props {
   onClick: () => any
   runOnClickOnce?: boolean // Default: false
