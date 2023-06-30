@@ -6,6 +6,7 @@ import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingTextField from '../molecule_word_card_editing_text_field'
 import LanguageSelector from '../atom_language_selector'
 import WordCardConfirmModifyButton from '../atom_word_card_confirm_modify_button'
+import TagButtonModifiableChunk from '../molecule_tag_button_chunk/index.modfiable'
 
 interface Props {
   wordId: string
@@ -25,6 +26,7 @@ const WordCardEditingMode: FC<Props> = ({ wordId }) => {
             />
             <WordCardEditingTextField wordKey={`definition`} wordId={wordId} />
             <WordCardEditingTextField wordKey={`example`} wordId={wordId} />
+            <TagButtonModifiableChunk wordId={wordId} />
           </Stack>
         </CardContent>
         <CardActions>
