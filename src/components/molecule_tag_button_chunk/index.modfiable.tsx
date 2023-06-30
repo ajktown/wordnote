@@ -10,6 +10,7 @@ interface Props {
 }
 // TODO: This should not be clickable, but actually deletable if end user wish
 // TODO: Maybe it can undo deleting? but optional.
+// TODO: Maybe also can add a new tag, but then you no longer can call this chunk, but maybe Frame?
 const TagButtonModifiableChunk: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
 
