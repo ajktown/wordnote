@@ -1,26 +1,39 @@
 import { wordsFamily } from '@/recoil/words/words.state'
 import { Box } from '@mui/material'
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
-import TagButtonCustomized from '../atom_tag_button/index.customized'
-import TagButtonLanguage from '../atom_tag_button/index.language'
+import TagButtonDeletable from '../atom_tag_button/index.deletable'
+import { usePutWord } from '@/hooks/words/use-put-word.hook'
 
 interface Props {
   wordId: string
 }
-// TODO: This should not be clickable, but actually deletable if end user wish
+
 // TODO: Maybe it can undo deleting? but optional.
 // TODO: Maybe also can add a new tag, but then you no longer can call this chunk, but maybe Frame?
 const TagButtonModifiableChunk: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
+  const onPutWord = usePutWord(wordId)
+  const onClickDelete = useCallback(
+    async (deletingLabel: string) => {
+      if (word == null) return
+      await onPutWord({
+        tags: word.tags.filter((tag) => tag !== deletingLabel),
+      })
+    },
+    [word, onPutWord],
+  )
 
   if (word == null) return null
 
   return (
     <Box>
-      <TagButtonLanguage languageCode={word.languageCode} />
       {word.tags.map((tag) => (
-        <TagButtonCustomized key={tag} label={tag} />
+        <TagButtonDeletable
+          key={tag}
+          onClickDelete={onClickDelete}
+          label={tag}
+        />
       ))}
     </Box>
   )
