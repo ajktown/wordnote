@@ -11,7 +11,7 @@ interface Props {
 
 // TODO: Maybe it can undo deleting? but optional.
 // TODO: Maybe also can add a new tag, but then you no longer can call this chunk, but maybe Frame?
-const TagButtonModifiableChunk: FC<Props> = ({ wordId }) => {
+const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const onPutWord = usePutWord(wordId)
   const onClickDelete = useCallback(
@@ -39,4 +39,4 @@ const TagButtonModifiableChunk: FC<Props> = ({ wordId }) => {
   )
 }
 
-export default TagButtonModifiableChunk
+export default TagButtonDeletableChunk
