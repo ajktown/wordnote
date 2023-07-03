@@ -9,19 +9,19 @@ import DeleteTagIcon from '@mui/icons-material/HighlightOff'
  */
 interface Props {
   label: string
-  onClickDelete: (label: string) => Promise<any>
+  handleClickDelete: (label: string) => Promise<any>
 }
-const TagButtonDeletable: FC<Props> = ({ label, onClickDelete }) => {
+const TagButtonDeletable: FC<Props> = ({ label, handleClickDelete }) => {
   const [loading, setLoading] = useState(false)
 
   const onClick = useCallback(async () => {
     setLoading(true)
     try {
-      await onClickDelete(label)
+      await handleClickDelete(label)
     } finally {
       setLoading(false)
     }
-  }, [label, onClickDelete])
+  }, [label, handleClickDelete])
 
   return (
     <StyledTagButtonAtom

@@ -19,7 +19,7 @@ const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
       {word.tags.map((tag) => (
         <TagButtonDeletable
           key={tag}
-          onClickDelete={onClickDelete}
+          handleClickDelete={onClickDelete}
           label={tag}
         />
       ))}
