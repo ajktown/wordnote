@@ -1,9 +1,7 @@
-import { wordsFamily } from '@/recoil/words/words.state'
 import { Box } from '@mui/material'
-import { FC, useCallback } from 'react'
-import { useRecoilValue } from 'recoil'
+import { FC } from 'react'
 import TagButtonDeletable from '../atom_tag_button/index.deletable'
-import { usePutWord } from '@/hooks/words/use-put-word.hook'
+import { usePutWordTagDeleted } from '@/hooks/words/use-put-word-tag-deleted.hook'
 
 interface Props {
   wordId: string
@@ -12,17 +10,7 @@ interface Props {
 // TODO: Maybe it can undo deleting? but optional.
 // TODO: Maybe also can add a new tag, but then you no longer can call this chunk, but maybe Frame?
 const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
-  const word = useRecoilValue(wordsFamily(wordId))
-  const onPutWord = usePutWord(wordId)
-  const onClickDelete = useCallback(
-    async (deletingLabel: string) => {
-      if (word == null) return
-      await onPutWord({
-        tags: word.tags.filter((tag) => tag !== deletingLabel),
-      })
-    },
-    [word, onPutWord],
-  )
+  const [word, onClickDelete] = usePutWordTagDeleted(wordId)
 
   if (word == null) return null
 
