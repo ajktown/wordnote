@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
 
+// TODO: ChooseSemester not used. will be possibly deleted in future.
 const ChooseSemester: FC = () => {
   const semesters = useRecoilValue(semestersState)
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
