@@ -1,6 +1,6 @@
 
 ## Issue
-None
+_None_
 
 ## Background
 Upgrade every depending package to newer version.
