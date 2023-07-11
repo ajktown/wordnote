@@ -6,11 +6,11 @@ _None_
 Upgrade every depending package to newer version.
 
 ## TODOs
+- [ ] TODO: Write TODOs
 
+
+## Yarn latest checklist (‼️!!! If not yarn latest, DELETE ME  !!!‼️)
 - [ ] Run yarn latest
-- [ ] Yarn latest checklist
-
-## Yarn latest checklist
 - [ ] Operation Check
 - [ ] Yarn Inspect Check
 - [ ] E2E Test
