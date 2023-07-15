@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: ajktown-fe
-        image: docker.io/library/ajktown-fe:latest
+        image: ajktown/wordnote:latest
         ports:
         - containerPort: 3000

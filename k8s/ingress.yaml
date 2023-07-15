@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ajktown-fe-ingress
+  namespace: ajktown
+spec:
+  rules:
+  - host: "localhost"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ajktown-fe-sa
+            port:
+              number: 3000
