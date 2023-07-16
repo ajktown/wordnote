@@ -5,13 +5,13 @@ metadata:
   namespace: ajktown
 spec:
   rules:
-  - host: "localhost"
+  - host: wordnote.ajktown.com
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: ajktown-fe-sa
+            name: ajktown-fe-svc
             port:
               number: 3000

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ajktown-fe-sa
+  name: ajktown-fe-svc
   namespace: ajktown
   labels:
     app: ajktown-fe
@@ -10,6 +10,6 @@ spec:
     app: ajktown-fe
   ports:
   - protocol: TCP
-    port: 3000
+    port: 80
     targetPort: 3000
   type: LoadBalancer
