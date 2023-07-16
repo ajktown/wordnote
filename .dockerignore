@@ -1,0 +1,7 @@
+
+# scripts directory
+node_modules
+dist
+scripts
+.env
+.next

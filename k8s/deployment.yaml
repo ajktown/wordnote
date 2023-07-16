@@ -16,5 +16,8 @@ spec:
       containers:
       - name: ajktown-fe
         image: ajktown/wordnote:latest
+        env:
+        - name: NEXT_PUBLIC_API_URL
+          value: http://ajktown-api-svc
         ports:
         - containerPort: 3000
