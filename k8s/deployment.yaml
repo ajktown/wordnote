@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ajktown-fe
+  name: ajktown-wordnote
   namespace: ajktown
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ajktown-fe
+      app: ajktown-wordnote
   template:
     metadata:
       labels:
-        app: ajktown-fe
+        app: ajktown-wordnote
     spec:
       containers:
-      - name: ajktown-fe
+      - name: ajktown-wordnote
         image: ajktown/wordnote:latest
         ports:
         - containerPort: 3000
