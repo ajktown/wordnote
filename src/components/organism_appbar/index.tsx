@@ -7,7 +7,7 @@ interface Props {
 const Appbar: FC<Props> = ({ children }) => {
   return (
     <StyledAppbarMolecule
-      title="Wordnote"
+      title="Wordnote (Beta)"
       titleLogoPath="/favicon_archived/android-chrome-512x512.png"
     >
       {children}
