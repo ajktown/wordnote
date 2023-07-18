@@ -1,6 +1,6 @@
 import { InternalAxiosRequestConfig } from 'axios'
 
-const PRIVATE_DEFAULT_API_URL = `http://api.ajktown.com`
+const PRIVATE_DEFAULT_API_URL = `https://api.ajktown.com`
 export const axiosRequestSuccessLambda = (
   config: InternalAxiosRequestConfig<any>,
 ) => {
