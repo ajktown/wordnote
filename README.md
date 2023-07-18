@@ -21,6 +21,8 @@
 
 Wordnote is the second generation project produced by AJK Town, or AJ Kim. It was renamed after "Wordy".
 
+https://wordnote.ajktown.com
+
 ## Public Image
 
 https://hub.docker.com/r/ajktown/wordnote/tags
