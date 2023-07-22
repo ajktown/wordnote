@@ -1,9 +1,16 @@
 import { FC } from 'react'
 import { Stack, Typography } from '@mui/material'
 import { useDevTokenSignInHandlers } from '@/hooks/auth/use-dev-sign-in-handlers.hook'
+import { useRecoilValue } from 'recoil'
+import { authPrepState } from '@/recoil/app/app.state'
 
 const ContinueWithDeveloperToken: FC = () => {
   const [onClick] = useDevTokenSignInHandlers()
+
+  const authPrep = useRecoilValue(authPrepState)
+  if (authPrep?.env.isProduction) {
+    return null
+  }
 
   return (
     <Stack

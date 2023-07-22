@@ -10,8 +10,8 @@ const WordIdsPagination: FC = () => {
 
   const onChange = useCallback(
     async (newPage: number) => {
-      await handleWordIds({ pageIndex: newPage - 1 })
       window.scrollTo(0, 0)
+      await handleWordIds({ pageIndex: newPage - 1 })
     },
     [handleWordIds],
   )
