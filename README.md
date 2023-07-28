@@ -5,6 +5,7 @@
 - [Wordnote](#wordnote)
   - [Overview](#overview)
   - [Public Image](#public-image)
+    - [Push image command](#push-image-command)
   - [Depending Libraries](#depending-libraries)
     - [Luxon](#luxon)
   - [Package json scripts](#package-json-scripts)
@@ -27,6 +28,15 @@ https://wordnote.ajktown.com
 
 https://hub.docker.com/r/ajktown/wordnote/tags
 
+
+### Push image command
+You musth have permission to push to the repository.
+```sh
+
+docker build -t ajktown/wordnote:latest .
+docker push ajktown/wordnote:latest
+
+```
 
 ## Depending Libraries
 
