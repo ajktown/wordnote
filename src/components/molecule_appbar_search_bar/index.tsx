@@ -2,7 +2,7 @@ import { FC, Fragment, useCallback } from 'react'
 import { Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import StyledTextField from '@/atoms/StyledTextField'
-import StyledIconButtonX from '@/atoms/StyledIconButtonX'
+import StyledIconButtonSurfing from '@/atoms/StyledIconButtonSurfing'
 import { useResetSearchInput } from '@/hooks/words/use-reset-search-input.hook'
 import { useRecoilState } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
@@ -38,7 +38,7 @@ const AppbarSearchBar: FC = () => {
           right: searchInput && (
             <Fragment>
               {isLoading && <StyledCircularLoading />}
-              <StyledIconButtonX
+              <StyledIconButtonSurfing
                 onClick={onResetSearchInput}
                 hoverMessage={`Reset`}
               />
