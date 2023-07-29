@@ -17,6 +17,16 @@ export interface WordData extends DataStatus, DataBasics {
   dateAdded?: number
 }
 
+export interface PostWordReqDto {
+  languageCode: GlobalLanguageCode
+  isFavorite: boolean
+  term: string
+  pronunciation: string
+  definition: string
+  example: string
+  tags: string[]
+}
+
 export type WordDataModifiable = Omit<WordData, 'id'>
 export type WordDataModifiableString = Omit<
   WordDataModifiable,

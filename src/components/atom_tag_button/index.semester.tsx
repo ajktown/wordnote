@@ -27,6 +27,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
       await getWords({
         semester: code,
         pageIndex: 0, // must reset page index
+        daysAgo: undefined, // must reset days ago
       })
     },
     [code, selectedSemester, getWords],

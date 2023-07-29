@@ -1,4 +1,4 @@
-import { WordData } from '@/api/words/interfaces'
+import { PostWordReqDto } from '@/api/words/interfaces'
 import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda'
 import { useCallback, useState, Dispatch, SetStateAction } from 'react'
 import { usePostWord } from './use-post-word.hook'
@@ -22,7 +22,7 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
     if (!userInput) return setWritingMode(false)
 
     try {
-      const newWord: WordData = parseInputIntoWordLambda(userInput)
+      const newWord: PostWordReqDto = parseInputIntoWordLambda(userInput)
       handlePostWord(newWord)
     } catch {}
 
