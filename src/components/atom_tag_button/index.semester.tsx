@@ -27,6 +27,10 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
       await getWords({
         semester: code,
         pageIndex: 0, // must reset page index
+        daysAgo: undefined, // must reset days ago
+        languageCodes: undefined, // must reset language codes
+        isFavorite: undefined, // must reset is favorite
+        tags: undefined, // must reset tags
       })
     },
     [code, selectedSemester, getWords],

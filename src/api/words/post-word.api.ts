@@ -1,6 +1,6 @@
 import { CustomizedAxiosResponse } from '../index.interface'
 import axios from 'axios'
-import { WordData } from './interfaces'
+import { PostWordReqDto, WordData } from './interfaces'
 import { GetSemestersResDTO } from '../semesters/get-semesters.api'
 
 interface PostWordRes {
@@ -9,7 +9,7 @@ interface PostWordRes {
 }
 
 export const postWordApi = async (
-  newWord: WordData,
+  newWord: PostWordReqDto,
 ): Promise<CustomizedAxiosResponse<PostWordRes>> => {
   const url = `/v1/words`
   const res = await axios.post(url, newWord)
