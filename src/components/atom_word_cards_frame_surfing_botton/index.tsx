@@ -2,7 +2,6 @@ import { FC, useCallback } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { GlobalMuiSize } from '@/global.interface'
-import SurfingIcon from '@mui/icons-material/Surfing';
 
 interface Props {
   onClick?: any
