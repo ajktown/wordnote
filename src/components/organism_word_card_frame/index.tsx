@@ -14,9 +14,9 @@ const WordCardFrame: FC = () => {
     <Stack width="100%" alignItems="center">
       <Stack {...WordCardFrameStyle}>
         {/* Header */}
-        <Stack direction="row" spacing={0.5} alignItems="center">
+        <Stack direction="row" spacing={0.5}>
           <Box flexGrow={1} />
-          <WordCardsSurfingButton /> {/* surfアイコンを追加 */}
+          <WordCardsSurfingButton />
           <WordCardsFrameRefreshButton />
         </Stack>
         <Stack alignItems={`center`} spacing={0.35}>
