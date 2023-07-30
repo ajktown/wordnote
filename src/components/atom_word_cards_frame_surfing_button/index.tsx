@@ -9,7 +9,7 @@ const WordCardsFrameSurfingButton: FC = () => {
   return (
     <StyledIconButtonAtom
       onClick={onClick}
-      jsxElementButton={<SurfingIcon />}
+      jsxElementButton={<SurfingIcon fontSize="small" />}
     />
   )
 }
