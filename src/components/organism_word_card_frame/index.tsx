@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Stack, Box } from '@mui/material'
 import NewWordBox from '../molecule_new_word_box'
 import WordCardsFrameRefreshButton from '../atom_word_cards_frame_refresh_button'
-import WordCardsSurfingButton from '../atom_word_cards_frame_surfing_botton'
+import WordCardsSurfingButton from '../atom_word_cards_frame_surfing_button'
 import WordCardsChunk from '../organism_word_card_chunk'
 import { WordCardFrameStyle } from './index.style'
 import WordCardDialog from '../molecule_word_card/index.dialog'
@@ -15,7 +15,7 @@ const WordCardFrame: FC = () => {
       <Stack {...WordCardFrameStyle}>
         {/* Header */}
         <Stack direction="row" spacing={0.5} alignItems="center">
-        <Box flexGrow={1} />
+          <Box flexGrow={1} />
           <WordCardsSurfingButton /> {/* surfアイコンを追加 */}
           <WordCardsFrameRefreshButton />
         </Stack>
