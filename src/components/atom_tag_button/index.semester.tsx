@@ -1,10 +1,10 @@
 import { ISemester } from '@/api/semesters/index.interface'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { useWords } from '@/hooks/words/use-words.hook'
+import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
 import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
-import { FC, useMemo } from 'react'
-import { useRecoilCallback, useRecoilValue } from 'recoil'
+import { FC, useCallback, useMemo } from 'react'
+import { useRecoilValue } from 'recoil'
 
 interface Props {
   semester: ISemester
@@ -19,22 +19,11 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
     return `outlined`
   }, [selectedSemester, code])
 
-  const [loading, getWords] = useWords()
-
-  const onClick = useRecoilCallback(
-    () => async () => {
-      if (selectedSemester === code) return // already selected
-      await getWords({
-        semester: code,
-        pageIndex: 0, // must reset page index
-        daysAgo: undefined, // must reset days ago
-        languageCodes: undefined, // must reset language codes
-        isFavorite: undefined, // must reset is favorite
-        tags: undefined, // must reset tags
-      })
-    },
-    [code, selectedSemester, getWords],
-  )
+  const [loading, onSemesterClick] = useSemesterClick()
+  const onClick = useCallback(async () => {
+    if (code === selectedSemester) return // already selected
+    await onSemesterClick(code)
+  }, [selectedSemester, code, onSemesterClick])
 
   return (
     <StyledTagButtonAtom
