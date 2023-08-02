@@ -23,6 +23,10 @@ const WelcomePage: FC = () => {
       <h3>{`Sign in with your AJK Town account to continue.`}</h3>
       <Button onClick={onClickSignIn}> {`Sign in`}</Button>
       <Button onClick={onClickSignUp}> {`Sign up`}</Button>
+      <a style={{ fontStyle: `italic` }}>
+        Wordnote is currently in the{` `}
+        <span style={{ fontWeight: 600 }}>beta</span> stage of development.
+      </a>
     </StyledCentered>
   )
 }

@@ -17,6 +17,8 @@ export const usePostWord = (): UsePostWord => {
           set(wordIdsState, [postedWord.id, ...wordIds])
           set(wordsFamily(postedWord.id), postedWord)
           set(semestersState, semesters.semesters)
+
+          // TODO: Add daysAgo 0 to the latest semester
         } catch {}
       },
     [],
