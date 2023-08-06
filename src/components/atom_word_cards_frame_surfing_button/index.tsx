@@ -1,22 +1,16 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import SurfingIcon from '@mui/icons-material/Surfing'
 import { FC, useCallback } from 'react'
-import { useSemesters } from '@/hooks/semesters/use-semesters.hook'
-import { useWords } from '@/hooks/words/use-words.hook'
+import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
 
 const WordCardsFrameSurfingButton: FC = () => {
-  const [, getWords] = useWords()
-  const getSemesters = useSemesters()
-
-  const onClickRefresh = useCallback(async () => {
-    const semesters = await getSemesters()
-    if (!semesters.latestSemesterCode) return
-
-    await getWords({ semester: semesters.latestSemesterCode })
-  }, [getWords, getSemesters])
+  const [, onSemesterClick] = useSemesterClick()
+  const onClick = useCallback(async () => {
+    await onSemesterClick(233)
+  }, [, onSemesterClick])
   return (
     <StyledIconButtonAtom
-      onClick={onClickRefresh}
+      onClick={onClick}
       jsxElementButton={<SurfingIcon fontSize="small" />}
     />
   )
