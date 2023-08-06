@@ -1,13 +1,23 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import SurfingIcon from '@mui/icons-material/Surfing'
-import { FC, useCallback } from 'react'
+import { FC } from 'react'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
+import { useRecoilCallback } from 'recoil'
+import { semestersState } from '@/recoil/words/semesters.state'
 
 const WordCardsFrameSurfingButton: FC = () => {
   const [, onSemesterClick] = useSemesterClick()
-  const onClick = useCallback(async () => {
-    await onSemesterClick(233)
-  }, [, onSemesterClick])
+
+  const onClick = useRecoilCallback(
+    ({ snapshot }) =>
+      async () => {
+        const semesters = await snapshot.getPromise(semestersState)
+        if (semesters === undefined || semesters.length <= 1) return
+        const randomIndex = Math.floor(Math.random() * Array.length)
+        await onSemesterClick(semesters[randomIndex].code)
+      },
+    [onSemesterClick],
+  )
   return (
     <StyledIconButtonAtom
       onClick={onClick}
