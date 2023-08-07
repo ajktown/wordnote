@@ -13,8 +13,8 @@ const WordCardsFrameSurfingButton: FC = () => {
       async () => {
         const semesters = await snapshot.getPromise(semestersState)
         if (semesters === undefined || semesters.length <= 1) return
-        const randomIndex = Math.floor(Math.random() * Array.length)
-        await onSemesterClick(semesters[randomIndex].code)
+        const randomIndex = Math.floor(Math.random()*semesters.length)
+        await onSemesterClick(semesters[randomIndex].code);
       },
     [onSemesterClick],
   )
