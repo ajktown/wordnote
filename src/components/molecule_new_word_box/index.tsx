@@ -8,7 +8,7 @@ import { usePostWordWithStringHook } from '@/hooks/words/use-post-word-with-stri
 import { useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
 
-const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new words...`
+const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new word...`
 
 const NewWordBox: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
