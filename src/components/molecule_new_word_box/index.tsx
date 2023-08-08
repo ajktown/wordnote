@@ -24,6 +24,7 @@ const NewWordBox: FC = () => {
   ] = usePostWordWithStringHook()
 
   useKeyPress(`Escape`, handleClickAddWord)
+  useKeyPress(`Enter`, handleClickAddWord)
   const ref = useOutsideClicked(handleClickAddWord)
 
   if (searchInput) return null
