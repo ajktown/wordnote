@@ -13,7 +13,8 @@ import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingMode from './index.editing_mode'
 import TagButtonChunk from '../molecule_tag_button_chunk'
 import WordCardSkeleton from './index.skeleton'
-import JaKoNaverDictionaryLinkButton from '../atom_dictionary_link_button/ja-ko-naver.dictionary-link-button'
+import JaKoNaverDictionaryLinkButton from '../atom_dict_link_button/ja-ko-naver.dict-link-button'
+import EnDictionaryDotComDictLinkButton from '../atom_dict_link_button/en-dictionary-dot-com.dict-link-button'
 
 interface Props {
   wordId: string
@@ -55,6 +56,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardDeleteButton wordId={wordId} />
           <TagButtonChunk wordId={wordId} />
           <JaKoNaverDictionaryLinkButton wordId={wordId} />
+          <EnDictionaryDotComDictLinkButton wordId={wordId} />
         </CardActions>
       </Card>
     </StyledSuspense>
