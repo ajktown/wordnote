@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
 import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hooks/use-outside-clicked.hook'
@@ -7,6 +7,7 @@ import { useKeyPress } from '@/hooks/use-key-press.hook'
 import { usePostWordWithStringHook } from '@/hooks/words/use-post-word-with-string.hook'
 import { useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
+import WordCardSkeleton from '../molecule_word_card/index.skeleton'
 
 const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new word...`
 
@@ -16,46 +17,55 @@ const NewWordBox: FC = () => {
   // TODO: This is possibly too long. I think it could be better,
   // TODO: But then for the current code status sake, it looks good.
   const [
+    loading,
     userInput,
     setUserInput,
     isWritingMode,
-    handleClickOpenWritingMode,
-    handleClickAddWord,
+    onClickOpenWritingMode,
+    onClickPostWordWritingModeClosed,
+    onClickPostWordWritingModeOpen,
   ] = usePostWordWithStringHook()
 
-  useKeyPress(`Escape`, handleClickAddWord)
-  useKeyPress(`Enter`, handleClickAddWord)
-  const ref = useOutsideClicked(handleClickAddWord)
+  useKeyPress(`Enter`, onClickPostWordWritingModeOpen)
+  useKeyPress(`Escape`, onClickPostWordWritingModeClosed)
+  const ref = useOutsideClicked(onClickPostWordWritingModeClosed)
 
   if (searchInput) return null
 
   if (isWritingMode) {
     return (
-      <Card
-        style={{ width: `100%`, borderRadius: 9, cursor: `text` }}
-        ref={ref}
-      >
-        <CardContent>
-          <StyledTextField
-            value={userInput}
-            onChange={setUserInput}
-            label={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
-            usePlaceholder
-            isAutoFocused
-          />
-        </CardContent>
-        <CardActions>
-          <Box flexGrow={1} />
-          <StyledTextButtonAtom onClick={handleClickAddWord} title={`Close`} />
-        </CardActions>
-      </Card>
+      <Fragment>
+        <Card
+          style={{ width: `100%`, borderRadius: 9, cursor: `text` }}
+          ref={ref}
+        >
+          <CardContent>
+            <StyledTextField
+              value={userInput}
+              onChange={setUserInput}
+              disabled={loading}
+              label={PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE}
+              usePlaceholder
+              isAutoFocused
+            />
+          </CardContent>
+          <CardActions>
+            <Box flexGrow={1} />
+            <StyledTextButtonAtom
+              onClick={onClickPostWordWritingModeClosed}
+              title={`Close`}
+            />
+          </CardActions>
+        </Card>
+        {loading && <WordCardSkeleton />}
+      </Fragment>
     )
   }
 
   return (
     <Card
       style={{ width: `100%`, borderRadius: 9, cursor: `text` }}
-      onClick={handleClickOpenWritingMode}
+      onClick={onClickOpenWritingMode}
     >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
