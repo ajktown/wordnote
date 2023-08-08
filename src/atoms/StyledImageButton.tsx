@@ -13,6 +13,8 @@ const StyledImageButtonAtom: FC<Props> = ({ url, imageSrc, onClick }) => {
   return (
     <StyledIconButtonAtom
       onClick={onClick}
+      enableRipple
+      size="medium"
       jsxElementButton={
         <Image
           src={imageSrc}
