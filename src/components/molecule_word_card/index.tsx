@@ -13,11 +13,11 @@ import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingMode from './index.editing_mode'
 import TagButtonChunk from '../molecule_tag_button_chunk'
 import WordCardSkeleton from './index.skeleton'
-import JaKoNaverDictionaryLinkButton from '../atom_dict_link_button/ja-ko-naver.dict-link-button'
-import EnDictionaryDotComDictLinkButton from '../atom_dict_link_button/en-dictionary-dot-com.dict-link-button'
-import ZhKoNaverDictionaryLinkButton from '../atom_dict_link_button/zh-ko-naver.dict-link-button'
-import KoNaverDictionaryLinkButton from '../atom_dict_link_button/ko-naver.dict-link-button'
-import EnKoNaverDictionaryLinkButton from '../atom_dict_link_button/en-ko.dict-link-button'
+import JaKoNaverDictionaryLinkButton from '../molecule_dict_link_button_chunk/ja-ko-naver.dict-link-button'
+import EnDictionaryDotComDictLinkButton from '../molecule_dict_link_button_chunk/en-dictionary-dot-com.dict-link-button'
+import ZhKoNaverDictionaryLinkButton from '../molecule_dict_link_button_chunk/zh-ko-naver.dict-link-button'
+import KoNaverDictionaryLinkButton from '../molecule_dict_link_button_chunk/ko-naver.dict-link-button'
+import EnKoNaverDictionaryLinkButton from '../molecule_dict_link_button_chunk/en-ko.dict-link-button'
 
 interface Props {
   wordId: string
