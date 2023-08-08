@@ -2,7 +2,7 @@ import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import SurfingIcon from '@mui/icons-material/Surfing'
 import { FC } from 'react'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
-import { useRecoilCallback } from 'recoil'
+import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
 
 const WordCardsFrameSurfingButton: FC = () => {
@@ -18,12 +18,14 @@ const WordCardsFrameSurfingButton: FC = () => {
       },
     [onSemesterClick],
   )
-  return (
+  const semesters = useRecoilValue(semestersState)
+  if (semesters === undefined || semesters.length < 3) {
+    return null
+  } else
     <StyledIconButtonAtom
       onClick={onClick}
       jsxElementButton={<SurfingIcon fontSize="small" />}
     />
-  )
 }
 
 export default WordCardsFrameSurfingButton
