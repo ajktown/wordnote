@@ -15,6 +15,9 @@ import TagButtonChunk from '../molecule_tag_button_chunk'
 import WordCardSkeleton from './index.skeleton'
 import JaKoNaverDictionaryLinkButton from '../atom_dict_link_button/ja-ko-naver.dict-link-button'
 import EnDictionaryDotComDictLinkButton from '../atom_dict_link_button/en-dictionary-dot-com.dict-link-button'
+import ZhKoNaverDictionaryLinkButton from '../atom_dict_link_button/zh-ko-naver.dict-link-button'
+import KoNaverDictionaryLinkButton from '../atom_dict_link_button/ko-naver.dict-link-button'
+import EnKoNaverDictionaryLinkButton from '../atom_dict_link_button/en-ko.dict-link-button'
 
 interface Props {
   wordId: string
@@ -55,6 +58,9 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardFavoriteIcon wordId={wordId} />
           <WordCardDeleteButton wordId={wordId} />
           <TagButtonChunk wordId={wordId} />
+          <KoNaverDictionaryLinkButton wordId={wordId} />
+          <EnKoNaverDictionaryLinkButton wordId={wordId} />
+          <ZhKoNaverDictionaryLinkButton wordId={wordId} />
           <JaKoNaverDictionaryLinkButton wordId={wordId} />
           <EnDictionaryDotComDictLinkButton wordId={wordId} />
         </CardActions>
