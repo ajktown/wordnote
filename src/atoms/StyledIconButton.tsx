@@ -15,6 +15,7 @@ interface Props {
     placement?: GlobalMuiPlacement
   }
   size?: GlobalMuiSize
+  enableRipple?: boolean
   disableOnHoverColor?: boolean // disabled icons won't show the hover color regardless of the given disableOnHoverColor
 }
 const StyledIconButtonAtom: FC<Props> = ({
@@ -51,7 +52,7 @@ const StyledIconButtonAtom: FC<Props> = ({
           onClick={handleClick}
           disabled={isDisabled}
           style={{ color: buttonColor }}
-          disableRipple
+          disableRipple={!props.enableRipple}
         >
           {props.jsxElementButton}
         </IconButton>

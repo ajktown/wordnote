@@ -13,6 +13,7 @@ import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingMode from './index.editing_mode'
 import TagButtonChunk from '../molecule_tag_button_chunk'
 import WordCardSkeleton from './index.skeleton'
+import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
 
 interface Props {
   wordId: string
@@ -53,6 +54,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardFavoriteIcon wordId={wordId} />
           <WordCardDeleteButton wordId={wordId} />
           <TagButtonChunk wordId={wordId} />
+          <DictLinkButtonChunk wordId={wordId} />
         </CardActions>
       </Card>
     </StyledSuspense>
