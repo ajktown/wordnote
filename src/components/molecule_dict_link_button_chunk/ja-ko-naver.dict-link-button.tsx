@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words/words.state'
 import Image from 'next/image'
-import { useOnClickNewTab } from '@/hooks/use-on-click-open-new-tab.hook'
+import { useOpenNewTab } from '@/hooks/use-open-new-tab'
 
 const JA_KO_NAVER_DICTIONARY_PREFIX = `https://ja.dict.naver.com/#/search?range=all&query=`
 
@@ -13,7 +13,7 @@ interface Props {
 const JaKoNaverDictionaryLinkButton: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const link = JA_KO_NAVER_DICTIONARY_PREFIX + word?.term
-  const onClick = useOnClickNewTab(link)
+  const onClick = useOpenNewTab(link)
 
   if (!word || word.languageCode !== `ja` || !word.term) return null
 
