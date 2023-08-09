@@ -39,7 +39,7 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
     [userInput, handlePostWord],
   )
 
-  const onClickPostWordWritingModeClosed = useCallback(
+  const onClickPostWordWritingModeClose = useCallback(
     () => onClickPostWord(true),
     [onClickPostWord],
   )
@@ -54,7 +54,7 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
     setUserInput,
     isWritingMode,
     onClickWritingModeOpen,
-    onClickPostWordWritingModeClosed,
+    onClickPostWordWritingModeClose,
     onClickPostWordWritingModeOpen,
   ]
 }

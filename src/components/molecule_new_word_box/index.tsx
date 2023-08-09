@@ -22,13 +22,13 @@ const NewWordBox: FC = () => {
     setUserInput,
     isWritingMode,
     onClickOpenWritingMode,
-    onClickPostWordWritingModeClosed,
+    onClickPostWordWritingModeClose,
     onClickPostWordWritingModeOpen,
   ] = usePostWordWithStringHook()
 
   useKeyPress(`Enter`, onClickPostWordWritingModeOpen)
-  useKeyPress(`Escape`, onClickPostWordWritingModeClosed)
-  const ref = useOutsideClicked(onClickPostWordWritingModeClosed)
+  useKeyPress(`Escape`, onClickPostWordWritingModeClose)
+  const ref = useOutsideClicked(onClickPostWordWritingModeClose)
 
   if (searchInput) return null
 
@@ -52,7 +52,7 @@ const NewWordBox: FC = () => {
           <CardActions>
             <Box flexGrow={1} />
             <StyledTextButtonAtom
-              onClick={onClickPostWordWritingModeClosed}
+              onClick={onClickPostWordWritingModeClose}
               title={`Close`}
             />
           </CardActions>
