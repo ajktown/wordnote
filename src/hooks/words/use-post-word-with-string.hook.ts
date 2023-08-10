@@ -8,7 +8,8 @@ type UsePostWordWithStringHook = [
   string, // userInput
   Dispatch<SetStateAction<string>>, // setUserInput
   boolean, // isWritingMode
-  () => void, // handleClickOpenWritingMode
+  (flag: boolean) => void, // setWritingMode
+  () => void, // onClickWritingModeOpen
   () => Promise<void>, // onClickPostWordWritingModeClosed
   () => Promise<void>, // onClickPostWordWritingModeOpen
 ]
@@ -53,6 +54,7 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
     userInput,
     setUserInput,
     isWritingMode,
+    setWritingMode,
     onClickWritingModeOpen,
     onClickPostWordWritingModeClose,
     onClickPostWordWritingModeOpen,

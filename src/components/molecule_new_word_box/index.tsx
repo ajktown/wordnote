@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment, useCallback } from 'react'
 import { Card, Box, CardContent, Typography, CardActions } from '@mui/material'
 import StyledTextField from '@/atoms/StyledTextField'
 import { useOutsideClicked } from '@/hooks/use-outside-clicked.hook'
@@ -22,6 +22,7 @@ const NewWordBox: FC = () => {
     userInput,
     setUserInput,
     isWritingMode,
+    setWritingMode,
     onClickOpenWritingMode,
     onClickPostWordWritingModeClose,
     onClickPostWordWritingModeOpen,
@@ -30,7 +31,12 @@ const NewWordBox: FC = () => {
   const [inputRef, onPostWordWithFocus] = useDynamicFocus(
     onClickPostWordWritingModeOpen,
   )
-  useKeyPress(`Enter`, onPostWordWithFocus)
+  const onHitEnter = useCallback(() => {
+    if (isWritingMode) onPostWordWithFocus()
+    else setWritingMode(true)
+  }, [isWritingMode, setWritingMode, onPostWordWithFocus])
+
+  useKeyPress(`Enter`, onHitEnter)
   useKeyPress(`Escape`, onClickPostWordWritingModeClose)
   const ref = useOutsideClicked(onClickPostWordWritingModeClose)
 
