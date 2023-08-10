@@ -8,6 +8,7 @@ import { usePostWordWithStringHook } from '@/hooks/words/use-post-word-with-stri
 import { useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
 import WordCardSkeleton from '../molecule_word_card/index.skeleton'
+import { useDynamicFocus } from '@/hooks/use-dynamic-focus.hook'
 
 const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new word...`
 
@@ -26,7 +27,10 @@ const NewWordBox: FC = () => {
     onClickPostWordWritingModeOpen,
   ] = usePostWordWithStringHook()
 
-  useKeyPress(`Enter`, onClickPostWordWritingModeOpen)
+  const [inputRef, onPostWordWithFocus] = useDynamicFocus(
+    onClickPostWordWritingModeOpen,
+  )
+  useKeyPress(`Enter`, onPostWordWithFocus)
   useKeyPress(`Escape`, onClickPostWordWritingModeClose)
   const ref = useOutsideClicked(onClickPostWordWritingModeClose)
 
@@ -41,6 +45,7 @@ const NewWordBox: FC = () => {
         >
           <CardContent>
             <StyledTextField
+              ref={inputRef}
               value={userInput}
               onChange={setUserInput}
               disabled={loading}
