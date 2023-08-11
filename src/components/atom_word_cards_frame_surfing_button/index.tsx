@@ -19,17 +19,11 @@ const WordCardsFrameSurfingButton: FC = () => {
     [onSemesterClick],
   )
   const semesters = useRecoilValue(semestersState)
-  if (semesters === undefined || semesters.length < 3)
-    return (
-      <StyledIconButtonAtom
-        isDisabled={!onSemesterClick}
-        jsxElementButton={<SurfingIcon fontSize="small" />}
-      />
-    )
 
   return (
     <StyledIconButtonAtom
       onClick={onClick}
+      isDisabled={semesters === undefined || semesters.length < 3}
       jsxElementButton={<SurfingIcon fontSize="small" />}
     />
   )
