@@ -6,7 +6,6 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
 import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
 
-
 const WordCardsFrameSurfingButton: FC = () => {
   const [, onSemesterClick] = useSemesterClick()
 
@@ -15,8 +14,12 @@ const WordCardsFrameSurfingButton: FC = () => {
       async () => {
         const semesters = await snapshot.getPromise(semestersState)
         if (semesters === undefined || semesters.length <= 1) return
-        const selectedSemester = await snapshot.getPromise(selectedSemesterSelector)
-        const filteredSemesters = semesters.filter((semester)=> semester.code !== selectedSemester)
+        const selectedSemester = await snapshot.getPromise(
+          selectedSemesterSelector,
+        )
+        const filteredSemesters = semesters.filter(
+          (semester) => semester.code !== selectedSemester,
+        )
         const randomIndex = Math.floor(Math.random() * filteredSemesters.length)
         await onSemesterClick(filteredSemesters[randomIndex].code)
       },
