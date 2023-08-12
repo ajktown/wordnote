@@ -27,7 +27,9 @@ const TagButtonChunkSemesters: FC = () => {
           .map((semester) => (
             <TagButtonSemester key={semester.code} semester={semester} />
           ))}
-      <TagButtonExpander visibleAt={PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT} />
+
+      {/* +1 as TagButtonExpander must be visible after 4 semesters */}
+      <TagButtonExpander visibleAt={PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT + 1} />
     </Box>
   )
 }
