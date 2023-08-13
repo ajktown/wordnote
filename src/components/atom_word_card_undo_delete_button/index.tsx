@@ -7,13 +7,23 @@ interface Props {
   wordId: string
 }
 const WordCardUndoDeleteButton: FC<Props> = ({ wordId }) => {
-  const handleDeleteWordCache = useDeleteWordCache(wordId)
-  const handlePostWordFromUndo = usePostWordFromUndo(wordId)
+  const [loadingCache, onDeleteWordCache] = useDeleteWordCache(wordId)
+  const [loadingUndo, onPostWordFromUndo] = usePostWordFromUndo(wordId)
 
   return (
     <Fragment>
-      <StyledTextButtonAtom title={`Undo`} onClick={handlePostWordFromUndo} />
-      <StyledTextButtonAtom title={`Hide`} onClick={handleDeleteWordCache} />
+      <StyledTextButtonAtom
+        isLoading={loadingUndo}
+        isDisabled={loadingCache}
+        title={`Undo`}
+        onClick={onPostWordFromUndo}
+      />
+      <StyledTextButtonAtom
+        isLoading={loadingCache}
+        isDisabled={loadingUndo}
+        title={`Hide`}
+        onClick={onDeleteWordCache}
+      />
     </Fragment>
   )
 }

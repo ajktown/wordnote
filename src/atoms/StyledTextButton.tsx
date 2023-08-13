@@ -30,7 +30,6 @@ const StyledTextButtonAtom: FC<StyledTextButtonProps> = ({
       <Tooltip
         title={props.hoverMessage?.title || ``}
         placement={props.hoverMessage?.placement || `bottom`}
-        hidden={props.isLoading || props.isDisabled}
       >
         <span style={{ cursor: !props.hoverMessage ? undefined : `help` }}>
           <LoadingButton
