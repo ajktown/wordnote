@@ -6,11 +6,12 @@ interface Props {
   wordId: string
 }
 const WordCardDeleteButton: FC<Props> = ({ wordId }) => {
-  const handleClickDeleteWord = useDeleteWord(wordId)
+  const [isDeleting, onDeleteWord] = useDeleteWord(wordId)
 
   return (
     <StyledIconButtonAtom
-      onClick={handleClickDeleteWord}
+      isDisabled={isDeleting}
+      onClick={onDeleteWord}
       jsxElementButton={<DeleteWordIcon />}
     />
   )
