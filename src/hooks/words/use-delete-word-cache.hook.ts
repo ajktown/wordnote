@@ -2,29 +2,36 @@ import {
   selectedWordIdForDialogState,
   wordIdsState,
 } from '@/recoil/words/words.state'
-import { useRecoilCallback, useResetRecoilState } from 'recoil'
+import { useState } from 'react'
+import { useRecoilCallback } from 'recoil'
 
-type UseDeleteWordCache = () => Promise<void> // handleDeleteWordCache
+type UseDeleteWordCache = [
+  boolean,
+  () => Promise<void>, // handleDeleteWordCache
+]
 
 export const useDeleteWordCache = (
   deletingWordId: string,
 ): UseDeleteWordCache => {
-  const onCloseWordEditingDialog = useResetRecoilState(
-    selectedWordIdForDialogState,
-  )
+  const [loading, setLoading] = useState(false)
 
-  const handleDeleteWordCache = useRecoilCallback(
-    ({ snapshot, set }) =>
+  const onDeleteWordCache = useRecoilCallback(
+    ({ snapshot, set, reset }) =>
       async () => {
-        const wordIds = (await snapshot.getPromise(wordIdsState)).filter(
-          (wordId) => wordId !== deletingWordId,
-        )
+        try {
+          setLoading(true)
+          const wordIds = (await snapshot.getPromise(wordIdsState)).filter(
+            (wordId) => wordId !== deletingWordId,
+          )
 
-        set(wordIdsState, wordIds)
-        onCloseWordEditingDialog()
+          set(wordIdsState, wordIds)
+          reset(selectedWordIdForDialogState)
+        } finally {
+          setLoading(false)
+        }
       },
-    [deletingWordId, onCloseWordEditingDialog],
+    [deletingWordId],
   )
 
-  return handleDeleteWordCache
+  return [loading, onDeleteWordCache]
 }
