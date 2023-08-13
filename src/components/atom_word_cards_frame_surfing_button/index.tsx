@@ -26,12 +26,19 @@ const WordCardsFrameSurfingButton: FC = () => {
     [onSemesterClick],
   )
   const semesters = useRecoilValue(semestersState)
+  const isDisabled = semesters === undefined || semesters.length < 3
+  const hoverMessage = {
+    title: isDisabled
+      ? `Requires 3 or more semesters to activate`
+      : `Randomly Select Semester`,
+  }
 
   return (
     <StyledIconButtonAtom
       onClick={onClick}
-      isDisabled={semesters === undefined || semesters.length < 3}
+      isDisabled={isDisabled}
       jsxElementButton={<SurfingIcon fontSize="small" />}
+      hoverMessage={hoverMessage}
     />
   )
 }
