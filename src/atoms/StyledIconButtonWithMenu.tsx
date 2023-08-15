@@ -17,6 +17,7 @@ interface Props extends Exclude<PropsStyledIconButtonAtom, 'onClick'> {
  * StyledIconButtonWithMenuAtom is an styled atom component that draws IconButton for you with given size.
  * As the name suggests, it generally expects one or more menu items to show when the user clicks on it.
  * It does not have a logic stored with no menus given, so please provide at least one menu item.
+ * AJK Town is not fully sure if it fits to Atom or molecule.
  */
 const StyledIconButtonWithMenuAtom: FC<Props> = ({ menus, ...props }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
