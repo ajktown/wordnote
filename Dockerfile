@@ -9,6 +9,8 @@ RUN yarn install --frozen-lockfile
 
 # Copy all files
 COPY . .
+
+# Delete .env.local file as FE itself is production ready
 RUN rm -f .env.local
 
 # Build the app
