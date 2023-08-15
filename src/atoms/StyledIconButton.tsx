@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useCallback, useMemo } from 'react'
+import { FC, MouseEvent, useCallback, useMemo, JSX } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import { GlobalMuiPlacement, GlobalMuiSize } from '../global.interface'
@@ -6,7 +6,7 @@ import { useOnHover } from '@/hooks/use-on-hover.hook'
 
 const PRIVATE_FINAL_DEFAULT_SIZE: GlobalMuiSize = `small`
 
-interface Props {
+export interface PropsStyledIconButtonAtom {
   onClick?: (e?: MouseEvent<HTMLElement>) => any
   jsxElementButton: JSX.Element
   isDisabled?: boolean
@@ -18,7 +18,7 @@ interface Props {
   enableRipple?: boolean
   disableOnHoverColor?: boolean // disabled icons won't show the hover color regardless of the given disableOnHoverColor
 }
-const StyledIconButtonAtom: FC<Props> = ({
+const StyledIconButtonAtom: FC<PropsStyledIconButtonAtom> = ({
   onClick,
   disableOnHoverColor,
   isDisabled,
@@ -33,7 +33,7 @@ const StyledIconButtonAtom: FC<Props> = ({
 
   const handleClick = useCallback(
     (e: MouseEvent<HTMLElement>) => {
-      onClick && onClick(e)
+      if (onClick) onClick(e)
     },
     [onClick],
   )
