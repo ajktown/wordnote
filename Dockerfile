@@ -1,4 +1,4 @@
-# --- Build Stage ---
+######## ! Build Stage ! #######
 FROM node:18 AS build
 
 WORKDIR /app
@@ -16,7 +16,7 @@ RUN rm -f .env.local
 # Build the app
 RUN yarn build
 
-# --- Production Stage ---
+######## ! Production Stage ! ########
 FROM node:18
 
 WORKDIR /app
