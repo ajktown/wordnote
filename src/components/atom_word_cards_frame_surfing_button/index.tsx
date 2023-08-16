@@ -2,16 +2,21 @@ import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import SurfingIcon from '@mui/icons-material/Surfing'
 import { FC } from 'react'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
-import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { semestersState } from '@/recoil/words/semesters.state'
+import { useRecoilCallback, useRecoilState, useRecoilValue } from 'recoil'
+import {
+  isSemesterExpandedState,
+  semestersState,
+} from '@/recoil/words/semesters.state'
 import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
 
 const WordCardsFrameSurfingButton: FC = () => {
   const [, onSemesterClick] = useSemesterClick()
+  const [, setSemesterExpanded] = useRecoilState(isSemesterExpandedState)
 
   const onClick = useRecoilCallback(
     ({ snapshot }) =>
       async () => {
+        setSemesterExpanded(true)
         const semesters = await snapshot.getPromise(semestersState)
         if (semesters === undefined || semesters.length <= 1) return
         const selectedSemester = await snapshot.getPromise(
@@ -23,7 +28,7 @@ const WordCardsFrameSurfingButton: FC = () => {
         const randomIndex = Math.floor(Math.random() * filteredSemesters.length)
         await onSemesterClick(filteredSemesters[randomIndex].code)
       },
-    [onSemesterClick],
+    [onSemesterClick, setSemesterExpanded],
   )
   const semesters = useRecoilValue(semestersState)
   const isDisabled = semesters === undefined || semesters.length < 3
