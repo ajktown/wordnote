@@ -16,12 +16,17 @@ const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
   )
   const [, , isDefinitionModified] = usePutWordCacheByKey(wordId, `definition`)
   const [, , isExampleModified] = usePutWordCacheByKey(wordId, `example`)
+  const [, , isExampleLinkModified] = usePutWordCacheByKey(
+    wordId,
+    `exampleLink`,
+  )
 
   if (
     !isTermModified &&
     !isPronunciationModified &&
     !isDefinitionModified &&
-    !isExampleModified
+    !isExampleModified &&
+    !isExampleLinkModified
   )
     return null
 

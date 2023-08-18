@@ -50,6 +50,7 @@ export const parseInputIntoWordLambda = (given: string): PostWordReqDto => {
     pronunciation: pronunciation.trim(),
     definition: definition.trim(),
     example: example.trim(),
+    exampleLink: ``,
     isFavorite: false,
     tags,
   }

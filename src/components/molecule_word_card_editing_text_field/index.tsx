@@ -21,6 +21,8 @@ const privateGetPlaceholder = (key: WordDataModifiableKey) => {
       return `Word`
     case `example`:
       return `Example Sentence`
+    case `exampleLink`:
+      return `Example Sentence Link`
     default:
       return stringCaseHandler.toSentence(key)
   }
