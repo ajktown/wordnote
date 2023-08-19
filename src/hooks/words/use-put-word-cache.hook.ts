@@ -41,6 +41,7 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
         ...(await getObjectWithKey(`pronunciation`)),
         ...(await getObjectWithKey(`definition`)),
         ...(await getObjectWithKey(`example`)),
+        ...(await getObjectWithKey(`exampleLink`)),
       }
     },
     [getObjectWithKey],
@@ -67,6 +68,7 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
     await handleResetByKey(`pronunciation`)
     await handleResetByKey(`definition`)
     await handleResetByKey(`example`)
+    await handleResetByKey(`exampleLink`)
   }, [handleResetByKey])
 
   const handleApplyCache = useRecoilCallback(
@@ -83,6 +85,7 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
         const [modifiedWord] = await putWordByIdApi(wordId, modified)
         set(wordsFamily(wordId), modifiedWord)
 
+        // TODO: This is causing first deletion and then creation for UI
         await handleResetCache()
       },
     [wordId, handleResetCache],

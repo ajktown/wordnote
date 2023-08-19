@@ -13,6 +13,7 @@ export interface WordData extends DataStatus, DataBasics {
   pronunciation: string
   definition: string
   example: string
+  exampleLink: string
   tags: string[]
   dateAdded?: number
 }
@@ -24,6 +25,7 @@ export interface PostWordReqDto {
   pronunciation: string
   definition: string
   example: string
+  exampleLink: string
   tags: string[]
 }
 

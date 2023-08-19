@@ -14,6 +14,7 @@ import WordCardEditingMode from './index.editing_mode'
 import TagButtonChunk from '../molecule_tag_button_chunk'
 import WordCardSkeleton from './index.skeleton'
 import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
+import WordCardExamplePart from '../atom_word_card_parts/index.example'
 
 interface Props {
   wordId: string
@@ -47,8 +48,8 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <Typography variant="body2">
             {word.definition}
             <br />
-            {word.example && `"${word.example}"`}
           </Typography>
+          <WordCardExamplePart word={word} />
         </CardContent>
         <CardActions>
           <WordCardFavoriteIcon wordId={wordId} />
