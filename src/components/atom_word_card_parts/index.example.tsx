@@ -3,6 +3,7 @@ import { WordData } from '@/api/words/interfaces'
 import Link from 'next/link'
 import { Typography } from '@mui/material'
 
+const PRIVATE_VARIANT = `body2`
 interface Props {
   word: WordData
 }
@@ -20,18 +21,22 @@ const WordCardExamplePart: FC<Props> = ({ word }) => {
   if (!exampleTrimmed && linkExampleTrimmed)
     return (
       <Link href={linkExampleTrimmed} target="_blank">
-        {linkExampleTrimmed}
+        <Typography
+          variant={PRIVATE_VARIANT}
+        >{`${linkExampleTrimmed}`}</Typography>
       </Link>
     )
 
   if (!linkExampleTrimmed && !exampleTrimmed) return null
 
   if (!linkExampleTrimmed)
-    return <Typography>{`"${exampleTrimmed}"`}</Typography>
+    return (
+      <Typography variant={PRIVATE_VARIANT}>{`"${exampleTrimmed}"`}</Typography>
+    )
 
   return (
     <Link href={linkExampleTrimmed} target="_blank">
-      {exampleTrimmed}
+      <Typography variant={PRIVATE_VARIANT}>{`"${exampleTrimmed}"`}</Typography>
     </Link>
   )
 }
