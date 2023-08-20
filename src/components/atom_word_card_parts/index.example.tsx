@@ -20,7 +20,7 @@ const WordCardExamplePart: FC<Props> = ({ word }) => {
   if (!exampleTrimmed && linkExampleTrimmed)
     return (
       <Link href={linkExampleTrimmed} target="_blank">
-        Sample Example
+        {linkExampleTrimmed}
       </Link>
     )
 
