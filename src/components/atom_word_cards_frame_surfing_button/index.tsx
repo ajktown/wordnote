@@ -3,8 +3,11 @@ import SurfingIcon from '@mui/icons-material/Surfing'
 import { FC } from 'react'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { semestersState } from '@/recoil/words/semesters.state'
-import { selectedSemesterSelector, semestersState } from '@/recoil/words/words.selectors'
+import {
+  isSemesterExpandedState,
+  semestersState,
+} from '@/recoil/words/semesters.state'
+import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
 
 const WordCardsFrameSurfingButton: FC = () => {
   const [, onSemesterClick] = useSemesterClick()
