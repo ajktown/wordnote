@@ -1,3 +1,6 @@
+/**
+ * This file contains all the selectors for the words.state.ts
+ */
 import { Rkp, Rks } from '@/recoil/index.keys'
 import { selector } from 'recoil'
 import { getWordsParamsState } from './words.state'
@@ -29,14 +32,14 @@ export const isFavoriteClickedSelector = selector<boolean>({
 export const selectedCustomizedTagsSelector = selector<string[]>({
   key: Rkp.Tags + Prk.SelectedCustomized + Rks.Selector,
   get: ({ get }) => {
-    return get(getWordsParamsState).tags || []
+    return get(getWordsParamsState).tags ?? []
   },
 })
 
 export const selectedLanguageTagsSelector = selector<GlobalLanguageCode[]>({
   key: Rkp.Tags + Prk.SelectedLanguage + Rks.Selector,
   get: ({ get }) => {
-    return get(getWordsParamsState).languageCodes || []
+    return get(getWordsParamsState).languageCodes ?? []
   },
 })
 

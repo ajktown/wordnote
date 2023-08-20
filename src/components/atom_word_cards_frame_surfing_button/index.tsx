@@ -7,7 +7,7 @@ import {
   isSemesterExpandedState,
   semestersState,
 } from '@/recoil/words/semesters.state'
-import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
+import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
 
 const WordCardsFrameSurfingButton: FC = () => {
   const [, onSemesterClick] = useSemesterClick()

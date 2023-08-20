@@ -2,7 +2,7 @@ import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
-import { selectedLanguageTagsSelector } from '@/recoil/words/tags.selectors'
+import { selectedLanguageTagsSelector } from '@/recoil/words/words.selectors'
 import { FC, useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
 

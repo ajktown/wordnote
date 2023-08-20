@@ -1,5 +1,5 @@
 import { deprecatedSelectedSemesterState } from '@/recoil/words/semesters.state'
-import { isFavoriteClickedSelector } from '@/recoil/words/tags.selectors'
+import { isFavoriteClickedSelector } from '@/recoil/words/words.selectors'
 import { Typography, Stack } from '@mui/material'
 import { FC, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'
