@@ -14,22 +14,24 @@ interface Props {
  *   If both exampleLink and example exist, return example with link (Handles 2 cases)
  */
 const WordCardExamplePart: FC<Props> = ({ word }) => {
-  const trimmedExample = word.example.trim()
-  const trimmedExampleLink = word.exampleLink.trim()
+  const exampleTrimmed = word.example.trim()
+  const linkExampleTrimmed = word.exampleLink.trim()
 
-  if (trimmedExample === `` && trimmedExampleLink)
+  if (!exampleTrimmed && linkExampleTrimmed)
     return (
-      <Link href={trimmedExampleLink} target="_blank">
-        Sample Example
+      <Link href={linkExampleTrimmed} target="_blank">
+        {linkExampleTrimmed}
       </Link>
     )
 
-  if (!trimmedExampleLink)
-    return <Typography>{`"${trimmedExample}"`}</Typography>
+  if (!linkExampleTrimmed && !exampleTrimmed) return null
+
+  if (!linkExampleTrimmed)
+    return <Typography>{`"${exampleTrimmed}"`}</Typography>
 
   return (
-    <Link href={trimmedExampleLink} target="_blank">
-      {trimmedExample}
+    <Link href={linkExampleTrimmed} target="_blank">
+      {exampleTrimmed}
     </Link>
   )
 }
