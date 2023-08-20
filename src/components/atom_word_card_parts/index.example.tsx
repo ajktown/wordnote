@@ -24,7 +24,8 @@ const WordCardExamplePart: FC<Props> = ({ word }) => {
       </Link>
     )
 
-  if (!trimmedExampleLink) return <Typography>{trimmedExampleLink}</Typography>
+  if (!trimmedExampleLink)
+    return <Typography>{`"${trimmedExample}"`}</Typography>
 
   return (
     <Link href={trimmedExampleLink} target="_blank">
