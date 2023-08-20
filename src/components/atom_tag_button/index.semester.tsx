@@ -2,7 +2,7 @@ import { ISemester } from '@/api/semesters/index.interface'
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
-import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
+import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 

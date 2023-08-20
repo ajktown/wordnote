@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
-import { selectedSemesterSelector } from '@/recoil/words/tags.selectors'
+import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
 
 const WordCardsFrameSurfingButton: FC = () => {
   const [, onSemesterClick] = useSemesterClick()
