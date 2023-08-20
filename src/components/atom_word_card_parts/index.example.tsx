@@ -17,7 +17,7 @@ const WordCardExamplePart: FC<Props> = ({ word }) => {
   const exampleTrimmed = word.example.trim()
   const linkExampleTrimmed = word.exampleLink.trim()
 
-  if (exampleTrimmed === `` && linkExampleTrimmed)
+  if (!exampleTrimmed && linkExampleTrimmed)
     return (
       <Link href={linkExampleTrimmed} target="_blank">
         Sample Example
