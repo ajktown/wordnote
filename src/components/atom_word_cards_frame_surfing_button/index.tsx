@@ -4,16 +4,17 @@ import { FC } from 'react'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
-import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
+import { selectedSemesterSelector, semestersState } from '@/recoil/words/words.selectors'
 
 const WordCardsFrameSurfingButton: FC = () => {
   const [, onSemesterClick] = useSemesterClick()
 
   const onClick = useRecoilCallback(
-    ({ snapshot }) =>
+    ({ snapshot, set }) =>
       async () => {
         const semesters = await snapshot.getPromise(semestersState)
         if (semesters === undefined || semesters.length <= 1) return
+        set(isSemesterExpandedState, true)
         const selectedSemester = await snapshot.getPromise(
           selectedSemesterSelector,
         )
