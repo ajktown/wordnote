@@ -3,7 +3,7 @@ import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { useSemesters } from '@/hooks/semesters/use-semesters.hook'
 import { useWords } from '@/hooks/words/use-words.hook'
 
-const WordCardsFrameRefreshButton: FC = () => {
+const WordCardsFrameRefreshButtonPart: FC = () => {
   const [, getWords] = useWords()
   const getSemesters = useSemesters()
 
@@ -17,4 +17,4 @@ const WordCardsFrameRefreshButton: FC = () => {
   return <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
 }
 
-export default WordCardsFrameRefreshButton
+export default WordCardsFrameRefreshButtonPart
