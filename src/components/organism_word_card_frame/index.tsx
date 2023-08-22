@@ -8,6 +8,7 @@ import { WordCardFrameStyle } from './index.style'
 import WordCardDialog from '../molecule_word_card/index.dialog'
 import TagButtonChunkSemesters from '../molecule_tag_button_chunk/index.semesters'
 import TagButtonChunkDetailed from '../molecule_tag_button_chunk/index.detailed'
+import WordCardsFramePreferenceButtonPart from '../atom_word_cards_frame_parts/index.preference-button'
 
 const WordCardFrame: FC = () => {
   return (
@@ -18,6 +19,7 @@ const WordCardFrame: FC = () => {
           <Box flexGrow={1} />
           <WordCardsSurfingButton />
           <WordCardsFrameRefreshButton />
+          <WordCardsFramePreferenceButtonPart />
         </Stack>
         <Stack alignItems={`center`} spacing={0.35}>
           <TagButtonChunkSemesters />
