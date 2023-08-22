@@ -6,6 +6,7 @@ import JaKoNaverDictionaryLinkButton from './ja-ko-naver.dict-link-button'
 import EnDictionaryDotComDictLinkButton from './en-dictionary-dot-com.dict-link-button'
 import EnUrbanDictionaryDictLinkButton from './en-urban-dictionary.dict-link-button'
 import AllLangsGoogleDictLinkButton from './all-langs-google.dict-link-button'
+import KoJaNaverDictionaryLinkButton from './ko-ja-naver.dict-link-button'
 
 interface Props {
   wordId: string
@@ -18,6 +19,7 @@ const DictLinkButtonChunk: FC<Props> = ({ wordId }) => {
       <EnKoNaverDictionaryLinkButton wordId={wordId} />
       <ZhKoNaverDictionaryLinkButton wordId={wordId} />
       <JaKoNaverDictionaryLinkButton wordId={wordId} />
+      <KoJaNaverDictionaryLinkButton wordId={wordId} />
       <EnDictionaryDotComDictLinkButton wordId={wordId} />
       <EnUrbanDictionaryDictLinkButton wordId={wordId} />
     </Fragment>
