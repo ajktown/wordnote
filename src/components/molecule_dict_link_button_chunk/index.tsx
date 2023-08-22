@@ -19,9 +19,9 @@ const DictLinkButtonChunk: FC<Props> = ({ wordId }) => {
       <EnKoNaverDictionaryLinkButton wordId={wordId} />
       <ZhKoNaverDictionaryLinkButton wordId={wordId} />
       <JaKoNaverDictionaryLinkButton wordId={wordId} />
+      <KoJaNaverDictionaryLinkButton wordId={wordId} />
       <EnDictionaryDotComDictLinkButton wordId={wordId} />
       <EnUrbanDictionaryDictLinkButton wordId={wordId} />
-      <KoJaNaverDictionaryLinkButton wordId={wordId} />
     </Fragment>
   )
 }
