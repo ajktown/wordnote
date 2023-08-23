@@ -1,6 +1,9 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import StyledDialog from '@/organisms/StyledDialog'
-import { isPreferenceDialogOpenedState } from '@/recoil/preferences/preference.state'
+import {
+  isPreferenceDialogOpenedState,
+  preferenceState,
+} from '@/recoil/preferences/preference.state'
 import {
   DialogActions,
   DialogContent,
@@ -15,6 +18,7 @@ import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 const PreferenceDialog: FC = () => {
   const isPreferenceDialogOpened = useRecoilValue(isPreferenceDialogOpenedState)
+  const Preferences = useRecoilValue(preferenceState)
   const resetPreferenceDialogOpenedState = useResetRecoilState(
     isPreferenceDialogOpenedState,
   )
@@ -32,10 +36,26 @@ const PreferenceDialog: FC = () => {
           {`Any changes will be automatically saved to the cloud`}
         </DialogContentText>
         <FormGroup>
-          <FormControlLabel control={<Checkbox />} label="English" />
-          <FormControlLabel control={<Checkbox />} label="Chinese" />
-          <FormControlLabel control={<Checkbox />} label="Japanese" />
-          <FormControlLabel control={<Checkbox />} label="Korean" />
+          <FormControlLabel
+            checked={Preferences?.nativeLanguages.includes(`en`)}
+            control={<Checkbox />}
+            label="English"
+          />
+          <FormControlLabel
+            checked={Preferences?.nativeLanguages.includes(`zh`)}
+            control={<Checkbox />}
+            label="Chinese"
+          />
+          <FormControlLabel
+            checked={Preferences?.nativeLanguages.includes(`ja`)}
+            control={<Checkbox />}
+            label="Japanese"
+          />
+          <FormControlLabel
+            checked={Preferences?.nativeLanguages.includes(`ko`)}
+            control={<Checkbox />}
+            label="Korean"
+          />
         </FormGroup>
       </DialogContent>
       <DialogActions>
