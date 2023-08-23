@@ -13,7 +13,11 @@ enum Prk {
  */
 export const preferenceState = atom<null | IPreference>({
   key: Rkp.Preferences,
-  default: null,
+  default: {
+    id: `abc`,
+    nativeLanguages: [`ja`],
+    createdAt: `2021-01-01T00:00:00.000Z`,
+  },
 })
 
 /** IsPreferenceDialogOpened represents if dialog is opened */
