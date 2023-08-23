@@ -9,7 +9,7 @@ import {
 } from '@/recoil/words/semesters.state'
 import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
 
-const WordCardsFrameSurfingButton: FC = () => {
+const WordCardsFrameSurfingButtonPart: FC = () => {
   const [, onSemesterClick] = useSemesterClick()
 
   const onClick = useRecoilCallback(
@@ -47,4 +47,4 @@ const WordCardsFrameSurfingButton: FC = () => {
   )
 }
 
-export default WordCardsFrameSurfingButton
+export default WordCardsFrameSurfingButtonPart
