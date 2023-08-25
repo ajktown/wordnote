@@ -18,7 +18,7 @@ import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 const PreferenceDialog: FC = () => {
   const isPreferenceDialogOpened = useRecoilValue(isPreferenceDialogOpenedState)
-  const Preference = useRecoilValue(PreferenceState)
+  const preference = useRecoilValue(PreferenceState)
   const resetPreferenceDialogOpenedState = useResetRecoilState(
     isPreferenceDialogOpenedState,
   )
@@ -37,22 +37,22 @@ const PreferenceDialog: FC = () => {
         </DialogContentText>
         <FormGroup>
           <FormControlLabel
-            checked={Preference?.nativeLanguages.includes(`en`)}
+            checked={preference?.nativeLanguages.includes(`en`)}
             control={<Checkbox />}
             label="English"
           />
           <FormControlLabel
-            checked={Preference?.nativeLanguages.includes(`zh`)}
+            checked={preference?.nativeLanguages.includes(`zh`)}
             control={<Checkbox />}
             label="Chinese"
           />
           <FormControlLabel
-            checked={Preference?.nativeLanguages.includes(`ja`)}
+            checked={preference?.nativeLanguages.includes(`ja`)}
             control={<Checkbox />}
             label="Japanese"
           />
           <FormControlLabel
-            checked={Preference?.nativeLanguages.includes(`ko`)}
+            checked={preference?.nativeLanguages.includes(`ko`)}
             control={<Checkbox />}
             label="Korean"
           />
