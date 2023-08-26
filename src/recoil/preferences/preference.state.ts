@@ -12,7 +12,7 @@ enum Prk {
  * If not signed in, it is null.
  * If signed in but has no data yet, it can be still null and therefore should be handled.
  */
-export const PreferenceState = atom<null | IPreference>({
+export const preferenceState = atom<null | IPreference>({
   key: Rkp.Preferences,
   default: {
     id: `abc`,

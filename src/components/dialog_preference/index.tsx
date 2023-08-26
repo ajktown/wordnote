@@ -1,8 +1,8 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import StyledDialog from '@/organisms/StyledDialog'
 import {
-  PreferenceState,
   isPreferenceDialogOpenedState,
+  preferenceState,
 } from '@/recoil/preferences/preference.state'
 import {
   DialogActions,
@@ -18,7 +18,7 @@ import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 const PreferenceDialog: FC = () => {
   const isPreferenceDialogOpened = useRecoilValue(isPreferenceDialogOpenedState)
-  const preference = useRecoilValue(PreferenceState)
+  const preference = useRecoilValue(preferenceState)
   const resetPreferenceDialogOpenedState = useResetRecoilState(
     isPreferenceDialogOpenedState,
   )
