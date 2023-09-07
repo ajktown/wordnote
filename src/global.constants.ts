@@ -25,20 +25,24 @@ const PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY: [
 export const PROTECTED_AVAILABLE_LANGUAGE_MAP = new Map<
   GlobalLanguageCode,
   ProtectedAvailableLanguage
->()
-PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY.forEach(
-  ([languageCode, countryCode]) => {
-    const nativeName = ISO6391.getNativeName(languageCode)
-    const flagUnicode = getUnicodeFlagIcon(countryCode)
+>(
+  PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY.map(
+    ([languageCode, countryCode]) => {
+      const nativeName = ISO6391.getNativeName(languageCode)
+      const flagUnicode = getUnicodeFlagIcon(countryCode)
 
-    PROTECTED_AVAILABLE_LANGUAGE_MAP.set(languageCode, {
-      code: languageCode,
-      name: ISO6391.getName(languageCode),
-      nativeName,
-      flagUnicode,
-      nativeNameWithFlag: flagUnicode + ` ` + nativeName,
-    })
-  },
+      return [
+        languageCode,
+        {
+          code: languageCode,
+          name: ISO6391.getName(languageCode),
+          nativeName,
+          flagUnicode,
+          nativeNameWithFlag: flagUnicode + ` ` + nativeName,
+        },
+      ]
+    },
+  ),
 )
 
 /** Returns the full name of a language in its NATIVE Language
