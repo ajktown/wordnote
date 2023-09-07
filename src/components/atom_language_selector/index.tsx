@@ -5,7 +5,7 @@ import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { useRecoilValue } from 'recoil'
 import { wordsFamily } from '@/recoil/words/words.state'
 import { GlobalLanguageCode } from '@/global.interface'
-import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
+import { PROTECTED_AVAILABLE_LANGUAGE_MAP } from '@/global.constants'
 
 interface OrientationStyle {
   mainBox: object
@@ -52,7 +52,7 @@ const LanguageSelector: FC<Props> = ({
   const orientationStyle = useVerticalStyle ? verticalStyle : horizontalStyle
   const items = useMemo(
     () =>
-      PROTECTED_AVAILABLE_LANGUAGES.map((lang) => ({
+      Array.from(PROTECTED_AVAILABLE_LANGUAGE_MAP).map(([, lang]) => ({
         id: lang.code,
         title: lang.nativeNameWithFlag,
       })),
