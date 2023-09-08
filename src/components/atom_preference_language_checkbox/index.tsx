@@ -16,8 +16,6 @@ const PreferenceLanguageCheckbox: FC<Props> = ({ languageCode }) => {
         const preference = await snapshot.getPromise(preferenceState)
         if (!preference) return
 
-        const element = e.target as HTMLInputElement
-        const languageCode = element.value as GlobalLanguageCode
         const nativeLanguagesSet = new Set([
           ...preference.nativeLanguages,
           languageCode,
