@@ -1,3 +1,4 @@
+import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
 import { preferenceState } from '@/recoil/preferences/preference.state'
 import { Checkbox, FormControlLabel } from '@mui/material'
@@ -15,7 +16,7 @@ const PreferenceLanguageCheckbox: FC<Props> = ({ languageCode }) => {
     <FormControlLabel
       checked={preference?.nativeLanguages.includes(languageCode)}
       control={<Checkbox />}
-      label={languageCode}
+      label={getLanguageFullName(languageCode)}
     />
   )
 }
