@@ -2,7 +2,7 @@ import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
 import { preferenceState } from '@/recoil/preferences/preference.state'
 import { Checkbox, FormControlLabel } from '@mui/material'
-import { FC, SyntheticEvent } from 'react'
+import { FC } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 
 interface Props {
