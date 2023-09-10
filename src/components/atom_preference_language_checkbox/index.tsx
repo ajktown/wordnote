@@ -31,6 +31,7 @@ const PreferenceLanguageCheckbox: FC<Props> = ({ languageCode }) => {
           nativeLanguages,
         })
       },
+    [languageCode],
   )
 
   return (
