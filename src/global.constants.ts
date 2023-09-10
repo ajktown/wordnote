@@ -57,5 +57,5 @@ export const getLanguageFullName = (
   const got = PROTECTED_AVAILABLE_LANGUAGE_MAP.get(languageCode)
   if (got !== undefined) return got.nativeNameWithFlag
 
-  return `Unknown`
+  return `Unsupported Language`
 }
