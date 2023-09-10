@@ -13,7 +13,7 @@ const PreferenceLanguageCheckbox: FC<Props> = ({ languageCode }) => {
   const preference = useRecoilValue(preferenceState)
   const onChange = useRecoilCallback(
     ({ set, snapshot }) =>
-      async (e: SyntheticEvent<Element, Event>, checked: boolean) => {
+      async (_, checked: boolean) => {
         const preference = await snapshot.getPromise(preferenceState)
         if (!preference) return
 
