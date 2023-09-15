@@ -9,6 +9,7 @@ import { wordsFamily } from '@/recoil/words/words.state'
 import StyledDialog from '@/organisms/StyledDialog'
 import { DialogContent, DialogTitle } from '@mui/material'
 import { useDynamicFocus } from '@/hooks/use-dynamic-focus.hook'
+import { semesterDetailsFamily } from '@/recoil/words/semesters.state'
 
 interface Props {
   wordId: string
@@ -30,7 +31,7 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
 
   /** onApply depends on onResetInput after successful api call*/
   const onApply = useRecoilCallback(
-    ({ snapshot }) =>
+    ({ snapshot, set }) =>
       async () => {
         try {
           setLoading(true)
@@ -41,6 +42,16 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
           const tagSet = new Set(wordData.tags)
           tagSet.add(input)
           await onPutWord({ tags: Array.from(tagSet) })
+
+          // Add the newly created tag to the semester details
+          const semesterDetails = await snapshot.getPromise(
+            semesterDetailsFamily(wordData.semester),
+          )
+          set(semesterDetailsFamily(wordData.semester), {
+            ...semesterDetails,
+            tags: Array.from(new Set([...semesterDetails.tags, input])),
+          })
+
           onResetInput()
         } finally {
           setLoading(false)
