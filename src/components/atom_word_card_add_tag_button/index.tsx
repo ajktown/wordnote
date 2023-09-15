@@ -67,18 +67,11 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
               isAutoFocused
               buttons={{
                 right: (
-                  <Fragment>
-                    <StyledIconButtonAtom
-                      jsxElementButton={<CheckIcon fontSize="small" />}
-                      onClick={onApply}
-                      isDisabled={loading || input.length === 0}
-                    />
-                    {/* <StyledIconButtonAtom
-                      jsxElementButton={<ClearIcon fontSize="small" />}
-                      onClick={onResetInput}
-                      isDisabled={loading}
-                    /> */}
-                  </Fragment>
+                  <StyledIconButtonAtom
+                    jsxElementButton={<CheckIcon fontSize="small" />}
+                    onClick={onApply}
+                    isDisabled={loading || input.length === 0}
+                  />
                 ),
               }}
             />
