@@ -3,10 +3,12 @@ import StyledTagButtonAtom from '@/atoms/StyledTagButton'
 import StyledTextField from '@/atoms/StyledTextField'
 import { FC, Fragment, useCallback, useState } from 'react'
 import CheckIcon from '@mui/icons-material/Check'
-import ClearIcon from '@mui/icons-material/Clear'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { useRecoilCallback } from 'recoil'
 import { wordsFamily } from '@/recoil/words/words.state'
+import StyledDialog from '@/organisms/StyledDialog'
+import { DialogContent, DialogTitle } from '@mui/material'
+import { useDynamicFocus } from '@/hooks/use-dynamic-focus.hook'
 
 interface Props {
   wordId: string
@@ -18,11 +20,13 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
   const onPutWord = usePutWord(wordId)
 
   const onClickOpen = useCallback(async () => setAddingMode(true), [])
-
+  const [inputRef, onClickOpenWithFocus] = useDynamicFocus(onClickOpen)
   const onResetInput = useCallback(() => {
+    if (loading) return
+
     setInput(``)
     setAddingMode(false)
-  }, [])
+  }, [loading])
 
   /** onApply depends on onResetInput after successful api call*/
   const onApply = useRecoilCallback(
@@ -45,32 +49,43 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
     [input, onPutWord, onResetInput],
   )
 
-  if (isAddingMode) {
-    return (
-      <StyledTextField
-        value={input}
-        onChange={setInput}
-        buttons={{
-          right: (
-            <Fragment>
-              <StyledIconButtonAtom
-                jsxElementButton={<CheckIcon fontSize="small" />}
-                onClick={onApply}
-                isDisabled={loading}
-              />
-              <StyledIconButtonAtom
-                jsxElementButton={<ClearIcon fontSize="small" />}
-                onClick={onResetInput}
-                isDisabled={loading}
-              />
-            </Fragment>
-          ),
-        }}
-      />
-    )
-  }
   return (
-    <StyledTagButtonAtom label={`+`} loading={loading} onClick={onClickOpen} />
+    <Fragment>
+      <StyledTagButtonAtom
+        label={`+`}
+        loading={loading}
+        onClick={onClickOpenWithFocus}
+      />
+      {isAddingMode && (
+        <StyledDialog visuals={{ maxWidth: `xs` }} onClose={onResetInput}>
+          <DialogTitle>{`Insert your new tag name`}</DialogTitle>
+          <DialogContent>
+            <StyledTextField
+              value={input}
+              onChange={setInput}
+              ref={inputRef}
+              isAutoFocused
+              buttons={{
+                right: (
+                  <Fragment>
+                    <StyledIconButtonAtom
+                      jsxElementButton={<CheckIcon fontSize="small" />}
+                      onClick={onApply}
+                      isDisabled={loading || input.length === 0}
+                    />
+                    {/* <StyledIconButtonAtom
+                      jsxElementButton={<ClearIcon fontSize="small" />}
+                      onClick={onResetInput}
+                      isDisabled={loading}
+                    /> */}
+                  </Fragment>
+                ),
+              }}
+            />
+          </DialogContent>
+        </StyledDialog>
+      )}
+    </Fragment>
   )
 }
 

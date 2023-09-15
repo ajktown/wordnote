@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import { FC } from 'react'
 import TagButtonDeletable from '../atom_tag_button/index.deletable'
 import { usePutWordTagDeleted } from '@/hooks/words/use-put-word-tag-deleted.hook'
@@ -16,7 +16,11 @@ const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
   if (word == null) return null
 
   return (
-    <Box>
+    <Stack
+      direction="row"
+      spacing={0.5}
+      sx={{ flexWrap: `wrap`, rowGap: `3px` }}
+    >
       <WordCardAddTagButton wordId={wordId} />
       {word.tags.map((tag) => (
         <TagButtonDeletable
@@ -25,7 +29,7 @@ const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
           label={tag}
         />
       ))}
-    </Box>
+    </Stack>
   )
 }
 
