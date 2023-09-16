@@ -1,7 +1,6 @@
 import { postWordApi } from '@/api/words/post-word.api'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily, wordIdsState } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
-import { wordIdsState } from '@/recoil/words/words.state'
 import { semestersState } from '@/recoil/words/semesters.state'
 import { useState } from 'react'
 
