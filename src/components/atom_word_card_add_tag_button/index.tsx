@@ -23,11 +23,9 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
   const onClickOpen = useCallback(async () => setAddingMode(true), [])
   const [inputRef, onClickOpenWithFocus] = useDynamicFocus(onClickOpen)
   const onResetInput = useCallback(() => {
-    if (loading) return
-
     setInput(``)
     setAddingMode(false)
-  }, [loading])
+  }, [])
 
   /** onApply depends on onResetInput after successful api call*/
   const onApply = useRecoilCallback(
@@ -68,7 +66,10 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
         onClick={onClickOpenWithFocus}
       />
       {isAddingMode && (
-        <StyledDialog visuals={{ maxWidth: `xs` }} onClose={onResetInput}>
+        <StyledDialog
+          visuals={{ maxWidth: `xs` }}
+          onClose={loading ? undefined : onResetInput}
+        >
           <DialogTitle>{`Insert your new tag name`}</DialogTitle>
           <DialogContent>
             <StyledTextField
