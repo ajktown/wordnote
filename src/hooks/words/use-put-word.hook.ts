@@ -5,6 +5,7 @@ import { useRecoilCallback } from 'recoil'
 
 type UsePutWord = (modified: Partial<WordDataModifiable>) => Promise<void> // handlePutWord
 
+// TODO: Double check if this should return [loading, and the function]
 export const usePutWord = (wordId: string): UsePutWord => {
   const onPutWord = useRecoilCallback(
     ({ snapshot, set }) =>
