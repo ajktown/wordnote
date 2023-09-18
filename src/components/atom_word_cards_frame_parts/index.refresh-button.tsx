@@ -16,10 +16,10 @@ const WordCardsFrameRefreshButtonPart: FC = () => {
     if (!semesters.latestSemesterCode) return
 
     await getWords({ semester: semesters.latestSemesterCode })
-    
+
     const [data] = await getPreferenceApi()
     setPreferenceState(data)
-  }, [getWords, getSemesters,setPreferenceState])
+  }, [getWords, getSemesters, setPreferenceState])
 
   return <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
 }
