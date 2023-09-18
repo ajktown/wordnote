@@ -7,7 +7,5 @@ export const getPreferenceApi = async (): Promise<
 > => {
   const url = `/v1/preference`
   const res = await axios.get(url)
-  console.log({getPreferenceApi})
-
   return [res.data, res]
 }
