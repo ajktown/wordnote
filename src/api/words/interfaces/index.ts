@@ -16,6 +16,7 @@ export interface WordData extends DataStatus, DataBasics {
   exampleLink: string
   tags: string[]
   dateAdded?: number
+  isArchived: boolean
 }
 
 export type WordDataModifiable = Omit<WordData, 'id'>

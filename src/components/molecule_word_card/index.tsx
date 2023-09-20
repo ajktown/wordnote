@@ -15,6 +15,8 @@ import TagButtonChunk from '../molecule_tag_button_chunk'
 import WordCardSkeleton from './index.skeleton'
 import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
 import WordCardExamplePart from '../atom_word_card_parts/index.example'
+import WordCardArchiveButtonPart from '../atom_word_card_parts/index.archive-button'
+import WordCardUndoArchiveButtonPart from '../atom_word_card_parts/index.undo-archive-button'
 
 interface Props {
   wordId: string
@@ -34,6 +36,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   if (word === null) return <WordCardUnknown />
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
   if (editingMode) return <WordCardEditingMode wordId={wordId} />
+  if (word.isArchived) return <WordCardUndoArchiveButtonPart wordId={wordId} />
 
   return (
     <StyledSuspense>
@@ -54,6 +57,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
         <CardActions>
           <WordCardFavoriteIcon wordId={wordId} />
           <WordCardDeleteButton wordId={wordId} />
+          <WordCardArchiveButtonPart wordId={wordId} />
           <TagButtonChunk wordId={wordId} />
           <DictLinkButtonChunk wordId={wordId} />
         </CardActions>
