@@ -1,3 +1,4 @@
+import ContinueWithDeveloperToken from '@/components/atom_continue_with/index.dev'
 import { PageConst } from '@/constants/pages.constant'
 import { useGoogleOneTabSignIn } from '@/hooks/auth/use-google-one-tab-sign-in.hook'
 import StyledCentered from '@/organisms/StyledCentered'
@@ -21,6 +22,7 @@ const WelcomePage: FC = () => {
     <StyledCentered>
       <h3>{`Welcome to AJK Town's Wordnote.`}</h3>
       <h3>{`Sign in with your AJK Town account to continue.`}</h3>
+      <ContinueWithDeveloperToken />
       <Button onClick={onClickSignIn}> {`Sign in`}</Button>
       <Button onClick={onClickSignUp}> {`Sign up`}</Button>
       <a style={{ fontStyle: `italic` }}>
