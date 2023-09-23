@@ -1,6 +1,6 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC, useCallback, useState } from 'react'
-import ArchiveIcon from '@mui/icons-material/Archive';
+import ArchiveIcon from '@mui/icons-material/Archive'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 
 interface Props {
