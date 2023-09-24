@@ -15,20 +15,22 @@ const PreferenceLanguageCheckbox: FC<Props> = ({ languageCode }) => {
   const onChange = useRecoilCallback(
     ({ set, snapshot }) =>
       async (_, checked: boolean) => {
-        const preference = await snapshot.getPromise(preferenceState)
-        if (!preference) return
+        try {
+          const preference = await snapshot.getPromise(preferenceState)
+          if (!preference) return
 
-        const nativeLanguagesSet = new Set([
-          ...preference.nativeLanguages,
-          languageCode,
-        ])
+          const nativeLanguagesSet = new Set([
+            ...preference.nativeLanguages,
+            languageCode,
+          ])
 
-        if (!checked) nativeLanguagesSet.delete(languageCode)
-        const nativeLanguages: GlobalLanguageCode[] =
-          Array.from(nativeLanguagesSet)
+          if (!checked) nativeLanguagesSet.delete(languageCode)
+          const nativeLanguages: GlobalLanguageCode[] =
+            Array.from(nativeLanguagesSet)
 
-        const [data] = await putPreferenceApi({ nativeLanguages })
-        set(preferenceState, data)
+          const [data] = await putPreferenceApi({ nativeLanguages })
+          set(preferenceState, data)
+        } catch {}
       },
     [languageCode],
   )
