@@ -10,6 +10,7 @@ import TagButtonChunkSemesters from '../molecule_tag_button_chunk/index.semester
 import TagButtonChunkDetailed from '../molecule_tag_button_chunk/index.detailed'
 import WordCardsFramePreferenceButtonPart from '../atom_word_cards_frame_parts/index.preference-button'
 import WordCardsFrameArchiveSwitchPart from '../atom_word_cards_frame_parts/index.archive-switch'
+import WordCardsFrameArchiveModePart from '../atom_word_cards_frame_parts/index.archive-mode'
 
 const WordCardFrame: FC = () => {
   return (
@@ -30,6 +31,7 @@ const WordCardFrame: FC = () => {
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
           <NewWordBox />
+          <WordCardsFrameArchiveModePart />
           <WordCardsChunk />
         </Stack>
         {/* Dialog */}
