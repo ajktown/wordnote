@@ -9,14 +9,16 @@ import WordCardDialog from '../molecule_word_card/index.dialog'
 import TagButtonChunkSemesters from '../molecule_tag_button_chunk/index.semesters'
 import TagButtonChunkDetailed from '../molecule_tag_button_chunk/index.detailed'
 import WordCardsFramePreferenceButtonPart from '../atom_word_cards_frame_parts/index.preference-button'
+import WordCardsFrameArchiveSwitchPart from '../atom_word_cards_frame_parts/index.archive-swtich'
 
 const WordCardFrame: FC = () => {
   return (
     <Stack width="100%" alignItems="center">
       <Stack {...WordCardFrameStyle}>
         {/* Header */}
-        <Stack direction="row" spacing={0.7}>
+        <Stack direction="row" spacing={0.7} alignItems="center">
           <Box flexGrow={1} />
+          <WordCardsFrameArchiveSwitchPart />
           <WordCardsFrameSurfingButtonPart />
           <WordCardsFrameRefreshButtonPart />
           <WordCardsFramePreferenceButtonPart />

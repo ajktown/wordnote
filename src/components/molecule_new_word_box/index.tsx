@@ -9,11 +9,13 @@ import { useRecoilValue } from 'recoil'
 import { searchInputState } from '@/recoil/words/searchInput.state'
 import WordCardSkeleton from '../molecule_word_card/index.skeleton'
 import { useDynamicFocus } from '@/hooks/use-dynamic-focus.hook'
+import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
 
 const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new word...`
 
 const NewWordBox: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
+  const isShowingArchived = useRecoilValue(isShowingArchivedState)
 
   // TODO: This is possibly too long. I think it could be better,
   // TODO: But then for the current code status sake, it looks good.
@@ -40,7 +42,7 @@ const NewWordBox: FC = () => {
   useKeyPress(`Escape`, onClickPostWordWritingModeClose)
   const ref = useOutsideClicked(onClickPostWordWritingModeClose)
 
-  if (searchInput) return null
+  if (searchInput || isShowingArchived) return null
 
   if (isWritingMode) {
     return (

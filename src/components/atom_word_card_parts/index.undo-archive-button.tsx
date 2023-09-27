@@ -2,6 +2,7 @@ import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { FC, useCallback, useState } from 'react'
 
+// TODO: Not used. either delete it or use it.
 interface Props {
   wordId: string
 }

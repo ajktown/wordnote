@@ -16,7 +16,8 @@ import WordCardSkeleton from './index.skeleton'
 import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
 import WordCardExamplePart from '../atom_word_card_parts/index.example'
 import WordCardArchiveButtonPart from '../atom_word_card_parts/index.archive-button'
-import WordCardUndoArchiveButtonPart from '../atom_word_card_parts/index.undo-archive-button'
+import WordCardUnarchiveButtonPart from '../atom_word_card_parts/index.unarchive-button'
+import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
 
 interface Props {
   wordId: string
@@ -24,6 +25,7 @@ interface Props {
 }
 const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   const word = useRecoilValue(wordsFamily(wordId))
+  const isShowingArchived = useRecoilValue(isShowingArchivedState)
   const setSelectedWordIdForDialog = useSetRecoilState(
     selectedWordIdForDialogState,
   )
@@ -34,9 +36,10 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
 
   if (word === undefined) return <WordCardSkeleton />
   if (word === null) return <WordCardUnknown />
+  if (word.isArchived && !isShowingArchived) return null
+  if (!word.isArchived && isShowingArchived) return null
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
   if (editingMode) return <WordCardEditingMode wordId={wordId} />
-  if (word.isArchived) return <WordCardUndoArchiveButtonPart wordId={wordId} />
 
   return (
     <StyledSuspense>
@@ -57,7 +60,8 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
         <CardActions>
           <WordCardFavoriteIcon wordId={wordId} />
           <WordCardDeleteButton wordId={wordId} />
-          <WordCardArchiveButtonPart wordId={wordId} />
+          {!word.isArchived && <WordCardArchiveButtonPart wordId={wordId} />}
+          {word.isArchived && <WordCardUnarchiveButtonPart wordId={wordId} />}
           <TagButtonChunk wordId={wordId} />
           <DictLinkButtonChunk wordId={wordId} />
         </CardActions>
