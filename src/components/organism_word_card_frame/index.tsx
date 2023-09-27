@@ -9,7 +9,7 @@ import WordCardDialog from '../molecule_word_card/index.dialog'
 import TagButtonChunkSemesters from '../molecule_tag_button_chunk/index.semesters'
 import TagButtonChunkDetailed from '../molecule_tag_button_chunk/index.detailed'
 import WordCardsFramePreferenceButtonPart from '../atom_word_cards_frame_parts/index.preference-button'
-import WordCardsFrameArchiveSwitchPart from '../atom_word_cards_frame_parts/index.archive-swtich'
+import WordCardsFrameArchiveSwitchPart from '../atom_word_cards_frame_parts/index.archive-switch'
 
 const WordCardFrame: FC = () => {
   return (
