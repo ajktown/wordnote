@@ -1,7 +1,6 @@
 import { FC } from 'react'
-import { useRecoilCallback, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
-import Switch from '@mui/material/Switch'
 import { Typography } from '@mui/material'
 
 /** Simply renders a message that the end user is using archive mode.
@@ -13,10 +12,12 @@ const WordCardsFrameArchiveModePart: FC = () => {
   if (!isShowingArchived) return null
 
   return (
-    <Typography style={{
-      fontStyle: "italic"
-    }}>
-      {"Showing Archived Word Cards Only"}
+    <Typography
+      style={{
+        fontStyle: `italic`,
+      }}
+    >
+      {`Showing Archived Word Cards Only`}
     </Typography>
   )
 }
