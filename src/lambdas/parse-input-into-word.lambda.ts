@@ -51,5 +51,6 @@ export const parseInputIntoWordLambda = (given: string): PostWordReqDto => {
     exampleLink: ``,
     isFavorite: false,
     tags,
+    isArchived: true, // every word parsed through is always archived
   }
 }

@@ -26,7 +26,6 @@ export type PostWordReqDto = Omit<
   | 'userId' // handled by API
   | 'languageCode' // handled by API
   | 'semester' // handled by API
-  | 'isArchived' // word cannot be archived when it is created
   | 'dateAdded' // handled by API
   | 'isDeleted' // word cannot be deleted when it is created
   | 'createdAt' // handled by API
