@@ -14,7 +14,7 @@ enum Prk {
  */
 export const preferenceState = atom<null | IPreference>({
   key: Rkp.Preferences,
-  default: null
+  default: null,
 })
 
 /** IsPreferenceDialogOpened represents if dialog is opened */
