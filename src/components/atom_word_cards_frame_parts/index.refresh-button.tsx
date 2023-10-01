@@ -2,14 +2,12 @@ import { FC, useCallback } from 'react'
 import StyledCloudRefresher from '@/atoms/StyledCloudRefresher'
 import { useSemesters } from '@/hooks/semesters/use-semesters.hook'
 import { useWords } from '@/hooks/words/use-words.hook'
-import { useSetRecoilState } from 'recoil'
-import { preferenceState } from '@/recoil/preferences/preference.state'
-import { getPreferenceApi } from '@/api/preferences/get-preferences.api'
+import { usePreference } from '@/hooks/preference/use-preference.hook'
 
 const WordCardsFrameRefreshButtonPart: FC = () => {
   const [, getWords] = useWords()
   const getSemesters = useSemesters()
-  const setPreferenceState = useSetRecoilState(preferenceState)
+  const getPreference = usePreference()
 
   const onClickRefresh = useCallback(async () => {
     const semesters = await getSemesters()
@@ -17,9 +15,8 @@ const WordCardsFrameRefreshButtonPart: FC = () => {
 
     await getWords({ semester: semesters.latestSemesterCode })
 
-    const [data] = await getPreferenceApi()
-    setPreferenceState(data)
-  }, [getWords, getSemesters, setPreferenceState])
+    getPreference()
+  }, [getWords, getSemesters, getPreference])
 
   return <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
 }
