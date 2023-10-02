@@ -1,6 +1,7 @@
 import { putPreferenceApi } from '@/api/preferences/put-preference.api'
 import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
+import { usePutPreference } from '@/hooks/preference/use-put-preference.hook'
 import { preferenceState } from '@/recoil/preferences/preference.state'
 import { Checkbox, FormControlLabel } from '@mui/material'
 import { FC } from 'react'
@@ -11,28 +12,12 @@ interface Props {
 }
 
 const PreferenceLanguageCheckbox: FC<Props> = ({ languageCode }) => {
+  const putPreference = usePutPreference(languageCode)
   const preference = useRecoilValue(preferenceState)
   const onChange = useRecoilCallback(
-    ({ set, snapshot }) =>
-      async (_, checked: boolean) => {
-        try {
-          const preference = await snapshot.getPromise(preferenceState)
-          if (!preference) return
-
-          const nativeLanguagesSet = new Set([
-            ...preference.nativeLanguages,
-            languageCode,
-          ])
-
-          if (!checked) nativeLanguagesSet.delete(languageCode)
-          const nativeLanguages: GlobalLanguageCode[] =
-            Array.from(nativeLanguagesSet)
-
-          const [data] = await putPreferenceApi({ nativeLanguages })
-          set(preferenceState, data)
-        } catch {}
-      },
-    [languageCode],
+    ()=>{
+      putPreference({})
+    }
   )
 
   return (
