@@ -16,6 +16,7 @@ export const usePutWord = (wordId: string): UsePutWord => {
     ({ snapshot, set }) =>
       async (modified: Partial<WordDataModifiable>) => {
         try {
+          setLoading(true)
           const wordData = await snapshot.getPromise(wordsFamily(wordId))
           if (wordData == null) return
 
