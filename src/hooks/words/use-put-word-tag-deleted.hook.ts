@@ -10,7 +10,7 @@ type UsePutWordTagDeleted = [
 ]
 export const usePutWordTagDeleted = (wordId: string): UsePutWordTagDeleted => {
   const word = useRecoilValue(wordsFamily(wordId))
-  const onPutWord = usePutWord(wordId)
+  const [, onPutWord] = usePutWord(wordId)
 
   const onClickDelete = useCallback(
     async (deletingLabel: string) => {

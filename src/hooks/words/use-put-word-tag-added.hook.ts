@@ -13,7 +13,7 @@ export const usePutWordTagAdded = (
   callback?: () => any,
 ): UsePutWordTagAdded => {
   const [loading, setLoading] = useState(false)
-  const onPutWord = usePutWord(wordId)
+  const [, onPutWord] = usePutWord(wordId)
 
   const onChange = useRecoilCallback(
     ({ snapshot, set }) =>

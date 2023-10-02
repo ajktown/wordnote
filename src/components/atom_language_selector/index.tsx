@@ -36,7 +36,7 @@ const LanguageSelector: FC<Props> = ({
   hideTitle,
 }) => {
   const word = useRecoilValue(wordsFamily(wordId))
-  const onPutWord = usePutWord(wordId)
+  const [, onPutWord] = usePutWord(wordId)
 
   const [selectedId, setSelectedId] = useState(word?.languageCode)
 
