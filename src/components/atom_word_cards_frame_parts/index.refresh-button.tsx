@@ -15,7 +15,7 @@ const WordCardsFrameRefreshButtonPart: FC = () => {
 
     await getWords({ semester: semesters.latestSemesterCode })
 
-    getPreference()
+    await getPreference()
   }, [getWords, getSemesters, getPreference])
 
   return <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
