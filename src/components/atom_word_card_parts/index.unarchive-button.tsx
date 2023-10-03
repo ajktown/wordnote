@@ -1,22 +1,18 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import { FC, useCallback } from 'react'
-import { usePutWord } from '@/hooks/words/use-put-word.hook'
+import { FC } from 'react'
 import UnarchiveIcon from '@mui/icons-material/Unarchive'
+import { usePutWordArchive } from '@/hooks/words/use-put-word-archive.hook'
 
 interface Props {
   wordId: string
 }
 const WordCardUnarchiveButtonPart: FC<Props> = ({ wordId }) => {
-  const [loading, onPutWord] = usePutWord(wordId)
-  const onClick = useCallback(
-    () => onPutWord({ isArchived: false }),
-    [onPutWord],
-  )
+  const [loading, onPutWordArchive] = usePutWordArchive(wordId, false)
 
   return (
     <StyledIconButtonAtom
       isDisabled={loading}
-      onClick={onClick}
+      onClick={onPutWordArchive}
       jsxElementButton={<UnarchiveIcon />}
     />
   )
