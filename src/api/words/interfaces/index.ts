@@ -16,20 +16,20 @@ export interface WordData extends DataStatus, DataBasics {
   exampleLink: string
   tags: string[]
   dateAdded?: number
-}
-
-export interface PostWordReqDto {
-  languageCode: GlobalLanguageCode
-  isFavorite: boolean
-  term: string
-  pronunciation: string
-  definition: string
-  example: string
-  exampleLink: string
-  tags: string[]
+  isArchived: boolean
 }
 
 export type WordDataModifiable = Omit<WordData, 'id'>
+export type PostWordReqDto = Omit<
+  WordData,
+  | 'id' // handled by API
+  | 'userId' // handled by API
+  | 'languageCode' // handled by API
+  | 'semester' // handled by API
+  | 'dateAdded' // handled by API
+  | 'isDeleted' // word cannot be deleted when it is created
+  | 'createdAt' // handled by API
+>
 export type WordDataModifiableString = Omit<
   WordDataModifiable,
   'isFavorite' | 'languageCode'

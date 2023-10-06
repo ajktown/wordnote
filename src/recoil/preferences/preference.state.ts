@@ -5,6 +5,7 @@ import { IPreference } from '@/api/preferences/index.interface'
 /** Private Recoil Key */
 enum Prk {
   IsPreferenceDialogOpened = `IsPreferenceDialogOpened`,
+  IsShowingArchivedState = `IsShowingArchivedState`,
 }
 
 /** preferenceState holds signed in user's preference data.
@@ -23,5 +24,10 @@ export const preferenceState = atom<null | IPreference>({
 /** IsPreferenceDialogOpened represents if dialog is opened */
 export const isPreferenceDialogOpenedState = atom<boolean>({
   key: Rkp.Preferences + Prk.IsPreferenceDialogOpened,
+  default: false,
+})
+
+export const isShowingArchivedState = atom<boolean>({
+  key: Rkp.Preferences + Prk.IsShowingArchivedState,
   default: false,
 })

@@ -44,8 +44,6 @@ export const parseInputIntoWordLambda = (given: string): PostWordReqDto => {
   )
 
   return {
-    // TODO: Language code will be eventually modifiable
-    languageCode: `en`,
     term: term.trim(),
     pronunciation: pronunciation.trim(),
     definition: definition.trim(),
@@ -53,5 +51,6 @@ export const parseInputIntoWordLambda = (given: string): PostWordReqDto => {
     exampleLink: ``,
     isFavorite: false,
     tags,
+    isArchived: false, // every word parsed through is always non-archived
   }
 }

@@ -14,18 +14,18 @@ export const usePutWordFavorite = (wordId: string): UsePutWord => {
   const word = useRecoilValue(wordsFamily(wordId))
   const isFavoriteClicked = useRecoilValue(isFavoriteClickedSelector)
 
-  const handlePutWord = usePutWord(wordId)
+  const [, onPutWord] = usePutWord(wordId)
 
   const onClickFavoriteIcon = useCallback(async () => {
     if (word == null) return
 
     const modifyingTo = !word.isFavorite
-    await handlePutWord({ isFavorite: modifyingTo })
+    await onPutWord({ isFavorite: modifyingTo })
 
     if (!isFavoriteClicked) return
     if (modifyingTo) setTempIds([...tempIds].filter((id) => id !== word.id))
     else setTempIds([...tempIds, word.id])
-  }, [isFavoriteClicked, word, handlePutWord, tempIds, setTempIds])
+  }, [isFavoriteClicked, word, onPutWord, tempIds, setTempIds])
 
   return [word, onClickFavoriteIcon]
 }
