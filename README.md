@@ -36,7 +36,6 @@ You musth have permission to push to the repository.
 docker build -t ajktown/wordnote:latest .
 docker push ajktown/wordnote:latest
 kubectl apply -f k8s
-kubectl rollout restart deployment ajktown-wordnote --namespace=ajktown
 
 ```
 
