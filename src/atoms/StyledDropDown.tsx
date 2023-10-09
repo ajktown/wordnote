@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from 'react'
 import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
-import StyledDropDownStyle from './StyledDropDown.style'
+import StyledDropDownStyle from './StyledDropDownStyle'
 
 interface Item {
   id: string
