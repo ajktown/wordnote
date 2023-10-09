@@ -1,6 +1,6 @@
 import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
-import { usePutPreference } from '@/hooks/preference/use-put-preference.hook'
+import { usePutPreferenceNativeLanguage } from '@/hooks/preference/use-put-preference-native-language.hook'
 import { preferenceState } from '@/recoil/preferences/preference.state'
 import { Checkbox, FormControlLabel } from '@mui/material'
 import { FC } from 'react'
@@ -11,7 +11,8 @@ interface Props {
 }
 
 const PreferenceLanguageCheckbox: FC<Props> = ({ languageCode }) => {
-  const onPutPreference = usePutPreference(languageCode)
+  const onPutPreferenceNativeLanguage =
+    usePutPreferenceNativeLanguage(languageCode)
   const preference = useRecoilValue(preferenceState)
 
   return (
@@ -19,7 +20,7 @@ const PreferenceLanguageCheckbox: FC<Props> = ({ languageCode }) => {
       checked={preference?.nativeLanguages.includes(languageCode)}
       control={<Checkbox />}
       label={getLanguageFullName(languageCode)}
-      onChange={onPutPreference}
+      onChange={onPutPreferenceNativeLanguage}
     />
   )
 }
