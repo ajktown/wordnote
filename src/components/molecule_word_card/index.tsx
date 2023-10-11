@@ -18,6 +18,7 @@ import WordCardExamplePart from '../atom_word_card_parts/index.example'
 import WordCardArchiveButtonPart from '../atom_word_card_parts/index.archive-button'
 import WordCardUnarchiveButtonPart from '../atom_word_card_parts/index.unarchive-button'
 import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
+import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 
 interface Props {
   wordId: string
@@ -62,6 +63,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardDeleteButton wordId={wordId} />
           {!word.isArchived && <WordCardArchiveButtonPart wordId={wordId} />}
           {word.isArchived && <WordCardUnarchiveButtonPart wordId={wordId} />}
+          <WordCardShareButtonPart wordId={wordId} />
           <TagButtonChunk wordId={wordId} />
           <DictLinkButtonChunk wordId={wordId} />
         </CardActions>
