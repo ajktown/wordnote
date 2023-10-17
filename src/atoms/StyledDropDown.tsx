@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from 'react'
 import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
-import StyledDropDownStyle from './StyledDropDown.style'
+import StyledInputBase from './StyledInputBase'
 
 interface Item {
   id: string
@@ -37,7 +37,7 @@ const StyledDropDown: FC<Props> = ({
         value={props.selectedId || ``}
         disabled={props.disabled}
         onChange={handleChange}
-        input={<StyledDropDownStyle />}
+        input={<StyledInputBase />}
       >
         {props.items.map((item) => (
           <MenuItem
