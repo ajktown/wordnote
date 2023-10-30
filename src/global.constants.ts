@@ -2,6 +2,14 @@ import { GlobalCountryIsoCode, GlobalLanguageCode } from './global.interface'
 import ISO6391 from 'iso-639-1'
 import getUnicodeFlagIcon from 'country-flag-icons/unicode'
 
+interface ProtectedAvailableLanguage {
+  code: GlobalLanguageCode
+  name: string
+  nativeName: string
+  flagUnicode: string
+  nativeNameWithFlag: string
+}
+
 const PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY: [
   GlobalLanguageCode,
   GlobalCountryIsoCode,
@@ -13,24 +21,41 @@ const PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY: [
   [`fr`, GlobalCountryIsoCode.France],
 ]
 
-interface ProtectedAvailableLanguage {
-  code: GlobalLanguageCode
-  name: string
-  nativeName: string
-  flagUnicode: string
-  nativeNameWithFlag: string
-}
-export const PROTECTED_AVAILABLE_LANGUAGES: ProtectedAvailableLanguage[] =
+/** Only the list that PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY has */
+export const PROTECTED_AVAILABLE_LANGUAGE_MAP = new Map<
+  GlobalLanguageCode,
+  ProtectedAvailableLanguage
+>(
   PRIVATE_ACCEPTING_LANGUAGE_CODE_N_COUNTRY.map(
     ([languageCode, countryCode]) => {
       const nativeName = ISO6391.getNativeName(languageCode)
       const flagUnicode = getUnicodeFlagIcon(countryCode)
-      return {
-        code: languageCode,
-        name: ISO6391.getName(languageCode),
-        nativeName,
-        flagUnicode,
-        nativeNameWithFlag: flagUnicode + ` ` + nativeName,
-      }
+
+      return [
+        languageCode,
+        {
+          code: languageCode,
+          name: ISO6391.getName(languageCode),
+          nativeName,
+          flagUnicode,
+          nativeNameWithFlag: flagUnicode + ` ` + nativeName,
+        },
+      ]
     },
-  )
+  ),
+)
+
+/** Returns the full name of a language in its NATIVE Language
+ * ko => 한국어
+ * ja => 日本語
+ * zh => 中文
+ * en => English
+ */
+export const getLanguageFullName = (
+  languageCode: GlobalLanguageCode,
+): string => {
+  const got = PROTECTED_AVAILABLE_LANGUAGE_MAP.get(languageCode)
+  if (got !== undefined) return got.nativeNameWithFlag
+
+  return `Unsupported Language`
+}

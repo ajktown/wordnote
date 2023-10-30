@@ -6,12 +6,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Checkbox,
-  FormControlLabel,
   FormGroup,
 } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
+import PreferenceLanguageCheckbox from '../atom_preference_language_checkbox'
 
 const PreferenceDialog: FC = () => {
   const isPreferenceDialogOpened = useRecoilValue(isPreferenceDialogOpenedState)
@@ -32,10 +31,10 @@ const PreferenceDialog: FC = () => {
           {`Any changes will be automatically saved to the cloud`}
         </DialogContentText>
         <FormGroup>
-          <FormControlLabel control={<Checkbox />} label="English" />
-          <FormControlLabel control={<Checkbox />} label="Chinese" />
-          <FormControlLabel control={<Checkbox />} label="Japanese" />
-          <FormControlLabel control={<Checkbox />} label="Korean" />
+          <PreferenceLanguageCheckbox languageCode="en" />
+          <PreferenceLanguageCheckbox languageCode="zh" />
+          <PreferenceLanguageCheckbox languageCode="ja" />
+          <PreferenceLanguageCheckbox languageCode="ko" />
         </FormGroup>
       </DialogContent>
       <DialogActions>

@@ -1,17 +1,10 @@
 import StyledTagButtonAtom from '@/atoms/StyledTagButton'
-import { PROTECTED_AVAILABLE_LANGUAGES } from '@/global.constants'
+import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { selectedLanguageTagsSelector } from '@/recoil/words/words.selectors'
 import { FC, useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
-
-const getLabel = (languageCode: GlobalLanguageCode) => {
-  for (const { code, nativeNameWithFlag } of PROTECTED_AVAILABLE_LANGUAGES) {
-    if (languageCode === code) return nativeNameWithFlag
-  }
-  return `Unknown`
-}
 
 interface Props {
   languageCode: GlobalLanguageCode
@@ -36,7 +29,7 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
 
   return (
     <StyledTagButtonAtom
-      label={getLabel(languageCode)}
+      label={getLanguageFullName(languageCode)}
       onClick={onClick}
       loading={loading}
       style={{
