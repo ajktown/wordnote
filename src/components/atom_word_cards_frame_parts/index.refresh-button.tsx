@@ -12,14 +12,21 @@ const WordCardsFrameRefreshButtonPart: FC = () => {
   const getPreference = usePreference()
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
 
-  const onClickRefresh = useCallback(async () => {
+  /**
+   * Sync words with the API Server. If selectedSemester is undefined,
+   * the API will understand and return the latest semester.
+   */
+  const onGetWordsSync = useCallback(async () => {
     const semesters = await getSemesters()
-    if (!semesters.latestSemesterCode) return
+    if (!semesters.latestSemesterCode) return // User has never created word even once.
 
     await getWords({ semester: selectedSemester })
+  }, [selectedSemester, getSemesters, getWords])
 
-    await getPreference()
-  }, [getWords, getSemesters, getPreference, selectedSemester])
+  const onClickRefresh = useCallback(async () => {
+    // run all together
+    await Promise.all([onGetWordsSync(), getPreference()])
+  }, [onGetWordsSync, getPreference])
 
   return <StyledCloudRefresher onClick={onClickRefresh} runOnClickOnce />
 }
