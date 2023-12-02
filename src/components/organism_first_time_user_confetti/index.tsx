@@ -2,13 +2,13 @@ import { FC } from 'react'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 import { useRecoilValue } from 'recoil'
-import { authPrepState } from '@/recoil/app/app.state'
+import { isFirstTimeUserSelector } from '@/recoil/app/app.selectors'
 
 const FirstTimeUserConfetti: FC = () => {
   const { width, height } = useWindowSize()
-  const authPrep = useRecoilValue(authPrepState)
+  const isFirstTimeUser = useRecoilValue(isFirstTimeUserSelector)
 
-  if (!authPrep?.signedInUserInfo?.isFirstTimeUser) return null
+  if (!isFirstTimeUser) return null
   return <Confetti width={width} height={height} recycle={false} />
 }
 
