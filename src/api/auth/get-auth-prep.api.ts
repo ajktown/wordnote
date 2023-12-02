@@ -1,10 +1,16 @@
 import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
 
-interface IOauthPayload {
+interface IOauthPayloadNonDb {
+  timezone: string
+  isFirstTimeUser: boolean
+}
+
+interface IOauthPayload extends IOauthPayloadNonDb {
   userEmail: string
   userId: string
   profileImageUrl: string
+  createdAt: string // ISOString
 }
 
 interface GetAuthPrepEnvInfo {
