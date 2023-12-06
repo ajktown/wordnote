@@ -3,17 +3,20 @@ import { DataBasics, DataStatus } from '../../index.interface'
 
 // TODO: Change the file name interfaces -> interface
 
-export interface WordData extends DataStatus, DataBasics {
-  id: string
-  userId: string
+export interface ISharedWord {
   languageCode: GlobalLanguageCode
-  semester: number
-  isFavorite: boolean
   term: string
   pronunciation: string
   definition: string
   example: string
   exampleLink: string
+}
+
+export interface WordData extends ISharedWord, DataStatus, DataBasics {
+  id: string
+  userId: string
+  semester: number
+  isFavorite: boolean
   tags: string[]
   dateAdded?: number
   isArchived: boolean
