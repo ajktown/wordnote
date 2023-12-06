@@ -1,12 +1,17 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import { FC, useCallback } from 'react'
+import { FC } from 'react'
 import ShareIcon from '@mui/icons-material/Share'
+import { useRecoilCallback } from 'recoil'
+import { sharedWordIdState } from '@/recoil/shared-resource/shared-resource.state'
 interface Props {
   wordId: string
 }
 const WordCardShareButtonPart: FC<Props> = ({ wordId }) => {
-  const onClick = useCallback(
-    () => console.log(`TODO: Write a real onClick() for word ` + wordId),
+  const onClick = useRecoilCallback(
+    ({ set }) =>
+      () => {
+        set(sharedWordIdState, wordId)
+      },
     [wordId],
   )
 

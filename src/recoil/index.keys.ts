@@ -3,6 +3,7 @@ export enum Rkp {
   App = `App`,
   Words = `Words`,
   Preferences = `Preferences`,
+  SharedResource = `SharedResource`,
   Tags = `Tags`,
   Semesters = `Semesters`,
   SearchInput = `SearchInput`,
