@@ -8,7 +8,7 @@ import {
 export const postSharedResourceApi = async (
   reqDto: PostSharedResourceReqDTO,
 ): Promise<CustomizedAxiosResponse<PostSharedResourceResDTO>> => {
-  const url = `/v1/shared-resources` // TODO: Check the path
+  const url = `/v1/shared-resource`
   const res = await axios.post(url, reqDto)
   return [res.data, res]
 }
