@@ -11,5 +11,5 @@ enum Prk {
  */
 export const sharedWordIdState = atom<string>({
   key: Rkp.SharedResource + Prk.SharedWordId,
-  default: "",
+  default: ``,
 })
