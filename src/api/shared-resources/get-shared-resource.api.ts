@@ -12,7 +12,7 @@ interface GetSharedResourcesQueryDTO {
   wordId: undefined | string
 }
 
-interface GetSharedResourceRes {
+export interface GetSharedResourceRes {
   sharedResource: ISharedResource
   word: null | ISharedWord
 }
