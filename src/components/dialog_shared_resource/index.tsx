@@ -8,7 +8,7 @@ import StyledDialogLoading from '@/organisms/StyledDialogLoading'
 import StyledDialog from '@/organisms/StyledDialog'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { postSharedResourceApi } from '@/api/shared-resources/post-shared-resource.api'
-import WordCard from '../molecule_word_card'
+import WordCardShared from '../molecule_word_card/index.shared'
 
 const SharedResourceDialog: FC = () => {
   const sharedWordId = useRecoilValue(sharedWordIdState)
@@ -51,10 +51,9 @@ const SharedResourceDialog: FC = () => {
       </StyledDialog>
     )
 
-  // TODO: There should be a wordcard just for the ISharedWord
   return (
     <StyledDialog onClose={onClose}>
-      <WordCard wordId={sharedWordId} />
+      <WordCardShared wordId={sharedWordId} />
     </StyledDialog>
   )
 }
