@@ -16,7 +16,7 @@ const SharedResourceDialog: FC = () => {
     return (
       <StyledDialogLoading visuals={{ maxWidth: `xs` }} onClose={onClose} />
     )
-  if (sharedWord === null) return <h2> Loaded, but not exist or something</h2>
+  if (sharedWord === null) return <h2> Wanna create a new shared word?</h2>
   return <h2>Shared Word Card Status</h2>
 }
 
