@@ -3,11 +3,10 @@ import { Card, CardActions, CardContent, Typography } from '@mui/material'
 import { useRecoilValue } from 'recoil'
 import WordCardUnknown from './index.unknown'
 import StyledSuspense from '@/organisms/StyledSuspense'
-import TagButtonChunk from '../molecule_tag_button_chunk'
-import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
 import WordCardExamplePart from '../atom_word_card_parts/index.example'
 import { sharedWordFamily } from '@/recoil/shared-resource/shared-resource.state'
 import WordCardSkeleton from './index.skeleton'
+import TagButtonLanguage from '../atom_tag_button/index.language'
 
 interface Props {
   wordId: string
@@ -35,8 +34,7 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
           <WordCardExamplePart word={sharedWord} />
         </CardContent>
         <CardActions>
-          <TagButtonChunk wordId={wordId} />
-          <DictLinkButtonChunk wordId={wordId} />
+          <TagButtonLanguage languageCode={sharedWord.languageCode} />
         </CardActions>
       </Card>
     </StyledSuspense>
