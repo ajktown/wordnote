@@ -1,23 +1,62 @@
-import { FC } from 'react'
-import { useRecoilValue, useResetRecoilState } from 'recoil'
+import { FC, useState } from 'react'
+import { useRecoilCallback, useRecoilValue, useResetRecoilState } from 'recoil'
 import {
   sharedWordFamily,
   sharedWordIdState,
 } from '@/recoil/shared-resource/shared-resource.state'
 import StyledDialogLoading from '@/organisms/StyledDialogLoading'
+import StyledDialog from '@/organisms/StyledDialog'
+import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { postSharedResourceApi } from '@/api/shared-resources/post-shared-resource.api'
+import WordCard from '../molecule_word_card'
 
 const SharedResourceDialog: FC = () => {
   const sharedWordId = useRecoilValue(sharedWordIdState)
-  const onClose = useResetRecoilState(sharedWordIdState)
   const sharedWord = useRecoilValue(sharedWordFamily(sharedWordId))
+  const onClose = useResetRecoilState(sharedWordIdState)
+  const [posting, setPosting] = useState(false)
+
+  const onClick = useRecoilCallback(
+    ({ set }) =>
+      async () => {
+        setPosting(true)
+        set(sharedWordIdState, sharedWordId)
+        try {
+          const [data] = await postSharedResourceApi({
+            wordId: sharedWordId,
+            expireAfterSecs: 240,
+          })
+          set(sharedWordFamily(sharedWordId), data.word)
+        } catch {
+          set(sharedWordFamily(sharedWordId), null)
+        } finally {
+          setPosting(false)
+        }
+      },
+    [sharedWordId],
+  )
 
   if (!sharedWordId) return null
-  if (sharedWord === undefined)
+
+  if (sharedWord === undefined) return <StyledDialogLoading />
+
+  if (sharedWord === null)
     return (
-      <StyledDialogLoading visuals={{ maxWidth: `xs` }} onClose={onClose} />
+      <StyledDialog onClose={onClose}>
+        <StyledTextButtonAtom
+          title={`Wanna create new one?`}
+          onClick={onClick}
+          isLoading={posting}
+        />
+      </StyledDialog>
     )
-  if (sharedWord === null) return <h2> Wanna create a new shared word?</h2>
-  return <h2>Shared Word Card Status</h2>
+
+  // TODO: There should be a wordcard just for the ISharedWord
+  return (
+    <StyledDialog onClose={onClose}>
+      <WordCard wordId={sharedWordId} />
+    </StyledDialog>
+  )
 }
 
 export default SharedResourceDialog

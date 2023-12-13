@@ -18,9 +18,9 @@ export interface GetSharedResourceRes {
 }
 
 export const getSharedResourceApi = async (
-  reqDto: GetSharedResourcesQueryDTO,
+  params: GetSharedResourcesQueryDTO,
 ): Promise<CustomizedAxiosResponse<GetSharedResourceRes>> => {
   const url = `/v1/shared-resource`
-  const res = await axios.post(url, reqDto)
+  const res = await axios.get(url, { params })
   return [res.data, res]
 }
