@@ -1,9 +1,11 @@
-import { atom } from 'recoil'
-import { Rkp } from '@/recoil/index.keys'
+import { atom, atomFamily } from 'recoil'
+import { Rkp, Rks } from '@/recoil/index.keys'
+import { ISharedWord } from '@/api/words/interfaces'
 
 /** Private Recoil Key */
 enum Prk {
   SharedWordId = `SharedWordId`,
+  SharedWord = `SharedWord`,
 }
 
 /**
@@ -12,4 +14,14 @@ enum Prk {
 export const sharedWordIdState = atom<string>({
   key: Rkp.SharedResource + Prk.SharedWordId,
   default: ``,
+})
+
+type SharedWordFamily =
+  | undefined // not requested (loading)
+  | null // loaded, but not exist
+  | ISharedWord
+
+export const sharedWordFamily = atomFamily<SharedWordFamily, string>({
+  key: Rkp.SharedResource + Prk.SharedWord + Rks.Family,
+  default: undefined,
 })
