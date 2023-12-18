@@ -45,7 +45,10 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
           <WordCardExamplePart word={sharedWord} />
         </CardContent>
         <CardActions>
-          <TagButtonLanguage languageCode={sharedWord.languageCode} />
+          <TagButtonLanguage
+            languageCode={sharedWord.languageCode}
+            clickDisabled
+          />
           <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
         </CardActions>
       </Card>
