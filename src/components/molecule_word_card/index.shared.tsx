@@ -10,6 +10,7 @@ import TagButtonLanguage from '../atom_tag_button/index.language'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { PageConst } from '@/constants/pages.constant'
 import { PageQueryConst } from '@/constants/page-queries.constant'
+import StyledCountdownTimer from '@/atoms/StyledCountdownTimer'
 
 interface Props {
   wordId: string
@@ -26,30 +27,34 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
   }, [wordId])
 
   if (sharedWord === undefined) return <WordCardSkeleton />
-  if (sharedWord === null) return <WordCardUnknown />
+  if (sharedWord === null || sharedWord.word === null)
+    return <WordCardUnknown />
 
   return (
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
           <Typography variant="h5" component="div">
-            {sharedWord.term}
+            {sharedWord.word.term}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {sharedWord.pronunciation}
+            {sharedWord.word.pronunciation}
           </Typography>
           <Typography variant="body2">
-            {sharedWord.definition}
+            {sharedWord.word.definition}
             <br />
           </Typography>
-          <WordCardExamplePart word={sharedWord} />
+          <WordCardExamplePart word={sharedWord.word} />
         </CardContent>
         <CardActions>
           <TagButtonLanguage
-            languageCode={sharedWord.languageCode}
+            languageCode={sharedWord.word.languageCode}
             clickDisabled
           />
           <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
+          <StyledCountdownTimer
+            targetTime={sharedWord.sharedResource.expireInSecs}
+          />
         </CardActions>
       </Card>
     </StyledSuspense>

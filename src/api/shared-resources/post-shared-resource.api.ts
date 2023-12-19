@@ -1,17 +1,13 @@
 import axios from 'axios'
 import { CustomizedAxiosResponse } from '../index.interface'
-import { ISharedResource } from './index.interface'
-import { ISharedWord } from '../words/interfaces'
+import { GetSharedResourceRes } from './get-shared-resource.api'
 
 interface PostSharedResourceReqDTO {
   wordId: undefined | string
   expireAfterSecs: undefined | number
 }
 
-interface PostSharedResourceRes {
-  postedSharedResource: ISharedResource
-  word: null | ISharedWord
-}
+type PostSharedResourceRes = GetSharedResourceRes
 
 export const postSharedResourceApi = async (
   reqDto: PostSharedResourceReqDTO,

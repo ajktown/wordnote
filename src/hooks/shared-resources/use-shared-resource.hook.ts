@@ -18,7 +18,8 @@ export const useSharedResource = (wordId: any) => {
             id: undefined,
             wordId,
           })
-          set(sharedWordFamily(wordId), data.word)
+          if (data.word === null) throw new Error(`Not Found`)
+          set(sharedWordFamily(wordId), data)
         } catch {
           set(sharedWordFamily(wordId), null)
         }

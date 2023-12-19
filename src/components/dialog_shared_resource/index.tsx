@@ -26,7 +26,7 @@ const SharedResourceDialog: FC = () => {
             wordId: sharedWordId,
             expireAfterSecs: 240,
           })
-          set(sharedWordFamily(sharedWordId), data.word)
+          set(sharedWordFamily(sharedWordId), data)
         } catch {
           set(sharedWordFamily(sharedWordId), null)
         } finally {
