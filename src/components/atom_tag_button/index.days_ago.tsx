@@ -44,6 +44,7 @@ const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
   const onClick = useCallback(async () => {
     try {
       await getWords({
+        isFavorite: undefined,
         daysAgo: daysAgo === selectedDaysAgo ? undefined : daysAgo,
       })
     } catch {}
