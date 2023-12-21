@@ -26,7 +26,7 @@ const StyledCountdownTimer: FC<Props> = ({ targetTime }) => {
   }, [calculateTimeLeft])
 
   if (timeLeft === 0) return <Typography>{`Time Left: Expired`}</Typography>
-  return <Typography>{`Time Left: ${timeLeft}`}</Typography>
+  return <Typography>{`Time Left: ${timeLeft}s`}</Typography>
 }
 
 export default StyledCountdownTimer
