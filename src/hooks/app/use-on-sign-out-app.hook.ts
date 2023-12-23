@@ -11,11 +11,15 @@ export const useOnSignOutApp = () => {
   const onSignOutApp = useRecoilCallback(
     ({ reset }) =>
       async () => {
-        await postSignOut()
-        reset(wordIdsState)
-        reset(preferenceState)
-        router.push(PageConst.Welcome)
-        // TODO: Should set a snackbar for a reason.
+        try {
+          await postSignOut()
+        } finally {
+          reset(wordIdsState)
+          reset(preferenceState)
+          router.push(PageConst.Welcome)
+
+          // TODO: Should set a snackbar for a reason.
+        }
       },
     [router],
   )
