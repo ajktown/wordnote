@@ -15,8 +15,9 @@ export const useIsAppBooted = (): boolean => {
   const onAppBooting = useRecoilCallback(
     () => async () => {
       try {
-        const authPrep = await onGetAuthPrep()
-        if (!authPrep || !authPrep.isSignedIn) throw new Error(`Not Signed In`)
+        if (!(await onGetAuthPrep())?.isSignedIn)
+          throw new Error(`Not Signed In`)
+
         router.push(DEFAULT_MAIN_APP_PAGE)
       } catch {
         await handleSignOutApp()
