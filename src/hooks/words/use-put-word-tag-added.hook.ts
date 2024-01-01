@@ -32,10 +32,12 @@ export const usePutWordTagAdded = (
           const semesterDetails = await snapshot.getPromise(
             semesterDetailsFamily(wordData.semester),
           )
-          set(semesterDetailsFamily(wordData.semester), {
-            ...semesterDetails,
-            tags: Array.from(new Set([...semesterDetails.tags, newTagName])),
-          })
+          if (semesterDetails) {
+            set(semesterDetailsFamily(wordData.semester), {
+              ...semesterDetails,
+              tags: Array.from(new Set([...semesterDetails.tags, newTagName])),
+            })
+          }
 
           if (callback) callback()
         } finally {
