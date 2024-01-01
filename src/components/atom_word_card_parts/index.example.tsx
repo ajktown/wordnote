@@ -6,6 +6,7 @@ import { Typography } from '@mui/material'
 const PRIVATE_VARIANT = `body2`
 interface Props {
   word: WordData
+  reviewMode?: boolean // if review mode, it shows "???"
 }
 /**
  * @returns
@@ -14,9 +15,12 @@ interface Props {
  *   If exampleLink exists, but example does not exist, return Sample Example (Handles 2 cases)
  *   If both exampleLink and example exist, return example with link (Handles 2 cases)
  */
-const WordCardExamplePart: FC<Props> = ({ word }) => {
+const WordCardExamplePart: FC<Props> = ({ word, reviewMode }) => {
   const exampleTrimmed = word.example.trim()
   const linkExampleTrimmed = word.exampleLink.trim()
+
+  if (reviewMode)
+    return <Typography variant={PRIVATE_VARIANT}>{`???`}</Typography>
 
   if (!exampleTrimmed && linkExampleTrimmed)
     return (
