@@ -30,6 +30,7 @@ export const isShowingArchivedState = atom<boolean>({
   default: false,
 })
 
+/** isReviewModeState represents if end user is using ReviewMode */
 export const isReviewModeState = atom<boolean>({
   key: Rkp.Preferences + Prk.IsReviewModeState,
   default: false,
