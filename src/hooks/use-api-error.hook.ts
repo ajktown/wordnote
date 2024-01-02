@@ -1,7 +1,7 @@
 import { CustomizedApiError } from '@/errors'
 import { isApiConnectFailed } from '@/recoil/apis/error-api-connection-fail.state'
 import { useRecoilCallback } from 'recoil'
-import { useOnSignOutApp } from './app/use-on-sign-out-app.hook'
+import { useOnSignOutApp } from './app/use-on-sign-out-app.hook'
 
 type HandleApiError = (err: unknown) => any
 
