@@ -19,21 +19,24 @@ const WordCardsFrameReviewModePart: FC = () => {
       },
     [isReviewMode],
   )
-  const hoverMessage = useMemo(() => {
-    return {
+  const hoverMessage = useMemo(
+    () => ({
       title: isReviewMode
         ? `Show everything`
         : `Hide everything except meanings`,
-    }
-  }, [isReviewMode])
+    }),
+    [isReviewMode],
+  )
 
-  const jsxElementButton = useMemo(() => {
-    return isReviewMode ? (
-      <ReviewModeToOn fontSize="small" />
-    ) : (
-      <ReviewModeToOff fontSize="small" />
-    )
-  }, [isReviewMode])
+  const jsxElementButton = useMemo(
+    () =>
+      isReviewMode ? (
+        <ReviewModeToOn fontSize="small" />
+      ) : (
+        <ReviewModeToOff fontSize="small" />
+      ),
+    [isReviewMode],
+  )
 
   return (
     <StyledIconButtonAtom
