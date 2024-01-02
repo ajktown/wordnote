@@ -12,30 +12,30 @@ interface Props {
 }
 
 const WordCardReviewMode: FC<Props> = ({ word }) => {
-  const [isPeakMode, setPeakMode] = useState(false)
+  const [isPeekMode, setPeekMode] = useState(false)
 
   return (
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
           <Typography variant="h5" component="div">
-            {isPeakMode ? word.term : `???`}
+            {isPeekMode ? word.term : `???`}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {isPeakMode ? word.pronunciation : `???`}
+            {isPeekMode ? word.pronunciation : `???`}
           </Typography>
           <Typography variant="body2">
             {word.definition}
             <br />
           </Typography>
-          <WordCardExamplePart word={word} reviewMode={!isPeakMode} />
+          <WordCardExamplePart word={word} reviewMode={!isPeekMode} />
         </CardContent>
         <CardActions>
           <WordCardFavoriteIcon wordId={word.id} />
           <StyledVisibilityAtom
-            isVisible={!isPeakMode}
-            onClick={() => setPeakMode(!isPeakMode)}
-            visibleHoverMessage={`Peak this Wordcard`}
+            isVisible={!isPeekMode}
+            onClick={() => setPeekMode(!isPeekMode)}
+            visibleHoverMessage={`Peek this Wordcard`}
           />
           <TagButtonChunk wordId={word.id} />
         </CardActions>
