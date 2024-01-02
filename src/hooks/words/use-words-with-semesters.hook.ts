@@ -16,10 +16,14 @@ export const useWordsWithSemesters = () => {
   const onGetSemesters = useSemesters()
 
   const onGetWordsWithSemesters = useCallback(async () => {
-    const semesters = await onGetSemesters()
-    if (!semesters.latestSemesterCode) return // User has never created word even once.
+    try {
+      const { latestSemesterCode } = await onGetSemesters()
 
-    await onGetWords({ semester: selectedSemester })
+      // If user has selected semester at least once, we should refresh the semester.
+      if (selectedSemester) onGetWords({ semester: selectedSemester })
+      // If not, it should select the latest semester.
+      else onGetWords({ semester: latestSemesterCode }) // User has never created word even once.
+    } catch {}
   }, [selectedSemester, onGetSemesters, onGetWords])
 
   return onGetWordsWithSemesters
