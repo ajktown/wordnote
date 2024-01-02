@@ -1,9 +1,7 @@
-import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import ReviewModeToOff from '@mui/icons-material/VisibilityOff'
-import ReviewModeToOn from '@mui/icons-material/Visibility'
 import { isReviewModeState } from '@/recoil/preferences/preference.state'
+import StyledVisibilityAtom from '@/atoms/StyledVisibility'
 /**
  * When you click it, the Wordnote becomes a review mode.
  * Use-cases
@@ -19,30 +17,13 @@ const WordCardsFrameReviewModePart: FC = () => {
       },
     [isReviewMode],
   )
-  const hoverMessage = useMemo(
-    () => ({
-      title: isReviewMode
-        ? `Show everything`
-        : `Hide everything except meanings`,
-    }),
-    [isReviewMode],
-  )
-
-  const jsxElementButton = useMemo(
-    () =>
-      isReviewMode ? (
-        <ReviewModeToOn fontSize="small" />
-      ) : (
-        <ReviewModeToOff fontSize="small" />
-      ),
-    [isReviewMode],
-  )
 
   return (
-    <StyledIconButtonAtom
+    <StyledVisibilityAtom
+      isVisible={isReviewMode}
       onClick={onClick}
-      jsxElementButton={jsxElementButton}
-      hoverMessage={hoverMessage}
+      visibleHoverMessage={`Show everything`}
+      invisibleHoverMessage={`Hide everything except meanings`}
     />
   )
 }
