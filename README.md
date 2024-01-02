@@ -1,7 +1,5 @@
 # Wordnote
 
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/8244/badge)](https://bestpractices.coreinfrastructure.org/projects/8244)
-
 <!-- TOC -->
 
 - [Wordnote](#wordnote)
