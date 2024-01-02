@@ -19,9 +19,14 @@ const WordCardsFrameReviewModePart: FC = () => {
       },
     [isReviewMode],
   )
-  const hoverMessage = {
-    title: isReviewMode ? `Show everything` : `Hide everything except meanings`,
-  }
+  const hoverMessage = useMemo(() => {
+    return {
+      title: isReviewMode
+        ? `Show everything`
+        : `Hide everything except meanings`,
+    }
+  }, [isReviewMode])
+
   const jsxElementButton = useMemo(() => {
     return isReviewMode ? (
       <ReviewModeToOn fontSize="small" />
