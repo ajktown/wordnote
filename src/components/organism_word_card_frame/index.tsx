@@ -12,6 +12,7 @@ import WordCardsFramePreferenceButtonPart from '../atom_word_cards_frame_parts/i
 import WordCardsFrameArchiveSwitchPart from '../atom_word_cards_frame_parts/index.archive-switch'
 import WordCardsFrameArchiveModePart from '../atom_word_cards_frame_parts/index.archive-mode'
 import SharedResourceDialog from '../dialog_shared_resource'
+import WordCardsFrameReviewModePart from '../atom_word_cards_frame_parts/index.review-mode'
 
 const WordCardFrame: FC = () => {
   return (
@@ -20,6 +21,7 @@ const WordCardFrame: FC = () => {
         {/* Header */}
         <Stack direction="row" spacing={0.7} alignItems="center">
           <Box flexGrow={1} />
+          <WordCardsFrameReviewModePart />
           <WordCardsFrameArchiveSwitchPart />
           <WordCardsFrameSurfingButtonPart />
           <WordCardsFrameRefreshButtonPart />

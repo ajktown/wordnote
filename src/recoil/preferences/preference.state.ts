@@ -6,6 +6,7 @@ import { IPreference } from '@/api/preferences/index.interface'
 enum Prk {
   IsPreferenceDialogOpened = `IsPreferenceDialogOpened`,
   IsShowingArchivedState = `IsShowingArchivedState`,
+  IsReviewModeState = `IsReviewModeState`,
 }
 
 /** preferenceState holds signed in user's preference data.
@@ -23,7 +24,14 @@ export const isPreferenceDialogOpenedState = atom<boolean>({
   default: false,
 })
 
+/** isShowingArchivedState represents if end user wants to see the archived words only or not */
 export const isShowingArchivedState = atom<boolean>({
   key: Rkp.Preferences + Prk.IsShowingArchivedState,
+  default: false,
+})
+
+/** isReviewModeState represents if end user is using ReviewMode */
+export const isReviewModeState = atom<boolean>({
+  key: Rkp.Preferences + Prk.IsReviewModeState,
   default: false,
 })

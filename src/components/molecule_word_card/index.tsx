@@ -17,7 +17,11 @@ import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
 import WordCardExamplePart from '../atom_word_card_parts/index.example'
 import WordCardArchiveButtonPart from '../atom_word_card_parts/index.archive-button'
 import WordCardUnarchiveButtonPart from '../atom_word_card_parts/index.unarchive-button'
-import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
+import {
+  isReviewModeState,
+  isShowingArchivedState,
+} from '@/recoil/preferences/preference.state'
+import WordCardReviewMode from './index.review_mode'
 import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 
 interface Props {
@@ -30,6 +34,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   const setSelectedWordIdForDialog = useSetRecoilState(
     selectedWordIdForDialogState,
   )
+  const isReviewMode = useRecoilValue(isReviewModeState)
 
   const handleClickWordCard = useCallback(() => {
     !editingMode && setSelectedWordIdForDialog(wordId)
@@ -41,6 +46,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   if (!word.isArchived && isShowingArchived) return null
   if (word.isDeleted) return <WordCardDeleted wordId={wordId} />
   if (editingMode) return <WordCardEditingMode wordId={wordId} />
+  if (isReviewMode) return <WordCardReviewMode word={word} />
 
   return (
     <StyledSuspense>
