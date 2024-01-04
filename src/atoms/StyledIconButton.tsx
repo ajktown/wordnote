@@ -52,7 +52,6 @@ const StyledIconButtonAtom: FC<PropsStyledIconButtonAtom> = ({
           onClick={handleClick}
           disabled={isDisabled}
           style={{
-            color: buttonColor,
             cursor:
               isDisabled && props.hoverMessage?.title ? `help` : undefined,
           }}
