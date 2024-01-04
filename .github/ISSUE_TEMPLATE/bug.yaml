@@ -1,5 +1,5 @@
-name: Bug Report
-description: Report a bug encountered while using Wordnote - AJK Town
+name: Bug
+description: Report a bug encountered while using the project
 labels:
   - bug
 body:
@@ -27,6 +27,10 @@ body:
       required: true
 
   - type: textarea
-    id: additional
+    id: todos
     attributes:
-      label: Anything else we need to know?
+      label: TODOs
+      value: |
+        ```
+        - [ ] TODO: Write your TODOs here
+        ```
