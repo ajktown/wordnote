@@ -44,6 +44,9 @@ const StyledIconButtonAtom: FC<PropsStyledIconButtonAtom> = ({
       placement={props.hoverMessage?.placement || `bottom`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={{
+        cursor: isDisabled && props.hoverMessage?.title ? `help` : undefined,
+      }}
     >
       <span>
         <IconButton
