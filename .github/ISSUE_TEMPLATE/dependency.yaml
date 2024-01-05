@@ -1,5 +1,5 @@
 name: Dependency
-description: Dependency versions updates for the project
+description: Update dependency versions for the project
 labels:
   - dependency
 body:
