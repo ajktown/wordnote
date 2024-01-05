@@ -1,5 +1,5 @@
 name: Dependency
-description: Refactor codes/structure for the project
+description: Dependency versions updates for the project
 labels:
   - dependency
 body:
