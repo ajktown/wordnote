@@ -4,7 +4,7 @@ labels:
   - infra
 body:
   - type: textarea
-    id: infrastructure
+    id: background
     attributes:
       label: Background
       description: |

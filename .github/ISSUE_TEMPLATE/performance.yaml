@@ -4,7 +4,7 @@ labels:
   - performance
 body:
   - type: textarea
-    id: performance
+    id: background
     attributes:
       label: Background
       description: |

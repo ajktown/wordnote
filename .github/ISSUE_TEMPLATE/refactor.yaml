@@ -4,7 +4,7 @@ labels:
   - refactor
 body:
   - type: textarea
-    id: refactor
+    id: background
     attributes:
       label: What would you like to be refactored?
       description: |

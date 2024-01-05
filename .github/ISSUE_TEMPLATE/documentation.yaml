@@ -4,7 +4,7 @@ labels:
   - documentation
 body:
   - type: textarea
-    id: documentation
+    id: background
     attributes:
       label: Background
       description: |
