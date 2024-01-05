@@ -6,8 +6,9 @@ body:
   - type: textarea
     id: background
     attributes:
-      label: What would you like to be refactored?
+      label: Background
       description: |
+        What would you like to be refactored?
         Please provide as much info as possible
     validations:
       required: true
