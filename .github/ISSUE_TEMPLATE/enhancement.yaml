@@ -4,18 +4,12 @@ labels:
   - enhancement
 body:
   - type: textarea
-    id: feature
+    id: background
     attributes:
-      label: What would you like to be added?
+      label: Background
       description: |
-        Please provide as much info as possible
-    validations:
-      required: true
-
-  - type: textarea
-    id: rationale
-    attributes:
-      label: Why is this needed?
+        Before explain the feature, please provide some background and lacking points.
+        What is lacking? What is needed? Why is it needed?
     validations:
       required: true
 
