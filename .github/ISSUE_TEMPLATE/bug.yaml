@@ -4,10 +4,11 @@ labels:
   - bug
 body:
   - type: textarea
-    id: problem
+    id: background
     attributes:
-      label: What happened?
+      label: Background
       description: |
+        What happened?
         Please provide as much info as possible. Not doing so may result in your bug not being addressed in a timely manner.
     validations:
       required: true

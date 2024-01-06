@@ -4,10 +4,11 @@ labels:
   - performance
 body:
   - type: textarea
-    id: performance
+    id: background
     attributes:
-      label: What would you like to be changed for the improved performance?
+      label: Background
       description: |
+        What would you like to be changed for the improved performance?
         Please provide as much info as possible
     validations:
       required: true

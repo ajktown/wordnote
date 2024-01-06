@@ -4,18 +4,12 @@ labels:
   - infra
 body:
   - type: textarea
-    id: infrastructure
+    id: background
     attributes:
-      label: What would you like to be added for CI/CD?
+      label: Background
       description: |
+        What would you like to be added for CI/CD?
         Please provide as much info as possible
-    validations:
-      required: true
-
-  - type: textarea
-    id: rationale
-    attributes:
-      label: Why is this needed?
     validations:
       required: true
 

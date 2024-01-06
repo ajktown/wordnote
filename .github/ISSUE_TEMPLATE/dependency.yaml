@@ -1,13 +1,14 @@
 name: Dependency
-description: Dependency versions updates for the project
+description: Update dependency versions for the project
 labels:
   - dependency
 body:
   - type: textarea
-    id: documentation
+    id: background
     attributes:
-      label: What would you like to be refactored?
+      label: Background
       description: |
+        What would you like to be refactored?
         Please provide as much info as possible
     validations:
       required: true
