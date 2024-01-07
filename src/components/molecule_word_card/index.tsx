@@ -35,7 +35,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   )
   const isReviewMode = useRecoilValue(isReviewModeState)
 
-  const handleClickWordCard = useCallback(() => {
+  const onClickWordCard = useCallback(() => {
     !editingMode && setSelectedWordIdForDialog(wordId)
   }, [editingMode, wordId, setSelectedWordIdForDialog])
 
@@ -50,7 +50,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
   return (
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
-        <CardContent onClick={handleClickWordCard}>
+        <CardContent onClick={onClickWordCard}>
           <Typography variant="h5" component="div">
             {word.term}
           </Typography>
