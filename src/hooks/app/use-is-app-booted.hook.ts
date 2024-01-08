@@ -14,10 +14,13 @@ export const useIsAppBooted = (): boolean => {
 
   const onAppBooting = useCallback(async () => {
     try {
+      const isSignedIn = (await onGetAuthPrep())?.isSignedIn
+
       // The page share does not require sign in. But it should get the auth prep data just in case.
       if (router.pathname === PageConst.Share) return
 
-      if (!(await onGetAuthPrep())?.isSignedIn) throw new Error(`Not Signed In`)
+      // If user is not signed in at this point, it should be an error.
+      if (!isSignedIn) throw new Error(`Not Signed In`)
 
       router.push(DEFAULT_MAIN_APP_PAGE)
     } catch {
