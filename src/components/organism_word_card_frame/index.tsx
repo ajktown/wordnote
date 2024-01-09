@@ -12,14 +12,18 @@ import WordCardsFramePreferenceButtonPart from '../atom_word_cards_frame_parts/i
 import WordCardsFrameArchiveSwitchPart from '../atom_word_cards_frame_parts/index.archive-switch'
 import WordCardsFrameArchiveModePart from '../atom_word_cards_frame_parts/index.archive-mode'
 import WordCardsFrameReviewModePart from '../atom_word_cards_frame_parts/index.review-mode'
+import { useRecoilValue } from 'recoil'
+import { wordIdsState } from '@/recoil/words/words.state'
 
 const WordCardFrame: FC = () => {
+  const wordIds = useRecoilValue(wordIdsState)
   return (
     <Stack width="100%" alignItems="center">
       <Stack {...WordCardFrameStyle}>
         {/* Header */}
         <Stack direction="row" spacing={0.7} alignItems="center">
           <Box flexGrow={1} />
+          {wordIds.length}
           <WordCardsFrameReviewModePart />
           <WordCardsFrameArchiveSwitchPart />
           <WordCardsFrameSurfingButtonPart />
