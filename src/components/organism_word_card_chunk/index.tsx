@@ -22,6 +22,7 @@ const WordCardsChunk: FC = () => {
   return (
     <StyledSuspense>
       <WordCardChunkSearchFound />
+      {wordIds.length} word cards
       {wordIds.map((wordId) => (
         <WordCard key={wordId} wordId={wordId} />
       ))}
