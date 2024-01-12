@@ -3,7 +3,7 @@ import { getSemesterByCodeApi as getSemesterByCodeApi } from '@/api/semesters/ge
 import { semesterDetailsFamily } from '@/recoil/words/semesters.state'
 
 export const useSemesterByCode = () => {
-  const handleRefresh = useRecoilCallback(
+  const onSemesterByCode = useRecoilCallback(
     ({ set }) =>
       async (code: number | undefined) => {
         if (!code) return // TODO: Kind of weird way to write.
@@ -16,5 +16,5 @@ export const useSemesterByCode = () => {
     [],
   )
 
-  return handleRefresh
+  return onSemesterByCode
 }

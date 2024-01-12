@@ -10,7 +10,7 @@ export const useResetSearchInput = (): UseResetSearchInput => {
   const [loading, setLoading] = useState(false)
   const [, handleGetWords] = useWords()
 
-  const handleRefresh: HandleRefresh = useRecoilCallback(
+  const onResetSearchInput: HandleRefresh = useRecoilCallback(
     ({ reset }) =>
       async () => {
         setLoading(true)
@@ -24,5 +24,5 @@ export const useResetSearchInput = (): UseResetSearchInput => {
     [handleGetWords],
   )
 
-  return [loading, handleRefresh]
+  return [loading, onResetSearchInput]
 }

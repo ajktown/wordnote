@@ -15,7 +15,7 @@ export const useWordsWithSemesters = () => {
   const [, onGetWords] = useWords()
   const onGetSemesters = useSemesters()
 
-  const onGetWordsWithSemesters = useCallback(async () => {
+  const onWordWithSemesters = useCallback(async () => {
     try {
       const { latestSemesterCode } = await onGetSemesters()
 
@@ -26,5 +26,5 @@ export const useWordsWithSemesters = () => {
     } catch {}
   }, [selectedSemester, onGetSemesters, onGetWords])
 
-  return onGetWordsWithSemesters
+  return onWordWithSemesters
 }

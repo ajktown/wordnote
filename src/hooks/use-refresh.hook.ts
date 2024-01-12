@@ -9,9 +9,9 @@ type UseHookRefresh = [
 export const useHookRefresh = (): UseHookRefresh => {
   const [internalFlag, setInternalFlag] = useState(false)
 
-  const handleRefresh = useCallback(() => {
+  const onHookRefresh = useCallback(() => {
     setInternalFlag(!internalFlag)
   }, [internalFlag])
 
-  return [internalFlag, handleRefresh]
+  return [internalFlag, onHookRefresh]
 }

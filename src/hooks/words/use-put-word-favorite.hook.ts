@@ -16,7 +16,7 @@ export const usePutWordFavorite = (wordId: string): UsePutWord => {
 
   const [, onPutWord] = usePutWord(wordId)
 
-  const onClickFavoriteIcon = useCallback(async () => {
+  const onPutWordFavorite = useCallback(async () => {
     if (word == null) return
 
     const modifyingTo = !word.isFavorite
@@ -27,5 +27,5 @@ export const usePutWordFavorite = (wordId: string): UsePutWord => {
     else setTempIds([...tempIds, word.id])
   }, [isFavoriteClicked, word, onPutWord, tempIds, setTempIds])
 
-  return [word, onClickFavoriteIcon]
+  return [word, onPutWordFavorite]
 }
