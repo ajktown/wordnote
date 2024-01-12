@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChipAtom from '@/atoms/StyledChip'
 import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
@@ -28,7 +28,7 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
   }, [isSelected, selectedLanguages, languageCode, getWords])
 
   return (
-    <StyledTagButtonAtom
+    <StyledChipAtom
       label={getLanguageFullName(languageCode)}
       onClick={onClick}
       loading={loading}

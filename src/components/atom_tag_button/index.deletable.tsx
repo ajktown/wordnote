@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChipAtom from '@/atoms/StyledChip'
 import { FC, useCallback, useState } from 'react'
 import DeleteTagIcon from '@mui/icons-material/HighlightOff'
 
@@ -24,7 +24,7 @@ const TagButtonDeletable: FC<Props> = ({ label, handleClickDelete }) => {
   }, [label, handleClickDelete])
 
   return (
-    <StyledTagButtonAtom
+    <StyledChipAtom
       label={`#` + label}
       loading={loading}
       style={{

@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChipAtom from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { selectedCustomizedTagsSelector } from '@/recoil/words/words.selectors'
@@ -33,7 +33,7 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
   }, [label, isTagSelected, selectedCustomizedTags, getWords])
 
   return (
-    <StyledTagButtonAtom
+    <StyledChipAtom
       label={`#` + label}
       loading={loading}
       style={{
