@@ -37,7 +37,7 @@ const getLabel = (daysAgo: number): string => {
   }
 }
 
-const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
+const TagChipDaysAgo: FC<Props> = ({ daysAgo }) => {
   const selectedDaysAgo = useRecoilValue(selectedDaysAgoTagsSelector)
   const [loading, getWords] = useWords()
 
@@ -67,4 +67,4 @@ const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
   )
 }
 
-export default TagButtonDaysAgo
+export default TagChipDaysAgo

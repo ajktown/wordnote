@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material'
 import { FC } from 'react'
-import TagButtonDeletable from '../atom_tag_chip/index.deletable'
+import TagChipDeletable from '../atom_tag_chip/index.deletable'
 import { usePutWordTagDeleted } from '@/hooks/words/use-put-word-tag-deleted.hook'
 import WordCardAddTagButton from '../atom_word_card_add_tag_button'
 
@@ -23,7 +23,7 @@ const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
     >
       <WordCardAddTagButton wordId={wordId} />
       {word.tags.map((tag) => (
-        <TagButtonDeletable
+        <TagChipDeletable
           key={tag}
           handleClickDelete={onClickDelete}
           label={tag}

@@ -9,7 +9,7 @@ import { useRecoilValue } from 'recoil'
 interface Props {
   languageCode: GlobalLanguageCode
 }
-const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
+const TagChipLanguage: FC<Props> = ({ languageCode }) => {
   const selectedLanguages = useRecoilValue(selectedLanguageTagsSelector)
   const isSelected = selectedLanguages.includes(languageCode)
   const [loading, getWords] = useWords()
@@ -39,4 +39,4 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
   )
 }
 
-export default TagButtonLanguage
+export default TagChipLanguage

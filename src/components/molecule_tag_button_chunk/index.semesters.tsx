@@ -5,8 +5,8 @@ import {
 import { Box } from '@mui/material'
 import { FC, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import TagButtonSemester from '@/components/atom_tag_chip/index.semester'
-import TagButtonExpander from '../atom_tag_chip/index.expander'
+import TagChipSemester from '@/components/atom_tag_chip/index.semester'
+import TagChipExpander from '../atom_tag_chip/index.expander'
 
 const PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT = 3
 
@@ -25,11 +25,11 @@ const TagButtonChunkSemesters: FC = () => {
         semesters
           .slice(0, sliceAt)
           .map((semester) => (
-            <TagButtonSemester key={semester.code} semester={semester} />
+            <TagChipSemester key={semester.code} semester={semester} />
           ))}
 
       {/* +1 as TagButtonExpander must be visible after 4 semesters */}
-      <TagButtonExpander visibleAt={PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT + 1} />
+      <TagChipExpander visibleAt={PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT + 1} />
     </Box>
   )
 }

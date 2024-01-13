@@ -2,8 +2,8 @@ import { wordsFamily } from '@/recoil/words/words.state'
 import { Stack } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import TagButtonCustomized from '../atom_tag_chip/index.customized'
-import TagButtonLanguage from '../atom_tag_chip/index.language'
+import TagChipCustomized from '../atom_tag_chip/index.customized'
+import TagChipLanguage from '../atom_tag_chip/index.language'
 
 interface Props {
   wordId: string
@@ -19,9 +19,9 @@ const TagButtonChunk: FC<Props> = ({ wordId }) => {
       spacing={0.2}
       sx={{ flexWrap: `wrap`, rowGap: `3px` }}
     >
-      <TagButtonLanguage languageCode={word.languageCode} />
+      <TagChipLanguage languageCode={word.languageCode} />
       {word.tags.map((tag) => (
-        <TagButtonCustomized key={tag} label={tag} />
+        <TagChipCustomized key={tag} label={tag} />
       ))}
     </Stack>
   )

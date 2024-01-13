@@ -1,10 +1,10 @@
 import { Box } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import TagButtonLanguage from '../atom_tag_chip/index.language'
-import TagButtonFavorite from '../atom_tag_chip/index.favorite'
-import TagButtonCustomized from '../atom_tag_chip/index.customized'
-import TagButtonDaysAgo from '../atom_tag_chip/index.days_ago'
+import TagChipLanguage from '../atom_tag_chip/index.language'
+import TagChipFavorite from '../atom_tag_chip/index.favorite'
+import TagChipCustomized from '../atom_tag_chip/index.customized'
+import TagChipDaysAgo from '../atom_tag_chip/index.days_ago'
 import { semesterDetailsFamily } from '@/recoil/words/semesters.state'
 import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
 
@@ -21,17 +21,17 @@ const TagButtonChunkDetailed: FC = () => {
 
   return (
     <Box>
-      {<TagButtonFavorite />}
+      {<TagChipFavorite />}
       {visibleDaysAgoChunk
         .filter((el) => semesterDetails.daysAgo.includes(el))
         .map((daysAgo) => (
-          <TagButtonDaysAgo key={daysAgo} daysAgo={daysAgo} />
+          <TagChipDaysAgo key={daysAgo} daysAgo={daysAgo} />
         ))}
       {semesterDetails.languages.map((code) => (
-        <TagButtonLanguage key={code} languageCode={code} />
+        <TagChipLanguage key={code} languageCode={code} />
       ))}
       {semesterDetails.tags.map((tag) => (
-        <TagButtonCustomized key={tag} label={tag} />
+        <TagChipCustomized key={tag} label={tag} />
       ))}
     </Box>
   )

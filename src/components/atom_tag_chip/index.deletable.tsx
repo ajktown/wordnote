@@ -11,7 +11,7 @@ interface Props {
   label: string
   handleClickDelete: (label: string) => Promise<any>
 }
-const TagButtonDeletable: FC<Props> = ({ label, handleClickDelete }) => {
+const TagChipDeletable: FC<Props> = ({ label, handleClickDelete }) => {
   const [loading, setLoading] = useState(false)
 
   const onClick = useCallback(async () => {
@@ -36,4 +36,4 @@ const TagButtonDeletable: FC<Props> = ({ label, handleClickDelete }) => {
   )
 }
 
-export default TagButtonDeletable
+export default TagChipDeletable

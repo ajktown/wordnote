@@ -11,7 +11,7 @@ interface Props {
   visibleAt: number
 }
 
-const TagButtonExpander: FC<Props> = ({ visibleAt }) => {
+const TagChipExpander: FC<Props> = ({ visibleAt }) => {
   const semesters = useRecoilValue(semestersState)
   const [isSemesterExpanded, setSemesterExpanded] = useRecoilState(
     isSemesterExpandedState,
@@ -34,4 +34,4 @@ const TagButtonExpander: FC<Props> = ({ visibleAt }) => {
   )
 }
 
-export default TagButtonExpander
+export default TagChipExpander

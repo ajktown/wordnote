@@ -6,7 +6,7 @@ import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
 /** This component is not used, but saved for reference only. */
-const TagButtonAllSemesters: FC = () => {
+const TagChipAllSemesters: FC = () => {
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
   const variant: GlobalMuiTagVariant = useMemo(
     () => (selectedSemester === undefined ? `filled` : `outlined`),
@@ -32,4 +32,4 @@ const TagButtonAllSemesters: FC = () => {
   )
 }
 
-export default TagButtonAllSemesters
+export default TagChipAllSemesters

@@ -9,7 +9,7 @@ import { useRecoilValue } from 'recoil'
 interface Props {
   semester: ISemester
 }
-const TagButtonSemester: FC<Props> = ({ semester }) => {
+const TagChipSemester: FC<Props> = ({ semester }) => {
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
 
   const { code } = semester
@@ -38,4 +38,4 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
   )
 }
 
-export default TagButtonSemester
+export default TagChipSemester

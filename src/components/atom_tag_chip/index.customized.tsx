@@ -8,7 +8,7 @@ import { useRecoilValue } from 'recoil'
 interface Props {
   label: string
 }
-const TagButtonCustomized: FC<Props> = ({ label }) => {
+const TagChipCustomized: FC<Props> = ({ label }) => {
   const selectedCustomizedTags = useRecoilValue(selectedCustomizedTagsSelector)
   const [loading, getWords] = useWords()
 
@@ -44,4 +44,4 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
   )
 }
 
-export default TagButtonCustomized
+export default TagChipCustomized
