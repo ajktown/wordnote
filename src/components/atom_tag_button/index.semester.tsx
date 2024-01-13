@@ -1,5 +1,5 @@
 import { ISemester } from '@/api/semesters/index.interface'
-import StyledChipAtom from '@/atoms/StyledChip'
+import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
 import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
@@ -26,7 +26,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
   }, [selectedSemester, code, onSemesterClick])
 
   return (
-    <StyledChipAtom
+    <StyledChip
       key={code}
       loading={loading}
       label={`${semester.year}Y ${semester.quarter}Q`}

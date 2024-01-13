@@ -1,5 +1,5 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
-import StyledChipAtom from '@/atoms/StyledChip'
+import StyledChip from '@/atoms/StyledChip'
 import StyledTextField from '@/atoms/StyledTextField'
 import { FC, Fragment, useCallback, useState } from 'react'
 import CheckIcon from '@mui/icons-material/Check'
@@ -26,7 +26,7 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
 
   return (
     <Fragment>
-      <StyledChipAtom
+      <StyledChip
         label={`+`}
         loading={loading}
         onClick={onClickOpenWithFocus}

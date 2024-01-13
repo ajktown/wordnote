@@ -16,7 +16,7 @@ interface Props {
   onClickRearIcon?: () => any
 }
 
-const StyledChipAtom: FC<Props> = ({ RearIcon, ...props }) => {
+const StyledChip: FC<Props> = ({ RearIcon, ...props }) => {
   return (
     <Chip
       label={props.label}
@@ -31,4 +31,4 @@ const StyledChipAtom: FC<Props> = ({ RearIcon, ...props }) => {
   )
 }
 
-export default StyledChipAtom
+export default StyledChip

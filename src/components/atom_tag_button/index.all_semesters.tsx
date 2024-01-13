@@ -1,4 +1,4 @@
-import StyledChipAtom from '@/atoms/StyledChip'
+import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
@@ -21,7 +21,7 @@ const TagButtonAllSemesters: FC = () => {
   }, [getWords])
 
   return (
-    <StyledChipAtom
+    <StyledChip
       label={`⭐️ All`}
       onClick={onClick}
       loading={loading}

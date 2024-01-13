@@ -1,5 +1,5 @@
 import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
-import StyledChipAtom from '@/atoms/StyledChip'
+import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { isFavoriteClickedSelector } from '@/recoil/words/words.selectors'
@@ -23,7 +23,7 @@ const TagButtonFavorite: FC = () => {
   )
 
   return (
-    <StyledChipAtom
+    <StyledChip
       label={
         <StyledIconButtonFavorite isClicked={isFavoriteClicked} size="small" />
       }

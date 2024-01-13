@@ -1,4 +1,4 @@
-import StyledChipAtom from '@/atoms/StyledChip'
+import StyledChip from '@/atoms/StyledChip'
 import {
   isSemesterExpandedState,
   semestersState,
@@ -24,7 +24,7 @@ const TagButtonExpander: FC<Props> = ({ visibleAt }) => {
   if (!semesters || semesters.length < visibleAt) return null
 
   return (
-    <StyledChipAtom
+    <StyledChip
       label={isSemesterExpanded ? null : `...`}
       FrontIcon={
         isSemesterExpanded ? <ChevronLeftIcon fontSize="small" /> : undefined
