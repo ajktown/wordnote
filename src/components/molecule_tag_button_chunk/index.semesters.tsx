@@ -5,8 +5,8 @@ import {
 import { Box } from '@mui/material'
 import { FC, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import TagButtonSemester from '@/components/atom_tag_button/index.semester'
-import TagButtonExpander from '../atom_tag_button/index.expander'
+import TagButtonSemester from '@/components/atom_tag_chip/index.semester'
+import TagButtonExpander from '../atom_tag_chip/index.expander'
 
 const PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT = 3
 

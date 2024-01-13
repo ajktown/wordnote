@@ -2,8 +2,8 @@ import { wordsFamily } from '@/recoil/words/words.state'
 import { Stack } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import TagButtonCustomized from '../atom_tag_button/index.customized'
-import TagButtonLanguage from '../atom_tag_button/index.language'
+import TagButtonCustomized from '../atom_tag_chip/index.customized'
+import TagButtonLanguage from '../atom_tag_chip/index.language'
 
 interface Props {
   wordId: string

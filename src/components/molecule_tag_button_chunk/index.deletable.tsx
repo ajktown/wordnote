@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material'
 import { FC } from 'react'
-import TagButtonDeletable from '../atom_tag_button/index.deletable'
+import TagButtonDeletable from '../atom_tag_chip/index.deletable'
 import { usePutWordTagDeleted } from '@/hooks/words/use-put-word-tag-deleted.hook'
 import WordCardAddTagButton from '../atom_word_card_add_tag_button'
 
