@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
@@ -6,7 +6,7 @@ import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
 /** This component is not used, but saved for reference only. */
-const TagButtonAllSemesters: FC = () => {
+const TagChipAllSemesters: FC = () => {
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
   const variant: GlobalMuiTagVariant = useMemo(
     () => (selectedSemester === undefined ? `filled` : `outlined`),
@@ -21,7 +21,7 @@ const TagButtonAllSemesters: FC = () => {
   }, [getWords])
 
   return (
-    <StyledTagButtonAtom
+    <StyledChip
       label={`⭐️ All`}
       onClick={onClick}
       loading={loading}
@@ -32,4 +32,4 @@ const TagButtonAllSemesters: FC = () => {
   )
 }
 
-export default TagButtonAllSemesters
+export default TagChipAllSemesters

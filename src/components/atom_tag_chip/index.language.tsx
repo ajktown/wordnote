@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChip from '@/atoms/StyledChip'
 import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
@@ -9,7 +9,7 @@ import { useRecoilValue } from 'recoil'
 interface Props {
   languageCode: GlobalLanguageCode
 }
-const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
+const TagChipLanguage: FC<Props> = ({ languageCode }) => {
   const selectedLanguages = useRecoilValue(selectedLanguageTagsSelector)
   const isSelected = selectedLanguages.includes(languageCode)
   const [loading, getWords] = useWords()
@@ -28,7 +28,7 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
   }, [isSelected, selectedLanguages, languageCode, getWords])
 
   return (
-    <StyledTagButtonAtom
+    <StyledChip
       label={getLanguageFullName(languageCode)}
       onClick={onClick}
       loading={loading}
@@ -39,4 +39,4 @@ const TagButtonLanguage: FC<Props> = ({ languageCode }) => {
   )
 }
 
-export default TagButtonLanguage
+export default TagChipLanguage

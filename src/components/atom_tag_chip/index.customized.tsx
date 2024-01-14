@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { selectedCustomizedTagsSelector } from '@/recoil/words/words.selectors'
@@ -8,7 +8,7 @@ import { useRecoilValue } from 'recoil'
 interface Props {
   label: string
 }
-const TagButtonCustomized: FC<Props> = ({ label }) => {
+const TagChipCustomized: FC<Props> = ({ label }) => {
   const selectedCustomizedTags = useRecoilValue(selectedCustomizedTagsSelector)
   const [loading, getWords] = useWords()
 
@@ -33,7 +33,7 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
   }, [label, isTagSelected, selectedCustomizedTags, getWords])
 
   return (
-    <StyledTagButtonAtom
+    <StyledChip
       label={`#` + label}
       loading={loading}
       style={{
@@ -44,4 +44,4 @@ const TagButtonCustomized: FC<Props> = ({ label }) => {
   )
 }
 
-export default TagButtonCustomized
+export default TagChipCustomized

@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChip from '@/atoms/StyledChip'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { GlobalMuiTagVariant } from '@/global.interface'
@@ -37,7 +37,7 @@ const getLabel = (daysAgo: number): string => {
   }
 }
 
-const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
+const TagChipDaysAgo: FC<Props> = ({ daysAgo }) => {
   const selectedDaysAgo = useRecoilValue(selectedDaysAgoTagsSelector)
   const [loading, getWords] = useWords()
 
@@ -56,7 +56,7 @@ const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
   )
 
   return (
-    <StyledTagButtonAtom
+    <StyledChip
       label={`🌀 ` + getLabel(daysAgo)}
       loading={loading}
       style={{
@@ -67,4 +67,4 @@ const TagButtonDaysAgo: FC<Props> = ({ daysAgo }) => {
   )
 }
 
-export default TagButtonDaysAgo
+export default TagChipDaysAgo

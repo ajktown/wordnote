@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChip from '@/atoms/StyledChip'
 import {
   isSemesterExpandedState,
   semestersState,
@@ -11,7 +11,7 @@ interface Props {
   visibleAt: number
 }
 
-const TagButtonExpander: FC<Props> = ({ visibleAt }) => {
+const TagChipExpander: FC<Props> = ({ visibleAt }) => {
   const semesters = useRecoilValue(semestersState)
   const [isSemesterExpanded, setSemesterExpanded] = useRecoilState(
     isSemesterExpandedState,
@@ -24,7 +24,7 @@ const TagButtonExpander: FC<Props> = ({ visibleAt }) => {
   if (!semesters || semesters.length < visibleAt) return null
 
   return (
-    <StyledTagButtonAtom
+    <StyledChip
       label={isSemesterExpanded ? null : `...`}
       FrontIcon={
         isSemesterExpanded ? <ChevronLeftIcon fontSize="small" /> : undefined
@@ -34,4 +34,4 @@ const TagButtonExpander: FC<Props> = ({ visibleAt }) => {
   )
 }
 
-export default TagButtonExpander
+export default TagChipExpander
