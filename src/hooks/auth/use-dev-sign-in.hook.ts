@@ -21,7 +21,6 @@ export const useDevSignIn = () => {
       await onGetAuthPrep()
       router.push(DEFAULT_MAIN_APP_PAGE)
     } catch {}
-
   }, [router, onGetAuthPrep])
 
   return onDevSignIn
