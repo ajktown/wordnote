@@ -6,28 +6,22 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { useAuthPrep } from './use-auth-prep.hook'
 
-type PrivateOnClick = () => void
-type PrivateOnError = () => void
-
-type UseDevTokenSignInHandlers = [PrivateOnClick, PrivateOnError]
-
-export const useDevTokenSignInHandlers = (): UseDevTokenSignInHandlers => {
+/**
+ * Returns a function "onDevSignIn", which is used to sign in with a dev token.
+ * Only works in development mode.
+ * Development mode can be only set by the API server.
+ */
+export const useDevSignIn = () => {
   const router = useRouter()
   const onGetAuthPrep = useAuthPrep()
 
-  const onClick: PrivateOnClick = useCallback(async () => {
+  const onDevSignIn = useCallback(async () => {
     try {
       await postAuthByDevTokenApi()
       await onGetAuthPrep()
       router.push(DEFAULT_MAIN_APP_PAGE)
-    } catch {
-      throw new Error(`something went wrong`)
-    }
+    } catch {}
   }, [router, onGetAuthPrep])
 
-  const onError: PrivateOnError = useCallback(() => {
-    console.log(`onError; ContinueWithDevToken`) // TODO: implement
-  }, [])
-
-  return [onClick, onError]
+  return onDevSignIn
 }
