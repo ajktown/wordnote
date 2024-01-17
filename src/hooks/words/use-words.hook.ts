@@ -20,7 +20,7 @@ export const useWords = (): UseWordIds => {
   const handleApiError = useApiErrorHook()
   const handleApplySemesterDetails = useApplySemesterDetails()
 
-  const handleRefresh: HandleRefresh = useRecoilCallback(
+  const onWords: HandleRefresh = useRecoilCallback(
     ({ set, reset, snapshot }) =>
       async (newParams?: NewParams) => {
         setLoading(true)
@@ -47,5 +47,5 @@ export const useWords = (): UseWordIds => {
     [handleApiError, handleApplySemesterDetails],
   )
 
-  return [loading, handleRefresh]
+  return [loading, onWords]
 }

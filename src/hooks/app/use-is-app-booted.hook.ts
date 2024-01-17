@@ -12,7 +12,7 @@ export const useIsAppBooted = (): boolean => {
   const onGetAuthPrep = useAuthPrep()
   const router = useRouter()
 
-  const onAppBooting = useRecoilCallback(
+  const onIsAppBooted = useRecoilCallback(
     () => async () => {
       try {
         if (!(await onGetAuthPrep())?.isSignedIn)
@@ -28,8 +28,8 @@ export const useIsAppBooted = (): boolean => {
 
   useEffect(() => {
     if (isBooted) return
-    onAppBooting()
-  }, [isBooted, onAppBooting])
+    onIsAppBooted()
+  }, [isBooted, onIsAppBooted])
 
   return isBooted
 }

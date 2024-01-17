@@ -6,7 +6,7 @@ import { useApiErrorHook } from '../use-api-error.hook'
 export const useWordById = (id: string) => {
   const handleApiError = useApiErrorHook()
 
-  const handleRefresh = useRecoilCallback(
+  const onWordById = useRecoilCallback(
     ({ set }) =>
       async () => {
         try {
@@ -20,5 +20,5 @@ export const useWordById = (id: string) => {
     [id, handleApiError],
   )
 
-  return handleRefresh
+  return onWordById
 }

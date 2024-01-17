@@ -8,7 +8,7 @@ type HandleApiError = (err: unknown) => any
 export const useApiErrorHook = (): HandleApiError => {
   const onAPiErrorHook = useOnSignOutApp()
 
-  const handleApiError: HandleApiError = useRecoilCallback(
+  const onApiErrorHook: HandleApiError = useRecoilCallback(
     ({ set }) =>
       async (err: unknown) => {
         set(isApiConnectFailed, true)
@@ -21,5 +21,5 @@ export const useApiErrorHook = (): HandleApiError => {
     [onAPiErrorHook],
   )
 
-  return handleApiError
+  return onApiErrorHook
 }
