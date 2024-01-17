@@ -19,7 +19,7 @@ export const useOutsideClicked = (
   useEffect(() => {
     if (!handleClick) return
 
-    const onClickOutside = (event: any) => {
+    const onOutsideClicked = (event: any) => {
       // TODO: You may put the event type here.
       // Runs the onClickAdd(), if fits.
       if (reference.current && !reference.current.contains(event.target)) {
@@ -27,10 +27,10 @@ export const useOutsideClicked = (
       }
     }
     // Bind the event listener
-    document.addEventListener(`mousedown`, onClickOutside)
+    document.addEventListener(`mousedown`, onOutsideClicked)
     return () => {
       // Unbind the event listener on clean up
-      document.removeEventListener(`mousedown`, onClickOutside)
+      document.removeEventListener(`mousedown`, onOutsideClicked)
     }
   }, [reference, handleClick])
 
