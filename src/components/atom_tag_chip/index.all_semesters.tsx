@@ -13,12 +13,12 @@ const TagChipAllSemesters: FC = () => {
     [selectedSemester],
   )
 
-  const [loading, getWords] = useWords()
+  const [loading, onGetWords] = useWords()
   const onClick = useCallback(async () => {
     try {
-      await getWords({ semester: undefined })
+      await onGetWords({ semester: undefined })
     } catch {}
-  }, [getWords])
+  }, [onGetWords])
 
   return (
     <StyledChip

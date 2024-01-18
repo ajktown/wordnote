@@ -3,11 +3,11 @@ import { useWords } from '../words/use-words.hook'
 
 type UseSemesterClick = [boolean, (clickedSemester: number) => Promise<void>]
 export const useSemesterClick = (): UseSemesterClick => {
-  const [loading, getWords] = useWords()
+  const [loading, onGetWords] = useWords()
 
   const onSemesterClick = useRecoilCallback(
     () => async (clickedSemester: number) => {
-      await getWords({
+      await onGetWords({
         semester: clickedSemester,
         pageIndex: 0, // must reset page index
         daysAgo: undefined, // must reset days ago
@@ -16,7 +16,7 @@ export const useSemesterClick = (): UseSemesterClick => {
         tags: undefined, // must reset tags
       })
     },
-    [getWords],
+    [onGetWords],
   )
 
   return [loading, onSemesterClick]

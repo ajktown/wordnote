@@ -18,9 +18,9 @@ type UseWordIds = [boolean, HandleRefresh]
 export const useWords = (): UseWordIds => {
   const [loading, setLoading] = useState(false)
   const handleApiError = useApiErrorHook()
-  const handleApplySemesterDetails = useApplySemesterDetails()
+  const onApplySemesterDetails = useApplySemesterDetails()
 
-  const onWords: HandleRefresh = useRecoilCallback(
+  const onGetWords: HandleRefresh = useRecoilCallback(
     ({ set, reset, snapshot }) =>
       async (newParams?: NewParams) => {
         setLoading(true)
@@ -36,7 +36,7 @@ export const useWords = (): UseWordIds => {
           })
           set(wordIdsState, apiResponse.wordIds)
           set(wordIdsPagination, apiResponse.pagination)
-          handleApplySemesterDetails(apiResponse)
+          onApplySemesterDetails(apiResponse)
         } catch (err) {
           reset(wordIdsState)
           handleApiError(err)
@@ -44,8 +44,8 @@ export const useWords = (): UseWordIds => {
           setLoading(false)
         }
       },
-    [handleApiError, handleApplySemesterDetails],
+    [handleApiError, onApplySemesterDetails],
   )
 
-  return [loading, onWords]
+  return [loading, onGetWords]
 }

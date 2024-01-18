@@ -12,7 +12,7 @@ interface Props {
 const TagChipLanguage: FC<Props> = ({ languageCode }) => {
   const selectedLanguages = useRecoilValue(selectedLanguageTagsSelector)
   const isSelected = selectedLanguages.includes(languageCode)
-  const [loading, getWords] = useWords()
+  const [loading, onGetWords] = useWords()
 
   const onClick = useCallback(async () => {
     const newSelectedLanguages = isSelected
@@ -20,12 +20,12 @@ const TagChipLanguage: FC<Props> = ({ languageCode }) => {
       : [...selectedLanguages, languageCode]
 
     try {
-      await getWords({
+      await onGetWords({
         languageCodes:
           newSelectedLanguages.length === 0 ? undefined : newSelectedLanguages,
       })
     } catch {}
-  }, [isSelected, selectedLanguages, languageCode, getWords])
+  }, [isSelected, selectedLanguages, languageCode, onGetWords])
 
   return (
     <StyledChip

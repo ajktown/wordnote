@@ -8,20 +8,20 @@ type HandleRefresh = () => Promise<void>
 type UseResetSearchInput = [boolean, HandleRefresh]
 export const useResetSearchInput = (): UseResetSearchInput => {
   const [loading, setLoading] = useState(false)
-  const [, handleGetWords] = useWords()
+  const [, onGetWords] = useWords()
 
   const onResetSearchInput: HandleRefresh = useRecoilCallback(
     ({ reset }) =>
       async () => {
         setLoading(true)
         try {
-          await handleGetWords({ searchInput: undefined })
+          await onGetWords({ searchInput: undefined })
           reset(searchInputState)
         } finally {
           setLoading(false)
         }
       },
-    [handleGetWords],
+    [onGetWords],
   )
 
   return [loading, onResetSearchInput]
