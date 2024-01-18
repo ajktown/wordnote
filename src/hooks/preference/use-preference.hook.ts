@@ -6,7 +6,7 @@ import { getPreferenceApi } from '@/api/preferences/get-preferences.api'
  * from the server and updates the preference state.
  */
 export const usePreference = () => {
-  const onPreference = useRecoilCallback(
+  const onGetPreference = useRecoilCallback(
     ({ set }) =>
       async () => {
         const [data] = await getPreferenceApi()
@@ -15,5 +15,5 @@ export const usePreference = () => {
     [],
   )
 
-  return onPreference
+  return onGetPreference
 }

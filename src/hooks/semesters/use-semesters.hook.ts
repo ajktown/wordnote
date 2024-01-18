@@ -7,7 +7,7 @@ import { useRecoilCallback } from 'recoil'
 
 type HandleRefresh = () => Promise<GetSemestersResDTO>
 export const useSemesters = () => {
-  const onSemesters: HandleRefresh = useRecoilCallback(
+  const onGetSemesters: HandleRefresh = useRecoilCallback(
     ({ set, reset }) =>
       async () => {
         try {
@@ -25,5 +25,5 @@ export const useSemesters = () => {
     [],
   )
 
-  return onSemesters
+  return onGetSemesters
 }
