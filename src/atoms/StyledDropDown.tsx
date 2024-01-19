@@ -26,7 +26,7 @@ const StyledDropDown: FC<Props> = ({
       if (!runOnChangeWithSameIdSelected && lastSelected === selectedId) return
 
       setLastSelected(selectedId)
-      onChange && onChange(selectedId)
+      if (onChange) onChange(selectedId)
     },
     [lastSelected, runOnChangeWithSameIdSelected, onChange],
   )

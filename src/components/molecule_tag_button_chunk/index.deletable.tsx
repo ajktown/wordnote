@@ -11,7 +11,7 @@ interface Props {
 // TODO: Maybe it can undo deleting? but optional.
 // TODO: Maybe also can add a new tag, but then you no longer can call this chunk, but maybe Frame?
 const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
-  const [word, onClickDelete] = usePutWordTagDeleted(wordId)
+  const [word, onPutWordTagDeleted] = usePutWordTagDeleted(wordId)
 
   if (word == null) return null
 
@@ -25,7 +25,7 @@ const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
       {word.tags.map((tag) => (
         <TagChipDeletable
           key={tag}
-          handleClickDelete={onClickDelete}
+          onClick={onPutWordTagDeleted}
           label={tag}
         />
       ))}

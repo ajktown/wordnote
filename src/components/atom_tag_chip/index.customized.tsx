@@ -10,7 +10,7 @@ interface Props {
 }
 const TagChipCustomized: FC<Props> = ({ label }) => {
   const selectedCustomizedTags = useRecoilValue(selectedCustomizedTagsSelector)
-  const [loading, getWords] = useWords()
+  const [loading, onGetWords] = useWords()
 
   const isTagSelected = useMemo(
     () => selectedCustomizedTags.includes(label),
@@ -26,11 +26,11 @@ const TagChipCustomized: FC<Props> = ({ label }) => {
       ? selectedCustomizedTags.filter((tag) => tag !== label)
       : [...selectedCustomizedTags, label]
     try {
-      await getWords({
+      await onGetWords({
         tags: newSelectedTags.length === 0 ? undefined : newSelectedTags,
       })
     } catch {}
-  }, [label, isTagSelected, selectedCustomizedTags, getWords])
+  }, [label, isTagSelected, selectedCustomizedTags, onGetWords])
 
   return (
     <StyledChip

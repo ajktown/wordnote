@@ -12,14 +12,14 @@ interface Props {
 const EnUrbanDictionaryDictLinkButton: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const link = EN_URBAN_DICTIONARY_PREFIX + word?.term
-  const onClick = useOpenNewTab(link)
+  const onOpenNewTab = useOpenNewTab(link)
 
   if (!word || word.languageCode !== `en` || !word.term) return null
 
   return (
     <StyledImageButtonAtom
       url={link}
-      onClick={onClick}
+      onClick={onOpenNewTab}
       imageSrc="/dictionary_icons/urban-dictionary.png"
     />
   )

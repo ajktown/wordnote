@@ -12,14 +12,14 @@ interface Props {
 const ZhKoNaverDictionaryLinkButton: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const link = ZH_KO_NAVER_DICTIONARY_PREFIX + word?.term
-  const onClick = useOpenNewTab(link)
+  const onOpenNewTab = useOpenNewTab(link)
 
   if (!word || word.languageCode !== `zh` || !word.term) return null
 
   return (
     <StyledImageButtonAtom
       url={link}
-      onClick={onClick}
+      onClick={onOpenNewTab}
       imageSrc="/dictionary_icons/naver-dictionary.png"
     />
   )

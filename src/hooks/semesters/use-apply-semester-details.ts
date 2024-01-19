@@ -6,7 +6,7 @@ import { useRecoilCallback } from 'recoil'
 type HandleApplySemester = (res: GetWordIdsApi | GetWordsApi) => void
 
 export const useApplySemesterDetails = () => {
-  const handleApplySemester: HandleApplySemester = useRecoilCallback(
+  const onApplySemesterDetails: HandleApplySemester = useRecoilCallback(
     ({ set }) =>
       (res) => {
         if (!res.semester) return // nothing to apply
@@ -16,5 +16,5 @@ export const useApplySemesterDetails = () => {
     [],
   )
 
-  return handleApplySemester
+  return onApplySemesterDetails
 }

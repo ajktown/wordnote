@@ -39,16 +39,16 @@ const getLabel = (daysAgo: number): string => {
 
 const TagChipDaysAgo: FC<Props> = ({ daysAgo }) => {
   const selectedDaysAgo = useRecoilValue(selectedDaysAgoTagsSelector)
-  const [loading, getWords] = useWords()
+  const [loading, onGetWords] = useWords()
 
   const onClick = useCallback(async () => {
     try {
-      await getWords({
+      await onGetWords({
         isFavorite: undefined,
         daysAgo: daysAgo === selectedDaysAgo ? undefined : daysAgo,
       })
     } catch {}
-  }, [daysAgo, selectedDaysAgo, getWords])
+  }, [daysAgo, selectedDaysAgo, onGetWords])
 
   const variant: GlobalMuiTagVariant = useMemo(
     () => (selectedDaysAgo === daysAgo ? `filled` : `outlined`),

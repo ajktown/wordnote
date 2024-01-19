@@ -40,7 +40,7 @@ const LanguageSelector: FC<Props> = ({
 
   const [selectedId, setSelectedId] = useState(word?.languageCode)
 
-  const handleChange = useCallback(
+  const onChange = useCallback(
     (id: string) => {
       const convertedLnCode = id as GlobalLanguageCode
       setSelectedId(convertedLnCode)
@@ -76,7 +76,7 @@ const LanguageSelector: FC<Props> = ({
       <StyledDropDown
         items={items}
         selectedId={selectedId}
-        onChange={handleChange}
+        onChange={onChange}
       />
     </Box>
   )

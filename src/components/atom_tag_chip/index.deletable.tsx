@@ -9,19 +9,19 @@ import DeleteTagIcon from '@mui/icons-material/HighlightOff'
  */
 interface Props {
   label: string
-  handleClickDelete: (label: string) => Promise<any>
+  onClick: (label: string) => Promise<any>
 }
-const TagChipDeletable: FC<Props> = ({ label, handleClickDelete }) => {
+const TagChipDeletable: FC<Props> = ({ label, onClick }) => {
   const [loading, setLoading] = useState(false)
 
-  const onClick = useCallback(async () => {
+  const onClickDeleteTag = useCallback(async () => {
     setLoading(true)
     try {
-      await handleClickDelete(label)
+      await onClick(label)
     } finally {
       setLoading(false)
     }
-  }, [label, handleClickDelete])
+  }, [label, onClick])
 
   return (
     <StyledChip
@@ -30,7 +30,7 @@ const TagChipDeletable: FC<Props> = ({ label, handleClickDelete }) => {
       style={{
         variant: `outlined`,
       }}
-      onClickRearIcon={onClick}
+      onClickRearIcon={onClickDeleteTag}
       RearIcon={<DeleteTagIcon />}
     />
   )
