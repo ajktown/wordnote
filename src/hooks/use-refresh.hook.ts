@@ -8,7 +8,7 @@ type UseHookRefresh = [
 
 export const useHookRefresh = (): UseHookRefresh => {
   const [internalFlag, setInternalFlag] = useState(false)
-
+  // TODO: This file is not used.
   const onRefresh = useCallback(() => {
     setInternalFlag(!internalFlag)
   }, [internalFlag])
