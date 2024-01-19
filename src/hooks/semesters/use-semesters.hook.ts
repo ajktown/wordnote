@@ -5,9 +5,9 @@ import {
 import { semestersState } from '@/recoil/words/semesters.state'
 import { useRecoilCallback } from 'recoil'
 
-type HandleRefresh = () => Promise<GetSemestersResDTO>
+type OnGetSemesters = () => Promise<GetSemestersResDTO>
 export const useSemesters = () => {
-  const onGetSemesters: HandleRefresh = useRecoilCallback(
+  const onGetSemesters: OnGetSemesters = useRecoilCallback(
     ({ set, reset }) =>
       async () => {
         try {
