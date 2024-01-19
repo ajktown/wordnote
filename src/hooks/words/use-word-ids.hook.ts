@@ -11,15 +11,15 @@ import { useApiErrorHook } from '../use-api-error.hook'
 import { useApplySemesterDetails } from '../semesters/use-apply-semester-details'
 
 type NewParams = Partial<GetWordParams>
-type HandleRefresh = (newParams?: NewParams) => Promise<void>
-type UseWordIds = [boolean, HandleRefresh]
+type OnGetWordsIds = (newParams?: NewParams) => Promise<void>
+type UseWordIds = [boolean, OnGetWordsIds]
 
 export const useWordIds = (): UseWordIds => {
   const [loading, setLoading] = useState(false)
   const handleApiError = useApiErrorHook()
   const onApplySemesterDetails = useApplySemesterDetails()
 
-  const onGetWordsIds: HandleRefresh = useRecoilCallback(
+  const onGetWordsIds: OnGetWordsIds = useRecoilCallback(
     ({ set, reset, snapshot }) =>
       async (newParams?: NewParams) => {
         setLoading(true)
