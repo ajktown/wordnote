@@ -7,7 +7,7 @@ import {
 } from '@/recoil/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { useApiErrorHook } from '../use-api-error.hook'
+import { useHandleApiError } from '../use-handle-api-error.hook'
 import { useApplySemesterDetails } from '../semesters/use-apply-semester-details'
 import { getWordsApi } from '@/api/words/get-words.api'
 
@@ -17,7 +17,7 @@ type UseWordIds = [boolean, HandleRefresh]
 
 export const useWords = (): UseWordIds => {
   const [loading, setLoading] = useState(false)
-  const handleApiError = useApiErrorHook()
+  const onHandleApiError = useHandleApiError()
   const onApplySemesterDetails = useApplySemesterDetails()
 
   const onGetWords: HandleRefresh = useRecoilCallback(
@@ -39,12 +39,12 @@ export const useWords = (): UseWordIds => {
           onApplySemesterDetails(apiResponse)
         } catch (err) {
           reset(wordIdsState)
-          handleApiError(err)
+          onHandleApiError(err)
         } finally {
           setLoading(false)
         }
       },
-    [handleApiError, onApplySemesterDetails],
+    [onHandleApiError, onApplySemesterDetails],
   )
 
   return [loading, onGetWords]

@@ -7,7 +7,7 @@ import {
 } from '@/recoil/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { useApiErrorHook } from '../use-api-error.hook'
+import { useHandleApiError } from '../use-handle-api-error.hook'
 import { useApplySemesterDetails } from '../semesters/use-apply-semester-details'
 
 type NewParams = Partial<GetWordParams>
@@ -16,7 +16,7 @@ type UseWordIds = [boolean, OnGetWordsIds]
 
 export const useWordIds = (): UseWordIds => {
   const [loading, setLoading] = useState(false)
-  const handleApiError = useApiErrorHook()
+  const onHandleApiError = useHandleApiError()
   const onApplySemesterDetails = useApplySemesterDetails()
 
   const onGetWordsIds: OnGetWordsIds = useRecoilCallback(
@@ -35,12 +35,12 @@ export const useWordIds = (): UseWordIds => {
           onApplySemesterDetails(apiResponse)
         } catch (err) {
           reset(wordIdsState)
-          handleApiError(err)
+          onHandleApiError(err)
         } finally {
           setLoading(false)
         }
       },
-    [handleApiError, onApplySemesterDetails],
+    [onHandleApiError, onApplySemesterDetails],
   )
 
   return [loading, onGetWordsIds]
