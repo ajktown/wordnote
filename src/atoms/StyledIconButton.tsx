@@ -24,7 +24,7 @@ const StyledIconButtonAtom: FC<PropsStyledIconButtonAtom> = ({
   isDisabled,
   ...props
 }) => {
-  const [isOnHover, handleMouseEnter, handleMouseLeave] = useOnHover()
+  const [isOnHover, onMouseEnter, onMouseLeave] = useOnHover()
 
   const buttonColor: undefined | string = useMemo(() => {
     if (isDisabled) return undefined
@@ -42,8 +42,8 @@ const StyledIconButtonAtom: FC<PropsStyledIconButtonAtom> = ({
     <Tooltip
       title={props.hoverMessage?.title || ``}
       placement={props.hoverMessage?.placement || `bottom`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       style={{
         cursor: isDisabled && props.hoverMessage?.title ? `help` : undefined,
       }}
