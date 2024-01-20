@@ -1,5 +1,5 @@
 import { ISemester } from '@/api/semesters/index.interface'
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useSemesterClick } from '@/hooks/semesters/use-semester-click.hook'
 import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
@@ -9,7 +9,7 @@ import { useRecoilValue } from 'recoil'
 interface Props {
   semester: ISemester
 }
-const TagButtonSemester: FC<Props> = ({ semester }) => {
+const TagChipSemester: FC<Props> = ({ semester }) => {
   const selectedSemester = useRecoilValue(selectedSemesterSelector)
 
   const { code } = semester
@@ -26,7 +26,7 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
   }, [selectedSemester, code, onSemesterClick])
 
   return (
-    <StyledTagButtonAtom
+    <StyledChip
       key={code}
       loading={loading}
       label={`${semester.year}Y ${semester.quarter}Q`}
@@ -38,4 +38,4 @@ const TagButtonSemester: FC<Props> = ({ semester }) => {
   )
 }
 
-export default TagButtonSemester
+export default TagChipSemester

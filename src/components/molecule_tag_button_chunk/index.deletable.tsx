@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material'
 import { FC } from 'react'
-import TagButtonDeletable from '../atom_tag_button/index.deletable'
+import TagChipDeletable from '../atom_tag_chip/index.deletable'
 import { usePutWordTagDeleted } from '@/hooks/words/use-put-word-tag-deleted.hook'
 import WordCardAddTagButton from '../atom_word_card_add_tag_button'
 
@@ -11,7 +11,7 @@ interface Props {
 // TODO: Maybe it can undo deleting? but optional.
 // TODO: Maybe also can add a new tag, but then you no longer can call this chunk, but maybe Frame?
 const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
-  const [word, onClickDelete] = usePutWordTagDeleted(wordId)
+  const [word, onPutWordTagDeleted] = usePutWordTagDeleted(wordId)
 
   if (word == null) return null
 
@@ -23,11 +23,7 @@ const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
     >
       <WordCardAddTagButton wordId={wordId} />
       {word.tags.map((tag) => (
-        <TagButtonDeletable
-          key={tag}
-          handleClickDelete={onClickDelete}
-          label={tag}
-        />
+        <TagChipDeletable key={tag} onClick={onPutWordTagDeleted} label={tag} />
       ))}
     </Stack>
   )

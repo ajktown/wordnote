@@ -12,14 +12,14 @@ interface Props {
 const EnDictionaryDotComDictLinkButton: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const link = DICTIONARY_DOT_COM_PREFIX + word?.term
-  const onClick = useOpenNewTab(link)
+  const onOpenNewTab = useOpenNewTab(link)
 
   if (!word || word.languageCode !== `en` || !word.term) return null
 
   return (
     <StyledImageButtonAtom
       url={link}
-      onClick={onClick}
+      onClick={onOpenNewTab}
       imageSrc="/dictionary_icons/dictionary-dot-com.png"
     />
   )

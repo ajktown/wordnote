@@ -14,7 +14,7 @@ const JaKoNaverDictionaryLinkButton: FC<Props> = ({ wordId }) => {
   const preference = useRecoilValue(preferenceState)
   const word = useRecoilValue(wordsFamily(wordId))
   const link = JA_KO_NAVER_DICTIONARY_PREFIX + word?.term
-  const onClick = useOpenNewTab(link)
+  const onOpenNewTab = useOpenNewTab(link)
 
   if (!word || word.languageCode !== `ja` || !word.term) return null
   if (!preference?.nativeLanguages.includes(`ko`)) return null
@@ -22,7 +22,7 @@ const JaKoNaverDictionaryLinkButton: FC<Props> = ({ wordId }) => {
   return (
     <StyledImageButtonAtom
       url={link}
-      onClick={onClick}
+      onClick={onOpenNewTab}
       imageSrc="/dictionary_icons/naver-dictionary.png"
     />
   )

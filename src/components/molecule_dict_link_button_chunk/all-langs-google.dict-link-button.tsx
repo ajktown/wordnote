@@ -13,14 +13,14 @@ interface Props {
 const AllLangsGoogleDictLinkButton: FC<Props> = ({ wordId }) => {
   const word = useRecoilValue(wordsFamily(wordId))
   const link = GOOGLE_PREFIX + word?.term
-  const onClick = useOpenNewTab(link)
+  const onOpenNewTab = useOpenNewTab(link)
 
   if (!word?.term) return null
 
   return (
     <StyledImageButtonAtom
       url={link}
-      onClick={onClick}
+      onClick={onOpenNewTab}
       imageSrc="/dictionary_icons/google-dictionary.png"
     />
   )

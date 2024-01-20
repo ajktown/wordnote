@@ -6,14 +6,14 @@ import { useRecoilValue } from 'recoil'
 
 const WordIdsPagination: FC = () => {
   const pagination = useRecoilValue(wordIdsPagination)
-  const [, handleWordIds] = useWords()
+  const [, onGetWords] = useWords()
 
   const onChange = useCallback(
     async (newPage: number) => {
       window.scrollTo(0, 0)
-      await handleWordIds({ pageIndex: newPage - 1 })
+      await onGetWords({ pageIndex: newPage - 1 })
     },
-    [handleWordIds],
+    [onGetWords],
   )
 
   if (!pagination) return null

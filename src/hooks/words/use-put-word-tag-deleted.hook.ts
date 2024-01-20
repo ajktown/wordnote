@@ -12,7 +12,7 @@ export const usePutWordTagDeleted = (wordId: string): UsePutWordTagDeleted => {
   const word = useRecoilValue(wordsFamily(wordId))
   const [, onPutWord] = usePutWord(wordId)
 
-  const onClickDelete = useCallback(
+  const onPutWordTagDeleted = useCallback(
     async (deletingLabel: string) => {
       if (word == null) return
       await onPutWord({
@@ -22,5 +22,5 @@ export const usePutWordTagDeleted = (wordId: string): UsePutWordTagDeleted => {
     [word, onPutWord],
   )
 
-  return [word, onClickDelete]
+  return [word, onPutWordTagDeleted]
 }

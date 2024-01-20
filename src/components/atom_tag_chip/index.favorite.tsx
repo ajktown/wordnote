@@ -1,21 +1,21 @@
 import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { isFavoriteClickedSelector } from '@/recoil/words/words.selectors'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
-const TagButtonFavorite: FC = () => {
+const TagChipFavorite: FC = () => {
   const isFavoriteClicked = useRecoilValue(isFavoriteClickedSelector)
 
-  const [loading, getWords] = useWords()
+  const [loading, onGetWords] = useWords()
 
   const onClick = useCallback(async () => {
     try {
-      await getWords({ isFavorite: !isFavoriteClicked ? true : undefined })
+      await onGetWords({ isFavorite: !isFavoriteClicked ? true : undefined })
     } catch {}
-  }, [isFavoriteClicked, getWords])
+  }, [isFavoriteClicked, onGetWords])
 
   const variant: GlobalMuiTagVariant = useMemo(
     () => (isFavoriteClicked ? `filled` : `outlined`),
@@ -23,7 +23,7 @@ const TagButtonFavorite: FC = () => {
   )
 
   return (
-    <StyledTagButtonAtom
+    <StyledChip
       label={
         <StyledIconButtonFavorite isClicked={isFavoriteClicked} size="small" />
       }
@@ -36,4 +36,4 @@ const TagButtonFavorite: FC = () => {
   )
 }
 
-export default TagButtonFavorite
+export default TagChipFavorite

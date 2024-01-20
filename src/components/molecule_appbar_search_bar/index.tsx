@@ -13,16 +13,16 @@ import StyledCircularLoading from '@/atoms/StyledCircularLoading'
 const PRIVATE_DEFAULT_SEARCH_BEGIN_SECONDS = 0.5 // seconds
 const AppbarSearchBar: FC = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchInputState)
-  const [, handleGetWords] = useWords()
+  const [, onGetWords] = useWords()
   const [, onResetSearchInput] = useResetSearchInput()
 
   const onApplyChange = useCallback(async () => {
     try {
-      await handleGetWords({
+      await onGetWords({
         searchInput: searchInput ? searchInput : undefined,
       })
     } catch {}
-  }, [searchInput, handleGetWords])
+  }, [searchInput, onGetWords])
 
   const isLoading = useWait(onApplyChange, PRIVATE_DEFAULT_SEARCH_BEGIN_SECONDS)
 

@@ -7,7 +7,7 @@ import { semestersState } from '@/recoil/words/semesters.state'
 type UsePostWord = (newWord: PostWordReqDto) => Promise<void> // handlePostWord
 
 export const usePostWord = (): UsePostWord => {
-  const handlePostWord = useRecoilCallback(
+  const onPostWord = useRecoilCallback(
     ({ set, snapshot }) =>
       async (newWord: PostWordReqDto) => {
         try {
@@ -24,5 +24,5 @@ export const usePostWord = (): UsePostWord => {
     [],
   )
 
-  return handlePostWord
+  return onPostWord
 }

@@ -9,8 +9,8 @@ type UseOnHover = [
 export const useOnHover = (): UseOnHover => {
   const [isOnHover, setHover] = useState(false)
 
-  const handleMouseEnter = useCallback(() => setHover(true), [])
-  const handleMouseLeave = useCallback(() => setHover(false), [])
+  const onMouseEnter = useCallback(() => setHover(true), [])
+  const onMouseLeave = useCallback(() => setHover(false), [])
 
-  return [isOnHover, handleMouseEnter, handleMouseLeave]
+  return [isOnHover, onMouseEnter, onMouseLeave]
 }

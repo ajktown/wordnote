@@ -15,7 +15,7 @@ export const usePutWordTagAdded = (
   const [loading, setLoading] = useState(false)
   const [, onPutWord] = usePutWord(wordId)
 
-  const onChange = useRecoilCallback(
+  const onPutWordTagAdded = useRecoilCallback(
     ({ snapshot, set }) =>
       async (newTagName: string) => {
         try {
@@ -47,5 +47,5 @@ export const usePutWordTagAdded = (
     [onPutWord, callback],
   )
 
-  return [loading, onChange]
+  return [loading, onPutWordTagAdded]
 }

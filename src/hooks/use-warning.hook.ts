@@ -19,8 +19,8 @@ export const useWarning = (
   const [isDialogOpen, setDialog] = useState(false)
   const isReversed = options?.isReversed || PRIVATE_DEFAULT_IS_REVERSED
 
-  const handleClickCloseWarning = useCallback(() => setDialog(false), [])
-  const handleClickOpenWarning = useCallback(async () => {
+  const onClickCloseWarning = useCallback(() => setDialog(false), [])
+  const onClickOpenWarning = useCallback(async () => {
     const isDisabled = isReversed
       ? await isWarningDisabled()
       : !(await isWarningDisabled())
@@ -30,14 +30,14 @@ export const useWarning = (
   }, [isWarningDisabled, onClickConfirm, isReversed])
 
   const handleClickConfirm = useCallback(async () => {
-    handleClickCloseWarning()
+    onClickCloseWarning()
     await onClickConfirm()
-  }, [handleClickCloseWarning, onClickConfirm])
+  }, [onClickCloseWarning, onClickConfirm])
 
   return [
     isDialogOpen,
-    handleClickOpenWarning,
-    handleClickCloseWarning,
+    onClickOpenWarning,
+    onClickCloseWarning,
     handleClickConfirm,
   ]
 }

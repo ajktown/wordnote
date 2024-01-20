@@ -1,5 +1,7 @@
 # Wordnote
 
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/8244/badge)](https://bestpractices.coreinfrastructure.org/projects/8244)
+
 <!-- TOC -->
 
 - [Wordnote](#wordnote)
@@ -13,6 +15,7 @@
     - [Format into the standard format](#format-into-the-standard-format)
   - [About the starter of this project](#about-the-starter-of-this-project)
     - [Getting Started](#getting-started)
+      - [Run api server](#run-api-server)
     - [Learn More](#learn-more)
     - [Deploy on Vercel](#deploy-on-vercel)
 
@@ -30,7 +33,7 @@ https://hub.docker.com/r/ajktown/wordnote/tags
 
 
 ### Push image command
-You musth have permission to push to the repository.
+You must have permission to push to the repository.
 ```sh
 
 docker build -t ajktown/wordnote:latest .
@@ -57,7 +60,7 @@ cat ./yarn-latest.log
 
 ### Format into the standard format
 
-This function will fix lint for the repository. Run this every time before doing the PR. It won't pass the lint pipeline test (TODO: Not yet read, coming soon)
+This function will fix lint for the repository. Run this every time before doing the PR. It won't pass the lint pipeline test.
 ```bash
 yarn inspect
 ```
@@ -72,6 +75,11 @@ yarn latest
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### Getting Started
+
+#### Run api server
+The Wordnote application depends on the ajktown-api server.
+Please install it first. https://github.com/ajktown/api.
+
 
 First, run the development server:
 

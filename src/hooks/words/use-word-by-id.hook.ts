@@ -1,12 +1,12 @@
 import { getWordByIdApi } from '@/api/words/get-word-by-id.api'
 import { wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
-import { useApiErrorHook } from '../use-api-error.hook'
+import { useHandleApiError } from '../use-handle-api-error.hook'
 
 export const useWordById = (id: string) => {
-  const handleApiError = useApiErrorHook()
+  const onHandleApiError = useHandleApiError()
 
-  const handleRefresh = useRecoilCallback(
+  const onGetWordById = useRecoilCallback(
     ({ set }) =>
       async () => {
         try {
@@ -14,11 +14,11 @@ export const useWordById = (id: string) => {
           set(wordsFamily(word.id), word)
         } catch (err) {
           set(wordsFamily(id), null)
-          handleApiError(err)
+          onHandleApiError(err)
         }
       },
-    [id, handleApiError],
+    [id, onHandleApiError],
   )
 
-  return handleRefresh
+  return onGetWordById
 }

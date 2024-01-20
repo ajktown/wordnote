@@ -6,11 +6,11 @@ import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardExamplePart from '../atom_word_card_parts/index.example'
 import { sharedWordFamily } from '@/recoil/shared-resource/shared-resource.state'
 import WordCardSkeleton from './index.skeleton'
-import TagButtonLanguage from '../atom_tag_button/index.language'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { PageConst } from '@/constants/pages.constant'
 import { PageQueryConst } from '@/constants/page-queries.constant'
 import StyledCountdownTimer from '@/atoms/StyledCountdownTimer'
+import TagButtonLanguage from '../atom_tag_chip/index.language'
 
 interface Props {
   wordId: string

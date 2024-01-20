@@ -1,4 +1,4 @@
-import StyledTagButtonAtom from '@/atoms/StyledTagButton'
+import StyledChip from '@/atoms/StyledChip'
 import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
@@ -13,7 +13,7 @@ interface Props {
 const TagButtonLanguage: FC<Props> = ({ languageCode, clickDisabled }) => {
   const selectedLanguages = useRecoilValue(selectedLanguageTagsSelector)
   const isSelected = selectedLanguages.includes(languageCode)
-  const [loading, getWords] = useWords()
+  const [loading, onGetWords] = useWords()
 
   const onClick = useCallback(async () => {
     const newSelectedLanguages = isSelected
@@ -21,15 +21,15 @@ const TagButtonLanguage: FC<Props> = ({ languageCode, clickDisabled }) => {
       : [...selectedLanguages, languageCode]
 
     try {
-      await getWords({
+      await onGetWords({
         languageCodes:
           newSelectedLanguages.length === 0 ? undefined : newSelectedLanguages,
       })
     } catch {}
-  }, [isSelected, selectedLanguages, languageCode, getWords])
+  }, [isSelected, selectedLanguages, languageCode, onGetWords])
 
   return (
-    <StyledTagButtonAtom
+    <StyledChip
       label={getLanguageFullName(languageCode)}
       onClick={clickDisabled ? undefined : onClick}
       loading={loading}

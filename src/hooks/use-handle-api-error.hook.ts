@@ -3,23 +3,23 @@ import { isApiConnectFailed } from '@/recoil/apis/error-api-connection-fail.stat
 import { useRecoilCallback } from 'recoil'
 import { useOnSignOutApp } from './app/use-on-sign-out-app.hook'
 
-type HandleApiError = (err: unknown) => any
+type OnHandleApiError = (err: unknown) => any
 
-export const useApiErrorHook = (): HandleApiError => {
-  const handleSignOutApp = useOnSignOutApp()
+export const useHandleApiError = () => {
+  const onApiErrorHook = useOnSignOutApp()
 
-  const handleApiError: HandleApiError = useRecoilCallback(
+  const onHandleApiError: OnHandleApiError = useRecoilCallback(
     ({ set }) =>
       async (err: unknown) => {
         set(isApiConnectFailed, true)
 
         const error = CustomizedApiError.fromUnknown(err)
         if (error.props.statusCode === 401) {
-          await handleSignOutApp()
+          await onApiErrorHook()
         }
       },
-    [handleSignOutApp],
+    [onApiErrorHook],
   )
 
-  return handleApiError
+  return onHandleApiError
 }
