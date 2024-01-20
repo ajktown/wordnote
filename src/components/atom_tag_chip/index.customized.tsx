@@ -7,8 +7,9 @@ import { useRecoilValue } from 'recoil'
 
 interface Props {
   label: string
+  clickDisabled?: boolean
 }
-const TagChipCustomized: FC<Props> = ({ label }) => {
+const TagChipCustomized: FC<Props> = ({ label, clickDisabled }) => {
   const selectedCustomizedTags = useRecoilValue(selectedCustomizedTagsSelector)
   const [loading, onGetWords] = useWords()
 
@@ -36,6 +37,7 @@ const TagChipCustomized: FC<Props> = ({ label }) => {
     <StyledChip
       label={`#` + label}
       loading={loading}
+      clickDisabled={clickDisabled}
       style={{
         variant,
       }}

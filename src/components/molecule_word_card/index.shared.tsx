@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react'
-import { Card, CardActions, CardContent, Typography } from '@mui/material'
+import { Box, Card, CardActions, CardContent, Typography } from '@mui/material'
 import { useRecoilValue } from 'recoil'
 import WordCardUnknown from './index.unknown'
 import StyledSuspense from '@/organisms/StyledSuspense'
@@ -52,6 +52,7 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
             clickDisabled
           />
           <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
+          <Box mr={0.5} />
           <StyledCountdownTimer
             targetTime={sharedWord.sharedResource.expireInSecs}
           />

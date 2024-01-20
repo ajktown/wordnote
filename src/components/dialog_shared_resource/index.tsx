@@ -9,6 +9,8 @@ import StyledDialog from '@/organisms/StyledDialog'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { postSharedResourceApi } from '@/api/shared-resources/post-shared-resource.api'
 import WordCardShared from '../molecule_word_card/index.shared'
+import { DialogContent, DialogTitle } from '@mui/material'
+import WordCardShareReview from '../molecule_word_card/index.share-review'
 
 const SharedResourceDialog: FC = () => {
   const sharedWordId = useRecoilValue(sharedWordIdState)
@@ -43,11 +45,15 @@ const SharedResourceDialog: FC = () => {
   if (sharedWord === null)
     return (
       <StyledDialog onClose={onClose}>
-        <StyledTextButtonAtom
-          title={`Wanna create new one?`}
-          onClick={onClick}
-          isLoading={posting}
-        />
+        <DialogTitle>{`Beta Feature: Share Word Card?`}</DialogTitle>
+        <DialogContent>
+          <StyledTextButtonAtom
+            title={`Share the word card below`}
+            onClick={onClick}
+            isLoading={posting}
+          />
+          <WordCardShareReview wordId={sharedWordId} />
+        </DialogContent>
       </StyledDialog>
     )
 

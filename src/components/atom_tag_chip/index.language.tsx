@@ -31,7 +31,8 @@ const TagButtonLanguage: FC<Props> = ({ languageCode, clickDisabled }) => {
   return (
     <StyledChip
       label={getLanguageFullName(languageCode)}
-      onClick={clickDisabled ? undefined : onClick}
+      onClick={onClick}
+      clickDisabled={clickDisabled}
       loading={loading}
       style={{
         variant: isSelected ? `filled` : `outlined`,

@@ -7,8 +7,9 @@ import TagChipLanguage from '../atom_tag_chip/index.language'
 
 interface Props {
   wordId: string
+  clickDisabled?: boolean
 }
-const TagButtonChunk: FC<Props> = ({ wordId }) => {
+const TagButtonChunk: FC<Props> = ({ wordId, clickDisabled }) => {
   const word = useRecoilValue(wordsFamily(wordId))
 
   if (word == null) return null
@@ -19,9 +20,16 @@ const TagButtonChunk: FC<Props> = ({ wordId }) => {
       spacing={0.2}
       sx={{ flexWrap: `wrap`, rowGap: `3px` }}
     >
-      <TagChipLanguage languageCode={word.languageCode} />
+      <TagChipLanguage
+        languageCode={word.languageCode}
+        clickDisabled={clickDisabled}
+      />
       {word.tags.map((tag) => (
-        <TagChipCustomized key={tag} label={tag} />
+        <TagChipCustomized
+          key={tag}
+          label={tag}
+          clickDisabled={clickDisabled}
+        />
       ))}
     </Stack>
   )
