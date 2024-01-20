@@ -2,7 +2,7 @@ import WordCardShared from '@/components/molecule_word_card/index.shared'
 import { PageQueryConst } from '@/constants/page-queries.constant'
 import { useSharedResource } from '@/hooks/shared-resources/use-shared-resource.hook'
 import StyledCentered from '@/organisms/StyledCentered'
-import { Stack } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { FC, useEffect } from 'react'
 
@@ -23,9 +23,11 @@ const SharePage: FC = () => {
     )
   return (
     <StyledCentered>
-      <Stack>
+      <Typography variant="h5">
+        {`Beta feature: Below is the shared word card`}
+      </Typography>
+      <Stack minWidth={700}>
         <WordCardShared wordId={wordId.trim()} />
-        <h3>{`==========This is the wordId Query: ${wordId}==========`}</h3>
       </Stack>
     </StyledCentered>
   )
