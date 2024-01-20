@@ -26,7 +26,7 @@ const SharedResourceDialog: FC = () => {
         try {
           const [data] = await postSharedResourceApi({
             wordId: sharedWordId,
-            expireAfterSecs: 240,
+            expireAfterSecs: 60 * 60 * 24, // a day
           })
           set(sharedWordFamily(sharedWordId), data)
         } catch {
