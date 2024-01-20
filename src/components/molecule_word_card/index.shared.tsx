@@ -1,6 +1,6 @@
 import { FC, useCallback } from 'react'
 import { Box, Card, CardActions, CardContent, Typography } from '@mui/material'
-import { useRecoilValue } from 'recoil'
+import { useRecoilCallback, useRecoilValue } from 'recoil'
 import WordCardUnknown from './index.unknown'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardExamplePart from '../atom_word_card_parts/index.example'
@@ -25,6 +25,14 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
     const { origin } = window.location // like http://localhost:3000
     navigator.clipboard.writeText(origin + URL_PATH + wordId)
   }, [wordId])
+
+  const onHandleExpire = useRecoilCallback(
+    ({ set }) =>
+      async () => {
+        set(sharedWordFamily(wordId), null)
+      },
+    [wordId],
+  )
 
   if (sharedWord === undefined) return <WordCardSkeleton />
   if (sharedWord === null || sharedWord.word === null)
@@ -55,6 +63,7 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
           <Box mr={0.5} />
           <StyledCountdownTimer
             targetTime={sharedWord.sharedResource.expireInSecs}
+            onHandleExpire={onHandleExpire}
           />
         </CardActions>
       </Card>
