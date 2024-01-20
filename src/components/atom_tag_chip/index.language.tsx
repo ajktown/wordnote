@@ -8,8 +8,9 @@ import { useRecoilValue } from 'recoil'
 
 interface Props {
   languageCode: GlobalLanguageCode
+  clickDisabled?: boolean // only shows the chip, but not clickable
 }
-const TagChipLanguage: FC<Props> = ({ languageCode }) => {
+const TagButtonLanguage: FC<Props> = ({ languageCode, clickDisabled }) => {
   const selectedLanguages = useRecoilValue(selectedLanguageTagsSelector)
   const isSelected = selectedLanguages.includes(languageCode)
   const [loading, onGetWords] = useWords()
@@ -31,6 +32,7 @@ const TagChipLanguage: FC<Props> = ({ languageCode }) => {
     <StyledChip
       label={getLanguageFullName(languageCode)}
       onClick={onClick}
+      clickDisabled={clickDisabled}
       loading={loading}
       style={{
         variant: isSelected ? `filled` : `outlined`,
@@ -39,4 +41,4 @@ const TagChipLanguage: FC<Props> = ({ languageCode }) => {
   )
 }
 
-export default TagChipLanguage
+export default TagButtonLanguage

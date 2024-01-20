@@ -1,11 +1,11 @@
 import { FC } from 'react'
-import { WordData } from '@/api/words/interfaces'
+import { ISharedWord } from '@/api/words/interfaces'
 import Link from 'next/link'
 import { Typography } from '@mui/material'
 
 const PRIVATE_VARIANT = `body2`
 interface Props {
-  word: WordData
+  word: ISharedWord
   reviewMode?: boolean // if review mode, it shows "???"
 }
 /**

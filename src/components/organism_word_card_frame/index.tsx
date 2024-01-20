@@ -11,6 +11,7 @@ import TagButtonChunkDetailed from '../molecule_tag_button_chunk/index.detailed'
 import WordCardsFramePreferenceButtonPart from '../atom_word_cards_frame_parts/index.preference-button'
 import WordCardsFrameArchiveSwitchPart from '../atom_word_cards_frame_parts/index.archive-switch'
 import WordCardsFrameArchiveModePart from '../atom_word_cards_frame_parts/index.archive-mode'
+import SharedResourceDialog from '../dialog_shared_resource'
 import WordCardsFrameReviewModePart from '../atom_word_cards_frame_parts/index.review-mode'
 
 const WordCardFrame: FC = () => {
@@ -38,6 +39,7 @@ const WordCardFrame: FC = () => {
         </Stack>
         {/* Dialog */}
         <WordCardDialog />
+        <SharedResourceDialog />
       </Stack>
     </Stack>
   )

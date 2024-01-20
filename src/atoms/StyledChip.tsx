@@ -1,4 +1,4 @@
-import { FC, ReactElement, ReactNode } from 'react'
+import { FC, ReactElement, ReactNode, useMemo } from 'react'
 import { Chip } from '@mui/material'
 import { GlobalMuiTagVariant } from '@/global.interface'
 
@@ -10,18 +10,29 @@ interface Props {
     variant?: GlobalMuiTagVariant // Default: PRIVATE_DEFAULT_VARIANT
   }
   loading?: boolean
+  clickDisabled?: boolean // Default: false
   onClick?: () => any
   FrontIcon?: ReactElement // Front Icon does not have onClickFontIcon
   RearIcon?: ReactElement
   onClickRearIcon?: () => any
 }
 
-const StyledChip: FC<Props> = ({ RearIcon, ...props }) => {
+const StyledChip: FC<Props> = ({
+  RearIcon,
+  onClick,
+  clickDisabled,
+  ...props
+}) => {
+  const handleClick = useMemo(() => {
+    if (clickDisabled) return undefined
+    return onClick
+  }, [clickDisabled, onClick])
+
   return (
     <Chip
       label={props.label}
       disabled={props.loading}
-      onClick={props.onClick}
+      onClick={handleClick}
       onDelete={props.onClickRearIcon}
       icon={props.FrontIcon}
       deleteIcon={RearIcon}

@@ -23,11 +23,7 @@ const TagButtonDeletableChunk: FC<Props> = ({ wordId }) => {
     >
       <WordCardAddTagButton wordId={wordId} />
       {word.tags.map((tag) => (
-        <TagChipDeletable
-          key={tag}
-          onClick={onPutWordTagDeleted}
-          label={tag}
-        />
+        <TagChipDeletable key={tag} onClick={onPutWordTagDeleted} label={tag} />
       ))}
     </Stack>
   )

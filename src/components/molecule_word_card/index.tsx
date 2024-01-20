@@ -22,6 +22,7 @@ import {
   isShowingArchivedState,
 } from '@/recoil/preferences/preference.state'
 import WordCardReviewMode from './index.review_mode'
+import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 
 interface Props {
   wordId: string
@@ -70,6 +71,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardDeleteButton wordId={wordId} />
           {!word.isArchived && <WordCardArchiveButtonPart wordId={wordId} />}
           {word.isArchived && <WordCardUnarchiveButtonPart wordId={wordId} />}
+          <WordCardShareButtonPart wordId={wordId} />
           <TagButtonChunk wordId={wordId} />
           <DictLinkButtonChunk wordId={wordId} />
         </CardActions>
