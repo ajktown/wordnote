@@ -8,7 +8,7 @@ import { useAuthPrep } from '../auth/use-auth-prep.hook'
 
 export const useIsAppBooted = (): boolean => {
   const isBooted = useRecoilValue(isAppBootedSelector)
-  const handleSignOutApp = useOnSignOutApp()
+  const onSignOutApp = useOnSignOutApp()
   const onGetAuthPrep = useAuthPrep()
   const router = useRouter()
 
@@ -24,9 +24,9 @@ export const useIsAppBooted = (): boolean => {
 
       router.push(DEFAULT_MAIN_APP_PAGE)
     } catch {
-      await handleSignOutApp()
+      await onSignOutApp()
     }
-  }, [onGetAuthPrep, handleSignOutApp, router])
+  }, [onGetAuthPrep, onSignOutApp, router])
 
   useEffect(() => {
     if (isBooted) return
