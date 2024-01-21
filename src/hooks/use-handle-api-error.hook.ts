@@ -6,7 +6,7 @@ import { useOnSignOutApp } from './app/use-on-sign-out-app.hook'
 type OnHandleApiError = (err: unknown) => any
 
 export const useHandleApiError = () => {
-  const onApiErrorHook = useOnSignOutApp()
+  const onSignOutApp = useOnSignOutApp()
 
   const onHandleApiError: OnHandleApiError = useRecoilCallback(
     ({ set }) =>
@@ -15,10 +15,10 @@ export const useHandleApiError = () => {
 
         const error = CustomizedApiError.fromUnknown(err)
         if (error.props.statusCode === 401) {
-          await onApiErrorHook()
+          await onSignOutApp()
         }
       },
-    [onApiErrorHook],
+    [onSignOutApp],
   )
 
   return onHandleApiError
