@@ -11,13 +11,13 @@ const WordCardChunkSearchNotFound: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
   const [, onResetSearchInput] = useResetSearchInput()
   const setSearchInput = useSetRecoilState(searchInputState)
-  const postWord = usePostWord()
+  const onPostWord = usePostWord()
 
   const handleClickPostWord = useCallback(() => {
     const parsed = parseInputIntoWordLambda(searchInput)
-    postWord(parsed)
+    onPostWord(parsed)
     setSearchInput(parsed.term)
-  }, [searchInput, postWord, setSearchInput])
+  }, [searchInput, onPostWord, setSearchInput])
 
   return (
     <Stack>

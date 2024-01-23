@@ -15,7 +15,7 @@ type UsePostWordWithStringHook = [
 ]
 
 export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
-  const handlePostWord = usePostWord()
+  const onPostWord = usePostWord()
   const [userInput, setUserInput] = useState(``)
   const [loading, setLoading] = useState(false)
   const [isWritingMode, setWritingMode] = useState(false)
@@ -29,7 +29,7 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
       try {
         setLoading(true)
         const newWord: PostWordReqDto = parseInputIntoWordLambda(userInput)
-        await handlePostWord(newWord)
+        await onPostWord(newWord)
       } finally {
         setLoading(false)
       }
@@ -37,7 +37,7 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
       setUserInput(``)
       withWritingModeClosed && setWritingMode(false)
     },
-    [userInput, handlePostWord],
+    [userInput, onPostWord],
   )
 
   const onClickPostWordWritingModeClose = useCallback(
