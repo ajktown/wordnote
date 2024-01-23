@@ -6,7 +6,7 @@ import { usePutPreference } from './use-put-preference.hook'
 export const usePutPreferenceNativeLanguage = (
   languageCode: GlobalLanguageCode,
 ) => {
-  const onUsePutPreference = usePutPreference()
+  const onPutPreference = usePutPreference()
   const onPutPreferenceNativeLanguage = useRecoilCallback(
     ({ snapshot }) =>
       async (_, checked: boolean) => {
@@ -23,10 +23,10 @@ export const usePutPreferenceNativeLanguage = (
           const nativeLanguages: GlobalLanguageCode[] =
             Array.from(nativeLanguagesSet)
 
-          await onUsePutPreference({ nativeLanguages })
+          await onPutPreference({ nativeLanguages })
         } catch {}
       },
-    [onUsePutPreference, languageCode],
+    [onPutPreference, languageCode],
   )
 
   return onPutPreferenceNativeLanguage
