@@ -21,10 +21,10 @@ export const useDynamicFocus = (
     }, milliSecondsWait)
   }, [ref, milliSecondsWait])
 
-  const onDynamicFocus = useCallback(async () => {
+  const onGetDynamicFocus = useCallback(async () => {
     await handleClick()
     setFocus()
   }, [handleClick, setFocus])
 
-  return [ref, onDynamicFocus]
+  return [ref, onGetDynamicFocus]
 }
