@@ -21,8 +21,11 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
     setInput(``)
     setAddingMode(false)
   }, [])
-  const [loading, onAddTag] = usePutWordTagAdded(wordId, onResetInput)
-  const onClick = useCallback(() => onAddTag(input), [input, onAddTag])
+  const [loading, onPutWordTagAdded] = usePutWordTagAdded(wordId, onResetInput)
+  const onClick = useCallback(
+    () => onPutWordTagAdded(input),
+    [input, onPutWordTagAdded],
+  )
 
   return (
     <Fragment>
