@@ -30,13 +30,13 @@ const NewWordBox: FC = () => {
     onClickPostWordWritingModeOpen,
   ] = usePostWordWithStringHook()
 
-  const [inputRef, onGetDynamicFocus] = useDynamicFocus(
+  const [inputRef, onDynamicFocus] = useDynamicFocus(
     onClickPostWordWritingModeOpen,
   )
   const onHitEnter = useCallback(() => {
-    if (isWritingMode) onGetDynamicFocus()
+    if (isWritingMode) onDynamicFocus()
     else setWritingMode(true)
-  }, [isWritingMode, setWritingMode, onGetDynamicFocus])
+  }, [isWritingMode, setWritingMode, onDynamicFocus])
 
   useKeyPress(`Enter`, onHitEnter)
   useKeyPress(`Escape`, onClickPostWordWritingModeClose)
