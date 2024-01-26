@@ -16,21 +16,20 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
   const [input, setInput] = useState(``)
 
   const onClickOpen = useCallback(async () => setAddingMode(true), [])
-  const [inputRef, onClickOpenWithFocus] = useDynamicFocus(onClickOpen)
+  const [inputRef, onDynamicFocus] = useDynamicFocus(onClickOpen)
   const onResetInput = useCallback(() => {
     setInput(``)
     setAddingMode(false)
   }, [])
-  const [loading, onAddTag] = usePutWordTagAdded(wordId, onResetInput)
-  const onClick = useCallback(() => onAddTag(input), [input, onAddTag])
+  const [loading, onPutWordTagAdded] = usePutWordTagAdded(wordId, onResetInput)
+  const onClick = useCallback(
+    () => onPutWordTagAdded(input),
+    [input, onPutWordTagAdded],
+  )
 
   return (
     <Fragment>
-      <StyledChip
-        label={`+`}
-        loading={loading}
-        onClick={onClickOpenWithFocus}
-      />
+      <StyledChip label={`+`} loading={loading} onClick={onDynamicFocus} />
       {isAddingMode && (
         <StyledDialog
           visuals={{ maxWidth: `xs` }}

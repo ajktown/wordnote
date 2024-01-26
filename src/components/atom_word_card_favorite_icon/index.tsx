@@ -6,14 +6,14 @@ interface Props {
   wordId: string
 }
 const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
-  const [word, handlePutWordFavorite] = usePutWordFavorite(wordId)
+  const [word, onPutWordFavorite] = usePutWordFavorite(wordId)
 
   if (!word) return null
 
   return (
     <StyledIconButtonFavorite
       isClicked={word.isFavorite}
-      onClick={handlePutWordFavorite}
+      onClick={onPutWordFavorite}
     />
   )
 }
