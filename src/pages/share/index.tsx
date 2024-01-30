@@ -23,10 +23,10 @@ const SharePage: FC = () => {
     )
   return (
     <StyledCentered>
-      <Typography variant="h5" style={{ border: `3px solid yellow` }}>
+      <Typography variant="h5">
         {`Beta feature: Below is the shared word card`}
       </Typography>
-      <Stack minWidth={700} style={{ border: `3px solid red` }}>
+      <Stack minWidth={700}>
         <WordCardShared wordId={wordId.trim()} />
       </Stack>
     </StyledCentered>
