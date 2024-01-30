@@ -68,7 +68,6 @@ const WordCardShared: FC<Props> = ({ wordId, clickDisabled }) => {
               clickDisabled={clickDisabled}
             />
           ))}
-
           <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
           <Box mr={0.5} />
           <StyledCountdownTimer
