@@ -15,12 +15,11 @@ import TagChipCustomized from '../atom_tag_chip/index.customized'
 
 interface Props {
   wordId: string
-  clickDisabled?: boolean
 }
 
 const URL_PATH = `/` + PageConst.Share + `?` + PageQueryConst.wordID + `=`
 
-const WordCardShared: FC<Props> = ({ wordId, clickDisabled }) => {
+const WordCardShared: FC<Props> = ({ wordId }) => {
   const sharedWord = useRecoilValue(sharedWordFamily(wordId))
 
   const onClickCopyUrl = useCallback(() => {
@@ -62,11 +61,7 @@ const WordCardShared: FC<Props> = ({ wordId, clickDisabled }) => {
             clickDisabled
           />
           {sharedWord.word.tags.map((tag) => (
-            <TagChipCustomized
-              key={tag}
-              label={tag}
-              clickDisabled={clickDisabled}
-            />
+            <TagChipCustomized key={tag} label={tag} clickDisabled />
           ))}
           <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
           <Box mr={0.5} />
