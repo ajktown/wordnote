@@ -11,6 +11,7 @@ import { PageConst } from '@/constants/pages.constant'
 import { PageQueryConst } from '@/constants/page-queries.constant'
 import StyledCountdownTimer from '@/atoms/StyledCountdownTimer'
 import TagButtonLanguage from '../atom_tag_chip/index.language'
+import TagChipCustomized from '../atom_tag_chip/index.customized'
 
 interface Props {
   wordId: string
@@ -59,6 +60,9 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
             languageCode={sharedWord.word.languageCode}
             clickDisabled
           />
+          {sharedWord.word.tags.map((tag) => (
+            <TagChipCustomized key={tag} label={tag} clickDisabled />
+          ))}
           <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
           <Box mr={0.5} />
           <StyledCountdownTimer

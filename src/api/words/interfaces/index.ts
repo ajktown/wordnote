@@ -10,6 +10,7 @@ export interface ISharedWord {
   definition: string
   example: string
   exampleLink: string
+  tags: string[]
 }
 
 export interface WordData extends ISharedWord, DataStatus, DataBasics {
@@ -17,7 +18,6 @@ export interface WordData extends ISharedWord, DataStatus, DataBasics {
   userId: string
   semester: number
   isFavorite: boolean
-  tags: string[]
   dateAdded?: number
   isArchived: boolean
 }
