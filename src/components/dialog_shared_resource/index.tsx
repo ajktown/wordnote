@@ -14,7 +14,7 @@ import WordCardShareReview from '../molecule_word_card/index.share-review'
 
 const SharedResourceDialog: FC = () => {
   const sharedWordId = useRecoilValue(sharedWordIdState)
-  const sharedWord = useRecoilValue(sharedWordFamily(sharedWordId))
+  const sharedData = useRecoilValue(sharedWordFamily(sharedWordId))
   const onClose = useResetRecoilState(sharedWordIdState)
   const [posting, setPosting] = useState(false)
 
@@ -40,9 +40,9 @@ const SharedResourceDialog: FC = () => {
 
   if (!sharedWordId) return null
 
-  if (sharedWord === undefined) return <StyledDialogLoading />
+  if (sharedData === undefined) return <StyledDialogLoading />
 
-  if (sharedWord === null)
+  if (sharedData === null)
     return (
       <StyledDialog onClose={onClose}>
         <DialogTitle>{`Beta Feature: Share Word Card?`}</DialogTitle>

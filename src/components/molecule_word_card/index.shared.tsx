@@ -19,7 +19,7 @@ interface Props {
 const URL_PATH = `/` + PageConst.Share + `?` + PageQueryConst.wordID + `=`
 
 const WordCardShared: FC<Props> = ({ wordId }) => {
-  const sharedWord = useRecoilValue(sharedWordFamily(wordId))
+  const sharedData = useRecoilValue(sharedWordFamily(wordId))
 
   const onClickCopyUrl = useCallback(() => {
     const { origin } = window.location // like http://localhost:3000
@@ -34,8 +34,8 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
     [wordId],
   )
 
-  if (sharedWord === undefined) return <WordCardSkeleton />
-  if (sharedWord === null || sharedWord.word === null)
+  if (sharedData === undefined) return <WordCardSkeleton />
+  if (sharedData === null || sharedData.word === null)
     return <WordCardUnknown />
 
   return (
@@ -43,26 +43,26 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
           <Typography variant="h5" component="div">
-            {sharedWord.word.term}
+            {sharedData.word.term}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {sharedWord.word.pronunciation}
+            {sharedData.word.pronunciation}
           </Typography>
           <Typography variant="body2">
-            {sharedWord.word.definition}
+            {sharedData.word.definition}
             <br />
           </Typography>
-          <WordCardExamplePart word={sharedWord.word} />
+          <WordCardExamplePart word={sharedData.word} />
         </CardContent>
         <CardActions>
           <TagButtonLanguage
-            languageCode={sharedWord.word.languageCode}
+            languageCode={sharedData.word.languageCode}
             clickDisabled
           />
           <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
           <Box mr={0.5} />
           <StyledCountdownTimer
-            targetTime={sharedWord.sharedResource.expireInSecs}
+            targetTime={sharedData.sharedResource.expireInSecs}
             onHandleExpire={onHandleExpire}
           />
         </CardActions>
