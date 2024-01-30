@@ -21,7 +21,7 @@ interface Props {
 const URL_PATH = `/` + PageConst.Share + `?` + PageQueryConst.wordID + `=`
 
 const WordCardShared: FC<Props> = ({ wordId, clickDisabled }) => {
-  const sharedData = useRecoilValue(sharedWordFamily(wordId))
+  const sharedWord = useRecoilValue(sharedWordFamily(wordId))
 
   const onClickCopyUrl = useCallback(() => {
     const { origin } = window.location // like http://localhost:3000
@@ -36,8 +36,8 @@ const WordCardShared: FC<Props> = ({ wordId, clickDisabled }) => {
     [wordId],
   )
 
-  if (sharedData === undefined) return <WordCardSkeleton />
-  if (sharedData === null || sharedData.word === null)
+  if (sharedWord === undefined) return <WordCardSkeleton />
+  if (sharedWord === null || sharedWord.word === null)
     return <WordCardUnknown />
 
   return (
@@ -45,23 +45,23 @@ const WordCardShared: FC<Props> = ({ wordId, clickDisabled }) => {
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
           <Typography variant="h5" component="div">
-            {sharedData.word.term}
+            {sharedWord.word.term}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {sharedData.word.pronunciation}
+            {sharedWord.word.pronunciation}
           </Typography>
           <Typography variant="body2">
-            {sharedData.word.definition}
+            {sharedWord.word.definition}
             <br />
           </Typography>
-          <WordCardExamplePart word={sharedData.word} />
+          <WordCardExamplePart word={sharedWord.word} />
         </CardContent>
         <CardActions>
           <TagButtonLanguage
-            languageCode={sharedData.word.languageCode}
+            languageCode={sharedWord.word.languageCode}
             clickDisabled
           />
-          {sharedData.word.tags.map((tag) => (
+          {sharedWord.word.tags.map((tag) => (
             <TagChipCustomized
               key={tag}
               label={tag}
@@ -72,7 +72,7 @@ const WordCardShared: FC<Props> = ({ wordId, clickDisabled }) => {
           <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
           <Box mr={0.5} />
           <StyledCountdownTimer
-            targetTime={sharedData.sharedResource.expireInSecs}
+            targetTime={sharedWord.sharedResource.expireInSecs}
             onHandleExpire={onHandleExpire}
           />
         </CardActions>
