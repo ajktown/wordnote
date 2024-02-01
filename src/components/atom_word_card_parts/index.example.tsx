@@ -19,8 +19,27 @@ const WordCardExamplePart: FC<Props> = ({ word, reviewMode }) => {
   const exampleTrimmed = word.example.trim()
   const linkExampleTrimmed = word.exampleLink.trim()
 
-  if (reviewMode)
+  // does it have two double quote?
+  const hasTwoDoubleQuotes = exampleTrimmed.match(/"/g)?.length === 2
+
+  if (reviewMode && !hasTwoDoubleQuotes)
     return <Typography variant={PRIVATE_VARIANT}>{`???`}</Typography>
+
+  // only show non-double quote strings and the double quote becomes ???
+  if (reviewMode && hasTwoDoubleQuotes) {
+    // splice the string
+    const firstQuote = exampleTrimmed.indexOf(`"`)
+    const secondQuote = exampleTrimmed.indexOf(`"`, firstQuote + 1)
+
+    return (
+      <Typography variant={PRIVATE_VARIANT}>
+        {exampleTrimmed.slice(0, firstQuote) +
+          `_` + // default underline is 1 character
+          word.term.replace(/./g, `_`) +
+          exampleTrimmed.slice(secondQuote + 1)}
+      </Typography>
+    )
+  }
 
   if (!exampleTrimmed && linkExampleTrimmed)
     return (
@@ -34,13 +53,11 @@ const WordCardExamplePart: FC<Props> = ({ word, reviewMode }) => {
   if (!linkExampleTrimmed && !exampleTrimmed) return null
 
   if (!linkExampleTrimmed)
-    return (
-      <Typography variant={PRIVATE_VARIANT}>{`"${exampleTrimmed}"`}</Typography>
-    )
+    return <Typography variant={PRIVATE_VARIANT}>{exampleTrimmed}</Typography>
 
   return (
     <Link href={linkExampleTrimmed} target="_blank">
-      <Typography variant={PRIVATE_VARIANT}>{`"${exampleTrimmed}"`}</Typography>
+      <Typography variant={PRIVATE_VARIANT}>{exampleTrimmed}</Typography>
     </Link>
   )
 }
