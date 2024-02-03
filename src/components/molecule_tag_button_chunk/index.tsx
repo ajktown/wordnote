@@ -4,6 +4,7 @@ import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 import TagChipCustomized from '../atom_tag_chip/index.customized'
 import TagChipLanguage from '../atom_tag_chip/index.language'
+import TagChipSemesterCode from '../atom_tag_chip/index.semester-code'
 
 interface Props {
   wordId: string
@@ -20,6 +21,7 @@ const TagButtonChunk: FC<Props> = ({ wordId, clickDisabled }) => {
       spacing={0.2}
       sx={{ flexWrap: `wrap`, rowGap: `3px` }}
     >
+      <TagChipSemesterCode semesterCode={word.semester} />
       <TagChipLanguage
         languageCode={word.languageCode}
         clickDisabled={clickDisabled}
