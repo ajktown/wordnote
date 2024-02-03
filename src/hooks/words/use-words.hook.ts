@@ -9,7 +9,7 @@ import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useHandleApiError } from '../use-handle-api-error.hook'
 import { useApplySemesterDetails } from '../semesters/use-apply-semester-details'
-import { getWordsApi } from '@/api/words/get-words.api'
+import { GetWordsApi, getWordsApi } from '@/api/words/get-words.api'
 
 type NewParams = Partial<GetWordParams>
 type HandleRefresh = (newParams?: NewParams) => Promise<void>
@@ -30,7 +30,18 @@ export const useWords = (): UseWordIds => {
             ...newParams,
           }
           set(getWordsParamsState, params)
-          const [apiResponse] = await getWordsApi(params)
+
+          let apiResponse: undefined | GetWordsApi = undefined
+          if (params.searchInput?.trim()) {
+            // if search input is given, then we should get all words from every semester
+            apiResponse = (
+              await getWordsApi({ searchInput: params.searchInput })
+            )[0]
+          } else {
+            apiResponse = (await getWordsApi(params))[0]
+          }
+          if (!apiResponse) throw new Error(`apiResponse is undefined`)
+
           apiResponse.words.forEach((word) => {
             set(wordsFamily(word.id), word)
           })
