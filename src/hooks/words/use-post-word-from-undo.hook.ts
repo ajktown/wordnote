@@ -7,6 +7,7 @@ import {
 import { useRecoilCallback } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
 import { useState } from 'react'
+import { useActionGroups } from '../action-groups/use-action-groups.hook'
 
 type UsePostWordFromUndo = [
   boolean,
@@ -18,6 +19,7 @@ export const usePostWordFromUndo = (
   undoingWordId: string,
 ): UsePostWordFromUndo => {
   const [loading, setLoading] = useState(false)
+  const onGetActionGroups = useActionGroups()
 
   const onPostWordFromUndo = useRecoilCallback(
     ({ set, snapshot }) =>
@@ -45,9 +47,10 @@ export const usePostWordFromUndo = (
           }
         } finally {
           setLoading(false)
+          onGetActionGroups()
         }
       },
-    [undoingWordId],
+    [undoingWordId, onGetActionGroups],
   )
 
   return [loading, onPostWordFromUndo]
