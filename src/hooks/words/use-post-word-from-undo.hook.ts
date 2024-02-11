@@ -13,6 +13,7 @@ type UsePostWordFromUndo = [
   () => Promise<void>, // handlePostWordFromUndo
 ]
 
+// usePostWordFromUndo cannot use usePostWordHook, as it requires different mechanism
 export const usePostWordFromUndo = (
   undoingWordId: string,
 ): UsePostWordFromUndo => {
