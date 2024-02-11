@@ -4,7 +4,7 @@ import { isWordPostedDailyState } from '@/recoil/action-groups/action-groups.sta
 import { useRecoilCallback } from 'recoil'
 
 const NULL_TO_LOADING_SECONDS = 2
-const PRIVATE_LOADING_TO_RESULT_SECONDS = 3
+const PRIVATE_LOADING_TO_RESULT_SECONDS = 1.25
 export const useActionGroups = () => {
   const onGetActionGroups = useRecoilCallback(
     ({ set, snapshot }) =>
