@@ -3,10 +3,13 @@ import { PostWordReqDto } from '@/api/words/interfaces'
 import { wordIdsState, wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
+import { useActionGroups } from '../action-groups/use-action-groups.hook'
 
 type UsePostWord = (newWord: PostWordReqDto) => Promise<void> // handlePostWord
 
 export const usePostWord = (): UsePostWord => {
+  const onGetActionGroups = useActionGroups()
+
   const onPostWord = useRecoilCallback(
     ({ set, snapshot }) =>
       async (newWord: PostWordReqDto) => {
@@ -19,9 +22,11 @@ export const usePostWord = (): UsePostWord => {
           set(semestersState, semesters.semesters)
 
           // TODO: Add daysAgo 0 to the latest semester
-        } catch {}
+        } finally {
+          onGetActionGroups()
+        }
       },
-    [],
+    [onGetActionGroups],
   )
 
   return onPostWord
