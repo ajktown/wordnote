@@ -49,6 +49,7 @@ const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
           <AppbarSearchBar />
           <Box flexGrow={1} />
           <AppbarToConsistencyPageButtonPart />
+          <Box pr={0.25} />
           <EndUserAvatar />
         </Toolbar>
       </AppBar>
