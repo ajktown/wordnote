@@ -2,6 +2,7 @@ import { deleteWordByIdApi } from '@/api/words/delete-words.api'
 import { wordsFamily } from '@/recoil/words/words.state'
 import { useCallback, useState } from 'react'
 import { useRecoilCallback } from 'recoil'
+import { useActionGroups } from '../action-groups/use-action-groups.hook'
 
 type UseDeleteWord = [
   boolean,
@@ -10,6 +11,7 @@ type UseDeleteWord = [
 
 export const useDeleteWord = (deletingWordId: string): UseDeleteWord => {
   const [isDeleting, setDeleting] = useState(false)
+  const onGetActionGroups = useActionGroups()
 
   const setWord = useRecoilCallback(
     ({ snapshot, set }) =>
@@ -32,8 +34,9 @@ export const useDeleteWord = (deletingWordId: string): UseDeleteWord => {
       setWord(deletingWordId)
     } finally {
       setDeleting(false)
+      onGetActionGroups()
     }
-  }, [deletingWordId, setWord])
+  }, [deletingWordId, setWord, onGetActionGroups])
 
   return [isDeleting, onDeleteWord]
 }

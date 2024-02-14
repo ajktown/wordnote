@@ -1,12 +1,13 @@
 import { InternalAxiosRequestConfig } from 'axios'
+import { envLambda } from './get-env.lambda'
 
-const PRIVATE_DEFAULT_API_URL = `https://api.ajktown.com`
+/**
+ * This lambda is used to modify the axios request before it is sent.
+ */
 export const axiosRequestSuccessLambda = (
   config: InternalAxiosRequestConfig<any>,
 ) => {
-  // Do something before request is sent
-  const api_url: string =
-    process.env.NEXT_PUBLIC_API_URL ?? PRIVATE_DEFAULT_API_URL
+  const api_url: string = envLambda.getApiUrl()
 
   config.url = `${api_url}/api` + config.url
   console.log(`Requesting to URL: ` + config.url)
