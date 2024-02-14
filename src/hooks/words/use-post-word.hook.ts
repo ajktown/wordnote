@@ -3,12 +3,12 @@ import { PostWordReqDto } from '@/api/words/interfaces'
 import { wordIdsState, wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
-import { useActionGroups } from '../action-groups/use-action-groups.hook'
+import { useActionGroupDailyPostWordChallengeApi } from '../action-groups/use-action-group-daily-post-word-challenge.api'
 
 type UsePostWord = (newWord: PostWordReqDto) => Promise<void> // handlePostWord
 
 export const usePostWord = (): UsePostWord => {
-  const onGetActionGroups = useActionGroups()
+  const onGetActionGroups = useActionGroupDailyPostWordChallengeApi()
 
   const onPostWord = useRecoilCallback(
     ({ set, snapshot }) =>

@@ -1,16 +1,16 @@
-import { getActionGroupsApi } from '@/api/action-groups/get-action-groups.api'
+import { getActionGroupDailyPostWordChallengeApi } from '@/api/action-groups/get-action-group-daily-post-word-challenge.api'
 import { runAfterHandler } from '@/handlers/run-after.handler'
 import { isWordPostedDailyState } from '@/recoil/action-groups/action-groups.state'
 import { useRecoilCallback } from 'recoil'
 
 const NULL_TO_LOADING_SECONDS = 2
 const PRIVATE_LOADING_TO_RESULT_SECONDS = 1.25
-export const useActionGroups = () => {
-  const onGetActionGroups = useRecoilCallback(
+export const useActionGroupDailyPostWordChallengeApi = () => {
+  const onGetActionGroupDailyPostWordChallenge = useRecoilCallback(
     ({ set, snapshot }) =>
       async () => {
         try {
-          const [res] = await getActionGroupsApi()
+          const [res] = await getActionGroupDailyPostWordChallengeApi()
           const currentStatus = await snapshot.getPromise(
             isWordPostedDailyState,
           )
@@ -33,5 +33,5 @@ export const useActionGroups = () => {
     [],
   )
 
-  return onGetActionGroups
+  return onGetActionGroupDailyPostWordChallenge
 }

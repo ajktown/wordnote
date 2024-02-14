@@ -2,7 +2,7 @@ import { deleteWordByIdApi } from '@/api/words/delete-words.api'
 import { wordsFamily } from '@/recoil/words/words.state'
 import { useCallback, useState } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { useActionGroups } from '../action-groups/use-action-groups.hook'
+import { useActionGroupDailyPostWordChallengeApi } from '../action-groups/use-action-group-daily-post-word-challenge.api'
 
 type UseDeleteWord = [
   boolean,
@@ -11,7 +11,8 @@ type UseDeleteWord = [
 
 export const useDeleteWord = (deletingWordId: string): UseDeleteWord => {
   const [isDeleting, setDeleting] = useState(false)
-  const onGetActionGroups = useActionGroups()
+  const onGetActionGroupDailyPostWordChallenge =
+    useActionGroupDailyPostWordChallengeApi()
 
   const setWord = useRecoilCallback(
     ({ snapshot, set }) =>
@@ -34,9 +35,9 @@ export const useDeleteWord = (deletingWordId: string): UseDeleteWord => {
       setWord(deletingWordId)
     } finally {
       setDeleting(false)
-      onGetActionGroups()
+      onGetActionGroupDailyPostWordChallenge()
     }
-  }, [deletingWordId, setWord, onGetActionGroups])
+  }, [deletingWordId, setWord, onGetActionGroupDailyPostWordChallenge])
 
   return [isDeleting, onDeleteWord]
 }
