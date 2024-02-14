@@ -7,7 +7,7 @@ import {
 import { useRecoilCallback } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
 import { useState } from 'react'
-import { useActionGroups } from '../action-groups/use-action-groups.hook'
+import { useActionGroupDailyPostWordChallengeApi } from '../action-groups/use-action-group-daily-post-word-challenge.api'
 
 type UsePostWordFromUndo = [
   boolean,
@@ -19,7 +19,8 @@ export const usePostWordFromUndo = (
   undoingWordId: string,
 ): UsePostWordFromUndo => {
   const [loading, setLoading] = useState(false)
-  const onGetActionGroups = useActionGroups()
+  const onGetActionGroupDailyPostWordChallenge =
+    useActionGroupDailyPostWordChallengeApi()
 
   const onPostWordFromUndo = useRecoilCallback(
     ({ set, snapshot }) =>
@@ -47,10 +48,10 @@ export const usePostWordFromUndo = (
           }
         } finally {
           setLoading(false)
-          onGetActionGroups()
+          onGetActionGroupDailyPostWordChallenge()
         }
       },
-    [undoingWordId, onGetActionGroups],
+    [undoingWordId, onGetActionGroupDailyPostWordChallenge],
   )
 
   return [loading, onPostWordFromUndo]
