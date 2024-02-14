@@ -4,7 +4,7 @@
 
 // interface IAction extends DataBasics {
 //   id: string
-//   ownerID: string
+//   ownerId: string
 //   groupId: string
 //   message: string
 // }
