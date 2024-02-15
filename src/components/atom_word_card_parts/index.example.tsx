@@ -22,8 +22,8 @@ const WordCardExamplePart: FC<Props> = ({ word, reviewMode }) => {
   // does it have two double quote?
   const hasTwoDoubleQuotes = exampleTrimmed.match(/"/g)?.length === 2
 
-  if (reviewMode && !hasTwoDoubleQuotes)
-    return <Typography variant={PRIVATE_VARIANT}>{`???`}</Typography>
+  // It is more confusing to show anything, if double quotes are not given
+  if (reviewMode && !hasTwoDoubleQuotes) return null
 
   // only show non-double quote strings and the double quote becomes ???
   if (reviewMode && hasTwoDoubleQuotes) {
