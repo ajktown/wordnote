@@ -17,6 +17,7 @@ export interface PropsStyledIconButtonAtom {
   size?: GlobalMuiSize
   enableRipple?: boolean
   disableOnHoverColor?: boolean // disabled icons won't show the hover color regardless of the given disableOnHoverColor
+  url?: string
 }
 const StyledIconButtonAtom: FC<PropsStyledIconButtonAtom> = ({
   onClick,
