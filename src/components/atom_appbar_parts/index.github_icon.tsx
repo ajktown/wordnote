@@ -3,7 +3,7 @@ import { useOpenNewTab } from '@/hooks/use-open-new-tab'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 
-const GitHubButton: FC = () => {
+const AppbarGitHubButtonPart: FC = () => {
   const link = `https://github.com/ajktown/wordnote`
   const onOpenNewTab = useOpenNewTab(link)
 
@@ -16,4 +16,4 @@ const GitHubButton: FC = () => {
   )
 }
 
-export default GitHubButton
+export default AppbarGitHubButtonPart

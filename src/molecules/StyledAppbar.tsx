@@ -8,7 +8,7 @@ import AppbarSearchBar from '@/components/molecule_appbar_search_bar'
 import Image from 'next/image'
 import EndUserAvatar from '@/components/atom_user_avatar/index.end-user'
 import AppbarToConsistencyPageButtonPart from '@/components/atom_appbar_parts/index.to_consistency_page_button'
-import GitHubButton from '@/components/atom_appbar_parts/index.github_icon'
+import AppbarGitHubButtonPart from '@/components/atom_appbar_parts/index.github_icon'
 
 // TODO: Move this to non-molecules.
 // TODO: Make this getting the children, create a new component Appbar and use it for the pages
@@ -51,7 +51,7 @@ const StyledAppbarMolecule: FC<Props> = ({ onClickAppMenu, ...props }) => {
           <Box flexGrow={1} />
           <AppbarToConsistencyPageButtonPart />
           <Box pr={0.25} />
-          <GitHubButton />
+          <AppbarGitHubButtonPart />
           <Box pr={0.25} />
           <EndUserAvatar />
         </Toolbar>
