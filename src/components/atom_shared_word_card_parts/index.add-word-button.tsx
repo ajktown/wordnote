@@ -41,7 +41,10 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
   if (!isSignedIn)
     return (
       <Stack alignItems="center" direction="row">
-        <StyledTextButtonAtom isDisabled title={`Sign in to add this word in your list`} />
+        <StyledTextButtonAtom
+          isDisabled
+          title={`Sign in to add this word in your list`}
+        />
         <StyledIconButtonNewPage
           link={PageConst.Welcome}
           hoverMessage="To sign in page"
