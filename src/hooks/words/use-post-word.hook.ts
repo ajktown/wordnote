@@ -4,16 +4,22 @@ import { wordIdsState, wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
 import { semestersState } from '@/recoil/words/semesters.state'
 import { useActionGroupDailyPostWordChallengeApi } from '../action-groups/use-action-group-daily-post-word-challenge.api'
+import { useState } from 'react'
 
-type UsePostWord = (newWord: PostWordReqDto) => Promise<void> // handlePostWord
+type UsePostWord = [
+  boolean,
+  (newWord: PostWordReqDto) => Promise<void>, // handlePostWord
+]
 
 export const usePostWord = (): UsePostWord => {
+  const [loading, setLoading] = useState(false)
   const onGetActionGroups = useActionGroupDailyPostWordChallengeApi()
 
   const onPostWord = useRecoilCallback(
     ({ set, snapshot }) =>
       async (newWord: PostWordReqDto) => {
         try {
+          setLoading(true)
           const [{ postedWord, semesters }] = await postWordApi(newWord)
 
           const wordIds = await snapshot.getPromise(wordIdsState)
@@ -23,11 +29,12 @@ export const usePostWord = (): UsePostWord => {
 
           // TODO: Add daysAgo 0 to the latest semester
         } finally {
+          setLoading(false)
           onGetActionGroups()
         }
       },
     [onGetActionGroups],
   )
 
-  return onPostWord
+  return [loading, onPostWord]
 }
