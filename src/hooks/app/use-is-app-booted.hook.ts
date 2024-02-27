@@ -14,6 +14,7 @@ export const useIsAppBooted = (): boolean => {
 
   const onAppBooting = useCallback(async () => {
     try {
+      // TODO: Use const isSignedIn = useRecoilValue(isSignedInSelector) instead
       const isSignedIn = (await onGetAuthPrep())?.isSignedIn
 
       // The page share does not require sign in. But it should get the auth prep data just in case.

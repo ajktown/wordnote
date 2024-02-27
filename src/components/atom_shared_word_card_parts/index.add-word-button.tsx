@@ -1,5 +1,6 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { usePostWord } from '@/hooks/words/use-post-word.hook'
+import { isSignedInSelector } from '@/recoil/app/app.selectors'
 import { sharedWordFamily } from '@/recoil/shared-resource/shared-resource.state'
 import { FC, useCallback, useState } from 'react'
 import { useRecoilValue } from 'recoil'
@@ -11,6 +12,7 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
   const sharedWord = useRecoilValue(sharedWordFamily(wordId))
   const [loading, onPostWord] = usePostWord()
   const [isAdded, setAdded] = useState(false)
+  const isSignedIn = useRecoilValue(isSignedInSelector)
 
   const onClick = useCallback(async () => {
     try {
@@ -32,6 +34,9 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
       setAdded(true)
     } catch {}
   }, [sharedWord, onPostWord])
+
+  if (!isSignedIn)
+    return <StyledTextButtonAtom isDisabled title={`Sign in to add`} />
 
   if (isAdded)
     return <StyledTextButtonAtom isDisabled title={`Already added`} />
