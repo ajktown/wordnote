@@ -9,8 +9,7 @@ interface Props {
 }
 const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
   const sharedWord = useRecoilValue(sharedWordFamily(wordId))
-  const onPostWord = usePostWord()
-  const [loading, setLoading] = useState(false)
+  const [loading, onPostWord] = usePostWord()
   const [isAdded, setAdded] = useState(false)
 
   const onClick = useCallback(async () => {
@@ -18,7 +17,6 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
       if (!sharedWord) return
       if (!sharedWord.word) return
 
-      setLoading(true)
       await onPostWord({
         isFavorite: false,
         isArchived: false,
@@ -32,9 +30,7 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
 
       // since it is added, it should be already added.
       setAdded(true)
-    } finally {
-      setLoading(false)
-    }
+    } catch {}
   }, [sharedWord, onPostWord])
 
   if (isAdded)
