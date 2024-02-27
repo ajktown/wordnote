@@ -15,7 +15,7 @@ type UsePostWordWithStringHook = [
 ]
 
 export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
-  const onPostWord = usePostWord()
+  const [, onPostWord] = usePostWord()
   const [userInput, setUserInput] = useState(``)
   const [loading, setLoading] = useState(false)
   const [isWritingMode, setWritingMode] = useState(false)
