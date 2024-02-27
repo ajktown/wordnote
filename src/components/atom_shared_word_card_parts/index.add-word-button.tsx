@@ -1,7 +1,10 @@
+import StyledIconButtonNewPage from '@/atoms/StyledIconButtonNewPage'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { PageConst } from '@/constants/pages.constant'
 import { usePostWord } from '@/hooks/words/use-post-word.hook'
 import { isSignedInSelector } from '@/recoil/app/app.selectors'
 import { sharedWordFamily } from '@/recoil/shared-resource/shared-resource.state'
+import { Stack } from '@mui/material'
 import { FC, useCallback, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
@@ -36,7 +39,15 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
   }, [sharedWord, onPostWord])
 
   if (!isSignedIn)
-    return <StyledTextButtonAtom isDisabled title={`Sign in to add`} />
+    return (
+      <Stack alignItems="center" direction="row">
+        <StyledTextButtonAtom isDisabled title={`Sign in to add this word in your list`} />
+        <StyledIconButtonNewPage
+          link={PageConst.Welcome}
+          hoverMessage="To sign in page"
+        />
+      </Stack>
+    )
 
   if (isAdded)
     return <StyledTextButtonAtom isDisabled title={`Already added`} />
