@@ -3,6 +3,7 @@ import StyledDialog from '@/organisms/StyledDialog'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import {
   searchByWordIdState,
+  searchInputState,
   searchedWordsByWordIdState,
 } from '@/recoil/words/searchInput.state'
 import WordCardsChunkNoWordsFound from '../organism_word_card_chunk/index.no_words_found'
@@ -18,6 +19,8 @@ import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardExamplePart from '../atom_word_card_parts/index.example'
 import { useSearchedWordsByWordId } from '@/hooks/words/use-searched-words-by-word-id.hook'
 import TagButtonChunk from '../molecule_tag_button_chunk'
+import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { wordsFamily } from '@/recoil/words/words.state'
 
 const WordCardSearchDialog: FC = () => {
   const searchingWordId = useRecoilValue(searchByWordIdState)
@@ -31,6 +34,24 @@ const WordCardSearchDialog: FC = () => {
         reset(searchedWordsByWordIdState)
       },
     [],
+  )
+
+  const onClickOpenMainSearch = useRecoilCallback(
+    ({ set, snapshot }) =>
+      async () => {
+        if (!searchingWordId) return // fatal error; but no error yet
+
+        // get word:
+        const word = await snapshot.getPromise(wordsFamily(searchingWordId))
+        if (!word) return // fatal error; but no error yet
+
+        // set word:
+        set(searchInputState, word.term)
+
+        // finally:
+        onClose()
+      },
+    [searchingWordId, onClose],
   )
 
   // run onGetSearchedWordsByWordId
@@ -62,6 +83,10 @@ const WordCardSearchDialog: FC = () => {
           <Typography variant="caption">
             {words.length} {words.length === 1 ? `word card` : `word cards`}
           </Typography>
+          <StyledTextButtonAtom
+            title="Open main search for this word instead"
+            onClick={onClickOpenMainSearch}
+          />
           {words.map((word) => (
             <StyledSuspense key={word.id}>
               <Card style={{ width: `100%`, borderRadius: 9 }}>
