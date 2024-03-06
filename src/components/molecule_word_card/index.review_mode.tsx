@@ -12,6 +12,7 @@ import WordCardArchiveButtonPart from '../atom_word_card_parts/index.archive-but
 import WordCardUnarchiveButtonPart from '../atom_word_card_parts/index.unarchive-button'
 import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
+import WordCardSearchThisWordButtonPart from '../atom_word_card_parts/index.search-this-word'
 interface Props {
   word: WordData
 }
@@ -52,13 +53,16 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
             visibleHoverMessage={`Peek this word card`}
           />
           {isPeekMode && !word.isArchived && (
+            // because it kind of does not make sense to archive/unarchive when you cannot fully see the word card
             <WordCardArchiveButtonPart wordId={word.id} />
           )}
           {isPeekMode && word.isArchived && (
+            // because it kind of does not make sense to archive/unarchive when you cannot fully see the word card
             <WordCardUnarchiveButtonPart wordId={word.id} />
           )}
-          {isPeekMode && <WordCardShareButtonPart wordId={word.id} />}
-          <TagButtonChunk wordId={word.id} />
+          <WordCardSearchThisWordButtonPart wordId={word.id} />
+          <WordCardShareButtonPart wordId={word.id} />
+          <TagButtonChunk word={word} />
           <DictLinkButtonChunk wordId={word.id} />
         </CardActions>
       </Card>

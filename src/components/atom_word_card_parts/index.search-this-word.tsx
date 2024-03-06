@@ -1,23 +1,18 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
-import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { ISharedWord } from '@/api/words/interfaces'
-import { searchInputState } from '@/recoil/words/searchInput.state'
+import { useRecoilCallback } from 'recoil'
+import { searchByWordIdState } from '@/recoil/words/searchInput.state'
 interface Props {
-  word: ISharedWord
+  wordId: string
 }
-const WordCardSearchThisWordButtonPart: FC<Props> = ({ word }) => {
-  const searchInput = useRecoilValue(searchInputState)
-
+const WordCardSearchThisWordButtonPart: FC<Props> = ({ wordId }) => {
   const onClick = useRecoilCallback(
     ({ set }) =>
-      async () => {
-        // go to the top of page, smoothly
-        window.scrollTo(0, 0)
-        set(searchInputState, word.term.toLowerCase().trim())
+      () => {
+        set(searchByWordIdState, wordId)
       },
-    [word],
+    [wordId],
   )
 
   return (
@@ -25,11 +20,8 @@ const WordCardSearchThisWordButtonPart: FC<Props> = ({ word }) => {
       onClick={onClick}
       jsxElementButton={<SearchIcon />}
       hoverMessage={{
-        title: searchInput
-          ? `Already searched with "${searchInput}"`
-          : `Search this word`,
+        title: `Open Search Dialog with this word`,
       }}
-      isDisabled={!!searchInput}
     />
   )
 }

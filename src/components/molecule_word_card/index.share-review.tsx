@@ -35,7 +35,7 @@ const WordCardShareReview: FC<Props> = ({ wordId }) => {
           <WordCardExamplePart word={shareReviewWord} />
         </CardContent>
         <CardActions>
-          <TagButtonChunk wordId={wordId} clickDisabled />
+          <TagButtonChunk word={shareReviewWord} clickDisabled />
         </CardActions>
       </Card>
     </StyledSuspense>
