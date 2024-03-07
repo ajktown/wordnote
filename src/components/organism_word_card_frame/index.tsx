@@ -13,6 +13,7 @@ import WordCardsFrameArchiveSwitchPart from '../atom_word_cards_frame_parts/inde
 import WordCardsFrameArchiveModePart from '../atom_word_cards_frame_parts/index.archive-mode'
 import SharedResourceDialog from '../dialog_shared_resource'
 import WordCardsFrameReviewModePart from '../atom_word_cards_frame_parts/index.review-mode'
+import WordCardSearchDialog from '../molecule_word_card/index.search_dialog'
 
 const WordCardFrame: FC = () => {
   return (
@@ -40,6 +41,7 @@ const WordCardFrame: FC = () => {
         {/* Dialog */}
         <WordCardDialog />
         <SharedResourceDialog />
+        <WordCardSearchDialog />
       </Stack>
     </Stack>
   )

@@ -1,20 +1,15 @@
-import { wordsFamily } from '@/recoil/words/words.state'
 import { Stack } from '@mui/material'
 import { FC } from 'react'
-import { useRecoilValue } from 'recoil'
 import TagChipCustomized from '../atom_tag_chip/index.customized'
 import TagChipLanguage from '../atom_tag_chip/index.language'
 import TagChipSemesterCode from '../atom_tag_chip/index.semester-code'
+import { WordData } from '@/api/words/interfaces'
 
 interface Props {
-  wordId: string
+  word: WordData
   clickDisabled?: boolean
 }
-const TagButtonChunk: FC<Props> = ({ wordId, clickDisabled }) => {
-  const word = useRecoilValue(wordsFamily(wordId))
-
-  if (word == null) return null
-
+const TagButtonChunk: FC<Props> = ({ word, clickDisabled }) => {
   return (
     <Stack
       direction="row"

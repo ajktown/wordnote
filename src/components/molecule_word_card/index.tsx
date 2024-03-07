@@ -72,9 +72,9 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardDeleteButton wordId={wordId} />
           {!word.isArchived && <WordCardArchiveButtonPart wordId={wordId} />}
           {word.isArchived && <WordCardUnarchiveButtonPart wordId={wordId} />}
-          <WordCardSearchThisWordButtonPart word={word} />
+          <WordCardSearchThisWordButtonPart wordId={wordId} />
           <WordCardShareButtonPart wordId={wordId} />
-          <TagButtonChunk wordId={wordId} />
+          <TagButtonChunk word={word} />
           <DictLinkButtonChunk wordId={wordId} />
         </CardActions>
       </Card>
