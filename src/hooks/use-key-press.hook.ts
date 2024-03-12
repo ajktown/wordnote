@@ -8,7 +8,7 @@ export const useKeyPress = (
 ) => {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== keyName) return
+      if (event.isComposing || event.key !== keyName) return
 
       event.preventDefault()
       onKeyPress()
