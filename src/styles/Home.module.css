@@ -108,6 +108,18 @@
   margin-left: 0.5rem;
 }
 
+.custom-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .dict-link-container {
+    width: 100%; /* If screen width is less than 600px, set width to 100% and display on a new line */
+  }
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
