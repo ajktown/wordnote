@@ -67,7 +67,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           </Typography>
           <WordCardExamplePart word={word} />
         </CardContent>
-        <CardActions className="custom-card-actions">
+        <CardActions>
           <WordCardFavoriteIcon wordId={wordId} />
           <WordCardDeleteButton wordId={wordId} />
           {!word.isArchived && <WordCardArchiveButtonPart wordId={wordId} />}
@@ -75,9 +75,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardSearchThisWordButtonPart wordId={wordId} />
           <WordCardShareButtonPart wordId={wordId} />
           <TagButtonChunk word={word} />
-          <div className="dict-link-container">
-            <DictLinkButtonChunk wordId={wordId} />
-          </div>
+          <DictLinkButtonChunk wordId={wordId} />
         </CardActions>
       </Card>
     </StyledSuspense>
