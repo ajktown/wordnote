@@ -72,11 +72,13 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
             display: `flex`,
             flexDirection: { xs: `column`, sm: `row` },
             alignItems: `flex-start`,
+            flexWrap: 'wrap', 
           }}
         >
           <Box
             sx={{
               display: `flex`,
+              flexDirection: 'row', 
               flexWrap: `wrap`,
               width: { xs: `100%`, sm: `auto` },
               alignItems: `center`,
@@ -92,6 +94,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           </Box>
           <Box
             sx={{
+              display: 'flex',
               flexDirection: `row`,
             }}
           >
