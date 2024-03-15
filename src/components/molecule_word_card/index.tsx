@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Card, CardActions, CardContent, Typography } from '@mui/material'
+import { Box, Card, CardActions, CardContent, Typography } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
@@ -67,15 +67,35 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           </Typography>
           <WordCardExamplePart word={word} />
         </CardContent>
-        <CardActions>
-          <WordCardFavoriteIcon wordId={wordId} />
-          <WordCardDeleteButton wordId={wordId} />
-          {!word.isArchived && <WordCardArchiveButtonPart wordId={wordId} />}
-          {word.isArchived && <WordCardUnarchiveButtonPart wordId={wordId} />}
-          <WordCardSearchThisWordButtonPart wordId={wordId} />
-          <WordCardShareButtonPart wordId={wordId} />
-          <TagButtonChunk word={word} />
-          <DictLinkButtonChunk wordId={wordId} />
+        <CardActions
+          sx={{
+            display: `flex`,
+            flexDirection: { xs: `column`, sm: `row` },
+            alignItems: `flex-start`,
+          }}
+        >
+          <Box
+            sx={{
+              display: `flex`,
+              width: { xs: `100%`, sm: `auto` },
+              alignItems: `center`,
+            }}
+          >
+            <WordCardFavoriteIcon wordId={wordId} />
+            <WordCardDeleteButton wordId={wordId} />
+            {!word.isArchived && <WordCardArchiveButtonPart wordId={wordId} />}
+            {word.isArchived && <WordCardUnarchiveButtonPart wordId={wordId} />}
+            <WordCardSearchThisWordButtonPart wordId={wordId} />
+            <WordCardShareButtonPart wordId={wordId} />
+            <TagButtonChunk word={word} />
+          </Box>
+          <Box
+            sx={{
+              flexDirection: `row`,
+            }}
+          >
+            <DictLinkButtonChunk wordId={wordId} />
+          </Box>
         </CardActions>
       </Card>
     </StyledSuspense>
