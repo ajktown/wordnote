@@ -77,6 +77,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <Box
             sx={{
               display: `flex`,
+              flexWrap: `wrap`,
               width: { xs: `100%`, sm: `auto` },
               alignItems: `center`,
             }}
