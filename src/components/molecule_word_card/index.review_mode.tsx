@@ -1,5 +1,11 @@
 import { FC, useState } from 'react'
-import { Card, CardActions, CardContent, Typography } from '@mui/material'
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Stack,
+  Typography,
+} from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import { WordData } from '@/api/words/interfaces'
@@ -60,10 +66,12 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
             // because it kind of does not make sense to archive/unarchive when you cannot fully see the word card
             <WordCardUnarchiveButtonPart wordId={word.id} />
           )}
-          <WordCardSearchThisWordButtonPart wordId={word.id} />
-          <WordCardShareButtonPart wordId={word.id} />
-          <TagButtonChunk word={word} />
-          <DictLinkButtonChunk wordId={word.id} />
+          <Stack direction={`row`}>
+            <WordCardSearchThisWordButtonPart wordId={word.id} />
+            <WordCardShareButtonPart wordId={word.id} />
+            <TagButtonChunk word={word} />
+            <DictLinkButtonChunk wordId={word.id} />
+          </Stack>
         </CardActions>
       </Card>
     </StyledSuspense>

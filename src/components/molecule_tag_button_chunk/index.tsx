@@ -12,6 +12,7 @@ interface Props {
 const TagButtonChunk: FC<Props> = ({ word, clickDisabled }) => {
   return (
     <Stack
+      alignItems={`center`}
       direction="row"
       spacing={0.2}
       sx={{ flexWrap: `wrap`, rowGap: `3px` }}
