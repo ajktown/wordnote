@@ -1,5 +1,11 @@
 import { FC, useState } from 'react'
-import { Card, CardActions, CardContent, Typography } from '@mui/material'
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Stack,
+  Typography,
+} from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import { WordData } from '@/api/words/interfaces'
@@ -13,6 +19,7 @@ import WordCardUnarchiveButtonPart from '../atom_word_card_parts/index.unarchive
 import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
 import WordCardSearchThisWordButtonPart from '../atom_word_card_parts/index.search-this-word'
+import { useWindowSize } from 'react-use'
 interface Props {
   word: WordData
 }
@@ -20,6 +27,7 @@ interface Props {
 const WordCardReviewMode: FC<Props> = ({ word }) => {
   const { id } = word
   const [isPeekMode, setPeekMode] = useState(false)
+  const { width } = useWindowSize()
 
   const onClickWordCard = useRecoilCallback(
     ({ set }) =>
@@ -46,24 +54,33 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
           <WordCardExamplePart word={word} reviewMode={!isPeekMode} />
         </CardContent>
         <CardActions>
-          <WordCardFavoriteIcon wordId={word.id} />
-          <StyledVisibilityAtom
-            isVisible={!isPeekMode}
-            onClick={() => setPeekMode(!isPeekMode)}
-            visibleHoverMessage={`Peek this word card`}
-          />
-          {isPeekMode && !word.isArchived && (
-            // because it kind of does not make sense to archive/unarchive when you cannot fully see the word card
-            <WordCardArchiveButtonPart wordId={word.id} />
-          )}
-          {isPeekMode && word.isArchived && (
-            // because it kind of does not make sense to archive/unarchive when you cannot fully see the word card
-            <WordCardUnarchiveButtonPart wordId={word.id} />
-          )}
-          <WordCardSearchThisWordButtonPart wordId={word.id} />
-          <WordCardShareButtonPart wordId={word.id} />
-          <TagButtonChunk word={word} />
-          <DictLinkButtonChunk wordId={word.id} />
+          <Stack direction={width > 622 ? `row` : `column`} alignItems={`left`}>
+            <Stack
+              direction={width > 440 ? `row` : `column`}
+              alignItems={`left`}
+            >
+              <Stack direction={`row`} alignItems={`center`}>
+                <WordCardFavoriteIcon wordId={word.id} />
+                <StyledVisibilityAtom
+                  isVisible={!isPeekMode}
+                  onClick={() => setPeekMode(!isPeekMode)}
+                  visibleHoverMessage={`Peek this word card`}
+                />
+                {isPeekMode && !word.isArchived && (
+                  // because it kind of does not make sense to archive/unarchive when you cannot fully see the word card
+                  <WordCardArchiveButtonPart wordId={word.id} />
+                )}
+                {isPeekMode && word.isArchived && (
+                  // because it kind of does not make sense to archive/unarchive when you cannot fully see the word card
+                  <WordCardUnarchiveButtonPart wordId={word.id} />
+                )}
+                <WordCardSearchThisWordButtonPart wordId={word.id} />
+                <WordCardShareButtonPart wordId={word.id} />
+              </Stack>
+              <TagButtonChunk word={word} />
+            </Stack>
+            <DictLinkButtonChunk wordId={word.id} />
+          </Stack>
         </CardActions>
       </Card>
     </StyledSuspense>
