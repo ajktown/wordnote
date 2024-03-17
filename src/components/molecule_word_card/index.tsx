@@ -76,7 +76,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardExamplePart word={word} />
         </CardContent>
         <CardActions>
-          <Stack direction={width > 622 ? `row` : `column`} alignItems={`left`}>
+          <Stack direction={width > 630 ? `row` : `column`} alignItems={`left`}>
             <Stack
               direction={width > 440 ? `row` : `column`}
               alignItems={`left`}
