@@ -13,7 +13,7 @@ const EndUserAvatar: FC = () => {
   const onSignOutApp = useOnSignOutApp()
 
   const onClickBuyMeCoffee = useCallback(() => {
-    const url = `https://www.buymeacoffee.com/hd8wlxgbhq`
+    const url = `https://www.buymeacoffee.com/mlajkim`
     window.open(url, `_blank`)
   }, [])
 
