@@ -1,5 +1,11 @@
 import { FC } from 'react'
-import { Card, CardActions, CardContent, Typography } from '@mui/material'
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Stack,
+  Typography,
+} from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'
@@ -24,12 +30,14 @@ import {
 import WordCardReviewMode from './index.review_mode'
 import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 import WordCardSearchThisWordButtonPart from '../atom_word_card_parts/index.search-this-word'
+import { useWindowSize } from 'react-use'
 
 interface Props {
   wordId: string
   editingMode?: boolean
 }
 const WordCard: FC<Props> = ({ wordId, editingMode }) => {
+  const { width } = useWindowSize()
   const word = useRecoilValue(wordsFamily(wordId))
   const isShowingArchived = useRecoilValue(isShowingArchivedState)
 
@@ -68,14 +76,27 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
           <WordCardExamplePart word={word} />
         </CardContent>
         <CardActions>
-          <WordCardFavoriteIcon wordId={wordId} />
-          <WordCardDeleteButton wordId={wordId} />
-          {!word.isArchived && <WordCardArchiveButtonPart wordId={wordId} />}
-          {word.isArchived && <WordCardUnarchiveButtonPart wordId={wordId} />}
-          <WordCardSearchThisWordButtonPart wordId={wordId} />
-          <WordCardShareButtonPart wordId={wordId} />
-          <TagButtonChunk word={word} />
-          <DictLinkButtonChunk wordId={wordId} />
+          <Stack direction={width > 630 ? `row` : `column`} alignItems={`left`}>
+            <Stack
+              direction={width > 440 ? `row` : `column`}
+              alignItems={`left`}
+            >
+              <Stack direction={`row`} alignItems={`center`}>
+                <WordCardFavoriteIcon wordId={wordId} />
+                <WordCardDeleteButton wordId={wordId} />
+                {!word.isArchived && (
+                  <WordCardArchiveButtonPart wordId={wordId} />
+                )}
+                {word.isArchived && (
+                  <WordCardUnarchiveButtonPart wordId={wordId} />
+                )}
+                <WordCardSearchThisWordButtonPart wordId={wordId} />
+                <WordCardShareButtonPart wordId={wordId} />
+              </Stack>
+              <TagButtonChunk word={word} />
+            </Stack>
+            <DictLinkButtonChunk wordId={wordId} />
+          </Stack>
         </CardActions>
       </Card>
     </StyledSuspense>
