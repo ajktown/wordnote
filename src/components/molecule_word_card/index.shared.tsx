@@ -12,6 +12,7 @@ import { PageQueryConst } from '@/constants/page-queries.constant'
 import StyledCountdownTimer from '@/atoms/StyledCountdownTimer'
 import TagButtonLanguage from '../atom_tag_chip/index.language'
 import TagChipCustomized from '../atom_tag_chip/index.customized'
+import { useWindowSize } from 'react-use'
 
 interface Props {
   wordId: string
@@ -20,6 +21,7 @@ interface Props {
 const URL_PATH = `/` + PageConst.Share + `?` + PageQueryConst.wordID + `=`
 
 const WordCardShared: FC<Props> = ({ wordId }) => {
+  const { width } = useWindowSize()
   const sharedWord = useRecoilValue(sharedWordFamily(wordId))
 
   const onClickCopyUrl = useCallback(() => {
@@ -41,7 +43,13 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
 
   return (
     <StyledSuspense>
-      <Card style={{ width: `100%`, borderRadius: 9 }}>
+      <Card
+        style={{
+          width: width > 1000 ? `1000px` : `100%`,
+          maxWidth: `1000px`,
+          borderRadius: 9,
+        }}
+      >
         <CardContent>
           <Typography variant="h5" component="div">
             {sharedWord.word.term}
