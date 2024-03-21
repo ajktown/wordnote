@@ -12,6 +12,7 @@
 - [Wordnote](#wordnote)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
+  - [For Developers](#for-developers)
   - [Public Image](#public-image)
     - [Push image command](#push-image-command)
   - [Depending Libraries](#depending-libraries)
@@ -32,6 +33,10 @@
 Wordnote is the second generation project produced by AJK Town, or AJ Kim. It was renamed after "Wordy".
 
 https://wordnote.ajktown.com
+
+
+## For Developers
+- [Developer guide](https://github.com/ajktown/docs/tree/main/dev_wordnote)
 
 ## Public Image
 
