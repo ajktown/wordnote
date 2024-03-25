@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react'
-import { Box, CardActions, CardContent, Typography } from '@mui/material'
+import { Box, Card, CardActions, CardContent, Typography } from '@mui/material'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import WordCardUnknown from './index.unknown'
 import StyledSuspense from '@/organisms/StyledSuspense'
@@ -40,34 +40,36 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
 
   return (
     <StyledSuspense>
-      <CardContent>
-        <Typography variant="h5" component="div">
-          {sharedWord.word.term}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {sharedWord.word.pronunciation}
-        </Typography>
-        <Typography variant="body2">
-          {sharedWord.word.definition}
-          <br />
-        </Typography>
-        <WordCardExamplePart word={sharedWord.word} />
-      </CardContent>
-      <CardActions>
-        <TagButtonLanguage
-          languageCode={sharedWord.word.languageCode}
-          clickDisabled
-        />
-        {sharedWord.word.tags.map((tag) => (
-          <TagChipCustomized key={tag} label={tag} clickDisabled />
-        ))}
-        <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
-        <Box mr={0.5} />
-        <StyledCountdownTimer
-          targetTime={sharedWord.sharedResource.expireInSecs}
-          onHandleExpire={onHandleExpire}
-        />
-      </CardActions>
+      <Card style={{ width: `100%`, borderRadius: 9 }}>
+        <CardContent>
+          <Typography variant="h5" component="div">
+            {sharedWord.word.term}
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            {sharedWord.word.pronunciation}
+          </Typography>
+          <Typography variant="body2">
+            {sharedWord.word.definition}
+            <br />
+          </Typography>
+          <WordCardExamplePart word={sharedWord.word} />
+        </CardContent>
+        <CardActions>
+          <TagButtonLanguage
+            languageCode={sharedWord.word.languageCode}
+            clickDisabled
+          />
+          {sharedWord.word.tags.map((tag) => (
+            <TagChipCustomized key={tag} label={tag} clickDisabled />
+          ))}
+          <StyledTextButtonAtom title={`copy URL`} onClick={onClickCopyUrl} />
+          <Box mr={0.5} />
+          <StyledCountdownTimer
+            targetTime={sharedWord.sharedResource.expireInSecs}
+            onHandleExpire={onHandleExpire}
+          />
+        </CardActions>
+      </Card>
     </StyledSuspense>
   )
 }
