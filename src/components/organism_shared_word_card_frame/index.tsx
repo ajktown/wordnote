@@ -23,18 +23,19 @@ const SharedWordCardFrame: FC = () => {
       </StyledCentered>
     )
   return (
-    <StyledCentered>
-      <Stack maxWidth={1000}>
+    <Stack width="100%" alignItems="center">
+      <Stack {...WordCardFrameStyle}>
         <Typography variant="h5">
           {`Beta feature: Below is the shared word card`}
         </Typography>
-        <Stack>
-          <WordCardShared wordId={wordId.trim()} />
-        </Stack>
         <Box mb={1} />
         <SharedWordCardAddWordButtonPart wordId={wordId.trim()} />
+        {/* Body */}
+        <Stack spacing={0.5} alignItems="center">
+          <WordCardShared wordId={wordId.trim()} />
+        </Stack>
       </Stack>
-    </StyledCentered>
+    </Stack>
   )
 }
 
