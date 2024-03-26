@@ -12,6 +12,7 @@ import { PageQueryConst } from '@/constants/page-queries.constant'
 import StyledCountdownTimer from '@/atoms/StyledCountdownTimer'
 import TagButtonLanguage from '../atom_tag_chip/index.language'
 import TagChipCustomized from '../atom_tag_chip/index.customized'
+
 interface Props {
   wordId: string
 }
