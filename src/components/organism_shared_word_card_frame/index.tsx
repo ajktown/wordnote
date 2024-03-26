@@ -6,6 +6,7 @@ import { PageQueryConst } from '@/constants/page-queries.constant'
 import { useSharedResource } from '@/hooks/shared-resources/use-shared-resource.hook'
 import StyledCentered from '@/organisms/StyledCentered'
 import SharedWordCardAddWordButtonPart from '../atom_shared_word_card_parts/index.add-word-button'
+import { WordCardFrameStyle } from '../organism_word_card_frame/index.style'
 
 const SharedWordCardFrame: FC = () => {
   const router = useRouter()
