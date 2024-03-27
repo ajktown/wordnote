@@ -7,6 +7,7 @@ import { FC, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import TagChipSemester from '@/components/atom_tag_chip/index.semester'
 import TagChipExpander from '../atom_tag_chip/index.expander'
+import TagChipEveryFavorite from '../atom_tag_chip/index.every-favorite'
 
 const PRIVATE_DEFAULT_EXPAND_ENABLED_COUNT = 3
 
@@ -21,6 +22,7 @@ const TagButtonChunkSemesters: FC = () => {
 
   return (
     <Box>
+      <TagChipEveryFavorite />
       {semesters &&
         semesters
           .slice(0, sliceAt)
