@@ -2,6 +2,7 @@ import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { FC, useEffect } from 'react'
 import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
 import { usePutWordCacheByKey } from '@/hooks/words/use-put-word-cache-by-key.hook'
+import { useKeyPress } from '@/hooks/use-key-press.hook'
 interface Props {
   wordId: string
 }
@@ -32,6 +33,9 @@ const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
       document.removeEventListener(`keydown`, handleKeyDown)
     }
   })
+
+  useKeyPress(handleApplyCache, `Meta`, `Enter`)
+  useKeyPress(handleApplyCache, `Control`, `Enter`)
 
   if (
     !isTermModified &&

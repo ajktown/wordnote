@@ -37,6 +37,8 @@ export type GlobalKeyboardEventKey =
   | 'ArrowLeft'
   | 'ArrowUp'
   | 'ArrowDown'
+  | 'Meta'
+  | 'Control'
 
 export type GlobalMuiSize = 'small' | 'medium' | 'large'
 

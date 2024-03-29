@@ -38,8 +38,8 @@ const NewWordBox: FC = () => {
     else setWritingMode(true)
   }, [isWritingMode, setWritingMode, onDynamicFocus])
 
-  useKeyPress(`Enter`, onHitEnter)
-  useKeyPress(`Escape`, onClickPostWordWritingModeClose)
+  useKeyPress(onHitEnter, `Enter`)
+  useKeyPress(onClickPostWordWritingModeClose, `Escape`)
   const ref = useOutsideClicked(onClickPostWordWritingModeClose)
 
   if (searchInput || isShowingArchived) return null
