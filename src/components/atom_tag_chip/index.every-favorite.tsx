@@ -11,8 +11,8 @@ const TagChipEveryFavorite: FC = () => {
   const isEveryFavoriteSelected = useRecoilValue(isEveryFavoriteSelectedState)
   const [loading, setLoading] = useState(false)
 
-  const [, onGetWordsByFavorite] = useWordsByFavorite()
   const [, onGetWords] = useWords()
+  const [, onGetWordsByFavorite] = useWordsByFavorite()
 
   const variant: GlobalMuiTagVariant = useMemo(
     () => (isEveryFavoriteSelected ? `filled` : `outlined`),
