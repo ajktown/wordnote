@@ -1,7 +1,7 @@
 import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
 import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
-import { FC, useMemo } from 'react'
+import { FC, useMemo, useState } from 'react'
 import { useWordsByFavorite } from '@/hooks/words/use-words-by-favorite.hook'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
@@ -9,6 +9,7 @@ import { isEveryFavoriteSelectedState } from '@/recoil/words/semesters.state'
 
 const TagChipEveryFavorite: FC = () => {
   const isEveryFavoriteSelected = useRecoilValue(isEveryFavoriteSelectedState)
+  const [loading, setLoading] = useState(false)
 
   const [, onGetWordsByFavorite] = useWordsByFavorite()
   const [, onGetWords] = useWords()
@@ -22,6 +23,7 @@ const TagChipEveryFavorite: FC = () => {
     ({ snapshot, set }) =>
       async () => {
         try {
+          setLoading(true)
           const isEveryFavoriteSelected = await snapshot.getPromise(
             isEveryFavoriteSelectedState,
           )
@@ -29,7 +31,9 @@ const TagChipEveryFavorite: FC = () => {
           else await onGetWordsByFavorite()
 
           set(isEveryFavoriteSelectedState, !isEveryFavoriteSelected)
-        } catch {}
+        } finally {
+          setLoading(false)
+        }
       },
     [onGetWords, onGetWordsByFavorite],
   )
@@ -42,6 +46,7 @@ const TagChipEveryFavorite: FC = () => {
           size="small"
         />
       }
+      loading={loading}
       onClick={onClick}
       style={{
         variant,
