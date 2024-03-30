@@ -24,5 +24,5 @@ export const useKeyPress = (
     return () => {
       document.removeEventListener(`keydown`, onKeyDown)
     }
-  }, [onKeyPress, ...keyNames])
+  }, [onKeyPress, keyNames])
 }
