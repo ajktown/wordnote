@@ -37,7 +37,7 @@ export type GlobalKeyboardEventKey =
   | 'ArrowLeft'
   | 'ArrowUp'
   | 'ArrowDown'
-  | 'Meta'
+  | 'Meta' // ⌘ in Apple Ecosystem
   | 'Control'
 
 export type GlobalMuiSize = 'small' | 'medium' | 'large'
