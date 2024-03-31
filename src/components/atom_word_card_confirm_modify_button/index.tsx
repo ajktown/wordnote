@@ -1,5 +1,5 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { usePutWordCache } from '@/hooks/words/use-put-word-cache.hook'
 import { usePutWordCacheByKey } from '@/hooks/words/use-put-word-cache-by-key.hook'
 import { useKeyPress } from '@/hooks/use-key-press.hook'

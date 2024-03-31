@@ -1,28 +1,42 @@
 import { GlobalKeyboardEventKey } from '@/global.interface'
 import { useEffect } from 'react'
 
-// TODO: This will eventually have multiple keys pushed, or it will have a separate file for such.
 export const useKeyPress = (
   onKeyPress: () => any,
-  ...keyNames: GlobalKeyboardEventKey[]
+  firstKey: GlobalKeyboardEventKey,
+  secondKey?: GlobalKeyboardEventKey,
 ) => {
   useEffect(() => {
+    const keysPressed = new Set<string>() // command, enter
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (
-        event.isComposing ||
-        !keyNames.includes(event.key as GlobalKeyboardEventKey)
-      )
-        return
+      // to not run onKeyPress() during composing (especially Japanese or Chinese where character conversion is required)
+      if (event.isComposing) return
+
+      keysPressed.add(event.key)
+
+      // TODO: Check the length too here:
+      // if (secondKey === undefined && keysPressed.size !== 1) return
+      // if (secondKey !== undefined && keysPressed.size !== 2) return
+
+      if (!keysPressed.has(firstKey)) return // first key is not pressed
+      if (secondKey !== undefined && !keysPressed.has(secondKey)) return // second key must be pressed but not so
 
       event.preventDefault()
       onKeyPress()
     }
 
-    document.addEventListener(`keydown`, onKeyDown)
+    const onKeyUp = (event: KeyboardEvent) => {
+      keysPressed.delete(event.key)
+    }
 
-    // Cleaning up the listener to prevent memory leak
+    document.addEventListener(`keydown`, onKeyDown)
+    document.addEventListener(`keyup`, onKeyUp)
+
+    // Cleaning up the listeners to prevent memory leak
     return () => {
       document.removeEventListener(`keydown`, onKeyDown)
+      document.removeEventListener(`keyup`, onKeyUp)
     }
-  }, [onKeyPress, keyNames])
+  }, [onKeyPress, firstKey, secondKey])
 }
