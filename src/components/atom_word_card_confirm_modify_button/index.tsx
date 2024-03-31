@@ -22,17 +22,6 @@ const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
     `exampleLink`,
   )
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === `Enter`) {
-        handleApplyCache()
-      }
-    }
-    document.addEventListener(`keydown`, handleKeyDown)
-    return () => {
-      document.removeEventListener(`keydown`, handleKeyDown)
-    }
-  })
 
   useKeyPress(handleApplyCache, `Meta`, `Enter`)
   useKeyPress(handleApplyCache, `Control`, `Enter`)
