@@ -23,8 +23,8 @@ const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
   )
 
 
-  useKeyPress(handleApplyCache, `Meta`, `Enter`)
-  useKeyPress(handleApplyCache, `Control`, `Enter`)
+  useKeyPress(handleApplyCache, `Meta`, `Enter`) // for mac
+  useKeyPress(handleApplyCache, `Control`, `Enter`) // for windows
 
   if (
     !isTermModified &&
