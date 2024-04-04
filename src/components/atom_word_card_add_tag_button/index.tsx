@@ -7,6 +7,7 @@ import StyledDialog from '@/organisms/StyledDialog'
 import { DialogContent, DialogTitle } from '@mui/material'
 import { useDynamicFocus } from '@/hooks/use-dynamic-focus.hook'
 import { usePutWordTagAdded } from '@/hooks/words/use-put-word-tag-added.hook'
+import { useKeyPress } from '@/hooks/use-key-press.hook'
 
 interface Props {
   wordId: string
@@ -22,10 +23,13 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
     setAddingMode(false)
   }, [])
   const [loading, onPutWordTagAdded] = usePutWordTagAdded(wordId, onResetInput)
-  const onClick = useCallback(
-    () => onPutWordTagAdded(input),
-    [input, onPutWordTagAdded],
-  )
+  const onClick = useCallback(() => {
+    if (!loading && input.length > 0) {
+      onPutWordTagAdded(input)
+    }
+  }, [input, onPutWordTagAdded, loading])
+  useKeyPress(onClick, `Meta`, `Enter`) // for mac
+  useKeyPress(onClick, `Control`, `Enter`) // for windows
 
   return (
     <Fragment>

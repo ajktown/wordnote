@@ -22,7 +22,6 @@ const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
     `exampleLink`,
   )
 
-
   useKeyPress(handleApplyCache, `Meta`, `Enter`) // for mac
   useKeyPress(handleApplyCache, `Control`, `Enter`) // for windows
 
