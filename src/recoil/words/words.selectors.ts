@@ -5,6 +5,7 @@ import { Rkp, Rks } from '@/recoil/index.keys'
 import { selector } from 'recoil'
 import { getWordsParamsState } from './words.state'
 import { GlobalLanguageCode } from '@/global.interface'
+import { isEveryFavoriteSelectedState } from './semesters.state'
 
 /** Private Recoil Key */
 enum Prk {
@@ -18,6 +19,9 @@ enum Prk {
 export const selectedSemesterSelector = selector<undefined | number>({
   key: Rkp.Tags + Prk.SelectedSemester + Rks.Selector,
   get: ({ get }) => {
+    // if every favorite chip is clicked, the selected semester is undefined
+    if (get(isEveryFavoriteSelectedState)) return undefined
+
     return get(getWordsParamsState).semester
   },
 })
