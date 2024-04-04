@@ -23,10 +23,11 @@ const WordCardAddTagButton: FC<Props> = ({ wordId }) => {
     setAddingMode(false)
   }, [])
   const [loading, onPutWordTagAdded] = usePutWordTagAdded(wordId, onResetInput)
-  const onClick = useCallback(
-    () => onPutWordTagAdded(input),
-    [input, onPutWordTagAdded],
-  )
+  const onClick = useCallback(() => {
+    if (!loading && input.length > 0) {
+      onPutWordTagAdded(input)
+    }
+  }, [input, onPutWordTagAdded, loading])
   useKeyPress(onClick, `Meta`, `Enter`) // for mac
   useKeyPress(onClick, `Control`, `Enter`) // for windows
 
