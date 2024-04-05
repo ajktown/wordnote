@@ -10,8 +10,6 @@ enum Prk {
   IsEveryFavoriteSelected = `IsEveryFavoriteSelected`,
   Details = `Details`,
   SemesterExpanded = `SemesterExpanded`,
-  DeprecatedSemesterSelected = `DeprecatedSemesterSelected`, // TODO: Delete me
-  LanguageSelected = `LanguageSelected`, // TODO: Delete me
 }
 
 // TODO: I do not understand why semestersState sometimes become undefined ...
@@ -35,10 +33,4 @@ export const semesterDetailsFamily = atomFamily<ISemesterDetailedInfo, number>({
 export const isSemesterExpandedState = atom<boolean>({
   key: Prk.SemesterExpanded,
   default: false,
-})
-
-// TODO: Delete me
-export const deprecatedSelectedSemesterState = atom<null | number>({
-  key: Prk.DeprecatedSemesterSelected,
-  default: null,
 })
