@@ -20,7 +20,8 @@ import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 import DictLinkButtonChunk from '../molecule_dict_link_button_chunk'
 import WordCardSearchThisWordButtonPart from '../atom_word_card_parts/index.search-this-word'
 import { useWindowSize } from 'react-use'
-import WordCardTermAndPronunciation from '../atom_word_card_parts/index.term-and-pronunciation'
+import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
+import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 interface Props {
   word: WordData
 }
@@ -42,16 +43,13 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent onClick={onClickWordCard}>
-          {isPeekMode && <WordCardTermAndPronunciation word={word} />}
+          {isPeekMode && <WordCardTermAndPronunciationPart word={word} />}
           {!isPeekMode && (
             <Typography variant="h5" component="div">
               {`???`}
             </Typography>
           )}
-          <Typography variant="body2">
-            {word.definition}
-            <br />
-          </Typography>
+          <WordCardDefinitionPart word={word} hideSubDefinition={!isPeekMode} />
           <WordCardExamplePart word={word} reviewMode={!isPeekMode} />
         </CardContent>
         <CardActions>

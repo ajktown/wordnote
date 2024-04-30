@@ -31,7 +31,8 @@ import WordCardReviewMode from './index.review_mode'
 import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 import WordCardSearchThisWordButtonPart from '../atom_word_card_parts/index.search-this-word'
 import { useWindowSize } from 'react-use'
-import WordCardTermAndPronunciation from '../atom_word_card_parts/index.term-and-pronunciation'
+import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
+import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 
 interface Props {
   wordId: string
@@ -64,11 +65,8 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent onClick={onClickWordCard}>
-          <WordCardTermAndPronunciation word={word} />
-          <Typography variant="body2">
-            {word.definition}
-            <br />
-          </Typography>
+          <WordCardTermAndPronunciationPart word={word} />
+          <WordCardDefinitionPart word={word} />
           <WordCardExamplePart word={word} />
         </CardContent>
         <CardActions>

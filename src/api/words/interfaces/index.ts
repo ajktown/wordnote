@@ -8,6 +8,7 @@ export interface ISharedWord {
   term: string
   pronunciation: string
   definition: string
+  subDefinition: string
   example: string
   exampleLink: string
   tags: string[]
