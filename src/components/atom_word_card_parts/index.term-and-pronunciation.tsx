@@ -7,7 +7,7 @@ interface Props {
 }
 const WordCardTermAndPronunciation: FC<Props> = ({ word }) => {
   return (
-    <Stack alignItems="center" direction="row" spacing={0.5}>
+    <Stack alignItems="center" direction="row" spacing={0.5} mb={0.5}>
       <Typography variant="h5" component="div">
         {word.term}
       </Typography>
