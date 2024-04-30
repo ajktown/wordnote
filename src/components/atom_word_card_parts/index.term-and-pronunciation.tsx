@@ -5,7 +5,7 @@ import { FC } from 'react'
 interface Props {
   word: ISharedWord
 }
-const WordCardTermAndPronunciation: FC<Props> = ({ word }) => {
+const WordCardTermAndPronunciationPart: FC<Props> = ({ word }) => {
   return (
     <Stack alignItems="center" direction="row" spacing={0.5} mb={0.5}>
       <Typography variant="h5" component="div">
@@ -20,4 +20,4 @@ const WordCardTermAndPronunciation: FC<Props> = ({ word }) => {
   )
 }
 
-export default WordCardTermAndPronunciation
+export default WordCardTermAndPronunciationPart

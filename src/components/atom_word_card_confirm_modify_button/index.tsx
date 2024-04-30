@@ -16,6 +16,10 @@ const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
     `pronunciation`,
   )
   const [, , isDefinitionModified] = usePutWordCacheByKey(wordId, `definition`)
+  const [, , isSubDefinitionModified] = usePutWordCacheByKey(
+    wordId,
+    `subDefinition`,
+  )
   const [, , isExampleModified] = usePutWordCacheByKey(wordId, `example`)
   const [, , isExampleLinkModified] = usePutWordCacheByKey(
     wordId,
@@ -29,6 +33,7 @@ const WordCardConfirmModifyButton: FC<Props> = ({ wordId }) => {
     !isTermModified &&
     !isPronunciationModified &&
     !isDefinitionModified &&
+    !isSubDefinitionModified &&
     !isExampleModified &&
     !isExampleLinkModified
   )
