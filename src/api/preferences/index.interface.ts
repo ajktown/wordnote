@@ -4,6 +4,7 @@ import { DataBasics } from '../index.interface'
 export interface IPreference extends DataBasics {
   id: string
   nativeLanguages: GlobalLanguageCode[]
+  gptApiKey: string
 }
 
 export interface PreferenceModifiable {
