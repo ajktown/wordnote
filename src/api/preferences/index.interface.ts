@@ -9,4 +9,5 @@ export interface IPreference extends DataBasics {
 
 export interface PreferenceModifiable {
   nativeLanguages: GlobalLanguageCode[]
+  gptApiKey: string
 }

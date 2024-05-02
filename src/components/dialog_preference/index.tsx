@@ -23,7 +23,7 @@ const PreferenceDialog: FC = () => {
 
   return (
     <StyledDialog
-      visuals={{ maxWidth: `xs` }}
+      visuals={{ maxWidth: `sm` }}
       onClose={resetPreferenceDialogOpenedState}
     >
       <DialogTitle>{`Setting`}</DialogTitle>
