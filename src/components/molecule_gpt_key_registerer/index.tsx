@@ -12,11 +12,15 @@ const GptKeyRegisterer: FC = () => {
   const gptApiKey = useRecoilValue(gptApiKeySelector)
   const [input, setInput] = useState<string>(gptApiKey)
   const onPutPreference = usePutPreference()
+  const [loading, setLoading] = useState(false)
 
   const onClickApply = useCallback(async () => {
     try {
+      setLoading(true)
       await onPutPreference({ gptApiKey: input })
-    } catch {}
+    } finally {
+      setLoading(false)
+    }
   }, [input, onPutPreference])
   const onClickCancel = useCallback(() => setInput(gptApiKey), [gptApiKey])
 
@@ -24,16 +28,19 @@ const GptKeyRegisterer: FC = () => {
     <StyledTextField
       value={input}
       onChange={setInput}
+      disabled={loading}
       buttons={{
         right: input != gptApiKey && (
           <Fragment>
             <StyledIconButtonAtom
               jsxElementButton={<CheckIcon fontSize="small" />}
               onClick={onClickApply}
+              isDisabled={loading}
             />
             <StyledIconButtonAtom
               jsxElementButton={<ClearIcon fontSize="small" />}
               onClick={onClickCancel}
+              isDisabled={loading}
             />
           </Fragment>
         ),
