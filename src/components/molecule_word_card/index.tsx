@@ -33,6 +33,7 @@ import WordCardSearchThisWordButtonPart from '../atom_word_card_parts/index.sear
 import { useWindowSize } from 'react-use'
 import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
 import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
+import WordCardExampleReaderPart from '../atom_word_card_parts/index.example-reader'
 
 interface Props {
   wordId: string
@@ -86,6 +87,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
                 )}
                 <WordCardSearchThisWordButtonPart wordId={wordId} />
                 <WordCardShareButtonPart wordId={wordId} />
+                <WordCardExampleReaderPart word={word} />
               </Stack>
               <TagButtonChunk word={word} />
             </Stack>
