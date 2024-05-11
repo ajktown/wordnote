@@ -11,6 +11,7 @@ import {
 import { FC } from 'react'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 import PreferenceLanguageCheckbox from '../atom_preference_language_checkbox'
+import GptKeyRegisterer from '../molecule_gpt_key_registerer'
 
 const PreferenceDialog: FC = () => {
   const isPreferenceDialogOpened = useRecoilValue(isPreferenceDialogOpenedState)
@@ -22,20 +23,20 @@ const PreferenceDialog: FC = () => {
 
   return (
     <StyledDialog
-      visuals={{ maxWidth: `xs` }}
+      visuals={{ maxWidth: `sm` }}
       onClose={resetPreferenceDialogOpenedState}
     >
-      <DialogTitle>{`Select your native languages`}</DialogTitle>
+      <DialogTitle>{`Setting`}</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          {`Any changes will be automatically saved to the cloud`}
-        </DialogContentText>
+        <DialogContentText>{`Select your native languages:`}</DialogContentText>
         <FormGroup>
           <PreferenceLanguageCheckbox languageCode="en" />
           <PreferenceLanguageCheckbox languageCode="zh" />
           <PreferenceLanguageCheckbox languageCode="ja" />
           <PreferenceLanguageCheckbox languageCode="ko" />
         </FormGroup>
+        <DialogContentText>{`Register your GPT API Key:`}</DialogContentText>
+        <GptKeyRegisterer />
       </DialogContent>
       <DialogActions>
         <StyledTextButtonAtom
