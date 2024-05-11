@@ -25,6 +25,10 @@ const WordCardEditingMode: FC<Props> = ({ wordId }) => {
               wordId={wordId}
             />
             <WordCardEditingTextField wordKey={`definition`} wordId={wordId} />
+            <WordCardEditingTextField
+              wordKey={`subDefinition`}
+              wordId={wordId}
+            />
             <WordCardEditingTextField wordKey={`example`} wordId={wordId} />
             <WordCardEditingTextField wordKey={`exampleLink`} wordId={wordId} />
             <TagButtonDeletableChunk wordId={wordId} />

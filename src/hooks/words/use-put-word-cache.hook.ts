@@ -40,6 +40,7 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
         ...(await getObjectWithKey(`isFavorite`)),
         ...(await getObjectWithKey(`pronunciation`)),
         ...(await getObjectWithKey(`definition`)),
+        ...(await getObjectWithKey(`subDefinition`)),
         ...(await getObjectWithKey(`example`)),
         ...(await getObjectWithKey(`exampleLink`)),
       }
@@ -67,6 +68,7 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
     await handleResetByKey(`isFavorite`)
     await handleResetByKey(`pronunciation`)
     await handleResetByKey(`definition`)
+    await handleResetByKey(`subDefinition`)
     await handleResetByKey(`example`)
     await handleResetByKey(`exampleLink`)
   }, [handleResetByKey])

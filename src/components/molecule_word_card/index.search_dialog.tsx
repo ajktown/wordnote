@@ -21,7 +21,8 @@ import { useSearchedWordsByWordId } from '@/hooks/words/use-searched-words-by-wo
 import TagButtonChunk from '../molecule_tag_button_chunk'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { wordsFamily } from '@/recoil/words/words.state'
-import WordCardTermAndPronunciation from '../atom_word_card_parts/index.term-and-pronunciation'
+import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
+import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 
 const WordCardSearchDialog: FC = () => {
   const searchingWordId = useRecoilValue(searchByWordIdState)
@@ -92,11 +93,8 @@ const WordCardSearchDialog: FC = () => {
             <StyledSuspense key={word.id}>
               <Card style={{ width: `100%`, borderRadius: 9 }}>
                 <CardContent>
-                  <WordCardTermAndPronunciation word={word} />
-                  <Typography variant="body2">
-                    {word.definition}
-                    <br />
-                  </Typography>
+                  <WordCardTermAndPronunciationPart word={word} />
+                  <WordCardDefinitionPart word={word} />
                   <WordCardExamplePart word={word} />
                 </CardContent>
                 <CardActions>

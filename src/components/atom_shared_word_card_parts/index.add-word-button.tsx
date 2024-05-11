@@ -28,6 +28,7 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
         term: sharedWord.word.term,
         pronunciation: sharedWord.word.pronunciation,
         definition: sharedWord.word.definition,
+        subDefinition: sharedWord.word.subDefinition,
         example: sharedWord.word?.example,
         exampleLink: ``,
         tags: [],

@@ -19,7 +19,8 @@ import { PageQueryConst } from '@/constants/page-queries.constant'
 import StyledCountdownTimer from '@/atoms/StyledCountdownTimer'
 import TagButtonLanguage from '../atom_tag_chip/index.language'
 import TagChipCustomized from '../atom_tag_chip/index.customized'
-import WordCardTermAndPronunciation from '../atom_word_card_parts/index.term-and-pronunciation'
+import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
+import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 
 interface Props {
   wordId: string
@@ -51,11 +52,8 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
-          <WordCardTermAndPronunciation word={sharedWord.word} />
-          <Typography variant="body2">
-            {sharedWord.word.definition}
-            <br />
-          </Typography>
+          <WordCardTermAndPronunciationPart word={sharedWord.word} />
+          <WordCardDefinitionPart word={sharedWord.word} />
           <WordCardExamplePart word={sharedWord.word} />
         </CardContent>
         <CardActions>
