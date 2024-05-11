@@ -16,6 +16,6 @@ enum Prk {
 export const gptApiKeySelector = selector<string>({
   key: Rkp.Preferences + Prk.GptKey + Rks.Selector,
   get: ({ get }) => {
-    return get(preferenceState)?.gptApiKey ?? ''
+    return get(preferenceState)?.gptApiKey ?? ``
   },
 })

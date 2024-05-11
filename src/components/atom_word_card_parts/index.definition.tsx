@@ -12,7 +12,7 @@ const WordCardDefinitionPart: FC<Props> = ({ word, hideSubDefinition }) => {
     <Stack spacing={0}>
       <Typography variant="body2">{word.definition}</Typography>
       {!hideSubDefinition && word.subDefinition && (
-        <Typography variant="body2" color="text.secondary" fontStyle={'italic'}>
+        <Typography variant="body2" color="text.secondary" fontStyle={`italic`}>
           {word.subDefinition}
         </Typography>
       )}

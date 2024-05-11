@@ -1,7 +1,6 @@
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import StyledTextField from '@/atoms/StyledTextField'
 import { gptApiKeySelector } from '@/recoil/preferences/preferenece.selector'
-import { Alert, Typography } from '@mui/material'
 import { FC, Fragment, useCallback, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import CheckIcon from '@mui/icons-material/Check'

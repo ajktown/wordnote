@@ -1,12 +1,5 @@
 import { FC, useCallback } from 'react'
-import {
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  Stack,
-  Typography,
-} from '@mui/material'
+import { Box, Card, CardActions, CardContent } from '@mui/material'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import WordCardUnknown from './index.unknown'
 import StyledSuspense from '@/organisms/StyledSuspense'
