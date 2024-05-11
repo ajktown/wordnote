@@ -1,5 +1,12 @@
 import { FC, useCallback } from 'react'
-import { Box, Card, CardActions, CardContent, Typography } from '@mui/material'
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import WordCardUnknown from './index.unknown'
 import StyledSuspense from '@/organisms/StyledSuspense'
@@ -12,6 +19,7 @@ import { PageQueryConst } from '@/constants/page-queries.constant'
 import StyledCountdownTimer from '@/atoms/StyledCountdownTimer'
 import TagButtonLanguage from '../atom_tag_chip/index.language'
 import TagChipCustomized from '../atom_tag_chip/index.customized'
+import WordCardTermAndPronunciation from '../atom_word_card_parts/index.term-and-pronunciation'
 
 interface Props {
   wordId: string
@@ -43,12 +51,7 @@ const WordCardShared: FC<Props> = ({ wordId }) => {
     <StyledSuspense>
       <Card style={{ width: `100%`, borderRadius: 9 }}>
         <CardContent>
-          <Typography variant="h5" component="div">
-            {sharedWord.word.term}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {sharedWord.word.pronunciation}
-          </Typography>
+          <WordCardTermAndPronunciation word={sharedWord.word} />
           <Typography variant="body2">
             {sharedWord.word.definition}
             <br />
