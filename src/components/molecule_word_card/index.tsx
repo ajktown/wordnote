@@ -1,11 +1,5 @@
 import { FC } from 'react'
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Stack,
-  Typography,
-} from '@mui/material'
+import { Card, CardActions, CardContent, Stack } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
 import WordCardDeleteButton from '../atom_word_card_delete_button'
 import WordCardDeleted from './index.deleted'

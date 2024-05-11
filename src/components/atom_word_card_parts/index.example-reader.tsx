@@ -13,11 +13,11 @@ interface Props {
  */
 const WordCardExampleReaderPart: FC<Props> = ({ word }) => {
   const exampleTrimmed = word.example.trim()
-  const msg = new SpeechSynthesisUtterance(exampleTrimmed)
 
   const onClick = useCallback(() => {
+    const msg = new SpeechSynthesisUtterance(exampleTrimmed)
     window.speechSynthesis.speak(msg)
-  }, [msg])
+  }, [exampleTrimmed])
 
   return (
     <StyledIconButtonAtom
