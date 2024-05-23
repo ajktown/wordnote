@@ -1,19 +1,19 @@
 import { useRecoilCallback } from 'recoil'
 import { preferenceState } from '@/recoil/preferences/preference.state'
-import { putPreferenceApi } from '@/api/preferences/put-preference.api'
+import { patchPreferenceApi } from '@/api/preferences/patch-preference.api'
 import { PreferenceModifiable } from '@/api/preferences/index.interface'
 
-export const usePutPreference = () => {
-  const onPutPreference = useRecoilCallback(
+export const usePatchPreference = () => {
+  const onPatchPreference = useRecoilCallback(
     ({ set }) =>
       async (modifying: Partial<PreferenceModifiable>) => {
         try {
-          const [data] = await putPreferenceApi(modifying)
+          const [data] = await patchPreferenceApi(modifying)
           set(preferenceState, data)
         } catch {}
       },
     [],
   )
 
-  return onPutPreference
+  return onPatchPreference
 }

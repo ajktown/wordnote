@@ -1,6 +1,6 @@
 import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
-import { usePutPreferenceNativeLanguage } from '@/hooks/preference/use-put-preference-native-language.hook'
+import { usePutPreferenceNativeLanguage } from '@/hooks/preference/use-patch-preference-native-language.hook'
 import { preferenceState } from '@/recoil/preferences/preference.state'
 import { Checkbox, FormControlLabel } from '@mui/material'
 import { FC } from 'react'

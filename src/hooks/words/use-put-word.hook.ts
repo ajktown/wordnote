@@ -1,4 +1,4 @@
-import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
+import { patchWordByIdApi } from '@/api/words/patch-word-by-id.api'
 import { WordDataModifiable } from '@/api/words/interfaces'
 import { wordsFamily } from '@/recoil/words/words.state'
 import { useRecoilCallback } from 'recoil'
@@ -20,7 +20,7 @@ export const usePutWord = (wordId: string): UsePutWord => {
           const wordData = await snapshot.getPromise(wordsFamily(wordId))
           if (wordData == null) return
 
-          const [modifiedWord] = await putWordByIdApi(wordId, modified)
+          const [modifiedWord] = await patchWordByIdApi(wordId, modified)
           set(wordsFamily(wordId), modifiedWord)
         } finally {
           setLoading(false)

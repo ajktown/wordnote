@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
 import { preferenceState } from '@/recoil/preferences/preference.state'
 import { GlobalLanguageCode } from '@/global.interface'
-import { usePutPreference } from './use-put-preference.hook'
+import { usePatchPreference } from './use-patch-preference.hook'
 
 export const usePutPreferenceNativeLanguage = (
   languageCode: GlobalLanguageCode,
 ) => {
-  const onPutPreference = usePutPreference()
+  const onPutPreference = usePatchPreference()
   const onPutPreferenceNativeLanguage = useRecoilCallback(
     ({ snapshot }) =>
       async (_, checked: boolean) => {
