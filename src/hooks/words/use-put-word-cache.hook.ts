@@ -1,4 +1,4 @@
-import { putWordByIdApi } from '@/api/words/put-word-by-id.api'
+import { patchWordByIdApi } from '@/api/words/patch-word-by-id.api'
 import {
   WordDataModifiable,
   WordDataModifiableKey,
@@ -84,7 +84,7 @@ export const usePutWordCache = (wordId: string | null): UsePutWordCache => {
         const modified = await getObject()
         if (isEmptyObjectHandler(modified)) return
 
-        const [modifiedWord] = await putWordByIdApi(wordId, modified)
+        const [modifiedWord] = await patchWordByIdApi(wordId, modified)
         set(wordsFamily(wordId), modifiedWord)
 
         // TODO: This is causing first deletion and then creation for UI

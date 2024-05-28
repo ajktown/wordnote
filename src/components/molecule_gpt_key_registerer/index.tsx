@@ -5,12 +5,12 @@ import { FC, Fragment, useCallback, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import CheckIcon from '@mui/icons-material/Check'
 import ClearIcon from '@mui/icons-material/Clear'
-import { usePutPreference } from '@/hooks/preference/use-put-preference.hook'
+import { usePatchPreference } from '@/hooks/preference/use-patch-preference.hook'
 
 const GptKeyRegisterer: FC = () => {
   const gptApiKey = useRecoilValue(gptApiKeySelector)
   const [input, setInput] = useState<string>(gptApiKey)
-  const onPutPreference = usePutPreference()
+  const onPutPreference = usePatchPreference()
   const [loading, setLoading] = useState(false)
 
   const onClickApply = useCallback(async () => {
