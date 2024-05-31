@@ -1,10 +1,10 @@
 import { FC, useEffect } from 'react'
 import StyledDialog from '@/organisms/StyledDialog'
-import { useRecoilCallback, useRecoilValue } from 'recoil'
+import { useRecoilCallback, useRecoilState, useRecoilValue } from 'recoil'
 import {
-  searchByWordIdState,
+  dialogSearchedTermState,
   searchInputState,
-  searchedWordsByWordIdState,
+  termDialogSearchedResultState as termDialogSearchedWordsState,
 } from '@/recoil/words/searchInput.state'
 import WordCardsChunkNoWordsFound from '../organism_word_card_chunk/index.no_words_found'
 import {
@@ -17,23 +17,31 @@ import {
 } from '@mui/material'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardExamplePart from '../atom_word_card_parts/index.example'
-import { useSearchedWordsByWordId } from '@/hooks/words/use-searched-words-by-word-id.hook'
+import { useSearchDialogByTerm } from '@/hooks/words/use-searched-words-by-word-id.hook'
 import TagButtonChunk from '../molecule_tag_button_chunk'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { wordsFamily } from '@/recoil/words/words.state'
 import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
 import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
+import StyledTextField from '@/atoms/StyledTextField'
 
-const WordCardSearchDialog: FC = () => {
-  const searchingWordId = useRecoilValue(searchByWordIdState)
-  const words = useRecoilValue(searchedWordsByWordIdState)
-  const onGetSearchedWordsByWordId = useSearchedWordsByWordId(searchingWordId)
+/**
+ * Renders a dialog that shows word cards that are searched by any string
+ */
+// TODO: Rename it to WordCardTermSearchDialog
+const WordCardTermSearchDialog: FC = () => {
+  const [dialogSearchedTerm, setSearchingWordTerm] = useRecoilState(
+    dialogSearchedTermState,
+  )
+  const searchedWords = useRecoilValue(termDialogSearchedWordsState)
+  const onGetSearchedWordsByTermSearchDialog =
+    useSearchDialogByTerm(dialogSearchedTerm)
 
   const onClose = useRecoilCallback(
     ({ reset }) =>
       () => {
-        reset(searchByWordIdState)
-        reset(searchedWordsByWordIdState)
+        reset(dialogSearchedTermState)
+        reset(termDialogSearchedWordsState)
       },
     [],
   )
@@ -41,10 +49,10 @@ const WordCardSearchDialog: FC = () => {
   const onClickOpenMainSearch = useRecoilCallback(
     ({ set, snapshot }) =>
       async () => {
-        if (!searchingWordId) return // fatal error; but no error yet
+        if (!dialogSearchedTerm) return // fatal error; but no error yet
 
         // get word:
-        const word = await snapshot.getPromise(wordsFamily(searchingWordId))
+        const word = await snapshot.getPromise(wordsFamily(dialogSearchedTerm))
         if (!word) return // fatal error; but no error yet
 
         // set word:
@@ -53,43 +61,48 @@ const WordCardSearchDialog: FC = () => {
         // finally:
         onClose()
       },
-    [searchingWordId, onClose],
+    [dialogSearchedTerm, onClose],
   )
 
   // run onGetSearchedWordsByWordId
   useEffect(() => {
-    onGetSearchedWordsByWordId()
-  }, [onGetSearchedWordsByWordId])
+    onGetSearchedWordsByTermSearchDialog()
+  }, [onGetSearchedWordsByTermSearchDialog])
 
-  if (!searchingWordId) return null // dialog is not open
-  if (words === undefined)
+  if (dialogSearchedTerm === null) return null // dialog is not open
+  if (searchedWords === undefined)
     return (
       <StyledDialog onClose={onClose}>
         <p>Loading...</p>
       </StyledDialog>
     )
 
-  if (words === null)
+  if (searchedWords === null)
     return (
       <StyledDialog onClose={onClose}>
         <p>Failed to load</p>
       </StyledDialog>
     )
 
-  if (words.length === 0) return <WordCardsChunkNoWordsFound />
-
   return (
     <StyledDialog onClose={onClose}>
       <DialogContent>
         <Stack spacing={1} alignItems={`center`}>
           <Typography variant="caption">
-            {words.length} {words.length === 1 ? `word card` : `word cards`}
+            {searchedWords.length}
+            {` `}
+            {searchedWords.length === 1 ? `word card` : `word cards`}
           </Typography>
+          <StyledTextField
+            value={dialogSearchedTerm}
+            onChange={(v) => setSearchingWordTerm(v)}
+          />
           <StyledTextButtonAtom
             title="Open main search for this word instead"
             onClick={onClickOpenMainSearch}
           />
-          {words.map((word) => (
+          {searchedWords.length === 0 && <WordCardsChunkNoWordsFound />}
+          {searchedWords.map((word) => (
             <StyledSuspense key={word.id}>
               <Card style={{ width: `100%`, borderRadius: 9 }}>
                 <CardContent>
@@ -109,4 +122,4 @@ const WordCardSearchDialog: FC = () => {
   )
 }
 
-export default WordCardSearchDialog
+export default WordCardTermSearchDialog

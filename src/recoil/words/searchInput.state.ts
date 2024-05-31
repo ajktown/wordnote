@@ -8,8 +8,8 @@ import { WordData } from '@/api/words/interfaces'
 /** Private Recoil Key */
 enum Prk {
   SearchInputState = `SearchInputState`,
-  SearchByWordIdState = `SearchByWordIdState`,
-  SearchedWordsByWordIdState = `SearchedWordsByWordIdState`,
+  SearchedByDialogTermState = `SearchedByDialogTermState`,
+  SearchedWordsByDialogTermState = `SearchedWordsByDialogTermState`,
 }
 
 export const searchInputState = atom<string>({
@@ -17,17 +17,21 @@ export const searchInputState = atom<string>({
   default: ``,
 })
 
-export const searchByWordIdState = atom<string>({
-  key: Rkp.SearchInput + Prk.SearchByWordIdState,
-  default: ``,
+// if empty, the dialog does not show
+// if not empty, the dialog shows the word cards that are searched by the word
+export const dialogSearchedTermState = atom<null | string>({
+  key: Rkp.SearchInput + Prk.SearchedByDialogTermState,
+  default: null,
 })
 
-type PrivateSearchedWordsByWordIdState =
+type PrivateTermDialogSearchedResultState =
   | undefined // loading
   | null // failed to load; something went wrong
   | WordData[]
-export const searchedWordsByWordIdState =
-  atom<PrivateSearchedWordsByWordIdState>({
-    key: Rkp.SearchInput + Prk.SearchedWordsByWordIdState,
+
+// searchedWordsByDialogTermState does not define whether dialog is open or not.
+export const termDialogSearchedResultState =
+  atom<PrivateTermDialogSearchedResultState>({
+    key: Rkp.SearchInput + Prk.SearchedWordsByDialogTermState,
     default: undefined,
   })
