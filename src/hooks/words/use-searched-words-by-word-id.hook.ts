@@ -1,31 +1,35 @@
 import { useRecoilCallback } from 'recoil'
 import { getWordsApi } from '@/api/words/get-words.api'
-import { wordsFamily } from '@/recoil/words/words.state'
-import { searchedWordsByWordIdState } from '@/recoil/words/searchInput.state'
+import { dialogSearchedWordsState } from '@/recoil/words/searchInput.state'
 
 /**
- * useSearchedWordsByWordId search words based on the information of word id
+ * useDialogSearchedWords search words based on the provided WordData's term
  * and store it in a recoil state separate from the main word state.
  * this way users can search for words without affecting the main word state.
  */
-export const useSearchedWordsByWordId = (wordId: string) => {
-  const onGetSearchedWordsByWordId = useRecoilCallback(
-    ({ snapshot, set }) =>
+export const useDialogSearchedWords = (term: string | null) => {
+  const onGetDialogSearchedWords = useRecoilCallback(
+    ({ set }) =>
       async () => {
         try {
-          if (!wordId) return // empty wordId
+          if (term === null) {
+            set(dialogSearchedWordsState, null)
+            return // no term
+          }
 
-          const word = await snapshot.getPromise(wordsFamily(wordId))
-          if (!word) return // no such word found. cannot search
+          if (!term) {
+            set(dialogSearchedWordsState, [])
+            return // empty term
+          }
 
-          const [data] = await getWordsApi({ searchInput: word.term })
-          set(searchedWordsByWordIdState, data.words)
+          const [data] = await getWordsApi({ searchInput: term })
+          set(dialogSearchedWordsState, data.words)
         } catch {
-          set(searchedWordsByWordIdState, null)
+          set(dialogSearchedWordsState, null)
         }
       },
-    [wordId],
+    [term],
   )
 
-  return onGetSearchedWordsByWordId
+  return onGetDialogSearchedWords
 }

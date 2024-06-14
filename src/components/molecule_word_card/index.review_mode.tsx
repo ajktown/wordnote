@@ -74,7 +74,7 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
                   // because it kind of does not make sense to archive/unarchive when you cannot fully see the word card
                   <WordCardUnarchiveButtonPart wordId={word.id} />
                 )}
-                <WordCardSearchThisWordButtonPart wordId={word.id} />
+                <WordCardSearchThisWordButtonPart word={word} />
                 <WordCardShareButtonPart wordId={word.id} />
                 <WordCardExampleReaderPart word={word} />
               </Stack>

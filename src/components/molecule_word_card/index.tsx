@@ -79,7 +79,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
                 {word.isArchived && (
                   <WordCardUnarchiveButtonPart wordId={wordId} />
                 )}
-                <WordCardSearchThisWordButtonPart wordId={wordId} />
+                <WordCardSearchThisWordButtonPart word={word} />
                 <WordCardShareButtonPart wordId={wordId} />
                 <WordCardExampleReaderPart word={word} />
               </Stack>
