@@ -26,16 +26,16 @@ jobs:
 
     - name: Build the Docker image for PR
       if: github.event_name == 'pull_request'
-      run: docker build . --file Dockerfile --tag ajktown/consistency:pr-${{ github.event.pull_request.number }}
+      run: docker build . --file Dockerfile --tag ajktown/wordnote:pr${{ github.event.pull_request.number }}
 
     - name: Push the Docker image for PR
       if: github.event_name == 'pull_request'
-      run: docker push ajktown/consistency:pr${{ github.event.pull_request.number }}
+      run: docker push ajktown/wordnote:pr${{ github.event.pull_request.number }}
 
     - name: Build the Docker image as latest
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: docker build . --file Dockerfile --tag ajktown/consistency:latest
+      run: docker build . --file Dockerfile --tag ajktown/wordnote:latest
 
     - name: Push the Docker image as latest
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: docker push ajktown/consistency:latest
+      run: docker push ajktown/wordnote:latest
