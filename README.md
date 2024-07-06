@@ -14,7 +14,7 @@
   - [Overview](#overview)
   - [For Developers](#for-developers)
   - [Public Image](#public-image)
-    - [Push image command](#push-image-command)
+    - [Push image command locally](#push-image-command-locally)
   - [Depending Libraries](#depending-libraries)
     - [Luxon](#luxon)
   - [Package json scripts](#package-json-scripts)
@@ -43,8 +43,8 @@ https://wordnote.ajktown.com
 https://hub.docker.com/r/ajktown/wordnote/tags
 
 
-### Push image command
-You must have permission to push to the repository.
+### Push image command locally
+By default, the GitHub Action will build and push the image to the Docker Hub. If you want to push the image locally, you can use the following commands:
 ```sh
 
 docker build -t ajktown/wordnote:latest .
