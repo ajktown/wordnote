@@ -35,8 +35,8 @@ const StyledVisibilityAtom: FC<Props> = ({
       jsxElementButton={jsxElementButton}
       hoverMessage={{
         title: isVisible
-          ? visibleHoverMessage ?? ``
-          : invisibleHoverMessage ?? ``,
+          ? (visibleHoverMessage ?? ``)
+          : (invisibleHoverMessage ?? ``),
       }}
     />
   )
