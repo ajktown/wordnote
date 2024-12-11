@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, JSX } from 'react'
 import { AppBar, Box } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
