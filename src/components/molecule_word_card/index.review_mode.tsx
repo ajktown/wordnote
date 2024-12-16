@@ -23,6 +23,7 @@ import { useWindowSize } from 'react-use'
 import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
 import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 import WordCardExampleReaderPart from '../atom_word_card_parts/index.example-reader'
+import { getLanguageCountryEmoji } from '@/global.constants'
 interface Props {
   word: WordData
 }
@@ -47,7 +48,7 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
           {isPeekMode && <WordCardTermAndPronunciationPart word={word} />}
           {!isPeekMode && (
             <Typography variant="h5" component="div">
-              {`???`}
+              {getLanguageCountryEmoji(word.languageCode) + ` ???`}
             </Typography>
           )}
           <WordCardDefinitionPart word={word} hideSubDefinition={!isPeekMode} />
