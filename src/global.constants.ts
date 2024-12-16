@@ -59,3 +59,12 @@ export const getLanguageFullName = (
 
   return `Unsupported Language`
 }
+
+export const getLanguageCountryEmoji = (
+  languageCode: GlobalLanguageCode,
+): string => {
+  const got = PROTECTED_AVAILABLE_LANGUAGE_MAP.get(languageCode)
+  if (got !== undefined) return got.flagUnicode
+
+  return `` // just return empty string
+}
