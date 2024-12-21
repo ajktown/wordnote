@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { FC } from 'react'
+import { FC, JSX } from 'react'
 
 // TODO: The min-height is not really good.
 // TODO: Should follow the parent's size or be smarter idk.

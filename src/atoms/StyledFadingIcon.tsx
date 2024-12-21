@@ -1,5 +1,5 @@
 import { Fade } from '@mui/material'
-import { FC, Fragment } from 'react'
+import { FC, Fragment, JSX } from 'react'
 
 interface Props {
   showFirst: boolean

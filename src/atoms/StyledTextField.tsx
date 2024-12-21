@@ -20,6 +20,7 @@ interface Props {
   }
 }
 
+// TODO: In react 19, we no longer need to use forwardRef
 const StyledTextField = forwardRef<HTMLInputElement, Props>(
   ({ value, onChange, maxChars, label, usePlaceholder, ...props }, ref) => {
     const handleChange = useCallback(
