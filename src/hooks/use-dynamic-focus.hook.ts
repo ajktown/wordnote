@@ -1,6 +1,9 @@
 import { RefObject, useCallback, useRef } from 'react'
 
-type UseDynamicFocus = [RefObject<HTMLInputElement | null>, () => Promise<any>]
+type UseDynamicFocus = [
+  RefObject<HTMLInputElement> | undefined,
+  () => Promise<any>,
+]
 /** Returns ReactRef & onClick function
  *   ref: Will be used to set focus to the given ref.
  *   onClick: Will run the given handleClick() function, and then set focus to the given ref.
