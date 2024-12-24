@@ -14,21 +14,27 @@ const WordCardDeleteButtonPart: FC<Props> = ({ wordId }) => {
     setDoubleChecking(!isDoubleChecking)
   }, [isDoubleChecking])
 
-  // TODO: Use memo
-  const jsxElementButton = isDoubleChecking ? (
-    <Fragment>
-      <StyledTextButtonAtom title={`Delete!`} onClick={onDeleteWord} />
-      <StyledTextButtonAtom title={`No!`} onClick={onClick} />
-    </Fragment>
-  ) : (
-    <DeleteWordIcon />
-  )
+  if (isDoubleChecking)
+    return (
+      <Fragment>
+        <StyledTextButtonAtom
+          isDisabled={isDeleting}
+          title={`No!`}
+          onClick={onClick}
+        />
+        <StyledTextButtonAtom
+          isDisabled={isDeleting}
+          title={`Delete!`}
+          onClick={onDeleteWord}
+        />
+      </Fragment>
+    )
 
   return (
     <StyledIconButtonAtom
       isDisabled={isDeleting}
       onClick={onClick}
-      jsxElementButton={jsxElementButton}
+      jsxElementButton={<DeleteWordIcon />}
     />
   )
 }
