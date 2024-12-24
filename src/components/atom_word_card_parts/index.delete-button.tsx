@@ -3,6 +3,7 @@ import { FC, Fragment, useCallback, useState } from 'react'
 import DeleteWordIcon from '@mui/icons-material/Delete'
 import { useDeleteWord } from '@/hooks/words/use-delete-word.hook'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+
 interface Props {
   wordId: string
 }
@@ -19,13 +20,16 @@ const WordCardDeleteButtonPart: FC<Props> = ({ wordId }) => {
       <Fragment>
         <StyledTextButtonAtom
           isDisabled={isDeleting}
-          title={`No!`}
+          title={`Oops, Go Back!`}
           onClick={onClick}
         />
-        <StyledTextButtonAtom
+        <StyledIconButtonAtom
           isDisabled={isDeleting}
-          title={`Delete!`}
           onClick={onDeleteWord}
+          jsxElementButton={<DeleteWordIcon />}
+          hoverMessage={{
+            title: `Click this to permanently delete this word`,
+          }}
         />
       </Fragment>
     )
