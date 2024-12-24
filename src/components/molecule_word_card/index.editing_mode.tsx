@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Card, CardActions, CardContent, Stack, Box } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
-import WordCardDeleteButton from '../atom_word_card_delete_button'
+import WordCardDeleteButtonPart from '../atom_word_card_parts/index.delete-button'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingTextField from '../molecule_word_card_editing_text_field'
 import LanguageSelector from '../atom_language_selector'
@@ -36,7 +36,7 @@ const WordCardEditingMode: FC<Props> = ({ wordId }) => {
         </CardContent>
         <CardActions>
           <WordCardFavoriteIcon wordId={wordId} />
-          <WordCardDeleteButton wordId={wordId} />
+          <WordCardDeleteButtonPart wordId={wordId} />
           <Box flexGrow={1} />
           <WordCardConfirmModifyButton wordId={wordId} />
         </CardActions>

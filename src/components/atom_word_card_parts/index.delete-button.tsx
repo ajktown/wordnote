@@ -5,7 +5,7 @@ import { useDeleteWord } from '@/hooks/words/use-delete-word.hook'
 interface Props {
   wordId: string
 }
-const WordCardDeleteButton: FC<Props> = ({ wordId }) => {
+const WordCardDeleteButtonPart: FC<Props> = ({ wordId }) => {
   const [isDeleting, onDeleteWord] = useDeleteWord(wordId)
 
   return (
@@ -17,4 +17,4 @@ const WordCardDeleteButton: FC<Props> = ({ wordId }) => {
   )
 }
 
-export default WordCardDeleteButton
+export default WordCardDeleteButtonPart
