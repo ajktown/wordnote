@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Card, CardActions, CardContent, Stack } from '@mui/material'
 import WordCardFavoriteIcon from '../atom_word_card_favorite_icon'
-import WordCardDeleteButton from '../atom_word_card_delete_button'
+import WordCardDeleteButtonPart from '../atom_word_card_parts/index.delete-button'
 import WordCardDeleted from './index.deleted'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import WordCardUnknown from './index.unknown'
@@ -72,7 +72,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
             >
               <Stack direction={`row`} alignItems={`center`}>
                 <WordCardFavoriteIcon wordId={wordId} />
-                <WordCardDeleteButton wordId={wordId} />
+                <WordCardDeleteButtonPart wordId={wordId} />
                 {!word.isArchived && (
                   <WordCardArchiveButtonPart wordId={wordId} />
                 )}
