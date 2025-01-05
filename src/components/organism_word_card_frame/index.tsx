@@ -16,6 +16,7 @@ import WordCardsFrameReviewModePart from '../atom_word_cards_frame_parts/index.r
 import WordCardTermSearchDialog from '../molecule_word_card/index.term_search_dialog'
 import FixedTagsDialog from '../dialog_fixed_tags'
 import WordCardsFrameFixedTagsButton from '../atom_word_cards_frame_parts/index.fixed-tags-button'
+import TagButtonChunkFixed from '../molecule_tag_button_chunk/index.fixed'
 
 const WordCardFrame: FC = () => {
   return (
@@ -24,6 +25,7 @@ const WordCardFrame: FC = () => {
         {/* Header */}
         <Stack direction="row" spacing={0.7} alignItems="center">
           <Box flexGrow={1} />
+          <TagButtonChunkFixed />
           <WordCardsFrameFixedTagsButton />
           <WordCardsFrameReviewModePart />
           <WordCardsFrameArchiveSwitchPart />
