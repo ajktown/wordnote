@@ -4,9 +4,9 @@ import { isFixedTagsDialogOpenState } from '@/recoil/words/words.state'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 /**
- * WordCardsFrameFixedTagsButton shows the button to open the dialog for fixed tags.
+ * WordCardsFrameFixedTagsButtonPart shows the button to open the dialog for fixed tags.
  */
-const WordCardsFrameFixedTagsButton: FC = () => {
+const WordCardsFrameFixedTagsButtonPart: FC = () => {
   const onClick = useRecoilCallback(
     ({ set }) =>
       async () => {
@@ -26,4 +26,4 @@ const WordCardsFrameFixedTagsButton: FC = () => {
   )
 }
 
-export default WordCardsFrameFixedTagsButton
+export default WordCardsFrameFixedTagsButtonPart
