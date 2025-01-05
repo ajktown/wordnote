@@ -1,4 +1,5 @@
 //* Recoil Key Prefix */
+// We manage Key Prefix so that we never get a collision between keys
 export enum Rkp {
   App = `App`,
   Words = `Words`,
