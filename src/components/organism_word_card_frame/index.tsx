@@ -14,14 +14,27 @@ import WordCardsFrameArchiveModePart from '../atom_word_cards_frame_parts/index.
 import SharedResourceDialog from '../dialog_shared_resource'
 import WordCardsFrameReviewModePart from '../atom_word_cards_frame_parts/index.review-mode'
 import WordCardTermSearchDialog from '../molecule_word_card/index.term_search_dialog'
+import StyledTextButtonAtom from '@/atoms/StyledTextButton'
+import { useRecoilCallback } from 'recoil'
+import { fixedTagsState } from '@/recoil/words/words.state'
+import FixedTagsDialog from '../dialog_fixed_tags'
 
 const WordCardFrame: FC = () => {
+  const onClick = useRecoilCallback(
+    ({ set }) =>
+      async () => {
+        set(fixedTagsState, [])
+      },
+    [],
+  )
+
   return (
     <Stack width="100%" alignItems="center">
       <Stack {...WordCardFrameStyle}>
         {/* Header */}
         <Stack direction="row" spacing={0.7} alignItems="center">
           <Box flexGrow={1} />
+          <StyledTextButtonAtom title={`click me`} onClick={onClick} />
           <WordCardsFrameReviewModePart />
           <WordCardsFrameArchiveSwitchPart />
           <WordCardsFrameSurfingButtonPart />
@@ -42,6 +55,7 @@ const WordCardFrame: FC = () => {
         <WordCardDialog />
         <SharedResourceDialog />
         <WordCardTermSearchDialog />
+        <FixedTagsDialog />
       </Stack>
     </Stack>
   )
