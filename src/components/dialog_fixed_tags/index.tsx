@@ -1,7 +1,12 @@
 import { FC, useState } from 'react'
 import { useRecoilCallback, useRecoilValue, useResetRecoilState } from 'recoil'
 import StyledDialog from '@/organisms/StyledDialog'
-import { DialogContent, DialogTitle } from '@mui/material'
+import {
+  Box,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material'
 import {
   isFixedTagsDialogOpenState,
   fixedTagsState,
@@ -46,9 +51,19 @@ const FixedTagsDialog: FC = () => {
 
   return (
     <StyledDialog onClose={onClose}>
-      <DialogTitle>{`Add Fixed Tags`}</DialogTitle>
+      <DialogTitle>
+        {`Add Fixed Tags`}
+        <DialogContentText variant="caption">
+          {`"Fixed Tags” is a feature that automatically adds predefined tags to any new words you create, eliminating the need to manually add tags to each word individually if fixed tags are not set.`}
+        </DialogContentText>
+      </DialogTitle>
       <DialogContent>
-        <StyledTextField value={input} onChange={setInput} />
+        <StyledTextField
+          value={input}
+          onChange={setInput}
+          label={`Insert your Fixed Tags here`}
+        />
+        <Box pb={1} />
         {fixedTags.map((tag) => (
           <TagChipDeletable key={tag} label={tag} onClick={onClickDelete} />
         ))}
