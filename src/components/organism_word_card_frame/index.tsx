@@ -16,14 +16,14 @@ import WordCardsFrameReviewModePart from '../atom_word_cards_frame_parts/index.r
 import WordCardTermSearchDialog from '../molecule_word_card/index.term_search_dialog'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useRecoilCallback } from 'recoil'
-import { fixedTagsState } from '@/recoil/words/words.state'
+import { isFixedTagsDialogOpenState } from '@/recoil/words/words.state'
 import FixedTagsDialog from '../dialog_fixed_tags'
 
 const WordCardFrame: FC = () => {
   const onClick = useRecoilCallback(
     ({ set }) =>
       async () => {
-        set(fixedTagsState, [])
+        set(isFixedTagsDialogOpenState, true)
       },
     [],
   )

@@ -2,6 +2,8 @@ import { PostWordReqDto } from '@/api/words/interfaces'
 import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda'
 import { useCallback, useState, Dispatch, SetStateAction } from 'react'
 import { usePostWord } from './use-post-word.hook'
+import { useRecoilCallback } from 'recoil'
+import { fixedTagsState } from '@/recoil/words/words.state'
 
 type UsePostWordWithStringHook = [
   boolean, // loading
@@ -22,21 +24,28 @@ export const usePostWordWithStringHook = (): UsePostWordWithStringHook => {
 
   const onClickWritingModeOpen = useCallback(() => setWritingMode(true), [])
 
-  const onClickPostWord = useCallback(
-    async (withWritingModeClosed: boolean) => {
-      if (!userInput) return setWritingMode(false)
+  const onClickPostWord = useRecoilCallback(
+    ({ snapshot }) =>
+      async (withWritingModeClosed: boolean) => {
+        if (!userInput) return setWritingMode(false)
 
-      try {
-        setLoading(true)
-        const newWord: PostWordReqDto = parseInputIntoWordLambda(userInput)
-        await onPostWord(newWord)
-      } finally {
-        setLoading(false)
-      }
+        try {
+          setLoading(true)
+          const newWord: PostWordReqDto = parseInputIntoWordLambda(userInput)
 
-      setUserInput(``)
-      withWritingModeClosed && setWritingMode(false)
-    },
+          const fixedTagSet = new Set(await snapshot.getPromise(fixedTagsState))
+          newWord.tags.forEach((tag) => fixedTagSet.add(tag)) // add tags to fixedTagsState (learn about in src/recoil/words/words.state.ts)
+          await onPostWord({
+            ...newWord,
+            tags: Array.from(fixedTagSet),
+          })
+        } finally {
+          setLoading(false)
+        }
+
+        setUserInput(``)
+        withWritingModeClosed && setWritingMode(false)
+      },
     [userInput, onPostWord],
   )
 
