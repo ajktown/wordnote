@@ -10,7 +10,10 @@ import { searchInputState } from '@/recoil/words/searchInput.state'
 import WordCardSkeleton from '../molecule_word_card/index.skeleton'
 import { useDynamicFocus } from '@/hooks/use-dynamic-focus.hook'
 import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
-import { selectedWordIdForDialogState } from '@/recoil/words/words.state'
+import {
+  isFixedTagsDialogOpenState,
+  selectedWordIdForDialogState,
+} from '@/recoil/words/words.state'
 
 const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new word...`
 
@@ -18,6 +21,7 @@ const NewWordBox: FC = () => {
   const searchInput = useRecoilValue(searchInputState)
   const isShowingArchived = useRecoilValue(isShowingArchivedState)
   const selectedWordId = useRecoilValue(selectedWordIdForDialogState)
+  const isFixedTagsDialogOpen = useRecoilValue(isFixedTagsDialogOpenState)
 
   // TODO: This is possibly too long. I think it could be better,
   // TODO: But then for the current code status sake, it looks good.
@@ -36,12 +40,18 @@ const NewWordBox: FC = () => {
     onClickPostWordWritingModeOpen,
   )
   const onHitEnter = useCallback(() => {
-    // if dialog is open for edit, it should exit by return
-    if (selectedWordId) return
+    if (isFixedTagsDialogOpen) return // if fixedTags dialog is open, it should not respond:
+    if (selectedWordId) return // if dialog is open for edit, it should exit by return
 
     if (isWritingMode) onDynamicFocus()
     else setWritingMode(true)
-  }, [selectedWordId, isWritingMode, setWritingMode, onDynamicFocus])
+  }, [
+    isFixedTagsDialogOpen,
+    selectedWordId,
+    isWritingMode,
+    setWritingMode,
+    onDynamicFocus,
+  ])
 
   useKeyPress(onHitEnter, `Enter`)
   useKeyPress(onClickPostWordWritingModeClose, `Escape`)

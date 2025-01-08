@@ -15,6 +15,8 @@ enum Prk {
   GetWordsParams = `getWordsParams`,
   ModifyingWords = `ModifyingWords`,
   TempLikedWordIds = `TempLikedWordIds`,
+  FixedTagsDialogOpenState = `FixedTagsDialogOpenState`,
+  FixedTagsState = `FixedTagsState`,
 }
 
 type PrivateWordsFamily =
@@ -62,3 +64,20 @@ export const tempFavoriteWordIdsState = atom<string[]>({
   key: Rkp.Words + Prk.TempLikedWordIds,
   default: [],
 })
+
+/* ======= Start of FixedTagsState======= */
+/**
+ * fixedTagsState contains a list of tags that should be always included when user create a new word.
+ * This way user does not have to add tag for each word they create in a short period of time.
+ */
+
+export const isFixedTagsDialogOpenState = atom<boolean>({
+  key: Rkp.Words + Prk.FixedTagsDialogOpenState,
+  default: false,
+})
+
+export const fixedTagsState = atom<string[]>({
+  key: Rkp.Words + Prk.FixedTagsState,
+  default: [],
+})
+/* ======== End of FixedTagsStateRelatedOne ======== */
