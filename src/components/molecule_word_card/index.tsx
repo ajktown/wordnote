@@ -28,6 +28,7 @@ import { useWindowSize } from 'react-use'
 import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
 import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 import WordCardExampleReaderPart from '../atom_word_card_parts/index.example-reader'
+import WordCardScrabbleScorePart from '../atom_word_card_parts/index.scrabble-score'
 
 interface Props {
   wordId: string
@@ -82,6 +83,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
                 <WordCardSearchThisWordButtonPart word={word} />
                 <WordCardShareButtonPart wordId={wordId} />
                 <WordCardExampleReaderPart word={word} />
+                <WordCardScrabbleScorePart word={word} />
               </Stack>
               <TagButtonChunk word={word} />
             </Stack>
