@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { ISharedWord } from '@/api/words/interfaces'
 import StyledTextWithHeaderIcon from '@/atoms/StyledTextWithHeaderIcon'
 import ScrabbleIcon from '@mui/icons-material/SendTimeExtension'
@@ -11,7 +11,8 @@ interface Props {
  * Only supports English.
  */
 const WordCardScrabbleScorePart: FC<Props> = ({ word }) => {
-  const score = getScrabbleScore(word.term)
+  const { term } = word
+  const score = useMemo(() => getScrabbleScore(term), [term])
 
   return (
     <StyledTextWithHeaderIcon
