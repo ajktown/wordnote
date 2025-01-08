@@ -71,7 +71,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
               direction={width > 440 ? `row` : `column`}
               alignItems={`left`}
             >
-              <Stack direction={`row`} alignItems={`center`}>
+              <Stack direction={`row`} alignItems={`center`} pr={0.5}>
                 <WordCardFavoriteIcon wordId={wordId} />
                 <WordCardDeleteButtonPart wordId={wordId} />
                 {!word.isArchived && (

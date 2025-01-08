@@ -61,7 +61,7 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
               direction={width > 440 ? `row` : `column`}
               alignItems={`left`}
             >
-              <Stack direction={`row`} alignItems={`center`}>
+              <Stack direction={`row`} alignItems={`center`} pr={0.5}>
                 <WordCardFavoriteIcon wordId={word.id} />
                 <StyledVisibilityAtom
                   isVisible={!isPeekMode}
