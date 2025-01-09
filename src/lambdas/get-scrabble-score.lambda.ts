@@ -31,6 +31,7 @@ const points: Record<string, number> = {
  * It returns score as 0 (meaning invalid word) if:
  * - any character is not part of Record "points"
  * - word is empty
+ * TODO: I believe this can be more detailed by returning the maximum score possible on board.
  */
 export const getScrabbleScore = (word: string): number => {
   let score = 0

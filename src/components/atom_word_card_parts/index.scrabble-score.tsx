@@ -23,7 +23,7 @@ const WordCardScrabbleScorePart: FC<Props> = ({ word }) => {
         variant: `caption`,
         color: score ? undefined : `textSecondary`,
       }}
-      title={score ? `${score}` : ``}
+      title={score ? `${score}~${score * 3}` : ``}
     />
   )
 }
