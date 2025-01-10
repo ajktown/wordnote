@@ -36,7 +36,7 @@ const points: Record<string, number> = {
 export const getScrabbleScore = (word: string): number => {
   let score = 0
   for (const char of word.trim().toUpperCase().split(``)) {
-    if (points[char] === undefined) return 0 // not character
+    if (points[char] === undefined) return 0 // no longer a valid word for scrabble
     score += points[char]
   }
   return score
