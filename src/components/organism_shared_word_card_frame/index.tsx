@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { PageQueryConst } from '@/constants/page-queries.constant'
 import { useSharedResource } from '@/hooks/shared-resources/use-shared-resource.hook'
 import StyledCentered from '@/organisms/StyledCentered'
-import SharedWordCardAddWordButtonPart from '../atom_shared_word_card_parts/index.add-word-button'
+import SharedWordCardFrameAddWordButton from './index.add-word-button'
 import { WordCardFrameStyle } from '../organism_word_card_frame/index.style'
 
 const SharedWordCardFrame: FC = () => {
@@ -30,7 +30,7 @@ const SharedWordCardFrame: FC = () => {
           {`Beta feature: Below is the shared word card`}
         </Typography>
         <Box mb={1} />
-        <SharedWordCardAddWordButtonPart wordId={wordId.trim()} />
+        <SharedWordCardFrameAddWordButton wordId={wordId.trim()} />
         {/* Body */}
         <Stack spacing={0.5} alignItems="center">
           <WordCardShared wordId={wordId.trim()} />

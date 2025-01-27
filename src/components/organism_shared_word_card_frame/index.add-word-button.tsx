@@ -11,7 +11,7 @@ import { useRecoilValue } from 'recoil'
 interface Props {
   wordId: string
 }
-const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
+const SharedWordCardFrameAddWordButton: FC<Props> = ({ wordId }) => {
   const sharedWord = useRecoilValue(sharedWordFamily(wordId))
   const [loading, onPostWord] = usePostWord()
   const [isAdded, setAdded] = useState(false)
@@ -66,4 +66,4 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
   )
 }
 
-export default SharedWordCardAddWordButtonPart
+export default SharedWordCardFrameAddWordButton
