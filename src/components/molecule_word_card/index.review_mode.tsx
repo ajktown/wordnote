@@ -24,7 +24,6 @@ import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term
 import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 import WordCardExampleReaderPart from '../atom_word_card_parts/index.example-reader'
 import { getLanguageCountryEmoji } from '@/global.constants'
-import WordCardScrabbleScorePart from '../atom_word_card_parts/index.scrabble-score'
 interface Props {
   word: WordData
 }
@@ -79,7 +78,6 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
                 <WordCardSearchThisWordButtonPart word={word} />
                 <WordCardShareButtonPart wordId={word.id} />
                 <WordCardExampleReaderPart word={word} />
-                <WordCardScrabbleScorePart word={word} />
               </Stack>
               <TagButtonChunk word={word} />
             </Stack>
