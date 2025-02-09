@@ -62,7 +62,7 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
               alignItems={`left`}
             >
               <Stack direction={`row`} alignItems={`center`} pr={0.5}>
-                {isPeekMode && <WordCardPinButtonPart wordId={word.id} />}
+                <WordCardPinButtonPart wordId={word.id} />
                 <WordCardFavoriteIcon wordId={word.id} />
                 <StyledVisibilityAtom
                   isVisible={!isPeekMode}
