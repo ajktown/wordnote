@@ -11,6 +11,7 @@ import { isEveryFavoriteSelectedState } from './semesters.state'
 enum Prk {
   SelectedSemester = `SelectedSemester`,
   IsFavoriteClicked = `IsFavoriteClicked`,
+  IsPinnedClickedSelector = `isPinnedClickedSelector`,
   SelectedCustomized = `SelectedCustomized`,
   SelectedLanguage = `SelectedLanguage`,
   SelectedDaysAgo = `SelectedDaysAgo`,
@@ -30,6 +31,13 @@ export const isFavoriteClickedSelector = selector<boolean>({
   key: Rkp.Tags + Prk.IsFavoriteClicked + Rks.Selector,
   get: ({ get }) => {
     return !!get(getWordsParamsState).isFavorite
+  },
+})
+
+export const isPinnedClickedSelector = selector<boolean>({
+  key: Rkp.Tags + Prk.IsPinnedClickedSelector + Rks.Selector,
+  get: ({ get }) => {
+    return !!get(getWordsParamsState).isPinned
   },
 })
 

@@ -19,6 +19,7 @@ export interface WordData extends ISharedWord, DataStatus, DataBasics {
   userId: string
   semester: number
   isFavorite: boolean
+  isPinned: boolean
   dateAdded?: number
   isArchived: boolean
 }

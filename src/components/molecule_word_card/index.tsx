@@ -28,6 +28,7 @@ import { useWindowSize } from 'react-use'
 import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
 import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 import WordCardExampleReaderPart from '../atom_word_card_parts/index.example-reader'
+import WordCardPinButtonPart from '../atom_word_card_parts/index.pin-button'
 
 interface Props {
   wordId: string
@@ -71,6 +72,7 @@ const WordCard: FC<Props> = ({ wordId, editingMode }) => {
               alignItems={`left`}
             >
               <Stack direction={`row`} alignItems={`center`} pr={0.5}>
+                <WordCardPinButtonPart wordId={wordId} />
                 <WordCardFavoriteIcon wordId={wordId} />
                 <WordCardDeleteButtonPart wordId={wordId} />
                 {!word.isArchived && (

@@ -24,6 +24,7 @@ const SharedWordCardAddWordButtonPart: FC<Props> = ({ wordId }) => {
 
       await onPostWord({
         isFavorite: false,
+        isPinned: false,
         isArchived: false,
         term: sharedWord.word.term,
         pronunciation: sharedWord.word.pronunciation,
