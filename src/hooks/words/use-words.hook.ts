@@ -19,6 +19,7 @@ type HandleRefresh = (
 ) => Promise<void>
 type UseWordIds = [boolean, HandleRefresh]
 
+// TODO: Write the mode in a separate file (maybe const) because this contains AppConstLogic
 type PrivateMode =
   | 'default-mode' // the default page mode that you see when you open up the page
   | 'search-mode' // when you search for a word in a search bar
