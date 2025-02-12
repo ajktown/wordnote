@@ -39,9 +39,7 @@ export const useWords = (): UseWordIds => {
   const onHandleApiError = useHandleApiError()
   const onApplySemesterDetails = useApplySemesterDetails()
 
-  // onGetWords smartly handles both situation
-  // just a normal semester mode
-  // every-favorite mode (Only favorite words)
+  // onGetWords smartly handles each mode defined in PrivateMode and prepare a proper query against the API:
   const onGetWords: HandleRefresh = useRecoilCallback(
     ({ set, reset, snapshot }) =>
       async (newParams?: NewParams, isEveryFavoriteSelected?: boolean) => {
