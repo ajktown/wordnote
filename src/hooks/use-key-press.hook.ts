@@ -13,7 +13,9 @@ export const useKeyPress = (
       // to not run onKeyPress() during composing (especially Japanese or Chinese where character conversion is required)
       if (event.isComposing) return
 
+      console.log(keysPressed)
       keysPressed.add(event.key)
+      console.log(event.isComposing)
 
       // TODO: Check the length too here:
       // if (secondKey === undefined && keysPressed.size !== 1) return
@@ -26,8 +28,10 @@ export const useKeyPress = (
       onKeyPress()
     }
 
-    const onKeyUp = (event: KeyboardEvent) => {
-      keysPressed.delete(event.key)
+    const onKeyUp = () => {
+      // instead of deleting a specific key like keysPressed.delete(event.key), we need to clear all keys
+      // as any press up will be considered "not pressed" for the next key press
+      keysPressed.clear()
     }
 
     document.addEventListener(`keydown`, onKeyDown)
