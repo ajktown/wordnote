@@ -4,8 +4,8 @@ import { wordsFamily } from '@/recoil/words/words.state'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { WordData } from '@/api/words/interfaces'
 
-type UsePutWord = [undefined | null | WordData, () => Promise<void>]
-export const usePutWordIsPinned = (wordId: string): UsePutWord => {
+type UsePutWordIsPinned = [undefined | null | WordData, () => Promise<void>]
+export const usePutWordIsPinned = (wordId: string): UsePutWordIsPinned => {
   const word = useRecoilValue(wordsFamily(wordId))
 
   const [, onPutWord] = usePutWord(wordId)
