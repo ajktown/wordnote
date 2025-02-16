@@ -15,7 +15,7 @@ const StyledIconButtonPin: FC<Props> = ({ isClicked, onClick, size }) => {
       jsxElementButton={
         <PushPinIcon
           style={{
-            color: isClicked ? `ffa31a` /* Orange */ : undefined,
+            color: isClicked ? /* Orange */ `ffa31a` : undefined,
             fontSize: size,
           }}
         />
