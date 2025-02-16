@@ -11,10 +11,8 @@ export const usePutWordIsPinned = (wordId: string): UsePutWordIsPinned => {
   const [, onPutWord] = usePutWord(wordId)
 
   const onPutPinned = useCallback(async () => {
-    if (word == null) return
-
-    const modifyingTo = !word.isPinned
-    await onPutWord({ isPinned: modifyingTo })
+    if (word == null) return // nothing can be done with unknown word
+    await onPutWord({ isPinned: !word.isPinned })
   }, [word, onPutWord])
 
   return [word, onPutPinned]
