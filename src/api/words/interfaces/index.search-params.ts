@@ -8,6 +8,7 @@ export interface GetWordParams extends GetReqDtoRoot {
   languageCodes: GlobalLanguageCode[]
   semester: number
   isFavorite: boolean
+  isPinned: boolean
   term: string
   pronunciation: string
   definition: string

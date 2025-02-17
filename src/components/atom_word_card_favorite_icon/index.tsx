@@ -5,6 +5,7 @@ import StyledIconButtonFavorite from '@/atoms/StyledIconButtonFavorite'
 interface Props {
   wordId: string
 }
+// TODO: Move to the "atom_word_card_part"
 const WordCardFavoriteIcon: FC<Props> = ({ wordId }) => {
   const [word, onPutWordFavorite] = usePutWordFavorite(wordId)
 

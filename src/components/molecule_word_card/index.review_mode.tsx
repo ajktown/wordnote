@@ -24,6 +24,7 @@ import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term
 import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 import WordCardExampleReaderPart from '../atom_word_card_parts/index.example-reader'
 import { getLanguageCountryEmoji } from '@/global.constants'
+import WordCardPinButtonPart from '../atom_word_card_parts/index.pin-button'
 interface Props {
   word: WordData
 }
@@ -61,6 +62,7 @@ const WordCardReviewMode: FC<Props> = ({ word }) => {
               alignItems={`left`}
             >
               <Stack direction={`row`} alignItems={`center`} pr={0.5}>
+                <WordCardPinButtonPart wordId={word.id} />
                 <WordCardFavoriteIcon wordId={word.id} />
                 <StyledVisibilityAtom
                   isVisible={!isPeekMode}
