@@ -26,8 +26,11 @@ export const useKeyPress = (
       onKeyPress()
     }
 
-    const onKeyUp = (event: KeyboardEvent) => {
-      keysPressed.delete(event.key)
+    const onKeyUp = () => {
+      // instead of deleting a specific key like keysPressed.delete(event.key), we need to clear all keys
+      // as any press up will be considered "not pressed" for the next key press
+      // This used to have the bug described in the issue https://github.com/ajktown/wordnote/issues/241
+      keysPressed.clear()
     }
 
     document.addEventListener(`keydown`, onKeyDown)
