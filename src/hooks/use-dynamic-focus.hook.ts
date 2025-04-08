@@ -1,7 +1,7 @@
 import { RefObject, useCallback, useRef } from 'react'
 
 type UseDynamicFocus = [
-  RefObject<HTMLInputElement> | undefined,
+  RefObject<HTMLInputElement | null> | undefined,
   () => Promise<any>,
 ]
 /** Returns ReactRef & onClick function
