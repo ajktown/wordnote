@@ -16,9 +16,7 @@ const StyledCentered: FC<Props> = ({ children }) => {
       justifyContent="center"
       style={{ minHeight: `100vh` }}
     >
-      <Grid item xs={5}>
-        {children}
-      </Grid>
+      <Grid size={5}>{children}</Grid>
     </Grid>
   )
 }
