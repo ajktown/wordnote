@@ -12,8 +12,8 @@ const WordCardDefinitionPart: FC<Props> = ({ word, hideSubDefinition }) => {
   return (
     <Stack spacing={0}>
       <Typography variant="body2">
+        {hideSubDefinition && getLanguageCountryEmoji(word.languageCode)}
         {word.definition}
-        {!hideSubDefinition && getLanguageCountryEmoji(word.languageCode)}
       </Typography>
       {!hideSubDefinition && word.subDefinition && (
         <Typography variant="body2" color="text.secondary" fontStyle={`italic`}>
