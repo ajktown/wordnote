@@ -1,4 +1,5 @@
 import { ISharedWord } from '@/api/words/interfaces'
+import { getLanguageCountryEmoji } from '@/global.constants'
 import { Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 
@@ -10,7 +11,10 @@ interface Props {
 const WordCardDefinitionPart: FC<Props> = ({ word, hideSubDefinition }) => {
   return (
     <Stack spacing={0}>
-      <Typography variant="body2">{word.definition}</Typography>
+      <Typography variant="body2">
+        {hideSubDefinition && getLanguageCountryEmoji(word.languageCode)}
+        {word.definition}
+      </Typography>
       {!hideSubDefinition && word.subDefinition && (
         <Typography variant="body2" color="text.secondary" fontStyle={`italic`}>
           {word.subDefinition}
