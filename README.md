@@ -1,5 +1,7 @@
 # Wordnote
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ajktown/wordnote)
+
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/8244/badge)](https://bestpractices.coreinfrastructure.org/projects/8244)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mlajkim)
