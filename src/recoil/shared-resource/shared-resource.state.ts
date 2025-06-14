@@ -1,6 +1,7 @@
-import { atom, atomFamily } from 'recoil'
+import { atomFamily } from 'recoil'
 import { Rkp, Rks } from '@/recoil/index.keys'
 import { GetSharedResourceRes } from '@/api/shared-resources/get-shared-resource.api'
+import { atomWithReset } from 'jotai/utils'
 
 /** Private Recoil Key */
 enum Prk {
@@ -11,10 +12,7 @@ enum Prk {
 /**
  * The modal will appear if it is set non empty
  */
-export const sharedWordIdState = atom<string>({
-  key: Rkp.SharedResource + Prk.SharedWordId,
-  default: ``,
-})
+export const sharedWordIdState = atomWithReset<string>(``)
 
 type SharedWordFamily =
   | undefined // not requested (loading)

@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { useRecoilCallback, useRecoilValue, useResetRecoilState } from 'recoil'
+import { useRecoilCallback, useRecoilValue } from 'recoil'
 import {
   sharedWordFamily,
   sharedWordIdState,
@@ -11,18 +11,21 @@ import { postSharedResourceApi } from '@/api/shared-resources/post-shared-resour
 import WordCardShared from '../molecule_word_card/index.shared'
 import { DialogContent, DialogTitle } from '@mui/material'
 import WordCardShareReview from '../molecule_word_card/index.share-review'
+import { useAtom } from 'jotai'
+import { useResetAtom } from 'jotai/utils'
 
 const SharedResourceDialog: FC = () => {
-  const sharedWordId = useRecoilValue(sharedWordIdState)
+  const [sharedWordId, setSharedWordIdState] = useAtom(sharedWordIdState)
   const sharedWord = useRecoilValue(sharedWordFamily(sharedWordId))
-  const onClose = useResetRecoilState(sharedWordIdState)
+  const onClose = useResetAtom(sharedWordIdState)
+
   const [posting, setPosting] = useState(false)
 
   const onClick = useRecoilCallback(
     ({ set }) =>
       async () => {
         setPosting(true)
-        set(sharedWordIdState, sharedWordId)
+        setSharedWordIdState(sharedWordId)
         try {
           const [data] = await postSharedResourceApi({
             wordId: sharedWordId,
@@ -35,7 +38,7 @@ const SharedResourceDialog: FC = () => {
           setPosting(false)
         }
       },
-    [sharedWordId],
+    [sharedWordId, setSharedWordIdState],
   )
 
   if (!sharedWordId) return null
