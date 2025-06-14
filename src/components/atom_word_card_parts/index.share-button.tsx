@@ -12,11 +12,10 @@ const WordCardShareButtonPart: FC<Props> = ({ wordId }) => {
   const [, setSharedWordId] = useAtom(sharedWordIdState)
 
   const onClick = useCallback(() => {
-    const handle = async () => {
+    ;(async () => {
       setSharedWordId(wordId)
       await onGetSharedResource()
-    }
-    handle()
+    })()
   }, [wordId, onGetSharedResource, setSharedWordId])
 
   return (
