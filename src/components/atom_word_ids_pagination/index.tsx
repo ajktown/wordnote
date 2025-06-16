@@ -1,6 +1,6 @@
 import { useWords } from '@/hooks/words/use-words.hook'
 import StyledPaginatorMolecule from '@/molecules/StyledPaginator'
-import { wordIdsPagination } from '@/recoil/words/words.state'
+import { wordIdsPagination } from '@/states/words/words.state'
 import { FC, useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
 

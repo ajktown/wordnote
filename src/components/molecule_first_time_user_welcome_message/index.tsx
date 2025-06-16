@@ -1,4 +1,4 @@
-import { isFirstTimeUserSelector } from '@/recoil/app/app.selectors'
+import { isFirstTimeUserSelector } from '@/states/app/app.selectors'
 import { Alert, Typography } from '@mui/material'
 import { FC, useCallback, useState } from 'react'
 import { useRecoilValue } from 'recoil'

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
-import { semesterDetailsFamily } from '@/recoil/words/semesters.state'
+import { semesterDetailsFamily } from '@/states/words/semesters.state'
 
 type UsePutWordTagAdded = [
   boolean, // loading

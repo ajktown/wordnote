@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { GetAuthPrepRes, getAuthPrepApi } from '@/api/auth/get-auth-prep.api'
-import { authPrepState } from '@/recoil/app/app.state'
+import { authPrepState } from '@/states/app/app.state'
 
 type UseAuthPrep = () => Promise<GetAuthPrepRes | null>
 export const useAuthPrep = (): UseAuthPrep => {

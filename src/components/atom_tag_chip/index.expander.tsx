@@ -2,7 +2,7 @@ import StyledChip from '@/atoms/StyledChip'
 import {
   isSemesterExpandedState,
   semestersState,
-} from '@/recoil/words/semesters.state'
+} from '@/states/words/semesters.state'
 import { FC, useCallback } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'

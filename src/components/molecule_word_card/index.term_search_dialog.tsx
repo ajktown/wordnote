@@ -5,7 +5,7 @@ import {
   dialogSearchedTermState,
   searchInputState,
   dialogSearchedWordsState as termDialogSearchedWordsState,
-} from '@/recoil/words/searchInput.state'
+} from '@/states/words/searchInput.state'
 import WordCardsChunkNoWordsFound from '../organism_word_card_chunk/index.no_words_found'
 import {
   Card,
@@ -20,7 +20,7 @@ import WordCardExamplePart from '../atom_word_card_parts/index.example'
 import { useDialogSearchedWords } from '@/hooks/words/use-searched-words-by-word-id.hook'
 import TagButtonChunk from '../molecule_tag_button_chunk'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import WordCardTermAndPronunciationPart from '../atom_word_card_parts/index.term-and-pronunciation'
 import WordCardDefinitionPart from '../atom_word_card_parts/index.definition'
 import StyledTextField from '@/atoms/StyledTextField'

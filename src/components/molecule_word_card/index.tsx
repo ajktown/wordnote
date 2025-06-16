@@ -8,7 +8,7 @@ import WordCardUnknown from './index.unknown'
 import {
   selectedWordIdForDialogState,
   wordsFamily,
-} from '@/recoil/words/words.state'
+} from '@/states/words/words.state'
 import StyledSuspense from '@/organisms/StyledSuspense'
 import WordCardEditingMode from './index.editing_mode'
 import TagButtonChunk from '../molecule_tag_button_chunk'
@@ -20,7 +20,7 @@ import WordCardUnarchiveButtonPart from '../atom_word_card_parts/index.unarchive
 import {
   isReviewModeState,
   isShowingArchivedState,
-} from '@/recoil/preferences/preference.state'
+} from '@/states/preferences/preference.state'
 import WordCardReviewMode from './index.review_mode'
 import WordCardShareButtonPart from '../atom_word_card_parts/index.share-button'
 import WordCardSearchThisWordButtonPart from '../atom_word_card_parts/index.search-this-word'

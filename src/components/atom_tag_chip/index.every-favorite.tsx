@@ -4,7 +4,7 @@ import { GlobalMuiTagVariant } from '@/global.interface'
 import { FC, useMemo } from 'react'
 import { useWords } from '@/hooks/words/use-words.hook'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { isEveryFavoriteSelectedState } from '@/recoil/words/semesters.state'
+import { isEveryFavoriteSelectedState } from '@/states/words/semesters.state'
 
 const TagChipEveryFavorite: FC = () => {
   const isEveryFavoriteSelected = useRecoilValue(isEveryFavoriteSelectedState)

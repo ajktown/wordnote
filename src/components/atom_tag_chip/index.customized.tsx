@@ -1,7 +1,7 @@
 import StyledChip from '@/atoms/StyledChip'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
-import { selectedCustomizedTagsSelector } from '@/recoil/words/words.selectors'
+import { selectedCustomizedTagsSelector } from '@/states/words/words.selectors'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 

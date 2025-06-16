@@ -1,4 +1,4 @@
-import { isAppBootedSelector } from '@/recoil/app/app.state'
+import { isAppBootedSelector } from '@/states/app/app.state'
 import { useCallback, useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useRouter } from 'next/router'

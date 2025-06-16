@@ -3,9 +3,9 @@ import {
   wordsFamily,
   wordIdsState,
   selectedWordIdForDialogState,
-} from '@/recoil/words/words.state'
+} from '@/states/words/words.state'
 import { useRecoilCallback } from 'recoil'
-import { semestersState } from '@/recoil/words/semesters.state'
+import { semestersState } from '@/states/words/semesters.state'
 import { useState } from 'react'
 import { useActionGroupDailyPostWordChallengeApi } from '../action-groups/use-action-group-daily-post-word-challenge.api'
 

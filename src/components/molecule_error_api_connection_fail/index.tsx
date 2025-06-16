@@ -1,5 +1,5 @@
 import StyledSnackbarMolecule from '@/molecules/StyledSnackbar'
-import { isApiConnectFailed } from '@/recoil/apis/error-api-connection-fail.state'
+import { isApiConnectFailed } from '@/states/apis/error-api-connection-fail.state'
 import { FC } from 'react'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 

@@ -1,7 +1,7 @@
 import {
   selectedWordIdForDialogState,
   wordIdsState,
-} from '@/recoil/words/words.state'
+} from '@/states/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 

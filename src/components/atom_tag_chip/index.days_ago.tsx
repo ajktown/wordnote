@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 import { GlobalMuiTagVariant } from '@/global.interface'
 import { DateTime } from 'luxon'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
-import { selectedDaysAgoTagsSelector } from '@/recoil/words/words.selectors'
+import { selectedDaysAgoTagsSelector } from '@/states/words/words.selectors'
 import { useWords } from '@/hooks/words/use-words.hook'
 interface Props {
   daysAgo: number

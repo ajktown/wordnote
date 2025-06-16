@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { isFixedTagsDialogOpenState } from '@/recoil/words/words.state'
+import { isFixedTagsDialogOpenState } from '@/states/words/words.state'
 import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 /**

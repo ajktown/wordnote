@@ -6,14 +6,14 @@ import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { useKeyPress } from '@/hooks/use-key-press.hook'
 import { usePostWordWithStringHook } from '@/hooks/words/use-post-word-with-string.hook'
 import { useRecoilValue } from 'recoil'
-import { searchInputState } from '@/recoil/words/searchInput.state'
+import { searchInputState } from '@/states/words/searchInput.state'
 import WordCardSkeleton from '../molecule_word_card/index.skeleton'
 import { useDynamicFocus } from '@/hooks/use-dynamic-focus.hook'
-import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
+import { isShowingArchivedState } from '@/states/preferences/preference.state'
 import {
   isFixedTagsDialogOpenState,
   selectedWordIdForDialogState,
-} from '@/recoil/words/words.state'
+} from '@/states/words/words.state'
 
 const PRIVATE_FINAL_ADD_NEW_WORD_MESSAGE = `Add your new word...`
 

@@ -3,7 +3,7 @@ import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda
 import { useCallback, useState, Dispatch, SetStateAction } from 'react'
 import { usePostWord } from './use-post-word.hook'
 import { useRecoilCallback } from 'recoil'
-import { fixedTagsState } from '@/recoil/words/words.state'
+import { fixedTagsState } from '@/states/words/words.state'
 
 type UsePostWordWithStringHook = [
   boolean, // loading

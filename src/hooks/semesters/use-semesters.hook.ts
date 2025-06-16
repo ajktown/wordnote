@@ -2,7 +2,7 @@ import {
   GetSemestersResDTO,
   getSemestersApi,
 } from '@/api/semesters/get-semesters.api'
-import { semestersState } from '@/recoil/words/semesters.state'
+import { semestersState } from '@/states/words/semesters.state'
 import { useRecoilCallback } from 'recoil'
 
 type OnGetSemesters = () => Promise<GetSemestersResDTO>

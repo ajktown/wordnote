@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { Rkp } from '@/recoil/index.keys'
+import { Rkp } from '@/states/index.keys'
 import { IPreference } from '@/api/preferences/index.interface'
 
 /** Private Recoil Key */

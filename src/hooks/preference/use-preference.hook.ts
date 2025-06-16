@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { preferenceState } from '@/recoil/preferences/preference.state'
+import { preferenceState } from '@/states/preferences/preference.state'
 import { getPreferenceApi } from '@/api/preferences/get-preferences.api'
 
 /** Gets the latest preference data of the signed end user

@@ -3,10 +3,10 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   tempFavoriteWordIdsState,
   wordsFamily,
-} from '@/recoil/words/words.state'
+} from '@/states/words/words.state'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { WordData } from '@/api/words/interfaces'
-import { isFavoriteClickedSelector } from '@/recoil/words/words.selectors'
+import { isFavoriteClickedSelector } from '@/states/words/words.selectors'
 
 type UsePutWord = [undefined | null | WordData, () => Promise<void>]
 export const usePutWordFavorite = (wordId: string): UsePutWord => {

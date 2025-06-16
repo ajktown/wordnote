@@ -2,7 +2,7 @@ import StyledChip from '@/atoms/StyledChip'
 import { getLanguageFullName } from '@/global.constants'
 import { GlobalLanguageCode } from '@/global.interface'
 import { useWords } from '@/hooks/words/use-words.hook'
-import { selectedLanguageTagsSelector } from '@/recoil/words/words.selectors'
+import { selectedLanguageTagsSelector } from '@/states/words/words.selectors'
 import { FC, useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
 

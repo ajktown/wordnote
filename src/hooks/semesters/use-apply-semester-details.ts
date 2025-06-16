@@ -1,6 +1,6 @@
 import { GetWordIdsApi } from '@/api/words/get-word-ids.api'
 import { GetWordsApi } from '@/api/words/get-words.api'
-import { semesterDetailsFamily } from '@/recoil/words/semesters.state'
+import { semesterDetailsFamily } from '@/states/words/semesters.state'
 import { useRecoilCallback } from 'recoil'
 
 type HandleApplySemester = (res: GetWordIdsApi | GetWordsApi) => void

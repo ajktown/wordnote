@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import { usePutWord } from '@/hooks/words/use-put-word.hook'
 import { WordData } from '@/api/words/interfaces'
 

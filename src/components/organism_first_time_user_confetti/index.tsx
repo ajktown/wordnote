@@ -2,7 +2,7 @@ import { FC } from 'react'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 import { useRecoilValue } from 'recoil'
-import { isFirstTimeUserSelector } from '@/recoil/app/app.selectors'
+import { isFirstTimeUserSelector } from '@/states/app/app.selectors'
 
 const FirstTimeUserConfetti: FC = () => {
   const { width, height } = useWindowSize()
