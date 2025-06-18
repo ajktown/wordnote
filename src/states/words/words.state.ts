@@ -4,7 +4,7 @@ import {
   WordDataModifiableValue,
 } from '@/api/words/interfaces'
 import { atom, atomFamily } from 'recoil'
-import { Rkp, Rks } from '@/recoil/index.keys'
+import { Rkp, Rks } from '@/states/index.keys'
 import { GetWordParams } from '@/api/words/interfaces/index.search-params'
 import { PaginationRootProps } from '@/api/index.interface'
 

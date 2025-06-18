@@ -4,7 +4,7 @@ import {
   getWordsParamsState,
   wordIdsPagination,
   wordIdsState,
-} from '@/recoil/words/words.state'
+} from '@/states/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useHandleApiError } from '../use-handle-api-error.hook'

@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import StyledImageButtonAtom from '@/atoms/StyledImageButton'
 import { useOpenNewTab } from '@/hooks/use-open-new-tab'
-import { preferenceState } from '@/recoil/preferences/preference.state'
+import { preferenceState } from '@/states/preferences/preference.state'
 
 const KO_JA_NAVER_DICTIONARY_PREFIX = `https://korean.dict.naver.com/#/search?range=all&query=`
 

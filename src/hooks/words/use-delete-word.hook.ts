@@ -1,5 +1,5 @@
 import { deleteWordByIdApi } from '@/api/words/delete-words.api'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import { useCallback, useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useActionGroupDailyPostWordChallengeApi } from '../action-groups/use-action-group-daily-post-word-challenge.api'

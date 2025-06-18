@@ -4,13 +4,13 @@ import {
   wordIdsPagination,
   wordIdsState,
   wordsFamily,
-} from '@/recoil/words/words.state'
+} from '@/states/words/words.state'
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useHandleApiError } from '../use-handle-api-error.hook'
 import { useApplySemesterDetails } from '../semesters/use-apply-semester-details'
 import { getWordsApi } from '@/api/words/get-words.api'
-import { isEveryFavoriteSelectedState } from '@/recoil/words/semesters.state'
+import { isEveryFavoriteSelectedState } from '@/states/words/semesters.state'
 
 type NewParams = Partial<GetWordParams>
 type HandleRefresh = (

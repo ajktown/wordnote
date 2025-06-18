@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { preferenceState } from '@/recoil/preferences/preference.state'
+import { preferenceState } from '@/states/preferences/preference.state'
 import { GlobalLanguageCode } from '@/global.interface'
 import { usePatchPreference } from './use-patch-preference.hook'
 

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Stack, Typography } from '@mui/material'
 import { useDevSignIn } from '@/hooks/auth/use-dev-sign-in.hook'
 import { useRecoilValue } from 'recoil'
-import { authPrepState } from '@/recoil/app/app.state'
+import { authPrepState } from '@/states/app/app.state'
 
 const ContinueWithDeveloperToken: FC = () => {
   const onDevSignIn = useDevSignIn()

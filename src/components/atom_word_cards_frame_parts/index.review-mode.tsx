@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { isReviewModeState } from '@/recoil/preferences/preference.state'
+import { isReviewModeState } from '@/states/preferences/preference.state'
 import StyledVisibilityAtom from '@/atoms/StyledVisibility'
 /**
  * When you click it, the Wordnote becomes a review mode.

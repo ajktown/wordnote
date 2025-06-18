@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { getSemesterByCodeApi as getSemesterByCodeApi } from '@/api/semesters/get-semester-by-code.api'
-import { semesterDetailsFamily } from '@/recoil/words/semesters.state'
+import { semesterDetailsFamily } from '@/states/words/semesters.state'
 
 export const useSemesterByCode = () => {
   const onGetSemesterByCode = useRecoilCallback(

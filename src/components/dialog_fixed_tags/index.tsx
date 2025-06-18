@@ -10,7 +10,7 @@ import {
 import {
   isFixedTagsDialogOpenState,
   fixedTagsState,
-} from '@/recoil/words/words.state'
+} from '@/states/words/words.state'
 import StyledTextField from '@/atoms/StyledTextField'
 import { useKeyPress } from '@/hooks/use-key-press.hook'
 import TagButtonChunkFixed from '../molecule_tag_button_chunk/index.fixed'

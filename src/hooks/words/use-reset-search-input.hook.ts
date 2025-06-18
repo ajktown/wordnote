@@ -1,7 +1,7 @@
 // Reset search input to undefined hook
 import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { searchInputState } from '@/recoil/words/searchInput.state'
+import { searchInputState } from '@/states/words/searchInput.state'
 import { useWords } from './use-words.hook'
 
 type HandleRefresh = () => Promise<void>

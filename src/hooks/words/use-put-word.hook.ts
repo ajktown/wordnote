@@ -1,6 +1,6 @@
 import { patchWordByIdApi } from '@/api/words/patch-word-by-id.api'
 import { WordDataModifiable } from '@/api/words/interfaces'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import { useRecoilCallback } from 'recoil'
 import { useState } from 'react'
 

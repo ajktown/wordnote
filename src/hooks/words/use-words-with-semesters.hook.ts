@@ -1,7 +1,7 @@
 import { useRecoilCallback } from 'recoil'
 import { useWords } from './use-words.hook'
 import { useSemesters } from '../semesters/use-semesters.hook'
-import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
+import { selectedSemesterSelector } from '@/states/words/words.selectors'
 
 /**
  * Sync words with the API Server. If selectedSemester is undefined,

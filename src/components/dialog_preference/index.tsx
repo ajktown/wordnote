@@ -1,6 +1,6 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import StyledDialog from '@/organisms/StyledDialog'
-import { isPreferenceDialogOpenedState } from '@/recoil/preferences/preference.state'
+import { isPreferenceDialogOpenedState } from '@/states/preferences/preference.state'
 import {
   DialogActions,
   DialogContent,

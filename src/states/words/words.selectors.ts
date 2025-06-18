@@ -1,7 +1,7 @@
 /**
  * This file contains all the selectors for the words.state.ts
  */
-import { Rkp, Rks } from '@/recoil/index.keys'
+import { Rkp, Rks } from '@/states/index.keys'
 import { selector } from 'recoil'
 import { getWordsParamsState } from './words.state'
 import { GlobalLanguageCode } from '@/global.interface'

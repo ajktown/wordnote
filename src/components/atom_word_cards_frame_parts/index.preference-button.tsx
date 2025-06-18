@@ -3,7 +3,7 @@ import { FC, Fragment } from 'react'
 import SettingsIcon from '@mui/icons-material/Settings'
 import PreferenceDialog from '../dialog_preference'
 import { useRecoilCallback } from 'recoil'
-import { isPreferenceDialogOpenedState } from '@/recoil/preferences/preference.state'
+import { isPreferenceDialogOpenedState } from '@/states/preferences/preference.state'
 
 const WordCardsFramePreferenceButtonPart: FC = () => {
   const onClick = useRecoilCallback(({ set }) => () => {

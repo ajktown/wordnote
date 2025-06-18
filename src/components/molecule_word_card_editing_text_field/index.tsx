@@ -10,7 +10,7 @@ import StyledTextField from '@/atoms/StyledTextField'
 import { stringCaseHandler } from '@/handlers/string-case.handler'
 import { GlobalMuiTextFieldVariant } from '@/global.interface'
 import { useRecoilValue } from 'recoil'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import { usePutWordCacheByKey } from '@/hooks/words/use-put-word-cache-by-key.hook'
 
 const PRIVATE_DEFAULT_TEXT_FIELD_VARIANT: GlobalMuiTextFieldVariant = `standard`

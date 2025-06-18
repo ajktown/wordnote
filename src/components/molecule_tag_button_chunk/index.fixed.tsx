@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { FC } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { fixedTagsState } from '@/recoil/words/words.state'
+import { fixedTagsState } from '@/states/words/words.state'
 import TagChipDeletable from '../atom_tag_chip/index.deletable'
 
 const TagButtonChunkFixed: FC = () => {

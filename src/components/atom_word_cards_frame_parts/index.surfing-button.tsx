@@ -6,8 +6,8 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import {
   isSemesterExpandedState,
   semestersState,
-} from '@/recoil/words/semesters.state'
-import { selectedSemesterSelector } from '@/recoil/words/words.selectors'
+} from '@/states/words/semesters.state'
+import { selectedSemesterSelector } from '@/states/words/words.selectors'
 
 const WordCardsFrameSurfingButtonPart: FC = () => {
   const [, onSemesterClick] = useSemesterClick()

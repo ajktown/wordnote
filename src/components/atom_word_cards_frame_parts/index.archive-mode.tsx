@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
+import { isShowingArchivedState } from '@/states/preferences/preference.state'
 import { Typography } from '@mui/material'
 
 /** Simply renders a message that the end user is using archive mode.

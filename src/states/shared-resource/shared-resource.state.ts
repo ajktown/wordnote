@@ -1,5 +1,5 @@
 import { atomFamily } from 'recoil'
-import { Rkp, Rks } from '@/recoil/index.keys'
+import { Rkp, Rks } from '@/states/index.keys'
 import { GetSharedResourceRes } from '@/api/shared-resources/get-shared-resource.api'
 import { atomWithReset } from 'jotai/utils'
 

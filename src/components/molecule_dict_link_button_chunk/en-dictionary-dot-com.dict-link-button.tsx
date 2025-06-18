@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import StyledImageButtonAtom from '@/atoms/StyledImageButton'
 import { useOpenNewTab } from '@/hooks/use-open-new-tab'
 

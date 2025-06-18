@@ -1,8 +1,8 @@
 import { postWordApi } from '@/api/words/post-word.api'
 import { PostWordReqDto } from '@/api/words/interfaces'
-import { wordIdsState, wordsFamily } from '@/recoil/words/words.state'
+import { wordIdsState, wordsFamily } from '@/states/words/words.state'
 import { useRecoilCallback } from 'recoil'
-import { semestersState } from '@/recoil/words/semesters.state'
+import { semestersState } from '@/states/words/semesters.state'
 import { useActionGroupDailyPostWordChallengeApi } from '../action-groups/use-action-group-daily-post-word-challenge.api'
 import { useState } from 'react'
 

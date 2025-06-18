@@ -1,7 +1,7 @@
 import { PropsMenuItem } from '@/atoms/StyledIconButtonWithMenu'
 import StyledUserAvatar from '@/atoms/StyledUserAvatar'
 import { useOnSignOutApp } from '@/hooks/app/use-on-sign-out-app.hook'
-import { authPrepState } from '@/recoil/app/app.state'
+import { authPrepState } from '@/states/app/app.state'
 import { FC, useCallback, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 

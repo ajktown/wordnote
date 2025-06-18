@@ -1,6 +1,6 @@
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'
 import { parseInputIntoWordLambda } from '@/lambdas/parse-input-into-word.lambda'
-import { searchInputState } from '@/recoil/words/searchInput.state'
+import { searchInputState } from '@/states/words/searchInput.state'
 import { Typography, Stack } from '@mui/material'
 import { FC, useCallback } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'

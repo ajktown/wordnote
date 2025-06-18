@@ -1,5 +1,5 @@
 import { getSharedResourceApi } from '@/api/shared-resources/get-shared-resource.api'
-import { sharedWordFamily } from '@/recoil/shared-resource/shared-resource.state'
+import { sharedWordFamily } from '@/states/shared-resource/shared-resource.state'
 import { useRecoilCallback } from 'recoil'
 
 /**

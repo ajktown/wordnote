@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { getWordsApi } from '@/api/words/get-words.api'
-import { dialogSearchedWordsState } from '@/recoil/words/searchInput.state'
+import { dialogSearchedWordsState } from '@/states/words/searchInput.state'
 
 /**
  * useDialogSearchedWords search words based on the provided WordData's term

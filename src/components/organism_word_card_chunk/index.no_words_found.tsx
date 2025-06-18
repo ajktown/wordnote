@@ -1,7 +1,7 @@
 import {
   isFavoriteClickedSelector,
   selectedSemesterSelector,
-} from '@/recoil/words/words.selectors'
+} from '@/states/words/words.selectors'
 import { Typography, Stack } from '@mui/material'
 import { FC, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'

@@ -3,7 +3,7 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import {
   sharedWordFamily,
   sharedWordIdState,
-} from '@/recoil/shared-resource/shared-resource.state'
+} from '@/states/shared-resource/shared-resource.state'
 import StyledDialogLoading from '@/organisms/StyledDialogLoading'
 import StyledDialog from '@/organisms/StyledDialog'
 import StyledTextButtonAtom from '@/atoms/StyledTextButton'

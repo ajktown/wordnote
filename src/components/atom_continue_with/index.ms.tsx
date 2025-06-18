@@ -7,7 +7,7 @@ import { User } from '@microsoft/microsoft-graph-types'
 import { Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useRecoilValue } from 'recoil'
-import { authPrepState } from '@/recoil/app/app.state'
+import { authPrepState } from '@/states/app/app.state'
 
 const ContinueWithMicrosoft: FC = () => {
   const authPrep = useRecoilValue(authPrepState)

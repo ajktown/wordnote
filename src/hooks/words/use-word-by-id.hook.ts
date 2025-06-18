@@ -1,5 +1,5 @@
 import { getWordByIdApi } from '@/api/words/get-word-by-id.api'
-import { wordsFamily } from '@/recoil/words/words.state'
+import { wordsFamily } from '@/states/words/words.state'
 import { useRecoilCallback } from 'recoil'
 import { useHandleApiError } from '../use-handle-api-error.hook'
 

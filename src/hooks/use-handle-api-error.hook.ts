@@ -1,5 +1,5 @@
 import { CustomizedApiError } from '@/errors'
-import { isApiConnectFailed } from '@/recoil/apis/error-api-connection-fail.state'
+import { isApiConnectFailed } from '@/states/apis/error-api-connection-fail.state'
 import { useRecoilCallback } from 'recoil'
 import { useOnSignOutApp } from './app/use-on-sign-out-app.hook'
 

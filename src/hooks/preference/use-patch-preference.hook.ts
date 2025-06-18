@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { preferenceState } from '@/recoil/preferences/preference.state'
+import { preferenceState } from '@/states/preferences/preference.state'
 import { patchPreferenceApi } from '@/api/preferences/patch-preference.api'
 import { PreferenceModifiable } from '@/api/preferences/index.interface'
 

@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { useWords } from '../words/use-words.hook'
-import { isEveryFavoriteSelectedState } from '@/recoil/words/semesters.state'
+import { isEveryFavoriteSelectedState } from '@/states/words/semesters.state'
 
 type UseSemesterClick = [boolean, (clickedSemester: number) => Promise<void>]
 export const useSemesterClick = (): UseSemesterClick => {

@@ -1,6 +1,6 @@
 import { getActionGroupDailyPostWordChallengeApi } from '@/api/action-groups/get-action-group-daily-post-word-challenge.api'
 import { runAfterHandler } from '@/handlers/run-after.handler'
-import { isWordPostedDailyState } from '@/recoil/action-groups/action-groups.state'
+import { isWordPostedDailyState } from '@/states/action-groups/action-groups.state'
 import { useRecoilCallback } from 'recoil'
 
 const NULL_TO_LOADING_SECONDS = 2

@@ -2,7 +2,7 @@ import StyledIconButtonAtom from '@/atoms/StyledIconButton'
 import { FC } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRecoilCallback } from 'recoil'
-import { dialogSearchedTermState } from '@/recoil/words/searchInput.state'
+import { dialogSearchedTermState } from '@/states/words/searchInput.state'
 import { ISharedWord } from '@/api/words/interfaces'
 interface Props {
   word: ISharedWord

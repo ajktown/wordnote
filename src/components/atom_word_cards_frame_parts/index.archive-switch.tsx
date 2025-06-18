@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { isShowingArchivedState } from '@/recoil/preferences/preference.state'
+import { isShowingArchivedState } from '@/states/preferences/preference.state'
 import StyledSwitch from '@/atoms/StyledSwitch'
 
 const WordCardsFrameArchiveSwitchPart: FC = () => {
