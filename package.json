@@ -59,7 +59,7 @@
     "ts-jest": "^29.4.0",
     "typescript": "5.9.2"
   },
-  "_resolutionsComment": "These versions are pinned to ensure compatibility across the project and to avoid issues with transitive dependencies. Please update with caution and verify all dependent packages before changing.",
+  "_resolutionsComment": "Following versions in resolutions are pinned to run yarn latest with ease.",
   "resolutions": {
     "react": "18.3.1",
     "react-dom": "18.3.1",
